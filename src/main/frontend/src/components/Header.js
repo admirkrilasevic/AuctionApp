@@ -6,6 +6,7 @@ import {
   faTwitter,
   faInstagram
 } from "@fortawesome/free-brands-svg-icons";
+import {Link} from 'react-router-dom';
 
 const Header = () => {
     return(
@@ -14,23 +15,23 @@ const Header = () => {
           <div className={styles.socialsContainer}>
             <ul className={styles.socials}>
               <li>
-                <a href=""><FontAwesomeIcon icon={faFacebook} size="2x"/></a>
+                <a href="https://www.facebook.com/"><FontAwesomeIcon icon={faFacebook} size="2x"/></a>
               </li>
               <li>
-                <a href=""><FontAwesomeIcon icon={faInstagram} size="2x"/></a>
+                <a href="https://www.instagram.com/"><FontAwesomeIcon icon={faInstagram} size="2x"/></a>
               </li>
               <li>
-                <a href=""><FontAwesomeIcon icon={faTwitter} size="2x"/></a>
+                <a href="https://www.twitter.com/"><FontAwesomeIcon icon={faTwitter} size="2x"/></a>
               </li>
               <li>
-                <a href=""><FontAwesomeIcon icon={faGooglePlus} size="2x"/></a>
+                <a href="https://workspace.google.com/"><FontAwesomeIcon icon={faGooglePlus} size="2x"/></a>
               </li>
             </ul>
           </div>
           <p className={styles.loginContainer}>
-            <a className = {styles.login} href="">Login</a> 
+            <Link to="/login" className = {styles.login}>Login</Link> 
             or 
-            <a className = {styles.register} href="">Create an account</a>
+            <Link to="/register" className = {styles.register}>Create an account</Link>
           </p>
         </nav>
       </div>

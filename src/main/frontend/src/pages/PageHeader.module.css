@@ -1,0 +1,15 @@
+.pageHeader {
+    background-color: #FCFCFC;
+    height: 60px;
+    font-family: Lato;
+    width: 100%;
+}
+
+.pageHeader p{
+    color: black;
+    float: left;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    padding: 18px 160px;
+}
