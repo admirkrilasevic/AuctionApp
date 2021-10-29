@@ -1,13 +1,8 @@
 import styles from "./Footer.module.css";
 import { Container, Col,  Row, Button } from 'react-bootstrap';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faGooglePlus,
-  faFacebook,
-  faTwitter,
-  faInstagram,
-} from "@fortawesome/free-brands-svg-icons";
 import { Link } from 'react-router-dom';
+import SocialNetworks from "./SocialNetworks";
+
 
 const Footer = () => {
   return (
@@ -27,20 +22,7 @@ const Footer = () => {
               <p className={styles.footerColumnTitle}>GET IN TOUCH</p>
               <p>Call Us at +123 797-567-2535</p>
               <p>support@auction.com</p>
-              <ul className={styles.socials}>
-                <li>
-                  <a href="https://www.facebook.com/"><FontAwesomeIcon icon={faFacebook} size="2x"/></a>
-                </li>
-                <li>
-                  <a href="https://www.instagram.com/"><FontAwesomeIcon icon={faInstagram} size="2x"/></a>
-                </li>
-                <li>
-                  <a href="https://www.twitter.com/"><FontAwesomeIcon icon={faTwitter} size="2x"/></a>
-                </li>
-                <li>
-                  <a href="https://workspace.google.com/"><FontAwesomeIcon icon={faGooglePlus} size="2x"/></a>
-                </li>
-              </ul>
+              <SocialNetworks />
             </div>
           </Col>
           <Col>

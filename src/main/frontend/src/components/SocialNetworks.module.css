@@ -1,0 +1,17 @@
+.socials {
+    padding-left: 0px;
+}
+
+.socials li {
+    display: inline;
+    padding-right: 20px;
+    font-size: 0.75em;
+}
+
+.socials a {
+    color: #9B9B9B;
+}
+
+.socials a:hover {
+    color: white;
+}
