@@ -1,8 +1,8 @@
 import styles from './Navbar.module.css'
-import {Container, Col,  Row } from 'react-bootstrap';
+import { Container, Col,  Row } from 'react-bootstrap';
 import SearchBar from "material-ui-search-bar";
 import logo from '../assets/auction-app-logo.png';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const HeaderNavbar = () => {
     return(

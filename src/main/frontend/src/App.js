@@ -11,7 +11,7 @@ import Register from './pages/Register';
 import About from './pages/About';
 import TermsConditions from './pages/TermsAndConditions';
 import PrivacyPolicy from './pages/PrivacyAndPolicy';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 
 function App() {

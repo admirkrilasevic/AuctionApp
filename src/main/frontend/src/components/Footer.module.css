@@ -27,7 +27,7 @@
     color: #9B9B9B;
 }
 
-.links {
+.footerColumn {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -35,11 +35,11 @@
     justify-content: space-between;
 }
 
-.links a {
+.footerColumn a {
     margin-bottom: 12px;
 }
 
-.title {
+.footerColumnTitle {
     color: #9B9B9B;
     margin-bottom: 24px;
 }
@@ -68,7 +68,7 @@
     background-color: #3B3B3B;
     border-style: none;
     color: #717171;
-    padding: 10px 10px;
+    padding: 10px;
     font-style: normal;
     font-weight: bold;
     font-size: 16px;
@@ -78,5 +78,5 @@
     color: white;
     border-radius: 0;
     border-color: #8367D8;
-    padding: 9px 9px;
+    padding: 9px;
 }

@@ -1,12 +1,12 @@
 import styles from './Header.module.css'
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGooglePlus,
   faFacebook,
   faTwitter,
   faInstagram
 } from "@fortawesome/free-brands-svg-icons";
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     return(

@@ -1,5 +1,5 @@
 import styles from "./Footer.module.css";
-import {Container, Col,  Row, Button } from 'react-bootstrap';
+import { Container, Col,  Row, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGooglePlus,
@@ -7,7 +7,7 @@ import {
   faTwitter,
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -15,16 +15,16 @@ const Footer = () => {
       <Container className={"no-gutters"}>
         <Row className={styles.footerContent}>
           <Col>
-            <div className={styles.links}>
-              <div className={styles.title}>AUCTION</div>
+            <div className={styles.footerColumn}>
+              <p className={styles.footerColumnTitle}>AUCTION</p>
               <Link to="/about">About Us</Link>
               <Link to="/terms">Terms and Conditions</Link>
               <Link to="/privacy">Privacy and Policy</Link>
             </div>
           </Col>
           <Col>
-          <div className={styles.links}>
-              <div className={styles.title}>GET IN TOUCH</div>
+            <div className={styles.footerColumn}>
+              <p className={styles.footerColumnTitle}>GET IN TOUCH</p>
               <p>Call Us at +123 797-567-2535</p>
               <p>support@auction.com</p>
               <ul className={styles.socials}>
@@ -43,9 +43,9 @@ const Footer = () => {
               </ul>
             </div>
           </Col>
-          <Col className={styles.buttonsContainer}>
-          <div className={styles.links}>
-              <div className={styles.title}>NEWSLETTER</div>
+          <Col>
+            <div className={styles.footerColumn}>
+              <p className={styles.footerColumnTitle}>NEWSLETTER</p>
               <p>Enter your email address and get notified about new products. We hate spam!</p>
               <Row>
                 <Col><input className={styles.newsletterInput} type="email" placeholder="Your Email address"></input></Col>
