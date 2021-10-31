@@ -5,7 +5,7 @@ import SocialNetworks from './SocialNetworks';
 const Header = () => {
     return(
       <div className={styles.header}>
-        <nav>
+        <nav className={styles.headerContent}>
           <div className={styles.socialsContainer}>
             <SocialNetworks />
           </div>

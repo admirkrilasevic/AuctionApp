@@ -8,24 +8,26 @@
     height: 40px;
     font-family: Lato;
     top: 0;
-    position: fixed;
+    position: absolute;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-items: center;
+}
+
+.headerContent {
+    width: 1440px;
+    margin: auto;
+    padding-left: 90px;
+    padding-right: 90px;
 }
 
 .socialsContainer {
     margin-top: 8.5px;
     margin-bottom: auto;
-    margin-left: 159px;
     float: left;
 }
 
 .loginContainer {
     color: #9B9B9B;
     margin-top: 8px;
-    margin-right: 160px;
     float: right;
 }
 

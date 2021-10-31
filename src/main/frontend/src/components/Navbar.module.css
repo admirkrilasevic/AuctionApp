@@ -1,6 +1,8 @@
 .navbarContainer {
     margin: 0px;
     padding: 0px;
+    width: 1440px;
+    margin: auto;
 }
 
 .navbar {
@@ -14,8 +16,6 @@
     width: 163px;
     height: 56px; 
     margin-top: 16px;
-    margin-left: 180px;
-    float: left;
 }
 
 .buttonsContainer {

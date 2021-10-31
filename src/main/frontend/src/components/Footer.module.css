@@ -10,12 +10,13 @@
 .footerContent {
     color: white;
     font-size: 16px;
-    display: flex;
-    flex-direction: row;
     text-align: left;
     padding-top: 31px;
-    padding-bottom: 80px;
-    margin-left: 160px;
+    height: 356px;
+    max-width: 1440px;
+    margin: auto;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .footerContent a {
@@ -30,9 +31,6 @@
 .footerColumn {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
-    flex-wrap: wrap;
-    justify-content: space-between;
 }
 
 .footerColumn a {
