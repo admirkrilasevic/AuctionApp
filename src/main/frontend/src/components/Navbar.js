@@ -1,8 +1,8 @@
 import styles from './Navbar.module.css'
 import { Container, Col,  Row } from 'react-bootstrap';
-import SearchBar from "material-ui-search-bar";
 import logo from '../assets/auction-app-logo.png';
 import { Link } from 'react-router-dom';
+import { AiOutlineSearch as SearchIcon } from 'react-icons/ai';
 
 const HeaderNavbar = () => {
     return(
@@ -12,7 +12,10 @@ const HeaderNavbar = () => {
                     <Link to="/"><img className={styles.logo} src={logo} alt="Logo"></img></Link> 
                 </Col>
                 <Col xs={6}>
-                    <SearchBar className={styles.searchbar} placeholder="Try enter: Shoes" />
+                    <div className={styles.searchContainer}>
+                        <input className={styles.searchBar} type="search" placeholder="Try enter: Shoes"></input>
+                        <button className={styles.searchButton}><SearchIcon/></button>
+                    </div>
                 </Col>
                 <Col className={styles.buttonsContainer}>
                     <Link to="/">Home</Link>
