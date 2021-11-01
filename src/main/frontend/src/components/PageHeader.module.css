@@ -3,6 +3,7 @@
     height: 60px;
     font-family: Lato;
     width: 100%;
+    margin-top: 17px;
 }
 
 .pageHeader p{
@@ -12,4 +13,11 @@
     font-weight: normal;
     font-size: 16px;
     padding: 18px 160px;
+}
+
+.pageContent {
+    width: 1440px;
+    margin: auto;
+    text-align: center;
+    font-family: Lato;
 }

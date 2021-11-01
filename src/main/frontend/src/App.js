@@ -11,8 +11,8 @@ import Register from './pages/Register';
 import About from './pages/About';
 import TermsConditions from './pages/TermsAndConditions';
 import PrivacyPolicy from './pages/PrivacyAndPolicy';
+import PageHeader from './components/PageHeader';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
 
 function App() {
   return (
@@ -25,10 +25,14 @@ function App() {
             <Home />
           </Route>
           <Route path="/login">
-            <Login />
+            <PageHeader title="Login">
+              <Login />
+            </PageHeader>
           </Route>
           <Route path="/register">
-            <Register/>
+            <PageHeader title="Register">
+              <Register />
+            </PageHeader>
           </Route>
           <Route path="/shop">
             <Shop />
@@ -37,13 +41,19 @@ function App() {
             <Account />
           </Route>
           <Route path="/about">
-            <About />
+            <PageHeader title="About Us">
+              <About />
+            </PageHeader>            
           </Route>
           <Route path="/terms">
-            <TermsConditions />
+            <PageHeader title="Terms and Conditions">
+              <TermsConditions />
+            </PageHeader>
           </Route>
           <Route path="/privacy">
-            <PrivacyPolicy />
+            <PageHeader title="Privacy and Policy">
+              <PrivacyPolicy />
+            </PageHeader>
           </Route>
         </Switch>
         <Footer />
