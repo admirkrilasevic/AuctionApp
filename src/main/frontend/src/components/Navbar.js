@@ -14,7 +14,7 @@ const HeaderNavbar = () => {
                 <Col xs={6}>
                     <div className={styles.searchContainer}>
                         <input className={styles.searchBar} type="search" placeholder="Try enter: Shoes"></input>
-                        <button className={styles.searchButton}><SearchIcon/></button>
+                        <SearchIcon className={styles.searchIcon}/>
                     </div>
                 </Col>
                 <Col className={styles.buttonsContainer}>
