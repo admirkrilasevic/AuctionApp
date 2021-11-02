@@ -1,12 +1,6 @@
-@font-face {
-    font-family: 'Lato';
-    src: local('Lato'), url(../fonts/Lato-Regular.ttf) format('truetype');
-}
-
 .header {
     background-color: #252525;
     height: 40px;
-    font-family: Lato;
     top: 0;
     position: absolute;
     width: 100%;
@@ -29,15 +23,11 @@
     color: #9B9B9B;
     margin-top: 8px;
     float: right;
+    font-size: 14px;
 }
 
 
 .login {
-    width: 34px;
-    height: 17px;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 14px;
     text-decoration: none;
     margin-right: 24px;
     color: #FFFFFF;
@@ -48,11 +38,6 @@
 }
 
 .register {
-    width: 113px;
-    height: 17px;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 14px;
     text-decoration: none;
     margin-left: 24px;
     color: #FFFFFF;

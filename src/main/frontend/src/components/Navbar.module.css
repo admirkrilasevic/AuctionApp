@@ -8,7 +8,6 @@
 .navbar {
     background-color: white;
     text-transform: uppercase;
-    font-family: Lato;
     margin-top: 40px;
 }
 
@@ -44,7 +43,6 @@
     border-right: none;
     height: 58px;
     width: 80%;
-    font-family: Lato;
     padding: 20px;
     vertical-align: middle;
 }
