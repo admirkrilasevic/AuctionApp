@@ -11,7 +11,7 @@ import Register from './pages/Register';
 import About from './pages/About';
 import TermsConditions from './pages/TermsAndConditions';
 import PrivacyPolicy from './pages/PrivacyAndPolicy';
-import PageHeader from './components/PageHeader';
+import PageLayout from './components/PageLayout';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function App() {
@@ -22,38 +22,44 @@ function App() {
         <HeaderNavbar />
         <Switch>
           <Route exact path="/">
-            <Home />
+            <PageLayout>
+              <Home />
+            </PageLayout>
           </Route>
           <Route path="/login">
-            <PageHeader title="Login">
+            <PageLayout title="Login">
               <Login />
-            </PageHeader>
+            </PageLayout>
           </Route>
           <Route path="/register">
-            <PageHeader title="Register">
+            <PageLayout title="Register">
               <Register />
-            </PageHeader>
+            </PageLayout>
           </Route>
           <Route path="/shop">
-            <Shop />
+            <PageLayout>
+              <Shop />
+            </PageLayout>
           </Route>
           <Route path="/account">
-            <Account />
+            <PageLayout>
+              <Account />
+            </PageLayout>
           </Route>
           <Route path="/about">
-            <PageHeader title="About Us">
+            <PageLayout title="About Us">
               <About />
-            </PageHeader>            
+            </PageLayout>            
           </Route>
           <Route path="/terms">
-            <PageHeader title="Terms and Conditions">
+            <PageLayout title="Terms and Conditions">
               <TermsConditions />
-            </PageHeader>
+            </PageLayout>
           </Route>
           <Route path="/privacy">
-            <PageHeader title="Privacy and Policy">
+            <PageLayout title="Privacy and Policy">
               <PrivacyPolicy />
-            </PageHeader>
+            </PageLayout>
           </Route>
         </Switch>
         <Footer />
