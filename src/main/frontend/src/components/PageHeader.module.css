@@ -1,21 +1,21 @@
 .pageHeader {
-    background-color: #FCFCFC;
-    height: 60px;
-    width: 100%;
     margin-top: 17px;
 }
 
-.pageHeader p{
+.pageHeaderTitle {
     color: black;
-    float: left;
+    text-align: start;
     font-style: normal;
-    font-weight: normal;
     font-size: 16px;
+    background-color: #FCFCFC;
+    height: 60px;
+    width: 100%;
     padding: 18px 160px;
 }
 
 .pageContent {
     width: 1440px;
     margin: auto;
-    text-align: center;
+    padding-left: 90px;
+    padding-right: 90px;
 }

@@ -2,12 +2,11 @@ import styles from "./PageHeader.module.css";
 
 const PageHeader = ({title, children}) => {
     return (
-        <div>
-            <div className={styles.pageHeader}>
+        <div className={styles.pageHeader}>
+            <div className={styles.pageHeaderTitle}>
                 <p>{title}</p>
             </div>
             <div className={styles.pageContent}>
-                <p></p>
                 {children}
             </div>
         </div>
