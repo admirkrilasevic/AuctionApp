@@ -1,7 +1,7 @@
 import styles from './Navbar.module.css'
 import { Container, Col,  Row } from 'react-bootstrap';
 import logo from '../assets/auction-app-logo.png';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { AiOutlineSearch as SearchIcon } from 'react-icons/ai';
 
 const HeaderNavbar = () => {
@@ -18,9 +18,9 @@ const HeaderNavbar = () => {
                     </div>
                 </Col>
                 <Col className={styles.buttonsContainer}>
-                    <Link to="/">Home</Link>
-                    <Link to="/shop">Shop</Link>
-                    <Link to="/account">My Account</Link>
+                    <NavLink to="/home" activeStyle={{ color: '#8367D8' }}>Home</NavLink>
+                    <NavLink to="/shop" activeStyle={{ color: '#8367D8' }}>Shop</NavLink>
+                    <NavLink to="/account" activeStyle={{ color: '#8367D8' }}>My Account</NavLink>
                 </Col>
             </Row>
         </Container>
