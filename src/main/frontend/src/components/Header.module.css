@@ -1,0 +1,48 @@
+.header {
+    background-color: #252525;
+    height: 40px;
+    top: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.headerContent {
+    width: 1440px;
+    margin: auto;
+    padding-left: 90px;
+    padding-right: 90px;
+}
+
+.socialsContainer {
+    margin-top: 8.5px;
+    margin-bottom: auto;
+    float: left;
+}
+
+.loginContainer {
+    color: #9B9B9B;
+    margin-top: 8px;
+    float: right;
+    font-size: 14px;
+}
+
+
+.login {
+    text-decoration: none;
+    margin-right: 24px;
+    color: #FFFFFF;
+}
+
+.login:hover {
+    color: #9B9B9B;
+}
+
+.register {
+    text-decoration: none;
+    margin-left: 24px;
+    color: #FFFFFF;
+}
+
+.register:hover {
+    color: #9B9B9B;
+}

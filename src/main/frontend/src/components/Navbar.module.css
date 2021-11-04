@@ -1,0 +1,57 @@
+.navbarContainer {
+    margin: 0px;
+    padding: 0px;
+    width: 1440px;
+    margin: auto;
+}
+
+.navbar {
+    background-color: white;
+    text-transform: uppercase;
+    margin-top: 40px;
+}
+
+.logo {
+    width: 163px;
+    height: 56px; 
+    margin-top: 16px;
+}
+
+.buttonsContainer {
+    margin-top: 32px;
+}
+
+.buttonsContainer a {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    color: #252525;
+    text-decoration: none;
+    margin-right: 25px;
+}
+
+.buttonsContainer a:hover {
+    color: #8367D8;
+}
+
+.searchContainer {
+    margin-top: 17px;
+}
+
+.searchBar {
+    border: 1px solid #e3e3e3;
+    border-right: none;
+    height: 58px;
+    width: 80%;
+    padding: 20px;
+    vertical-align: middle;
+}
+
+.searchIcon {
+    border: 1px solid #e3e3e3;
+    background-color: white;
+    border-left: none;
+    height: 58px;
+    width: 58px;
+    padding: 15px;
+}

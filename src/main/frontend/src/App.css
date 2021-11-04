@@ -1,5 +1,11 @@
+@font-face {
+  font-family: 'Lato';
+  src: local('Lato'), url(./fonts/Lato-Regular.ttf) format('truetype');
+}
+
 .App {
   text-align: center;
+  font-family: Lato;
 }
 
 .App-logo {
