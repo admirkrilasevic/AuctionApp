@@ -1,0 +1,23 @@
+.itemContainer {
+  width: 262px;
+  height: 330px;
+}
+
+.photo {
+  width: 262px;
+  height: 262px;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.startPrice {
+  font-weight: 500;
+  font-size: 16px;
+}
+  
+.amount {
+  color: #8367d8;
+}

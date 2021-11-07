@@ -42,3 +42,23 @@
     transform: rotate(360deg);
   }
 }
+
+.tab-list {
+  border-bottom: 1px solid #ccc;
+  padding-left: 0;
+  text-align: left;
+}
+
+.tab-list-item {
+  display: inline-block;
+  list-style: none;
+  margin-bottom: -1px;
+  padding: 0.5rem 0.75rem;
+  font-size: 20px;
+}
+
+.tab-list-active {
+  background-color: white;
+  border-bottom: 1px solid #8367d8;
+  font-weight: bold;
+}

@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ItemService {
 
-    private final ItemRepository itemRepository;
+    ItemRepository itemRepository;
 
     public List<Item> getAllItems() {
         return itemRepository.findAll();

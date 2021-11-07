@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @CrossOrigin
-@RequestMapping("api/v1/item")
+@RequestMapping("api/v1/items")
 @RestController
 @AllArgsConstructor
 public class ItemController {
 
     @Autowired
-    private final ItemService itemService;
+    ItemService itemService;
 
     @GetMapping("/getall")
     public List<Item> getAllItems() {

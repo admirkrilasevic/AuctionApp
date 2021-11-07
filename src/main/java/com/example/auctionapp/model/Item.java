@@ -30,7 +30,7 @@ public class Item {
     private String description;
 
     @Column
-    private String photo;
+    private byte[] photo;
 
     @Column(name = "starting_price")
     private double startingPrice;
