@@ -7,13 +7,13 @@ function ItemList(props) {
         <Row className={styles.container}>
             {props.items.map( (item) => (
                 <Col>
-                <Item 
-                    key={item.id}
-                    id={item.id}
-                    photo={item.photo}
-                    name={item.name}
-                    startingPrice={item.startingPrice}
-                />
+                    <Item 
+                        key={item.id}
+                        id={item.id}
+                        photo={item.photo}
+                        name={item.name}
+                        startingPrice={item.startingPrice}
+                    />
                 </Col>
             ))}
         </Row>

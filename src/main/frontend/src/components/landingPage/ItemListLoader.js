@@ -10,19 +10,18 @@ function ItemListLoader(props){
 
     if (props.load === "newarrivals") {
         content = "/items/getnewarrivals";
-    }
-    else {    
+    } else {    
         content = "/items/getlastchance";
     }
 
-    useEffect( () => {
+    useEffect(() => {
         setIsLoading(true);
         fetch(`http://localhost:8080/api/v1${content}`
         )
-        .then( (response) => {
+        .then((response) => {
             return response.json();
         })
-        .then( (data) => {
+        .then((data) => {
             const items = [];
 
             for (const key in data) {

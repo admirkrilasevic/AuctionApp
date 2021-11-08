@@ -1,5 +1,6 @@
 package com.example.auctionapp.model;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,9 +19,11 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     @Column(name = "user_id")
     private Long userId;
 
+    @NotNull
     @Column
     private String name;
 
@@ -36,12 +39,15 @@ public class Item {
     @Column
     private byte[] photo;
 
+    @NotNull
     @Column(name = "starting_price")
     private double startingPrice;
 
+    @NotNull
     @Column(name = "start_date")
     private Date startDate;
 
+    @NotNull
     @Column(name = "end_date")
     private Date endDate;
 
