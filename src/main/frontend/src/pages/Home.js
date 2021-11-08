@@ -1,4 +1,4 @@
-import ItemListLoader from "../components/landingPage/ItemListLoader";
+import InfiniteScrollComponent from "../components/landingPage/InfiniteScrollComponent";
 import Tabs from "../components/landingPage/Tabs";
 
 function Home(){
@@ -6,10 +6,10 @@ function Home(){
         <div>
             <Tabs>
                 <div label="New Arrivals">
-                    <ItemListLoader load="newarrivals" />
+                    <InfiniteScrollComponent load="newarrivals" />
                 </div>
                 <div label="Last Chance">
-                    <ItemListLoader load="lastchance" />
+                    <InfiniteScrollComponent load="lastchance" />
                 </div>
             </Tabs>
       </div>

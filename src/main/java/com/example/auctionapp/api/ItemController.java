@@ -4,6 +4,7 @@ import com.example.auctionapp.model.Item;
 import com.example.auctionapp.service.ItemService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,12 +24,13 @@ public class ItemController {
     }
 
     @GetMapping("/getnewarrivals")
-    public List<Item> getNewArrivals() {
-        return itemService.getNewArrivals();
+    public @ResponseBody
+    Page<Item> getNewArrivals(@RequestParam("page") int page, @RequestParam("size") int size) {
+        return itemService.getNewArrivals(page, size);
     }
 
     @GetMapping("/getlastchance")
-    public List<Item> getLastChanceItems() {
-        return itemService.getLastChanceItems();
+    public @ResponseBody Page<Item> getLastChanceItems(@RequestParam("page") int page, @RequestParam("size") int size) {
+        return itemService.getLastChanceItems(page, size);
     }
 }

@@ -8,9 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class AuctionappApplication {
 
-	@Autowired
-	private ItemRepository itemRepository;
-
 	public static void main(String[] args) {
 		SpringApplication.run(AuctionappApplication.class, args);
 	}
