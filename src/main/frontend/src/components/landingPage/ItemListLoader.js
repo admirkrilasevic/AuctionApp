@@ -1,3 +1,5 @@
+/* BACKUP FOR INFINITE SCROLL */
+
 import { useState, useEffect } from 'react';
 import ItemList from "./ItemList";
 
@@ -8,7 +10,7 @@ function ItemListLoader(props){
 
     let content = "";
 
-    if (props.load === "newarrivals") {
+    if (props.load === LANDING_PAGE_TAB_VALUES.NEW_ARRIVALS) {
         content = "/items/getnewarrivals";
     } else {    
         content = "/items/getlastchance";

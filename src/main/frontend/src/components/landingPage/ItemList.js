@@ -1,3 +1,5 @@
+/* BACKUP FOR INFINITE SCROLL */
+
 import Item from "./Item";
 import { Row, Col } from 'react-bootstrap';
 import styles from './ItemList.module.css';

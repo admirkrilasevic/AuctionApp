@@ -12,9 +12,9 @@ function InfiniteScrollComponent(props) {
   useEffect(async () => {
     let data = "";
 
-    if (props.load === "newarrivals") {
+    if (props.load === LANDING_PAGE_TAB_VALUES.NEW_ARRIVALS) {
       data = await fetchNewArrivals(page, 4);
-    } else {
+    } else if (props.load === LANDING_PAGE_TAB_VALUES.LAST_CHANCE) {
       data = await fetchLastChance(page, 4);
     }
 
@@ -24,9 +24,9 @@ function InfiniteScrollComponent(props) {
   const fetchData = async () => {
     let itemsFromServer = "";
 
-    if (props.load === "newarrivals") {
+    if (props.load === LANDING_PAGE_TAB_VALUES.NEW_ARRIVALS) {
       itemsFromServer = await fetchNewArrivals(page+1, 4);
-    } else {
+    } else if (props.load === LANDING_PAGE_TAB_VALUES.LAST_CHANCE) {
       itemsFromServer = await fetchLastChance(page+1, 4);
     }
 

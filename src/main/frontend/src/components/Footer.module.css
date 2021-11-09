@@ -7,7 +7,7 @@
 }
 
 .footerContent {
-    color: white;
+    color: #fff;
     font-size: 16px;
     text-align: left;
     padding-top: 31px;
@@ -54,7 +54,7 @@
 }
 
 .newsletterButton {
-    color: white;
+    color: #fff;
     border-radius: 0;
     border-color: #8367D8;
     padding: 9px;

@@ -6,10 +6,10 @@ function Home(){
         <div>
             <Tabs>
                 <div label="New Arrivals">
-                    <InfiniteScrollComponent load="newarrivals" />
+                    <InfiniteScrollComponent load={LANDING_PAGE_TAB_VALUES.NEW_ARRIVALS} />
                 </div>
                 <div label="Last Chance">
-                    <InfiniteScrollComponent load="lastchance" />
+                    <InfiniteScrollComponent load={LANDING_PAGE_TAB_VALUES.LAST_CHANCE} />
                 </div>
             </Tabs>
       </div>
