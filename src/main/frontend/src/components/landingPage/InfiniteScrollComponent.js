@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Item from "./Item";
 import { Row, Col } from "react-bootstrap";
 import { fetchLastChance, fetchNewArrivals } from './ItemService';
+import * as Constants from "../../constants";
 
 function InfiniteScrollComponent(props) {
   const [items, setItems] = useState([]);
@@ -10,28 +11,21 @@ function InfiniteScrollComponent(props) {
   const [page, setPage] = useState(0);
 
   useEffect(async () => {
-    let data = "";
-
-    if (props.load === LANDING_PAGE_TAB_VALUES.NEW_ARRIVALS) {
-      data = await fetchNewArrivals(page, 4);
-    } else if (props.load === LANDING_PAGE_TAB_VALUES.LAST_CHANCE) {
-      data = await fetchLastChance(page, 4);
-    }
-
-    setItems(data.content);
-  }, []);
-
-  const fetchData = async () => {
     let itemsFromServer = "";
 
-    if (props.load === LANDING_PAGE_TAB_VALUES.NEW_ARRIVALS) {
-      itemsFromServer = await fetchNewArrivals(page+1, 4);
-    } else if (props.load === LANDING_PAGE_TAB_VALUES.LAST_CHANCE) {
-      itemsFromServer = await fetchLastChance(page+1, 4);
+    if (props.load === Constants.LANDING_PAGE_TAB_VALUES.NEW_ARRIVALS) {
+      itemsFromServer = await fetchNewArrivals(page, 4);
+    } else if (props.load === Constants.LANDING_PAGE_TAB_VALUES.LAST_CHANCE) {
+      itemsFromServer = await fetchLastChance(page, 4);
     }
 
+    setItems(itemsFromServer.content);
     setItems([...items, ...itemsFromServer.content]);
     setHasMoreItems(itemsFromServer.last);
+  }, [page]);
+
+  const fetchData = async () => {
+    setPage(page+1);
   };
 
   return (
