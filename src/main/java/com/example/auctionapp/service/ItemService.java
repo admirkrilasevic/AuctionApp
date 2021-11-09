@@ -1,5 +1,6 @@
 package com.example.auctionapp.service;
 
+import com.example.auctionapp.enumeration.ItemSort;
 import com.example.auctionapp.repository.ItemRepository;
 import com.example.auctionapp.model.Item;
 import lombok.AllArgsConstructor;
@@ -22,14 +23,8 @@ public class ItemService {
         return itemRepository.findAll();
     }
 
-    public Page<Item> getNewArrivals(int page, int size) {
-        PageRequest pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "startDate"));
-        Page<Item> items = itemRepository.findAll(pageable);
-        return items;
-    }
-
-    public Page<Item> getLastChanceItems(int page, int size) {
-        PageRequest pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, "endDate"));
+    public Page<Item> getItems(int page, int size, ItemSort sort, Sort.Direction direction) {
+        PageRequest pageable = PageRequest.of(page, size, Sort.by(direction, String.valueOf(sort)));
         Page<Item> items = itemRepository.findAll(pageable);
         return items;
     }

@@ -2,7 +2,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { useEffect, useState } from "react";
 import Item from "./Item";
 import { Row, Col } from "react-bootstrap";
-import { fetchLastChance, fetchNewArrivals } from './ItemService';
+import { fetchItems } from './ItemService';
 import * as Constants from "../../constants";
 
 function InfiniteScrollComponent(props) {
@@ -14,9 +14,9 @@ function InfiniteScrollComponent(props) {
     let itemsFromServer = "";
 
     if (props.load === Constants.LANDING_PAGE_TAB_VALUES.NEW_ARRIVALS) {
-      itemsFromServer = await fetchNewArrivals(page, 4);
+      itemsFromServer = await fetchItems(page, 4, Constants.ITEM_SORT.NEW_ARRIVALS, Constants.DIRECTION.DESCENDING);
     } else if (props.load === Constants.LANDING_PAGE_TAB_VALUES.LAST_CHANCE) {
-      itemsFromServer = await fetchLastChance(page, 4);
+      itemsFromServer = await fetchItems(page, 4, Constants.ITEM_SORT.LAST_CHANCE, Constants.DIRECTION.ASCENDING);
     }
 
     setItems(itemsFromServer.content);
