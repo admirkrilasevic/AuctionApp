@@ -12,7 +12,6 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "items")
 public class Item {
 
     @Id
@@ -37,7 +36,7 @@ public class Item {
     private String description;
 
     @Column
-    private byte[] photo;
+    private String photo;
 
     @NotNull
     @Column(name = "starting_price")
