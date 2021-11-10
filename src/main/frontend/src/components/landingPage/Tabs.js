@@ -1,56 +1,33 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import { useState } from "react";
+import InfiniteScrollComponent from "./InfiniteScrollComponent";
 import Tab from "./Tab";
+import * as Constants from "../../constants";
 
-class Tabs extends Component {
-  static propTypes = {
-    children: PropTypes.instanceOf(Array).isRequired,
-  };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      activeTab: this.props.children[0].props.label,
-    };
-  }
-
-  onClickTabItem = (tab) => {
-    this.setState({ activeTab: tab });
-  };
-
-  render() {
-    const {
-      onClickTabItem,
-      props: { children },
-      state: { activeTab },
-    } = this;
+function Tabs() {
+  
+    const [activeTab, setActiveTab] = useState("New Arrivals");
 
     return (
       <div className="tabs">
         <ol className="tab-list">
-          {children.map((child) => {
-            const { label } = child.props;
-
-            return (
-              <Tab
+            <Tab
                 activeTab={activeTab}
-                key={label}
-                label={label}
-                onClick={onClickTabItem}
-              />
-            );
-          })}
+                label={"New Arrivals"}
+                onClick={() => setActiveTab("New Arrivals")}
+            />
+            <Tab
+                activeTab={activeTab}
+                label={"Last Chance"}
+                onClick={() => setActiveTab("Last Chance")}
+            />
         </ol>
         <div className="tab-content">
-          {children.map((child) => {
-            if (child.props.label !== activeTab) return undefined;
-            return child.props.children;
-          })}
+            {activeTab === "New Arrivals" ? 
+                <InfiniteScrollComponent load={Constants.LANDING_PAGE_TAB_VALUES.NEW_ARRIVALS} /> 
+                : <InfiniteScrollComponent load={Constants.LANDING_PAGE_TAB_VALUES.LAST_CHANCE} />}
         </div>
       </div>
     );
-  }
 }
 
 export default Tabs;
