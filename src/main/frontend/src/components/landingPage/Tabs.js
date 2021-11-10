@@ -23,8 +23,8 @@ function Tabs() {
         </ol>
         <div className="tab-content">
             {activeTab === "New Arrivals" ? 
-                <InfiniteScrollComponent load={Constants.LANDING_PAGE_TAB_VALUES.NEW_ARRIVALS} /> 
-                : <InfiniteScrollComponent load={Constants.LANDING_PAGE_TAB_VALUES.LAST_CHANCE} />}
+                <InfiniteScrollComponent key={Constants.LANDING_PAGE_TAB_VALUES.NEW_ARRIVALS} load={Constants.LANDING_PAGE_TAB_VALUES.NEW_ARRIVALS} /> 
+                : <InfiniteScrollComponent key={Constants.LANDING_PAGE_TAB_VALUES.LAST_CHANCE} load={Constants.LANDING_PAGE_TAB_VALUES.LAST_CHANCE} />}
         </div>
       </div>
     );
