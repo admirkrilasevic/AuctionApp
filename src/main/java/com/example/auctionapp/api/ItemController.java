@@ -20,12 +20,12 @@ public class ItemController {
     @Autowired
     ItemService itemService;
 
-    @GetMapping("/getall")
+    @GetMapping()
     public List<Item> getAllItems() {
         return itemService.getAllItems();
     }
 
-    @GetMapping("/getitems")
+    @GetMapping("/search")
     public @ResponseBody
     Page<Item> getItems(@RequestParam("page") int page, @RequestParam("size") int size, @RequestParam("sort") ItemSort sort, @RequestParam("direction") Sort.Direction direction) {
         return itemService.getItems(page, size, sort, direction);

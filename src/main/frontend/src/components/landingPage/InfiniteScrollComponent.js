@@ -7,7 +7,7 @@ import * as Constants from "../../constants";
 
 function InfiniteScrollComponent(props) {
   const [items, setItems] = useState([]);
-  const [hasMoreItems, setHasMoreItems] = useState(false);
+  const [hasMoreItems, setHasMoreItems] = useState(true);
   const [page, setPage] = useState(0);
 
   useEffect(async () => {
@@ -19,9 +19,8 @@ function InfiniteScrollComponent(props) {
       itemsFromServer = await fetchItems(page, 4, Constants.ITEM_SORT.LAST_CHANCE, Constants.DIRECTION.ASCENDING);
     }
 
-    setItems(itemsFromServer.content);
     setItems([...items, ...itemsFromServer.content]);
-    setHasMoreItems(itemsFromServer.last);
+    setHasMoreItems(!itemsFromServer.last);
   }, [page]);
 
   const fetchData = async () => {
@@ -32,7 +31,7 @@ function InfiniteScrollComponent(props) {
     <InfiniteScroll
       dataLength={items.length}
       next={fetchData}
-      hasMore={!hasMoreItems}
+      hasMore={hasMoreItems}
       loader={<p>Loading...</p>}
       endMessage={<p>No more items to show</p>}
     >

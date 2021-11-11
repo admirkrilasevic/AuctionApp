@@ -1,11 +1,11 @@
 export const LANDING_PAGE_TAB_VALUES = {
-    NEW_ARRIVALS: "newarrivals",
-    LAST_CHANCE: "lastchance"
+    NEW_ARRIVALS: "New Arrivals",
+    LAST_CHANCE: "Last Chance"
 } 
 
 export const ITEM_SORT = {
-    NEW_ARRIVALS: "startDate",
-    LAST_CHANCE: "endDate"
+    NEW_ARRIVALS: "STARTDATE",
+    LAST_CHANCE: "ENDDATE"
 }
 
 export const DIRECTION = {
