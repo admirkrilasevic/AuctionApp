@@ -1,6 +1,12 @@
+import InfiniteScrollComponent from "../components/landingPage/InfiniteScrollComponent";
+import Tabs from "../components/landingPage/Tabs";
+import * as Constants from "../constants";
+
 function Home(){
     return (
-        <h1>Home</h1>
+        <div>
+            <Tabs />
+        </div>
     );
 }
 
