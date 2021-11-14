@@ -25,7 +25,7 @@ import java.security.spec.InvalidKeySpecException;
 public class AuthController {
 
     @Autowired
-    private AuthenticationManager authenticationManager;
+    AuthenticationManager authenticationManager;
 
     @Autowired
     UserRepository userRepository;
@@ -34,7 +34,7 @@ public class AuthController {
     PasswordEncoder encoder;
 
     @Autowired
-    private JwtUtils jwtUtils;
+    JwtUtils jwtUtils;
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@Valid @RequestBody AuthRequest authenticationRequest) throws InvalidKeySpecException, NoSuchAlgorithmException {
@@ -43,8 +43,13 @@ public class AuthController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwtToken = jwtUtils.generateJwtToken(authentication);
 
-        AuthResponse response = new AuthResponse();
-        response.setToken(jwtToken);
+        User user = (User) authentication.getPrincipal();
+        AuthResponse response = new AuthResponse(jwtToken,
+                                                user.getId(),
+                                                user.getName(),
+                                                user.getSurname(),
+                                                user.getEmail(),
+                                                user.getPassword());
         return ResponseEntity.ok(response);
     }
 
