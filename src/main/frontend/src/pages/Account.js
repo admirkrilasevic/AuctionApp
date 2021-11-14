@@ -1,6 +1,8 @@
+import Profile from "../components/loginAndRegistration/Profile.js"
+
 function Account(){
     return (
-        <h1>Account</h1>
+        <Profile/>
     );
 }
 
