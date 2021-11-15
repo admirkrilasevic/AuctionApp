@@ -49,7 +49,7 @@
     color: #fff;
 }
 
-.alreadyHaveAnAccount {
+.formText {
     margin-top: 48px;
 }
 
@@ -57,4 +57,8 @@
     color: #8367d8;
     text-decoration: none;
     margin-left: 32px;
+}
+
+.registerMessage {
+    margin-top: 48px;
 }

@@ -15,14 +15,14 @@ const Header = () => {
 
     if (user) {
       setCurrentUser(user);
+    } else {
+      setCurrentUser(undefined);
     }
-  }, []);
+  }, [history, currentUser]);
 
   const logOut = () => {
     AuthService.logout();
     history.push("/home");
-    history.go(0);
-
   };
 
     return(
@@ -34,7 +34,7 @@ const Header = () => {
           {currentUser ? (
             <p className={styles.loginContainer}>
               <Link to="/account" className = {styles.user}>{currentUser.name}</Link>
-              <Link to="/home" className = {styles.logout} onClick={logOut}>Log Out</Link>
+              <button className = {styles.logout} onClick={logOut}>Log Out</button>
             </p>
           ) : (
             <p className={styles.loginContainer}>
