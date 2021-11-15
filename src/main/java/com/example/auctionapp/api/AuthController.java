@@ -6,6 +6,7 @@ import com.example.auctionapp.payload.AuthResponse;
 import com.example.auctionapp.payload.RegisterRequest;
 import com.example.auctionapp.repository.UserRepository;
 import com.example.auctionapp.security.JwtUtils;
+import com.example.auctionapp.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,57 +26,16 @@ import java.security.spec.InvalidKeySpecException;
 public class AuthController {
 
     @Autowired
-    AuthenticationManager authenticationManager;
-
-    @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    PasswordEncoder encoder;
-
-    @Autowired
-    JwtUtils jwtUtils;
+    AuthService authenticationService;
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@Valid @RequestBody AuthRequest authenticationRequest) throws InvalidKeySpecException, NoSuchAlgorithmException {
-        final Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getEmail(), authenticationRequest.getPassword()));
-
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwtToken = jwtUtils.generateJwtToken(authentication);
-
-        User user = (User) authentication.getPrincipal();
-        AuthResponse response = new AuthResponse(jwtToken,
-                                                user.getId(),
-                                                user.getName(),
-                                                user.getSurname(),
-                                                user.getEmail());
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(authenticationService.login(authenticationRequest));
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterRequest registerRequest) {
-        if (userRepository.existsByEmail(registerRequest.getEmail())) {
-            return ResponseEntity
-                    .badRequest()
-                    .body("Error: Username is already taken!");
-        }
-
-        if (userRepository.existsByEmail(registerRequest.getEmail())) {
-            return ResponseEntity
-                    .badRequest()
-                    .body("Error: Email is already in use!");
-        }
-
-        // Create new user's account
-        User user = new User(registerRequest.getName(),
-                registerRequest.getSurname(),
-                registerRequest.getEmail(),
-                encoder.encode(registerRequest.getPassword()),
-                "USER");
-
-        userRepository.save(user);
-
-        return ResponseEntity.ok("User registered successfully!");
+    public ResponseEntity<?> register(@Valid @RequestBody RegisterRequest registerRequest) {
+        return authenticationService.register(registerRequest);
     }
 
 }
