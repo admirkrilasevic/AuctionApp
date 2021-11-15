@@ -1,0 +1,64 @@
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 738px;
+    padding-bottom: 32px;
+    border: 1px solid #d8d8d8;
+    box-sizing: border-box;
+    margin: 16px auto;
+}
+
+.formTitle {
+    padding: 23px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+    height: 75px;
+    width: 100%;
+    background-color: #FCFCFC;
+}
+
+.formSection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 548px;
+    height: 106px;
+    margin-top: 32px;
+}
+
+  
+.formInput {
+    border: 1px solid #d8d8d8;
+    box-sizing: border-box;
+    padding: 18px 42px 18px 24px;
+    width: 548px;
+    height: 63px;
+    background-color: #FCFCFC;
+}
+  
+.formSubmitButton {
+    margin-top: 64px;
+    justify-content: center;
+    align-items: center;
+    width: 548px;
+    height: 59px;
+    background: #8367d8;
+    border-style: solid;
+    color: #fff;
+}
+
+.formText {
+    margin-top: 48px;
+}
+
+.linkToLogin {
+    color: #8367d8;
+    text-decoration: none;
+    margin-left: 32px;
+}
+
+.registerMessage {
+    margin-top: 48px;
+}

@@ -1,6 +1,8 @@
+import RegisterForm from "../components/loginAndRegistration/RegisterForm";
+
 function Register(){
     return (
-        <p>Register</p>
+        <RegisterForm/>
     );
 }
 

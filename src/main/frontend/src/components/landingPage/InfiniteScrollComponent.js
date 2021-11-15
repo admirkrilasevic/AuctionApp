@@ -1,4 +1,4 @@
-import InfiniteScroll from "react-infinite-scroll-component";
+/*import InfiniteScroll from "react-infinite-scroll-component";
 import { useEffect, useState } from "react";
 import Item from "./Item";
 import { Row, Col } from "react-bootstrap";
@@ -56,4 +56,4 @@ function InfiniteScrollComponent(props) {
   );
 }
 
-export default InfiniteScrollComponent;
+export default InfiniteScrollComponent;*/

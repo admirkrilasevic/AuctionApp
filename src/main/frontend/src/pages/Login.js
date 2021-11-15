@@ -1,6 +1,8 @@
+import LoginForm from "../components/loginAndRegistration/LoginForm";
+
 function Login(){
     return (
-        <p>Login</p>
+        <LoginForm/>
     );
 }
 
