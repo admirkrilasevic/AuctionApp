@@ -5,8 +5,9 @@ import CheckButton from "react-validation/build/button";
 import Validations from "./Validations";
 import AuthService from "./AuthService";
 import { useState, useRef } from "react";
+import { useHistory } from "react-router";
 
-function LoginForm(props) {
+function LoginForm() {
     const form = useRef();
     const checkBtn = useRef();
   
@@ -14,6 +15,8 @@ function LoginForm(props) {
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
+
+    const history = useHistory();
 
     const onChangeEmail = (e) => {
         const email = e.target.value;
@@ -35,9 +38,11 @@ function LoginForm(props) {
     
         if (checkBtn.current.context._errors.length === 0) {
           AuthService.login(email, password).then(
-            () => {
-              props.history.push("/home");
-              window.location.reload();
+            (response) => {
+              setMessage("Login successful!")
+              setLoading(false);
+              history.push("/home");
+              history.go(0);
             },
             (error) => {
               const resMessage =

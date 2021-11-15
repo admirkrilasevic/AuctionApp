@@ -46,3 +46,22 @@
 .register:hover {
     color: #9B9B9B;
 }
+
+.user {
+    text-decoration: none;
+    margin-right: 24px;
+    color: #FFFFFF;
+}
+
+.user:hover {
+    color: #9B9B9B;
+}
+
+.logout {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.logout:hover {
+    color: #9B9B9B;
+}
