@@ -4,7 +4,7 @@ const required = (value) => {
   if (!value) {
     return (
       <div className="alert alert-danger" role="alert">
-        his field is required!
+        This field is required!
       </div>
     );
   }
@@ -20,7 +20,7 @@ const validEmail = (value) => {
   }
 };
   
-const vpassword = (value) => {
+const validPassword = (value) => {
   if (value.length < 8 || value.length > 20) {
     return (
       <div className="alert alert-danger" role="alert">
@@ -33,5 +33,5 @@ const vpassword = (value) => {
 export default {
   required,
   validEmail,
-  vpassword
+  validPassword
 };
