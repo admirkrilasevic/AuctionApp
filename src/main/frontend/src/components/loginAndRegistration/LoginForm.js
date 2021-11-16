@@ -41,6 +41,7 @@ function LoginForm() {
         (response) => {
           setLoading(false);
           history.push("/home");
+          history.go(0);
         },
         (error) => {
           const resMessage =

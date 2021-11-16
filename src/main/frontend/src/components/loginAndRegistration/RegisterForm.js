@@ -69,59 +69,55 @@ function RegisterForm() {
 
   return (
     <Form className={styles.formContainer} onSubmit={handleRegister} ref={form}>
-
-        <div>
-          <div className={styles.formTitle}>
-            <p>REGISTER</p>
-          </div>
-          <div className={styles.formSection}>
-            <p>First Name</p>
-            <Input 
-              className={styles.formInput}
-              type="text"
-              name="name"
-              value={name}
-              onChange={onChangeName}
-              validations={[Validations.required]}
-            />
-          </div>
-          <div className={styles.formSection}>
-            <p>Last Name</p>
-            <Input 
-              className={styles.formInput}
-              type="text"
-              name="surname"
-              value={surname}
-              onChange={onChangeSurname}
-              validations={[Validations.required]}
-            />
-          </div>
-          <div className={styles.formSection}>
-            <p>Enter Email</p>
-            <Input 
-              className={styles.formInput}
-              type="text"
-              name="email"
-              value={email}
-              onChange={onChangeEmail}
-              validations={[Validations.required, Validations.validEmail]}
-            />
-          </div>
-          <div className={styles.formSection}>
-            <p>Password</p>
-            <Input 
-              className={styles.formInput}
-              type="password"
-              name="password"
-              value={password}
-              onChange={onChangePassword}
-              validations={[Validations.required, Validations.vpassword]}
-            />
-          </div>
-          <CheckButton className={styles.formSubmitButton} ref={checkBtn}>REGISTER</CheckButton>
-          {!successful && (<p className={styles.formText}>Already have an account? <Link className={styles.linkToLogin} to="/login">Login</Link></p>)}
-        </div>
-      
+      <div className={styles.formTitle}>
+        <p>REGISTER</p>
+      </div>
+      <div className={styles.formSection}>
+        <p>First Name</p>
+        <Input 
+          className={styles.formInput}
+          type="text"
+          name="name"
+          value={name}
+          onChange={onChangeName}
+          validations={[Validations.required]}
+        />
+      </div>
+      <div className={styles.formSection}>
+        <p>Last Name</p>
+        <Input 
+          className={styles.formInput}
+          type="text"
+          name="surname"
+          value={surname}
+          onChange={onChangeSurname}
+          validations={[Validations.required]}
+        />
+      </div>
+      <div className={styles.formSection}>
+        <p>Enter Email</p>
+        <Input 
+          className={styles.formInput}
+          type="text"
+          name="email"
+          value={email}
+          onChange={onChangeEmail}
+          validations={[Validations.required, Validations.validEmail]}
+        />
+      </div>
+      <div className={styles.formSection}>
+        <p>Password</p>
+        <Input 
+          className={styles.formInput}
+          type="password"
+          name="password"
+          value={password}
+          onChange={onChangePassword}
+          validations={[Validations.required, Validations.validPassword]}
+        />
+      </div>
+      <CheckButton className={styles.formSubmitButton} ref={checkBtn}> REGISTER </CheckButton>
+      {!successful && (<p className={styles.formText}>Already have an account? <Link className={styles.linkToLogin} to="/login">Login</Link></p>)}
       {message && (
         <div className={styles.registerMessage}>
           <div

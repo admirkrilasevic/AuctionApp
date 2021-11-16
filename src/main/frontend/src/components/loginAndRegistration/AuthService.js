@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Redirect } from "react-router";
 
 const API_URL = "http://localhost:8080/api/v1/auth/";
 
