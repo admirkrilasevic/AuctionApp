@@ -32,8 +32,6 @@ function InfiniteScrollComponent(props) {
       dataLength={items.length}
       next={fetchData}
       hasMore={hasMoreItems}
-      loader={<p>Loading...</p>}
-      endMessage={<p>No more items to show</p>}
     >
       <div className="container-fluid">
         <Row>
