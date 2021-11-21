@@ -14,6 +14,7 @@ import PrivacyPolicy from './pages/PrivacyAndPolicy';
 import PageLayout from './components/PageLayout';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import { AuthProvider } from './components/loginAndRegistration/AuthContext';
+import ItemPage from './pages/ItemPage';
 
 function App() {
   return (
@@ -70,6 +71,11 @@ function App() {
             <Route path="/privacy">
               <PageLayout title="Privacy and Policy">
                 <PrivacyPolicy />
+              </PageLayout>
+            </Route>
+            <Route path="/item">
+              <PageLayout title="Item">
+                <ItemPage />
               </PageLayout>
             </Route>
           </Switch>

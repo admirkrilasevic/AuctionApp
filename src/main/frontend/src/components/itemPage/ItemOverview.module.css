@@ -1,0 +1,77 @@
+.coverImage {
+    width: 453px;
+    height: 662px;
+}
+
+.itemInfoContainer {
+    text-align: left;
+    margin-left: 117px;
+    margin-top: 32px;
+}
+
+.bidsInfoContainer {
+    margin-top: 30px;
+    border: 1px solid #E3E3E3;
+    width: 250px;
+    padding: 20px;
+    padding-bottom: 5px;
+}
+
+.startingPrice {
+    margin-top: 16px;
+    color: #8367D8;
+}
+
+.purpleText {
+    color: #8367D8;
+    font-weight: bold;
+}
+
+.placeBidContainer {
+    margin-top: 70px;
+}
+
+.bidInput {
+    height: 54px;
+    border: 1px solid #E3E3E3;
+    color: #E3E3E3;
+    padding: 15px;
+    width: 250px;
+}
+
+.bidButton {
+    height: 54px;
+    border-radius: 0;
+    border: 3px solid #8367D8;
+    font-weight: bold;
+    width: 200px;
+}
+
+.tabSection {
+    margin-top: 60px;
+}
+
+.biddersSection {
+    margin-top: 120px;
+    margin-bottom: 120px;
+}
+
+.biddersTable {
+    text-align: left;
+    border: 1px solid #E3E3E3;
+    font-weight: bold;
+}
+
+.headerRow {
+    background-color: #FCFCFC;
+    font-weight: normal;
+    padding: 20px;
+}
+
+.contentRow {
+    padding: 20px;
+}
+
+.amountCol {
+    color: #417505;
+}
