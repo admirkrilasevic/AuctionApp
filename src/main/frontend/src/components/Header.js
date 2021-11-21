@@ -1,14 +1,17 @@
 import styles from './Header.module.css'
 import { Link } from 'react-router-dom';
 import SocialNetworks from './SocialNetworks';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router";
 import AuthService from "./loginAndRegistration/AuthService";
+import { AuthContext } from './loginAndRegistration/AuthContext';
 
 const Header = () => {
   const [currentUser, setCurrentUser] = useState(undefined);
 
   const history = useHistory();
+
+  const { setToken, loggedIn } = useContext(AuthContext);
 
   useEffect(() => {
     const user = AuthService.getCurrentUser();
@@ -21,9 +24,8 @@ const Header = () => {
   }, []);
 
   const logOut = () => {
-    AuthService.logout();
+    setToken(false);
     history.push("/home")
-    history.go(0);
   };
 
     return(
@@ -32,7 +34,7 @@ const Header = () => {
           <div className={styles.socialsContainer}>
             <SocialNetworks />
           </div>
-          {currentUser ? (
+          {loggedIn ? (
             <p className={styles.loginContainer}>
               <Link to="/account" className = {styles.user}>{currentUser.name}</Link>
               <Link to="/home" className = {styles.logout} onClick={logOut}>Log Out</Link>
