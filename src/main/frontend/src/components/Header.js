@@ -25,7 +25,7 @@ const Header = () => {
 
   const logOut = () => {
     setToken(false);
-    history.push("/home")
+    history.push("/home");
   };
 
     return(

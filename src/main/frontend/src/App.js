@@ -13,67 +13,70 @@ import TermsConditions from './pages/TermsAndConditions';
 import PrivacyPolicy from './pages/PrivacyAndPolicy';
 import PageLayout from './components/PageLayout';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
+import { AuthProvider } from './components/loginAndRegistration/AuthContext';
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Header />
-        <HeaderNavbar />
-        <Switch>
-          <Route
-              exact
-              path="/"
-              render={() => {
-                  return (
-                      <Redirect to="/home" /> 
-                  )
-              }}
-          />
-          <Route path="/home">
-            <PageLayout>
-              <Home />
-            </PageLayout>
-          </Route>
-          <Route path="/login">
-            <PageLayout title="Login">
-              <Login />
-            </PageLayout>
-          </Route>
-          <Route path="/register">
-            <PageLayout title="Register">
-              <Register />
-            </PageLayout>
-          </Route>
-          <Route path="/shop">
-            <PageLayout>
-              <Shop />
-            </PageLayout>
-          </Route>
-          <Route path="/account">
-            <PageLayout>
-              <Account />
-            </PageLayout>
-          </Route>
-          <Route path="/about">
-            <PageLayout title="About Us">
-              <About />
-            </PageLayout>            
-          </Route>
-          <Route path="/terms">
-            <PageLayout title="Terms and Conditions">
-              <TermsConditions />
-            </PageLayout>
-          </Route>
-          <Route path="/privacy">
-            <PageLayout title="Privacy and Policy">
-              <PrivacyPolicy />
-            </PageLayout>
-          </Route>
-        </Switch>
-        <Footer />
-      </div>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <div className="App">
+          <Header />
+          <HeaderNavbar />
+          <Switch>
+            <Route
+                exact
+                path="/"
+                render={() => {
+                    return (
+                        <Redirect to="/home" /> 
+                    )
+                }}
+            />
+            <Route path="/home">
+              <PageLayout>
+                <Home />
+              </PageLayout>
+            </Route>
+            <Route path="/login">
+              <PageLayout title="Login">
+                <Login />
+              </PageLayout>
+            </Route>
+            <Route path="/register">
+              <PageLayout title="Register">
+                <Register />
+              </PageLayout>
+            </Route>
+            <Route path="/shop">
+              <PageLayout>
+                <Shop />
+              </PageLayout>
+            </Route>
+            <Route path="/account">
+              <PageLayout>
+                <Account />
+              </PageLayout>
+            </Route>
+            <Route path="/about">
+              <PageLayout title="About Us">
+                <About />
+              </PageLayout>            
+            </Route>
+            <Route path="/terms">
+              <PageLayout title="Terms and Conditions">
+                <TermsConditions />
+              </PageLayout>
+            </Route>
+            <Route path="/privacy">
+              <PageLayout title="Privacy and Policy">
+                <PrivacyPolicy />
+              </PageLayout>
+            </Route>
+          </Switch>
+          <Footer />
+        </div>
+      </Router>
+    </AuthProvider>
   );
 }
 

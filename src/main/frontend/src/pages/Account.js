@@ -6,11 +6,7 @@ function Account(){
     const { loggedIn } = useContext(AuthContext);
     return (
         <div>
-            {loggedIn ? (
-                <Profile/>
-            ) : (
-                <p>You are not logged in!</p>
-            )}
+            {loggedIn ? <Profile/> : <p>You are not logged in!</p>}
         </div>
     );
 }

@@ -4,10 +4,7 @@ export const AuthContext = createContext(null);
 
 export const AuthProvider = ({children}) => {
   const[token, setToken] = useState(null);
-  let loggedIn = false;
-  if (token) {
-    loggedIn = true;
-  }
+  const loggedIn = !!token;
   return(
     <AuthContext.Provider value = {{token, setToken, loggedIn}}>
       {children}
