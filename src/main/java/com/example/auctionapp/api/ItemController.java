@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin
 @RequestMapping("api/v1/items")
@@ -29,5 +30,11 @@ public class ItemController {
     public @ResponseBody
     Page<Item> getItems(@RequestParam("page") int page, @RequestParam("size") int size, @RequestParam("sort") ItemSort sort, @RequestParam("direction") Sort.Direction direction) {
         return itemService.getItems(page, size, sort, direction);
+    }
+
+    @GetMapping("/{itemId}")
+    public @ResponseBody
+    Optional<Item> getItemById(@PathVariable("itemId") long itemId){
+        return itemService.getItemById(itemId);
     }
 }

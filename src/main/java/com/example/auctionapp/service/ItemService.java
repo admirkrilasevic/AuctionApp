@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -27,5 +28,9 @@ public class ItemService {
         PageRequest pageable = PageRequest.of(page, size, Sort.by(direction, sort.toString()));
         Page<Item> items = itemRepository.findAll(pageable);
         return items;
+    }
+
+    public Optional<Item> getItemById(long id) {
+        return itemRepository.findById(id);
     }
 }

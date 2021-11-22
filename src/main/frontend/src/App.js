@@ -73,7 +73,7 @@ function App() {
                 <PrivacyPolicy />
               </PageLayout>
             </Route>
-            <Route path="/item">
+            <Route path="/items/:itemId">
               <PageLayout title="Item">
                 <ItemPage />
               </PageLayout>

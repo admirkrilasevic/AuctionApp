@@ -1,20 +1,21 @@
+import { useContext } from 'react';
 import { Container, Col,  Row, Button } from 'react-bootstrap';
 import styles from "./ItemOverview.module.css"
 import Tabs from './Tabs';
 
-function ItemOverview() {
+function ItemOverview(props) {
   
     return (
         <Container>
             <Row>
                 <Col>
-                    <img className={styles.coverImage} src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1015&q=80"></img>
+                    <img className={styles.coverImage} src={props.photo}></img>
                 </Col>
                 <Col className={styles.itemInfoContainer}>
-                    <h3>Title</h3>
+                    <h3>{props.name}</h3>
                     <p className={styles.startingPrice}>
                         {'Starts from: '}
-                        <span className={styles.purpleText}>$10</span>
+                        <span className={styles.purpleText}>${props.startingPrice}</span>
                     </p>
                     <div className={styles.bidsInfoContainer}>
                         <p>
@@ -35,7 +36,7 @@ function ItemOverview() {
                         <Col><Button className={styles.bidButton} variant="outline-*">PLACE BID</Button></Col>
                     </Row>
                     <Row className={styles.tabSection}>
-                        <Tabs/>
+                        <Tabs description={props.description}/>
                     </Row>
                 </Col>
             </Row>

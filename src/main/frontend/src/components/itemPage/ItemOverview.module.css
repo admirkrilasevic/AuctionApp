@@ -1,6 +1,7 @@
 .coverImage {
     width: 453px;
     height: 662px;
+    object-fit: contain;
 }
 
 .itemInfoContainer {
@@ -52,7 +53,6 @@
 }
 
 .biddersSection {
-    margin-top: 120px;
     margin-bottom: 120px;
 }
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Tab from "./Tab";
 
-function Tabs() {
+function Tabs(props) {
   
     const [activeTab, setActiveTab] = useState("Details");
 
@@ -15,7 +15,7 @@ function Tabs() {
             />
         </ol>
         <div className="tab-content">
-            <p>Product details</p>
+          {props.description}
         </div>
       </div>
     );
