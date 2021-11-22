@@ -74,9 +74,7 @@ function App() {
               </PageLayout>
             </Route>
             <Route path="/items/:itemId">
-              <PageLayout title="Item">
-                <ItemPage />
-              </PageLayout>
+              <ItemPage />
             </Route>
           </Switch>
           <Footer />

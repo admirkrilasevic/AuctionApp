@@ -16,3 +16,8 @@ export const DIRECTION = {
 export const ENVIRONMENT = {
     HOST: "localhost:8080"
 }
+
+export const BID_MESSAGE = {
+    SUCCESS: "Congrats! You are the highest bidder!",
+    TRY_AGAIN:  "There are higher bids than yours. You could give a second try!"
+}
