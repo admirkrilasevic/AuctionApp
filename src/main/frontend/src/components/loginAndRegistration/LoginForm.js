@@ -4,8 +4,9 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import Validations from "./Validations";
 import AuthService from "./AuthService";
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import { useHistory } from "react-router";
+import { AuthContext } from "./AuthContext";
 
 function LoginForm() {
   const form = useRef();
@@ -17,6 +18,8 @@ function LoginForm() {
   const [message, setMessage] = useState("");
 
   const history = useHistory();
+
+  const { setToken } = useContext(AuthContext);
 
   const onChangeEmail = (e) => {
     const email = e.target.value;
@@ -40,8 +43,8 @@ function LoginForm() {
       AuthService.login(email, password).then(
         (response) => {
           setLoading(false);
+          setToken(response.token);
           history.push("/home");
-          history.go(0);
         },
         (error) => {
           const resMessage =
