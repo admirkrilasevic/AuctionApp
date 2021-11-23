@@ -5,8 +5,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import PageLayout from '../PageLayout';
 import * as Constants from "../../constants";
+import { useContext } from 'react';
+import { AuthContext } from '../loginAndRegistration/AuthContext';
 
 function ItemOverview(props) {
+
+    const { loggedIn } = useContext(AuthContext);
   
     return (
         <PageLayout title={props.name} message={Constants.BID_MESSAGE.SUCCESS} messageStyle={styles.bidMessageHeaderSuccess}>
@@ -35,16 +39,16 @@ function ItemOverview(props) {
                                 <span className={styles.purpleText}>10 days</span>
                             </p>
                         </div>
-                        <Row className={styles.placeBidContainer}>
+                        {loggedIn && (<Row className={styles.placeBidContainer}>
                             <Col><input className={styles.bidInput} placeholder="Enter $12.01 or higher"></input></Col>
                             <Col><Button className={styles.bidButton} variant="outline-*">PLACE BID &emsp; <FontAwesomeIcon icon={faAngleRight}/></Button></Col>
-                        </Row>
+                        </Row>)}
                         <Row className={styles.tabSection}>
                             <Tabs description={props.description}/>
                         </Row>
                     </Col>
                 </Row>
-                <Row className={styles.biddersSection}>
+                {loggedIn && (<Row className={styles.biddersSection}>
                     <Container className={styles.biddersTable}>
                         <Row className={styles.headerRow}>
                             <Col xs={8}>Bidder</Col>
@@ -57,7 +61,7 @@ function ItemOverview(props) {
                             <Col className={styles.amountCol}>$ 12.00</Col>
                         </Row>
                     </Container>
-                </Row>
+                </Row>)}
             </Container>
         </PageLayout>
     );
