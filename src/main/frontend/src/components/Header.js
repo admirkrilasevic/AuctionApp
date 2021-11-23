@@ -25,6 +25,7 @@ const Header = () => {
 
   const logOut = () => {
     setToken(false);
+    AuthService.logout();
     history.push("/home");
   };
 
