@@ -5,13 +5,16 @@
 .pageHeader {
     color: #000;
     text-align: start;
-    font-style: normal;
     font-size: 16px;
     background-color: #FCFCFC;
     height: 60px;
     width: 100%;
     padding: 18px 160px;
     margin-top: 32px;
+}
+
+.pageHeader p {
+    font-weight: bold;
 }
 
 .pageContent {

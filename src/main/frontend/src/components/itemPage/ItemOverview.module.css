@@ -1,7 +1,7 @@
 .bidMessageHeaderSuccess {
     color: #417505;
     text-align: start;
-    font-style: normal;
+    font-weight: bold;
     font-size: 16px;
     background-color: #F0F3EE;
     height: 60px;
@@ -13,7 +13,7 @@
 .bidMessageHeaderTryAgain {
     color: #AB944E;
     text-align: start;
-    font-style: normal;
+    font-weight: bold;
     font-size: 16px;
     background-color: #F6F2E5;
     height: 60px;
