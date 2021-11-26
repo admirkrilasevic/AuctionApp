@@ -1,5 +1,6 @@
 import { Container, Col,  Row, Button } from 'react-bootstrap';
-import styles from "./ItemOverview.module.css"
+import styles from "./ItemOverview.module.css";
+import "../../App.css";
 import Tabs from './Tabs';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
@@ -23,20 +24,20 @@ function ItemOverview(props) {
                         <h3>{props.name}</h3>
                         <p className={styles.startingPrice}>
                             {'Starts from: '}
-                            <span className={styles.purpleText}>${props.startingPrice}</span>
+                            <span className="purpleText">${props.startingPrice}</span>
                         </p>
                         <div className={styles.bidsInfoContainer}>
                             <p>
                                 {'Highest bid: '}
-                                <span className={styles.purpleText}>$12</span>
+                                <span className="purpleText">$12</span>
                             </p>
                             <p>
                                 {'Number of bids: '}
-                                <span className={styles.purpleText}>1</span>
+                                <span className="purpleText">1</span>
                             </p>
                             <p>
                                 {'Time left: '}
-                                <span className={styles.purpleText}>10 days</span>
+                                <span className="purpleText">10 days</span>
                             </p>
                         </div>
                         {loggedIn && (<Row className={styles.placeBidContainer}>
