@@ -1,4 +1,4 @@
-import { Container, Col,  Row, Button } from 'react-bootstrap';
+import { Container, Col, Row, Button } from 'react-bootstrap';
 import styles from "./ItemOverview.module.css";
 import "../../App.css";
 import Tabs from './Tabs';
@@ -8,6 +8,7 @@ import PageLayout from '../PageLayout';
 import { BID_MESSAGE } from "../../constants";
 import { useContext } from 'react';
 import { AuthContext } from '../loginAndRegistration/AuthContext';
+import BiddersSection from './BiddersSection';
 
 function ItemOverview({...item}) {
 
@@ -50,20 +51,7 @@ function ItemOverview({...item}) {
                         </Row>
                     </Col>
                 </Row>
-                {loggedIn && (<Row className={styles.biddersSection}>
-                    <Container className={styles.biddersTable}>
-                        <Row className={styles.headerRow}>
-                            <Col xs={8}>Bidder</Col>
-                            <Col>Date</Col>
-                            <Col>Bid</Col>
-                        </Row>
-                        <Row className={styles.contentRow}>
-                            <Col xs={8}>Admir Krilašević</Col>
-                            <Col>17 November 2021</Col>
-                            <Col className={styles.amountCol}>$ 12.00</Col>
-                        </Row>
-                    </Container>
-                </Row>)}
+                {loggedIn && <BiddersSection/>}
             </Container>
         </PageLayout>
     );

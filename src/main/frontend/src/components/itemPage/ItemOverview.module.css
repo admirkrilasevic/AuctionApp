@@ -70,27 +70,3 @@
 .tabSection {
     margin-top: 60px;
 }
-
-.biddersSection {
-    margin-bottom: 120px;
-}
-
-.biddersTable {
-    text-align: left;
-    border: 1px solid #E3E3E3;
-    font-weight: bold;
-}
-
-.headerRow {
-    background-color: #FCFCFC;
-    font-weight: normal;
-    padding: 20px;
-}
-
-.contentRow {
-    padding: 20px;
-}
-
-.amountCol {
-    color: #417505;
-}
