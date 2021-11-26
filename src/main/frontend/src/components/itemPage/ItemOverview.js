@@ -3,7 +3,7 @@ import styles from "./ItemOverview.module.css";
 import "../../App.css";
 import Tabs from './Tabs';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
+import { faAngleRight, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import PageLayout from '../PageLayout';
 import { BID_MESSAGE } from "../../constants";
 import { useContext } from 'react';
@@ -14,9 +14,10 @@ function ItemOverview({...item}) {
 
     const { name, photo, startingPrice, description } = item;
     const { loggedIn } = useContext(AuthContext);
+    const arrowIcon = <FontAwesomeIcon className={styles.arrowIcon} icon={faArrowRight}/>;
   
     return (
-        <PageLayout title={name} message={BID_MESSAGE.SUCCESS} messageStyle={styles.bidMessageHeaderSuccess}>
+        <PageLayout title={name} message={BID_MESSAGE.SUCCESS} messageStyle={styles.bidMessageHeaderSuccess} breadcrumbs={[<li>Home&ensp;</li>, arrowIcon, <li>&ensp;Single Item</li>]} >
             <Container>
                 <Row>
                     <Col>
