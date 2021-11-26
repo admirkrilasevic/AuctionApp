@@ -34,7 +34,7 @@ public class ItemController {
 
     @GetMapping("/{itemId}")
     public @ResponseBody
-    Optional<Item> getItemById(@PathVariable("itemId") long itemId){
-        return itemService.getItemById(itemId);
+    Item getItemById(@PathVariable("itemId") long itemId){
+        return itemService.getItemById(itemId).get();
     }
 }
