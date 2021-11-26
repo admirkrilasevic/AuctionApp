@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Tab from "./Tab";
+import "./Tab.css";
 
 function Tabs(props) {
   
@@ -14,7 +15,7 @@ function Tabs(props) {
                 onClick={() => setActiveTab("Details")}
             />
         </ol>
-        <div className="tab-content">
+        <div className="tab-content tab-content-item-page">
           {props.description}
         </div>
       </div>
