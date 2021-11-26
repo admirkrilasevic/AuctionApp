@@ -5,7 +5,7 @@ import Tabs from './Tabs';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import PageLayout from '../PageLayout';
-import * as Constants from "../../constants";
+import { BID_MESSAGE } from "../../constants";
 import { useContext } from 'react';
 import { AuthContext } from '../loginAndRegistration/AuthContext';
 
@@ -14,7 +14,7 @@ function ItemOverview(props) {
     const { loggedIn } = useContext(AuthContext);
   
     return (
-        <PageLayout title={props.name} message={Constants.BID_MESSAGE.SUCCESS} messageStyle={styles.bidMessageHeaderSuccess}>
+        <PageLayout title={props.name} message={BID_MESSAGE.SUCCESS} messageStyle={styles.bidMessageHeaderSuccess}>
             <Container>
                 <Row>
                     <Col>
