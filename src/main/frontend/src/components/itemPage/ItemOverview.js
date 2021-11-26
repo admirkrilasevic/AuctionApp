@@ -9,22 +9,23 @@ import { BID_MESSAGE } from "../../constants";
 import { useContext } from 'react';
 import { AuthContext } from '../loginAndRegistration/AuthContext';
 
-function ItemOverview(props) {
+function ItemOverview({...item}) {
 
+    const { name, photo, startingPrice, description } = item;
     const { loggedIn } = useContext(AuthContext);
   
     return (
-        <PageLayout title={props.name} message={BID_MESSAGE.SUCCESS} messageStyle={styles.bidMessageHeaderSuccess}>
+        <PageLayout title={name} message={BID_MESSAGE.SUCCESS} messageStyle={styles.bidMessageHeaderSuccess}>
             <Container>
                 <Row>
                     <Col>
-                        <img className={styles.coverImage} src={props.photo}></img>
+                        <img className={styles.coverImage} src={photo}></img>
                     </Col>
                     <Col className={styles.itemInfoContainer}>
-                        <h3>{props.name}</h3>
+                        <h3>{name}</h3>
                         <p className={styles.startingPrice}>
                             {'Starts from: '}
-                            <span className="purpleText">${props.startingPrice}</span>
+                            <span className="purpleText">${startingPrice}</span>
                         </p>
                         <div className={styles.bidsInfoContainer}>
                             <p>
@@ -45,7 +46,7 @@ function ItemOverview(props) {
                             <Col><Button className={styles.bidButton} variant="outline-*">PLACE BID &emsp; <FontAwesomeIcon icon={faAngleRight}/></Button></Col>
                         </Row>)}
                         <Row className={styles.tabSection}>
-                            <Tabs description={props.description}/>
+                            <Tabs description={description}/>
                         </Row>
                     </Col>
                 </Row>
