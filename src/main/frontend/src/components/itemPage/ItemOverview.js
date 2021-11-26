@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import PageLayout from '../PageLayout';
 import { BID_MESSAGE } from "../../constants";
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../loginAndRegistration/AuthContext';
 import BiddersSection from './BiddersSection';
 
@@ -15,13 +15,24 @@ function ItemOverview({...item}) {
     const { name, photo, startingPrice, description } = item;
     const { loggedIn } = useContext(AuthContext);
     const arrowIcon = <FontAwesomeIcon className={styles.arrowIcon} icon={faArrowRight}/>;
+    const imagesArray =  photo ? photo.split(";") : [];
+    const [currentImage, setCurrentImage] = useState(imagesArray[0]);
+
+    useEffect(async () => {
+        setCurrentImage(imagesArray[0]);
+    }, [photo]);
   
     return (
         <PageLayout title={name} message={BID_MESSAGE.SUCCESS} messageStyle={styles.bidMessageHeaderSuccess} breadcrumbs={[<li>Home&ensp;</li>, arrowIcon, <li>&ensp;Single Item</li>]} >
             <Container>
                 <Row>
                     <Col>
-                        <img className={styles.coverImage} src={photo}></img>
+                        <img className={styles.coverImage} src={currentImage}></img>
+                        <div className={styles.imagesContainer}>
+                            {imagesArray.map((image) => (
+                                <img className={styles.optionalImage} src={image} onClick={() => setCurrentImage(image)}/>
+                            ))}
+                        </div>
                     </Col>
                     <Col className={styles.itemInfoContainer}>
                         <h3>{name}</h3>

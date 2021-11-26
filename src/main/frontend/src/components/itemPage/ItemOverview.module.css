@@ -74,3 +74,16 @@
 .arrowIcon {
     margin-top: 5px;
 }
+
+.imagesContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 100px;
+}
+
+.optionalImage {
+    width: 70px;
+    height: 100px;
+    object-fit: contain;
+}
