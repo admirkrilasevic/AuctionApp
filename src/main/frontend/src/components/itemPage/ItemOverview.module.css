@@ -87,3 +87,12 @@
     height: 100px;
     object-fit: contain;
 }
+
+.breadcrumbsLink {
+    text-decoration: none;
+    color: inherit;
+}
+
+.breadcrumbsLink:hover {
+    color: #8367D8;
+}

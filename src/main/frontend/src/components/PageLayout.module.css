@@ -31,12 +31,3 @@
     display: flex;
     color: #9B9B9B;
 }
-
-.breadcrumbs FontAwesomeIcon{
-    color: #fff;
-}
-
-.breadcrumbs li:last-child{
-    color: #8367D8;
-    font-weight: bold;
-}

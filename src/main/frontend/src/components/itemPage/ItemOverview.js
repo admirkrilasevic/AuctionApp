@@ -9,21 +9,26 @@ import { BID_MESSAGE } from "../../constants";
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../loginAndRegistration/AuthContext';
 import BiddersSection from './BiddersSection';
+import { Link } from "react-router-dom";
 
 function ItemOverview({...item}) {
 
     const { name, photo, startingPrice, description } = item;
     const { loggedIn } = useContext(AuthContext);
-    const arrowIcon = <FontAwesomeIcon className={styles.arrowIcon} icon={faArrowRight}/>;
+
     const imagesArray =  photo ? photo.split(";") : [];
     const [currentImage, setCurrentImage] = useState(imagesArray[0]);
+    
+    const arrowIcon = <FontAwesomeIcon className={styles.arrowIcon} icon={faArrowRight}/>;
+    const previousPage = <Link to="/home" className={styles.breadcrumbsLink}><li>Home&ensp;</li></Link>;
+    const currentPage = <li className="purpleText">&ensp;Single Item</li>;
 
     useEffect(async () => {
         setCurrentImage(imagesArray[0]);
     }, [photo]);
   
     return (
-        <PageLayout title={name} message={BID_MESSAGE.SUCCESS} messageStyle={styles.bidMessageHeaderSuccess} breadcrumbs={[<li>Home&ensp;</li>, arrowIcon, <li>&ensp;Single Item</li>]} >
+        <PageLayout title={name} message={BID_MESSAGE.SUCCESS} messageStyle={styles.bidMessageHeaderSuccess} breadcrumbs={[previousPage, arrowIcon, currentPage]}>
             <Container>
                 <Row>
                     <Col>
