@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 @Component
@@ -57,5 +58,17 @@ public class JwtUtils {
         return false;
     }
 
+    public String getToken( HttpServletRequest request ) {
 
+        String authHeader = getAuthHeaderFromHeader(request);
+        if ( authHeader != null && authHeader.startsWith("Bearer ")) {
+            return authHeader.substring(7);
+        }
+
+        return null;
+    }
+
+    public String getAuthHeaderFromHeader( HttpServletRequest request ) {
+        return request.getHeader("Authorization");
+    }
 }
