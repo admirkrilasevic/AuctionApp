@@ -8,11 +8,10 @@ import com.example.auctionapp.repository.ItemRepository;
 import com.example.auctionapp.security.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Optional;
+import java.sql.Timestamp;
 
 @Service
 public class BidService {
@@ -32,10 +31,10 @@ public class BidService {
         Long itemId = Long.parseLong(biddingRequest.getItemId());
         double amount = Double.parseDouble(biddingRequest.getAmount());
 
-        Bid bid = new Bid(user.getId(), itemId, amount);
+        Bid bid = new Bid(user.getId(), itemId, amount, new Timestamp(System.currentTimeMillis()));
         bidRepository.save(bid);
 
-        return ResponseEntity.ok("Bid successfull");
+        return ResponseEntity.ok("Bid successfully placed!");
     }
 
     public double getHighestBidByItemId(long itemId) {

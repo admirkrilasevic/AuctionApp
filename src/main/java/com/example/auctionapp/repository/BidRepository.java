@@ -11,8 +11,8 @@ import java.util.Calendar;
 @Repository
 public interface BidRepository extends JpaRepository<Bid, Long> {
 
-    @Query("SELECT b.amount FROM Bid b WHERE b.itemId = :itemId")
-    long getHighestBidForItem(@Param("itemId") Long itemId);
+    @Query("SELECT MAX(b.amount) FROM Bid b WHERE b.itemId = :itemId")
+    double getHighestBidForItem(@Param("itemId") Long itemId);
 
     @Query("SELECT COUNT(b) FROM Bid b WHERE b.itemId = :itemId")
     int getNumberOfBidsForItem(@Param("itemId") Long itemId);

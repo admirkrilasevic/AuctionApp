@@ -1,9 +1,6 @@
 package com.example.auctionapp.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -33,10 +30,11 @@ public class Bid {
     @Column
     private Timestamp date;
 
-    public Bid(long userId, long itemId, double amount) {
+    public Bid(long userId, long itemId, double amount, Timestamp date) {
         this.userId = userId;
         this.itemId = itemId;
         this.amount = amount;
+        this.date = date;
     }
 
 }

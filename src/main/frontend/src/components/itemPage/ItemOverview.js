@@ -68,7 +68,7 @@ function ItemOverview({...item}) {
                             </p>
                         </div>
                         {loggedIn && (<Row className={styles.placeBidContainer}>
-                            <Col><input className={styles.bidInput} placeholder="Enter $12.01 or higher"></input></Col>
+                            <Col><input className={styles.bidInput} placeholder={`Enter $${highestBid+0.1} or higher`}></input></Col>
                             <Col><Button className={styles.bidButton} variant="outline-*">PLACE BID &emsp; <FontAwesomeIcon icon={faAngleRight}/></Button></Col>
                         </Row>)}
                         <Row className={styles.tabSection}>
