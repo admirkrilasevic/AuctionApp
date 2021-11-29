@@ -1,0 +1,98 @@
+.bidMessageHeaderSuccess {
+    color: #417505;
+    text-align: start;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: #F0F3EE;
+    height: 60px;
+    width: 100%;
+    padding: 18px 160px;
+    margin-top: 10px;
+}
+
+.bidMessageHeaderTryAgain {
+    color: #AB944E;
+    text-align: start;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: #F6F2E5;
+    height: 60px;
+    width: 100%;
+    padding: 18px 160px;
+    margin-top: 10px;
+}
+
+.coverImage {
+    width: 453px;
+    height: 662px;
+    object-fit: contain;
+}
+
+.itemInfoContainer {
+    text-align: left;
+    margin-left: 117px;
+    margin-top: 32px;
+}
+
+.bidsInfoContainer {
+    margin-top: 30px;
+    border: 1px solid #E3E3E3;
+    width: 250px;
+    padding: 20px;
+    padding-bottom: 5px;
+}
+
+.startingPrice {
+    margin-top: 16px;
+    color: #8367D8;
+}
+
+.placeBidContainer {
+    margin-top: 70px;
+}
+
+.bidInput {
+    height: 54px;
+    border: 1px solid #E3E3E3;
+    color: #E3E3E3;
+    padding: 15px;
+    width: 250px;
+}
+
+.bidButton {
+    height: 54px;
+    border-radius: 0;
+    border: 3px solid #8367D8;
+    font-weight: bold;
+    width: 200px;
+}
+
+.tabSection {
+    margin-top: 60px;
+}
+
+.arrowIcon {
+    margin-top: 5px;
+}
+
+.imagesContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 100px;
+}
+
+.optionalImage {
+    width: 70px;
+    height: 100px;
+    object-fit: contain;
+}
+
+.breadcrumbsLink {
+    text-decoration: none;
+    color: inherit;
+}
+
+.breadcrumbsLink:hover {
+    color: #8367D8;
+}

@@ -10,7 +10,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -27,5 +30,14 @@ public class ItemService {
         PageRequest pageable = PageRequest.of(page, size, Sort.by(direction, sort.toString()));
         Page<Item> items = itemRepository.findAll(pageable);
         return items;
+    }
+
+    public Optional<Item> getItemById(long id) {
+        Optional<Item> optional = itemRepository.findById(id);
+        if (optional.isPresent()){
+            return optional;
+        } else {
+            throw new NoSuchElementException("No such item exists");
+        }
     }
 }

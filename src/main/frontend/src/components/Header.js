@@ -7,7 +7,7 @@ import AuthService from "./loginAndRegistration/AuthService";
 import { AuthContext } from './loginAndRegistration/AuthContext';
 
 const Header = () => {
-  const [currentUser, setCurrentUser] = useState(undefined);
+  const [currentUser, setCurrentUser] = useState();
 
   const history = useHistory();
 
@@ -25,6 +25,7 @@ const Header = () => {
 
   const logOut = () => {
     setToken(false);
+    AuthService.logout();
     history.push("/home");
   };
 

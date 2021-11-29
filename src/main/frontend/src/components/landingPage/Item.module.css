@@ -21,3 +21,12 @@
 .amount {
   color: #8367d8;
 }
+
+.itemLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.itemLink:hover {
+  color: #8367d8;
+}

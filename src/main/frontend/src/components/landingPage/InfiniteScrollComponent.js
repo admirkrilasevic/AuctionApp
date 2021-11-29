@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Item from "./Item";
 import { Row, Col } from "react-bootstrap";
 import { fetchItems } from './ItemService';
-import * as Constants from "../../constants";
+import { LANDING_PAGE_TAB_VALUES, ITEM_SORT, DIRECTION } from "../../constants";
 
 function InfiniteScrollComponent(props) {
   const [items, setItems] = useState([]);
@@ -13,10 +13,10 @@ function InfiniteScrollComponent(props) {
   useEffect(async () => {
     let itemsFromServer = "";
 
-    if (props.load === Constants.LANDING_PAGE_TAB_VALUES.NEW_ARRIVALS) {
-      itemsFromServer = await fetchItems(page, 4, Constants.ITEM_SORT.NEW_ARRIVALS, Constants.DIRECTION.DESCENDING);
-    } else if (props.load === Constants.LANDING_PAGE_TAB_VALUES.LAST_CHANCE) {
-      itemsFromServer = await fetchItems(page, 4, Constants.ITEM_SORT.LAST_CHANCE, Constants.DIRECTION.ASCENDING);
+    if (props.load === LANDING_PAGE_TAB_VALUES.NEW_ARRIVALS) {
+      itemsFromServer = await fetchItems(page, 4, ITEM_SORT.NEW_ARRIVALS, DIRECTION.DESCENDING);
+    } else if (props.load === LANDING_PAGE_TAB_VALUES.LAST_CHANCE) {
+      itemsFromServer = await fetchItems(page, 4, ITEM_SORT.LAST_CHANCE, DIRECTION.ASCENDING);
     }
 
     setItems([...items, ...itemsFromServer.content]);

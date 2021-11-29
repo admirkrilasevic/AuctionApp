@@ -3,14 +3,19 @@
 }
 
 .pageHeader {
-    color: black;
+    color: #000;
     text-align: start;
-    font-style: normal;
     font-size: 16px;
     background-color: #FCFCFC;
     height: 60px;
     width: 100%;
     padding: 18px 160px;
+    margin-top: 32px;
+}
+
+.pageHeader p {
+    font-weight: bold;
+    float: left;
 }
 
 .pageContent {
@@ -18,4 +23,11 @@
     margin: auto;
     padding-left: 90px;
     padding-right: 90px;
+}
+
+.breadcrumbs {
+    float: right;
+    list-style: none;
+    display: flex;
+    color: #9B9B9B;
 }
