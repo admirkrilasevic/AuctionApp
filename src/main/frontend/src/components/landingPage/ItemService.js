@@ -14,3 +14,30 @@ export const fetchItemById = async (itemId) => {
     return res.data;
   })
 };
+
+export const getHighestBidForItem = async (itemId) => {
+  return axios
+  .get(`http://${ENVIRONMENT.HOST}/api/v1/bid/info/highest/${itemId}`
+  )
+  .then((res) => {
+    return res.data;
+  })
+};
+
+export const getNumberOfBidsForItem = async (itemId) => {
+  return axios
+  .get(`http://${ENVIRONMENT.HOST}/api/v1/bid/info/totalnumber/${itemId}`
+  )
+  .then((res) => {
+    return res.data;
+  })
+};
+
+export const getTimeLeftForItem = async (itemId) => {
+  return axios
+  .get(`http://${ENVIRONMENT.HOST}/api/v1/bid/info/timeleft/${itemId}`
+  )
+  .then((res) => {
+    return res.data;
+  })
+};

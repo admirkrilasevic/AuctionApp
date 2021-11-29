@@ -10,14 +10,19 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../loginAndRegistration/AuthContext';
 import BiddersSection from './BiddersSection';
 import { Link } from "react-router-dom";
+import { getHighestBidForItem, getNumberOfBidsForItem, getTimeLeftForItem } from '../landingPage/ItemService';
 
 function ItemOverview({...item}) {
 
-    const { name, photo, startingPrice, description } = item;
+    const { id, name, photo, startingPrice, description, endDate, bids } = item;
     const { loggedIn } = useContext(AuthContext);
 
     const imagesArray =  photo ? photo.split(";") : [];
     const [currentImage, setCurrentImage] = useState(imagesArray[0]);
+
+    const [highestBid, setHighestBid] = useState();
+    const [noOfBids, setNoOfBids] = useState();
+    const [timeLeft, setTimeLeft] = useState();
     
     const arrowIcon = <FontAwesomeIcon className={styles.arrowIcon} icon={faArrowRight}/>;
     const previousPage = <Link to="/home" className={styles.breadcrumbsLink}><li>Home&ensp;</li></Link>;
@@ -25,6 +30,9 @@ function ItemOverview({...item}) {
 
     useEffect(async () => {
         setCurrentImage(imagesArray[0]);
+        setHighestBid(await getHighestBidForItem(id));
+        setNoOfBids(await getNumberOfBidsForItem(id));
+        setTimeLeft(await getTimeLeftForItem(id));
     }, [photo]);
   
     return (
@@ -48,15 +56,15 @@ function ItemOverview({...item}) {
                         <div className={styles.bidsInfoContainer}>
                             <p>
                                 {'Highest bid: '}
-                                <span className="purpleText">$12</span>
+                                <span className="purpleText">${highestBid}</span>
                             </p>
                             <p>
                                 {'Number of bids: '}
-                                <span className="purpleText">1</span>
+                                <span className="purpleText">{noOfBids}</span>
                             </p>
                             <p>
                                 {'Time left: '}
-                                <span className="purpleText">10 days</span>
+                                <span className="purpleText">{timeLeft}</span>
                             </p>
                         </div>
                         {loggedIn && (<Row className={styles.placeBidContainer}>

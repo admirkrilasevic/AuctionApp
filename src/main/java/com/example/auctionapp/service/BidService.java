@@ -38,11 +38,15 @@ public class BidService {
         return ResponseEntity.ok("Bid successfull");
     }
 
-    public double getHighestBidByItemId(Long itemId) {
+    public double getHighestBidByItemId(long itemId) {
         return bidRepository.getHighestBidForItem(itemId);
     }
 
-    public int getNumberOfBidsByItemId(Long itemId) {
+    public int getNumberOfBidsByItemId(long itemId) {
         return bidRepository.getNumberOfBidsForItem(itemId);
+    }
+
+    public String getTimeLeftByItemId(long itemId) {
+        return bidRepository.getTimeLeftForItem(itemId);
     }
 }

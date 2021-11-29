@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/bid")
+@RequestMapping("/api/v1/bid")
 public class BidController {
 
     @Autowired
@@ -22,13 +22,18 @@ public class BidController {
         return ResponseEntity.ok(token);
     }
 
-    @GetMapping("/highest")
-    public double highestBid(Long itemId) {
+    @GetMapping("/info/highest/{itemId}")
+    public double highestBid(@PathVariable("itemId") long itemId) {
         return bidService.getHighestBidByItemId(itemId);
     }
 
-    @GetMapping("/totalnumber")
-    public int numberOfBids(Long itemId) {
+    @GetMapping("/info/totalnumber/{itemId}")
+    public int numberOfBids(@PathVariable("itemId") long itemId) {
         return bidService.getNumberOfBidsByItemId(itemId);
+    }
+
+    @GetMapping("/info/timeleft/{itemId}")
+    public String timeLeft(@PathVariable("itemId") long itemId) {
+        return bidService.getTimeLeftByItemId(itemId);
     }
 }
