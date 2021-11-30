@@ -43,24 +43,16 @@ function ItemOverview({...item}) {
 
     const handlePlacingBid = (e) => {
         e.preventDefault();
-    
-        form.current.validateAll();
-      
-        if (checkBtn.current.context._errors.length === 0) {
-          placeBid(token, id, bidAmount).then(
-            (response) => {
-              setBidMessage(BID_MESSAGE.SUCCESS);
-            },
-            (error) => {
-              const resMessage =
-                (error.response &&
-                  error.response.data &&
-                  error.response.data.message) ||
-                error.message ||
-                error.toString();
-              setBidMessage(resMessage);
-            }
-          );
+
+        if (bidAmount < highestBid) {
+            setBidMessage(BID_MESSAGE.TRY_AGAIN);
+        }
+        else {
+            placeBid(token, id, bidAmount).then(
+                (response) => {
+                  setBidMessage(BID_MESSAGE.SUCCESS);
+                }
+            );
         }
     };
 
@@ -118,9 +110,10 @@ function ItemOverview({...item}) {
                                 <CheckButton 
                                     className={styles.bidButton} 
                                     variant="outline-*" 
-                                    ref={checkBtn}>
-                                        PLACE BID &emsp; 
-                                        <FontAwesomeIcon icon={faAngleRight}/>
+                                    ref={checkBtn}
+                                >
+                                    PLACE BID &emsp; 
+                                    <FontAwesomeIcon icon={faAngleRight}/>
                                 </CheckButton>
                             </Col>
                             </Form>
