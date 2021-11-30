@@ -41,3 +41,15 @@ export const getTimeLeftForItem = async (itemId) => {
     return res.data;
   })
 };
+
+export const placeBid = async (token, itemId, amount) => {
+  return axios
+  .post(`http://${ENVIRONMENT.HOST}/api/v1/bid`, {
+    itemId,
+    amount
+  }, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    },
+  })
+};

@@ -1,4 +1,7 @@
 import { Container, Col, Row, Button } from 'react-bootstrap';
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import CheckButton from "react-validation/build/button";
 import styles from "./ItemOverview.module.css";
 import "../../App.css";
 import Tabs from './Tabs';
@@ -6,16 +9,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import PageLayout from '../PageLayout';
 import { BID_MESSAGE } from "../../constants";
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { AuthContext } from '../loginAndRegistration/AuthContext';
 import BiddersSection from './BiddersSection';
 import { Link } from "react-router-dom";
-import { getHighestBidForItem, getNumberOfBidsForItem, getTimeLeftForItem } from '../landingPage/ItemService';
+import { getHighestBidForItem, getNumberOfBidsForItem, getTimeLeftForItem, placeBid } from '../landingPage/ItemService';
 
 function ItemOverview({...item}) {
 
+    const form = useRef();
+    const checkBtn = useRef();
+
     const { id, name, photo, startingPrice, description, endDate, bids } = item;
-    const { loggedIn } = useContext(AuthContext);
+    const { token, loggedIn } = useContext(AuthContext);
 
     const imagesArray =  photo ? photo.split(";") : [];
     const [currentImage, setCurrentImage] = useState(imagesArray[0]);
@@ -23,10 +29,40 @@ function ItemOverview({...item}) {
     const [highestBid, setHighestBid] = useState();
     const [noOfBids, setNoOfBids] = useState();
     const [timeLeft, setTimeLeft] = useState();
+    const [bidAmount, setBidAmount] = useState();
+    const [bidMessage, setBidMessage] = useState();
     
     const arrowIcon = <FontAwesomeIcon className={styles.arrowIcon} icon={faArrowRight}/>;
     const previousPage = <Link to="/home" className={styles.breadcrumbsLink}><li>Home&ensp;</li></Link>;
     const currentPage = <li className="purpleText">&ensp;Single Item</li>;
+
+    const onChangeBidAmount = (e) => {
+        const bidAmount = e.target.value;
+        setBidAmount(bidAmount);
+    };
+
+    const handlePlacingBid = (e) => {
+        e.preventDefault();
+    
+        form.current.validateAll();
+      
+        if (checkBtn.current.context._errors.length === 0) {
+          placeBid(token, id, bidAmount).then(
+            (response) => {
+              setBidMessage(BID_MESSAGE.SUCCESS);
+            },
+            (error) => {
+              const resMessage =
+                (error.response &&
+                  error.response.data &&
+                  error.response.data.message) ||
+                error.message ||
+                error.toString();
+              setBidMessage(resMessage);
+            }
+          );
+        }
+    };
 
     useEffect(async () => {
         setCurrentImage(imagesArray[0]);
@@ -36,7 +72,7 @@ function ItemOverview({...item}) {
     }, [photo]);
   
     return (
-        <PageLayout title={name} message={BID_MESSAGE.SUCCESS} messageStyle={styles.bidMessageHeaderSuccess} breadcrumbs={[previousPage, arrowIcon, currentPage]}>
+        <PageLayout title={name} message={bidMessage} messageStyle={styles.bidMessageHeaderSuccess} breadcrumbs={[previousPage, arrowIcon, currentPage]}>
             <Container>
                 <Row>
                     <Col>
@@ -67,9 +103,27 @@ function ItemOverview({...item}) {
                                 <span className="purpleText">{timeLeft}</span>
                             </p>
                         </div>
-                        {loggedIn && (<Row className={styles.placeBidContainer}>
-                            <Col><input className={styles.bidInput} placeholder={`Enter $${highestBid+0.1} or higher`}></input></Col>
-                            <Col><Button className={styles.bidButton} variant="outline-*">PLACE BID &emsp; <FontAwesomeIcon icon={faAngleRight}/></Button></Col>
+                        {loggedIn && 
+                        (<Row className={styles.placeBidContainer}>
+                            <Form onSubmit={handlePlacingBid} ref={form}>
+                            <Col>
+                                <Input 
+                                    className={styles.bidInput} 
+                                    placeholder={`Enter $${highestBid+0.1} or higher`}           
+                                    value={bidAmount}
+                                    onChange={onChangeBidAmount}
+                                />
+                            </Col>
+                            <Col>
+                                <CheckButton 
+                                    className={styles.bidButton} 
+                                    variant="outline-*" 
+                                    ref={checkBtn}>
+                                        PLACE BID &emsp; 
+                                        <FontAwesomeIcon icon={faAngleRight}/>
+                                </CheckButton>
+                            </Col>
+                            </Form>
                         </Row>)}
                         <Row className={styles.tabSection}>
                             <Tabs description={description}/>
