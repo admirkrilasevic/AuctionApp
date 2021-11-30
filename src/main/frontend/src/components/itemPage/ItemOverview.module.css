@@ -49,6 +49,7 @@
 
 .placeBidContainer {
     margin-top: 70px;
+    display: flex;
 }
 
 .bidInput {
@@ -65,6 +66,7 @@
     border: 3px solid #8367D8;
     font-weight: bold;
     width: 200px;
+    background-color: inherit;
 }
 
 .tabSection {

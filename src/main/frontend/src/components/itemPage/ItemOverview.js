@@ -31,6 +31,7 @@ function ItemOverview({...item}) {
     const [timeLeft, setTimeLeft] = useState();
     const [bidAmount, setBidAmount] = useState();
     const [bidMessage, setBidMessage] = useState();
+    const [bidMessageStyle, setBidMessageStyle] = useState();
     
     const arrowIcon = <FontAwesomeIcon className={styles.arrowIcon} icon={faArrowRight}/>;
     const previousPage = <Link to="/home" className={styles.breadcrumbsLink}><li>Home&ensp;</li></Link>;
@@ -46,11 +47,13 @@ function ItemOverview({...item}) {
 
         if (bidAmount < highestBid) {
             setBidMessage(BID_MESSAGE.TRY_AGAIN);
+            setBidMessageStyle(styles.bidMessageHeaderTryAgain);
         }
         else {
             placeBid(token, id, bidAmount).then(
                 (response) => {
                   setBidMessage(BID_MESSAGE.SUCCESS);
+                  setBidMessageStyle(styles.bidMessageHeaderSuccess);
                 }
             );
         }
@@ -64,7 +67,7 @@ function ItemOverview({...item}) {
     }, [photo]);
   
     return (
-        <PageLayout title={name} message={bidMessage} messageStyle={styles.bidMessageHeaderSuccess} breadcrumbs={[previousPage, arrowIcon, currentPage]}>
+        <PageLayout title={name} message={bidMessage} messageStyle={bidMessageStyle} breadcrumbs={[previousPage, arrowIcon, currentPage]}>
             <Container>
                 <Row>
                     <Col>
@@ -96,8 +99,7 @@ function ItemOverview({...item}) {
                             </p>
                         </div>
                         {loggedIn && 
-                        (<Row className={styles.placeBidContainer}>
-                            <Form onSubmit={handlePlacingBid} ref={form}>
+                        (<Form className={styles.placeBidContainer} onSubmit={handlePlacingBid} ref={form}>
                             <Col>
                                 <Input 
                                     className={styles.bidInput} 
@@ -116,8 +118,7 @@ function ItemOverview({...item}) {
                                     <FontAwesomeIcon icon={faAngleRight}/>
                                 </CheckButton>
                             </Col>
-                            </Form>
-                        </Row>)}
+                        </Form>)}
                         <Row className={styles.tabSection}>
                             <Tabs description={description}/>
                         </Row>
