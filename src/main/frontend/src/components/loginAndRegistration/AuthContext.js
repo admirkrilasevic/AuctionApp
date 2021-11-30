@@ -8,6 +8,9 @@ export const AuthProvider = ({children}) => {
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(async () => {
+    if (!!AuthService.getCurrentUser()){
+      setToken(AuthService.getCurrentUser().token);
+    }
     setLoggedIn(!!AuthService.getCurrentUser());
   })
 

@@ -7,21 +7,9 @@ import AuthService from "./loginAndRegistration/AuthService";
 import { AuthContext } from './loginAndRegistration/AuthContext';
 
 const Header = () => {
-  const [currentUser, setCurrentUser] = useState();
 
   const history = useHistory();
-
   const { setToken, loggedIn } = useContext(AuthContext);
-
-  useEffect(() => {
-    const user = AuthService.getCurrentUser();
-
-    if (user) {
-      setCurrentUser(user);
-    } else {
-      setCurrentUser(undefined);
-    }
-  }, []);
 
   const logOut = () => {
     setToken(false);
@@ -37,7 +25,6 @@ const Header = () => {
           </div>
           {loggedIn ? (
             <p className={styles.loginContainer}>
-              <Link to="/account" className = {styles.user}>{currentUser.name}</Link>
               <Link to="/home" className = {styles.logout} onClick={logOut}>Log Out</Link>
             </p>
           ) : (
