@@ -64,7 +64,7 @@ function ItemOverview({...item}) {
         setHighestBid(await getHighestBidForItem(id));
         setNoOfBids(await getNumberOfBidsForItem(id));
         setTimeLeft(await getTimeLeftForItem(id));
-    }, [photo]);
+    }, [photo, bidMessage]);
   
     return (
         <PageLayout title={name} message={bidMessage} messageStyle={bidMessageStyle} breadcrumbs={[previousPage, arrowIcon, currentPage]}>
@@ -124,7 +124,7 @@ function ItemOverview({...item}) {
                         </Row>
                     </Col>
                 </Row>
-                {loggedIn && <BiddersSection/>}
+                {loggedIn && <BiddersSection bids={bids}/>}
             </Container>
         </PageLayout>
     );
