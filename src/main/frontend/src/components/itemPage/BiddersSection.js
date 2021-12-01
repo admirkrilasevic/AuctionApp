@@ -11,11 +11,21 @@ function BiddersSection({bids}) {
             setBidRows (bids.map((bid) =>
             <Row className={styles.contentRow} key={bid.id}>
                 <Col xs={8}>{bid.id}</Col>
-                <Col>{(bid.date).substr(0,10)}</Col>
-                <Col className={styles.amountCol}>{bid.amount}</Col>
+                <Col>{formatDate(bid.date)}</Col>
+                <Col className={styles.amountCol}>$ {bid.amount}</Col>
             </Row>));
         }
     });
+
+    const formatDate = (bidDate) => {
+        var date = new Date(bidDate);
+        var formattedDate = new Intl.DateTimeFormat("en-GB", {
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        }).format(date);
+        return formattedDate;
+    }
 
     return (
         <Row className={styles.biddersSection}>
