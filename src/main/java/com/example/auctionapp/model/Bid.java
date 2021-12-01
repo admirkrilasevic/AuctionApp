@@ -30,6 +30,10 @@ public class Bid {
     @Column
     private Timestamp date;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(insertable = false, updatable = false)
+    private User user;
+
     public Bid(long userId, long itemId, double amount, Timestamp date) {
         this.userId = userId;
         this.itemId = itemId;

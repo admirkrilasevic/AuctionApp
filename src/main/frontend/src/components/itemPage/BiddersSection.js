@@ -10,7 +10,7 @@ function BiddersSection({bids}) {
         if (bids){
             setBidRows (bids.map((bid) =>
             <Row className={styles.contentRow} key={bid.id}>
-                <Col xs={8}>{bid.id}</Col>
+                <Col xs={8}>{bid.user.name} {bid.user.surname}</Col>
                 <Col>{formatDate(bid.date)}</Col>
                 <Col className={styles.amountCol}>$ {bid.amount}</Col>
             </Row>));
