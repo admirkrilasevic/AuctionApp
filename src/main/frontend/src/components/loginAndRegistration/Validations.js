@@ -30,19 +30,8 @@ const validPassword = (value) => {
   }
 };
 
-const checkBidAmount = (value, props) => {
-  if (value < props) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        Low amount
-     </div>
-    );
-  }
-};
-
 export default {
   required,
   validEmail,
-  validPassword,
-  checkBidAmount
+  validPassword
 };
