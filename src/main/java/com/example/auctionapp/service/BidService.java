@@ -37,15 +37,4 @@ public class BidService {
         return ResponseEntity.ok("Bid successfully placed!");
     }
 
-    public double getHighestBidByItemId(long itemId) {
-        return bidRepository.getHighestBidForItem(itemId);
-    }
-
-    public int getNumberOfBidsByItemId(long itemId) {
-        return bidRepository.getNumberOfBidsForItem(itemId);
-    }
-
-    public String getTimeLeftByItemId(long itemId) {
-        return bidRepository.getTimeLeftForItem(itemId);
-    }
 }

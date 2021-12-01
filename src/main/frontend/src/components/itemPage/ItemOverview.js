@@ -10,7 +10,8 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import { AuthContext } from '../loginAndRegistration/AuthContext';
 import BiddersSection from './BiddersSection';
 import { Link } from "react-router-dom";
-import { getHighestBidForItem, getNumberOfBidsForItem, getTimeLeftForItem, placeBid } from '../landingPage/ItemService';
+import { placeBid } from '../landingPage/ItemService';
+import { TimeInterval } from 'time-interval-js';
 
 function ItemOverview({...item}) {
 
@@ -51,14 +52,40 @@ function ItemOverview({...item}) {
         }
     };
 
+    const calculateNumberOfBids = () => {
+        if(bids) 
+            return bids.length;
+    }
+
+    const calculateHighestBid = () => {
+        if(bids) {
+            const sortedbids = bids.sort();
+            return sortedbids[sortedbids.length-1].amount;
+        }
+    }
+
+const calculateTimeLeft = () => {
+        const date1 = new Date(endDate);
+        const date2 = new Date();
+        const interval = TimeInterval.fromTimeBetweenTwoDates(date1, date2);
+        const hours = interval.inHours();
+        if (hours < 24) {
+            return Math.round(hours) + " hours";
+        } else if (hours >= 24 && hours < 168) {
+            return Math.round(hours/24) + " days " + Math.round(hours%24) + " hours" ;
+        } else {
+            return Math.round(hours/186) + " weeks " + Math.round((hours%168)/24) + " days";
+        }
+    }
+
     useEffect(async () => {
         setCurrentImage(imagesArray[0]);
     }, [photo]);
 
     useEffect(async () => {
-        setHighestBid(await getHighestBidForItem(id));
-        setNoOfBids(await getNumberOfBidsForItem(id));
-        setTimeLeft(await getTimeLeftForItem(id));
+        setHighestBid(calculateHighestBid());
+        setNoOfBids(calculateNumberOfBids());
+        setTimeLeft(calculateTimeLeft());
     }, [bids]);
   
     return (

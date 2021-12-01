@@ -21,19 +21,4 @@ public class BidController {
         ResponseEntity<?> token = bidService.placeBid(httpServletRequest, biddingRequest);
         return ResponseEntity.ok(token);
     }
-
-    @GetMapping("/info/highest/{itemId}")
-    public double highestBid(@PathVariable("itemId") long itemId) {
-        return bidService.getHighestBidByItemId(itemId);
-    }
-
-    @GetMapping("/info/totalnumber/{itemId}")
-    public int numberOfBids(@PathVariable("itemId") long itemId) {
-        return bidService.getNumberOfBidsByItemId(itemId);
-    }
-
-    @GetMapping("/info/timeleft/{itemId}")
-    public String timeLeft(@PathVariable("itemId") long itemId) {
-        return bidService.getTimeLeftByItemId(itemId);
-    }
 }
