@@ -4,18 +4,12 @@ import { useEffect, useState } from "react";
 
 function BiddersSection({bids}) {
     
-    const [bidRows, setBidRows] = useState();
+    const [bidDetails, setBidDetails] = useState([]);
 
     useEffect(async () => {
-        if (bids){
-            setBidRows (bids.map((bid) =>
-            <Row className={styles.contentRow} key={bid.id}>
-                <Col xs={8}>{bid.user.name} {bid.user.surname}</Col>
-                <Col>{formatDate(bid.date)}</Col>
-                <Col className={styles.amountCol}>$ {bid.amount}</Col>
-            </Row>));
-        }
-    });
+        if (bids)
+            setBidDetails(bids);
+    }, [bids]);
 
     const formatDate = (bidDate) => {
         var date = new Date(bidDate);
@@ -35,7 +29,12 @@ function BiddersSection({bids}) {
                     <Col>Date</Col>
                     <Col>Bid</Col>
                 </Row>
-                {bidRows}
+                {bidDetails.map((bid) =>
+                <Row className={styles.contentRow} key={bid.id}>
+                    <Col xs={8}>{bid.user.name} {bid.user.surname}</Col>
+                    <Col>{formatDate(bid.date)}</Col>
+                    <Col className={styles.amountCol}>$ {bid.amount}</Col>
+                </Row>)}
             </Container>
         </Row>
     );
