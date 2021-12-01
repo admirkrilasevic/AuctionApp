@@ -1,5 +1,6 @@
 import { ENVIRONMENT } from "../../constants";
 import axios from "axios";
+import { requestHandler } from "./RequestHandler";
 
 export const fetchItems = async (page, size, sort, direction) => {
   const items = await fetch(`http://${ENVIRONMENT.HOST}/api/v1/items/search?page=${page}&size=${size}&sort=${sort}&direction=${direction}`);
@@ -25,4 +26,10 @@ export const placeBid = async (token, itemId, amount) => {
       Authorization: `Bearer ${token}`
     },
   })
+  .then((res) => {
+    return res.data;
+  })
+  .catch((error) => {
+    requestHandler(error.response);
+  });
 };
