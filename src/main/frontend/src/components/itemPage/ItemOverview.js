@@ -1,7 +1,4 @@
 import { Container, Col, Row, Button } from 'react-bootstrap';
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import CheckButton from "react-validation/build/button";
 import styles from "./ItemOverview.module.css";
 import "../../App.css";
 import Tabs from './Tabs';
@@ -16,9 +13,6 @@ import { Link } from "react-router-dom";
 import { getHighestBidForItem, getNumberOfBidsForItem, getTimeLeftForItem, placeBid } from '../landingPage/ItemService';
 
 function ItemOverview({...item}) {
-
-    const form = useRef();
-    const checkBtn = useRef();
 
     const { id, name, photo, startingPrice, description, endDate, bids } = item;
     const { token, loggedIn } = useContext(AuthContext);
@@ -42,9 +36,7 @@ function ItemOverview({...item}) {
         setBidAmount(bidAmount);
     };
 
-    const handlePlacingBid = (e) => {
-        e.preventDefault();
-
+    const handlePlacingBid = () => {
         if (bidAmount < highestBid) {
             setBidMessage(BID_MESSAGE.TRY_AGAIN);
             setBidMessageStyle(styles.bidMessageHeaderTryAgain);
@@ -61,10 +53,13 @@ function ItemOverview({...item}) {
 
     useEffect(async () => {
         setCurrentImage(imagesArray[0]);
+    }, [photo]);
+
+    useEffect(async () => {
         setHighestBid(await getHighestBidForItem(id));
         setNoOfBids(await getNumberOfBidsForItem(id));
         setTimeLeft(await getTimeLeftForItem(id));
-    }, [photo, bidMessage]);
+    }, [bids]);
   
     return (
         <PageLayout title={name} message={bidMessage} messageStyle={bidMessageStyle} breadcrumbs={[previousPage, arrowIcon, currentPage]}>
@@ -99,9 +94,9 @@ function ItemOverview({...item}) {
                             </p>
                         </div>
                         {loggedIn && 
-                        (<Form className={styles.placeBidContainer} onSubmit={handlePlacingBid} ref={form}>
+                        (<Row className={styles.placeBidContainer}>
                             <Col>
-                                <Input 
+                                <input 
                                     className={styles.bidInput} 
                                     placeholder={`Enter $${highestBid+0.1} or higher`}           
                                     value={bidAmount}
@@ -109,16 +104,16 @@ function ItemOverview({...item}) {
                                 />
                             </Col>
                             <Col>
-                                <CheckButton 
+                                <Button 
                                     className={styles.bidButton} 
                                     variant="outline-*" 
-                                    ref={checkBtn}
+                                    onClick = {handlePlacingBid}
                                 >
                                     PLACE BID &emsp; 
                                     <FontAwesomeIcon icon={faAngleRight}/>
-                                </CheckButton>
+                                </Button>
                             </Col>
-                        </Form>)}
+                        </Row>)}
                         <Row className={styles.tabSection}>
                             <Tabs description={description}/>
                         </Row>
