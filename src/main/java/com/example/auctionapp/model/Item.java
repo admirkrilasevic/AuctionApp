@@ -1,12 +1,11 @@
 package com.example.auctionapp.model;
 
 import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -55,4 +54,12 @@ public class Item {
 
     @Column(name = "address_id")
     private Long addressId;
+
+    @OneToMany(
+            cascade = CascadeType.ALL
+    )
+    @JoinColumn(
+            name = "item_id"
+    )
+    private List<Bid> bids;
 }

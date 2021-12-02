@@ -6,29 +6,99 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import PageLayout from '../PageLayout';
 import { BID_MESSAGE } from "../../constants";
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { AuthContext } from '../loginAndRegistration/AuthContext';
 import BiddersSection from './BiddersSection';
 import { Link } from "react-router-dom";
+import { placeBid } from '../landingPage/ItemService';
+import { TimeInterval } from 'time-interval-js';
 
 function ItemOverview({...item}) {
 
-    const { name, photo, startingPrice, description } = item;
-    const { loggedIn } = useContext(AuthContext);
+    const { id, name, photo, startingPrice, description, endDate, bids } = item;
+    const { token, loggedIn } = useContext(AuthContext);
+
+    const [itemBids, setItemBids] = useState([]);
 
     const imagesArray =  photo ? photo.split(";") : [];
     const [currentImage, setCurrentImage] = useState(imagesArray[0]);
+
+    const [highestBid, setHighestBid] = useState();
+    const [noOfBids, setNoOfBids] = useState();
+    const [timeLeft, setTimeLeft] = useState();
+    const [bidAmount, setBidAmount] = useState();
+    const [bidMessage, setBidMessage] = useState();
+    const [bidMessageStyle, setBidMessageStyle] = useState();
     
     const arrowIcon = <FontAwesomeIcon className={styles.arrowIcon} icon={faArrowRight}/>;
     const previousPage = <Link to="/home" className={styles.breadcrumbsLink}><li>Home&ensp;</li></Link>;
     const currentPage = <li className="purpleText">&ensp;Single Item</li>;
 
-    useEffect(async () => {
+    useEffect(() => {
         setCurrentImage(imagesArray[0]);
     }, [photo]);
+
+    useEffect(() => {
+        setHighestBid(calculateHighestBid());
+        setNoOfBids(calculateNumberOfBids());
+        setTimeLeft(calculateTimeLeft());
+    }, [itemBids]);
+
+    useEffect(() => {
+        setItemBids(bids ? bids : []);
+    }, [bids]);
+
+    const onChangeBidAmount = (e) => {
+        const bidAmount = e.target.value;
+        setBidAmount(bidAmount);
+    };
+
+    const handlePlacingBid = () => {
+        if (bidAmount < highestBid) {
+            setBidMessage(BID_MESSAGE.TRY_AGAIN);
+            setBidMessageStyle(styles.bidMessageHeaderTryAgain);
+        }
+        else {
+            placeBid(token, id, bidAmount).then(
+                (response) => {
+                    setBidMessage(BID_MESSAGE.SUCCESS);
+                    setBidMessageStyle(styles.bidMessageHeaderSuccess);
+                    const newBids = [...itemBids, response.body];
+                    setItemBids(newBids);
+                }
+            );
+        }
+    };
+
+    const calculateNumberOfBids = () => {
+        return itemBids.length;
+    }
+
+    const calculateHighestBid = () => {
+        if (itemBids.length > 0) {
+            const sortedbids = itemBids.sort();
+            return sortedbids[sortedbids.length-1].amount;
+        } else {
+            return 0;
+        }
+    }
+
+    const calculateTimeLeft = () => {
+        const date1 = new Date(endDate);
+        const date2 = new Date();
+        const interval = TimeInterval.fromTimeBetweenTwoDates(date1, date2);
+        const hours = interval.inHours();
+        if (hours < 24) {
+            return Math.round(hours) + " hours";
+        } else if (hours >= 24 && hours < 168) {
+            return Math.round(hours/24) + " days " + Math.round(hours%24) + " hours" ;
+        } else {
+            return Math.round(hours/186) + " weeks " + Math.round((hours%168)/24) + " days";
+        }
+    }
   
     return (
-        <PageLayout title={name} message={BID_MESSAGE.SUCCESS} messageStyle={styles.bidMessageHeaderSuccess} breadcrumbs={[previousPage, arrowIcon, currentPage]}>
+        <PageLayout title={name} message={bidMessage} messageStyle={bidMessageStyle} breadcrumbs={[previousPage, arrowIcon, currentPage]}>
             <Container>
                 <Row>
                     <Col>
@@ -48,27 +118,44 @@ function ItemOverview({...item}) {
                         <div className={styles.bidsInfoContainer}>
                             <p>
                                 {'Highest bid: '}
-                                <span className="purpleText">$12</span>
+                                <span className="purpleText">${highestBid}</span>
                             </p>
                             <p>
                                 {'Number of bids: '}
-                                <span className="purpleText">1</span>
+                                <span className="purpleText">{noOfBids}</span>
                             </p>
                             <p>
                                 {'Time left: '}
-                                <span className="purpleText">10 days</span>
+                                <span className="purpleText">{timeLeft}</span>
                             </p>
                         </div>
-                        {loggedIn && (<Row className={styles.placeBidContainer}>
-                            <Col><input className={styles.bidInput} placeholder="Enter $12.01 or higher"></input></Col>
-                            <Col><Button className={styles.bidButton} variant="outline-*">PLACE BID &emsp; <FontAwesomeIcon icon={faAngleRight}/></Button></Col>
+                        {loggedIn && 
+                        (<Row className={styles.placeBidContainer}>
+                            <Col>
+                                <input 
+                                    className={styles.bidInput} 
+                                    placeholder={`Enter $${highestBid+0.1} or higher`}           
+                                    value={bidAmount}
+                                    onChange={onChangeBidAmount}
+                                />
+                            </Col>
+                            <Col>
+                                <Button 
+                                    className={styles.bidButton} 
+                                    variant="outline-*" 
+                                    onClick = {handlePlacingBid}
+                                >
+                                    PLACE BID &emsp; 
+                                    <FontAwesomeIcon icon={faAngleRight}/>
+                                </Button>
+                            </Col>
                         </Row>)}
                         <Row className={styles.tabSection}>
                             <Tabs description={description}/>
                         </Row>
                     </Col>
                 </Row>
-                {loggedIn && <BiddersSection/>}
+                {loggedIn && <BiddersSection bids={bids}/>}
             </Container>
         </PageLayout>
     );

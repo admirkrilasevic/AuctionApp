@@ -12,7 +12,7 @@ function ItemPage(){
       const returnedItem = await fetchItemById(itemId);
   
       setItem(returnedItem);
-    }, []);
+    }, [itemId]);
 
     return (
         <ItemOverview {...item}/>

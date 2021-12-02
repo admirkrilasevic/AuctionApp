@@ -49,12 +49,12 @@
 
 .placeBidContainer {
     margin-top: 70px;
+    display: flex;
 }
 
 .bidInput {
     height: 54px;
     border: 1px solid #E3E3E3;
-    color: #E3E3E3;
     padding: 15px;
     width: 250px;
 }
@@ -65,6 +65,7 @@
     border: 3px solid #8367D8;
     font-weight: bold;
     width: 200px;
+    background-color: inherit;
 }
 
 .tabSection {
