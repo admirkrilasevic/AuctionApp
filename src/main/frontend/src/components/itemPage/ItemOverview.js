@@ -83,7 +83,7 @@ function ItemOverview({...item}) {
         }
     }
 
-const calculateTimeLeft = () => {
+    const calculateTimeLeft = () => {
         const date1 = new Date(endDate);
         const date2 = new Date();
         const interval = TimeInterval.fromTimeBetweenTwoDates(date1, date2);
