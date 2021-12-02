@@ -18,6 +18,8 @@ function ItemOverview({...item}) {
     const { id, name, photo, startingPrice, description, endDate, bids } = item;
     const { token, loggedIn } = useContext(AuthContext);
 
+    const [itemBids, setItemBids] = useState([]);
+
     const imagesArray =  photo ? photo.split(";") : [];
     const [currentImage, setCurrentImage] = useState(imagesArray[0]);
 
@@ -32,6 +34,20 @@ function ItemOverview({...item}) {
     const previousPage = <Link to="/home" className={styles.breadcrumbsLink}><li>Home&ensp;</li></Link>;
     const currentPage = <li className="purpleText">&ensp;Single Item</li>;
 
+    useEffect(() => {
+        setCurrentImage(imagesArray[0]);
+    }, [photo]);
+
+    useEffect(() => {
+        setHighestBid(calculateHighestBid());
+        setNoOfBids(calculateNumberOfBids());
+        setTimeLeft(calculateTimeLeft());
+    }, [itemBids]);
+
+    useEffect(() => {
+        setItemBids(bids ? bids : []);
+    }, [bids]);
+
     const onChangeBidAmount = (e) => {
         const bidAmount = e.target.value;
         setBidAmount(bidAmount);
@@ -45,22 +61,25 @@ function ItemOverview({...item}) {
         else {
             placeBid(token, id, bidAmount).then(
                 (response) => {
-                  setBidMessage(BID_MESSAGE.SUCCESS);
-                  setBidMessageStyle(styles.bidMessageHeaderSuccess);
+                    setBidMessage(BID_MESSAGE.SUCCESS);
+                    setBidMessageStyle(styles.bidMessageHeaderSuccess);
+                    const newBids = [...itemBids, response.body];
+                    setItemBids(newBids);
                 }
             );
         }
     };
 
     const calculateNumberOfBids = () => {
-        if(bids) 
-            return bids.length;
+        return itemBids.length;
     }
 
     const calculateHighestBid = () => {
-        if(bids) {
-            const sortedbids = bids.sort();
+        if (itemBids.length > 0) {
+            const sortedbids = itemBids.sort();
             return sortedbids[sortedbids.length-1].amount;
+        } else {
+            return 0;
         }
     }
 
@@ -77,16 +96,6 @@ const calculateTimeLeft = () => {
             return Math.round(hours/186) + " weeks " + Math.round((hours%168)/24) + " days";
         }
     }
-
-    useEffect(async () => {
-        setCurrentImage(imagesArray[0]);
-    }, [photo]);
-
-    useEffect(async () => {
-        setHighestBid(calculateHighestBid());
-        setNoOfBids(calculateNumberOfBids());
-        setTimeLeft(calculateTimeLeft());
-    }, [bids]);
   
     return (
         <PageLayout title={name} message={bidMessage} messageStyle={bidMessageStyle} breadcrumbs={[previousPage, arrowIcon, currentPage]}>

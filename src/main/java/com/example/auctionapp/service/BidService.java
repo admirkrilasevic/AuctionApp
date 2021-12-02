@@ -32,9 +32,10 @@ public class BidService {
         double amount = Double.parseDouble(biddingRequest.getAmount());
 
         Bid bid = new Bid(user.getId(), itemId, amount, new Timestamp(System.currentTimeMillis()));
-        bidRepository.save(bid);
+        Bid savedBid = bidRepository.save(bid);
+        savedBid.setUser(user);
 
-        return ResponseEntity.ok("Bid successfully placed!");
+        return ResponseEntity.ok().body(savedBid);
     }
 
 }
