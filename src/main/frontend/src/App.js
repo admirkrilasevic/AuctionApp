@@ -48,7 +48,7 @@ function App() {
                 <Register />
               </PageLayout>
             </Route>
-            <Route path="/shop">
+            <Route path="/shop/:categoryId">
               <PageLayout>
                 <Shop />
               </PageLayout>

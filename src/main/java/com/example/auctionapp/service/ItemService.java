@@ -6,10 +6,12 @@ import com.example.auctionapp.model.Item;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -29,6 +31,19 @@ public class ItemService {
         PageRequest pageable = PageRequest.of(page, size, Sort.by(direction, sort.toString()));
         Page<Item> items = itemRepository.findAll(pageable);
         return items;
+    }
+
+    public Page<Item> getItemsByCategoryId(int page, int size, ItemSort sort, Sort.Direction direction, long categoryId) {
+        PageRequest pageable = PageRequest.of(page, size, Sort.by(direction, sort.toString()));
+        List<Item> items = itemRepository.findAll();
+        List<Item> filteredItems = new ArrayList<>();
+        for (int i = 0; i < items.size(); i++){
+            if (items.get(i).getCategoryId() == categoryId) {
+                filteredItems.add(items.get(i));
+            }
+        }
+        Page<Item> itemsToReturn = new PageImpl<>(filteredItems, pageable, filteredItems.size());
+        return itemsToReturn;
     }
 
     public Optional<Item> getItemById(long id) {

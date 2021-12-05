@@ -20,11 +20,9 @@ function CategoriesSection() {
                     return category.parentCategoryId == null;
                 })
                 .map((category) => (
-                    <button className={styles.categoryButton} key={category.id}>
-                        {category.name}
-                    </button>
+                    <Link to={`/shop/${category.id}`}><button className={styles.categoryButton} key={category.id}>{category.name}</button></Link>
                 ))}
-                <Link to={`/shop`}><button className={styles.categoryButton}>All Categories</button></Link>
+                <Link to={`/shop/0`}><button className={styles.categoryButton}>All Categories</button></Link>
             </div>
         </div>
     );
