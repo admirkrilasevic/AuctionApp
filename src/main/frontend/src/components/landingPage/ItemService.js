@@ -33,3 +33,12 @@ export const placeBid = async (token, itemId, amount) => {
     requestHandler(error.response);
   });
 };
+
+export const fetchAllCategories = async () => {
+  return axios
+  .get(`http://${ENVIRONMENT.HOST}/api/v1/categories`
+  )
+  .then((res) => {
+    return res.data;
+  })
+};

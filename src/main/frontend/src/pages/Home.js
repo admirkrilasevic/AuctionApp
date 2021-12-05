@@ -1,8 +1,12 @@
+import CategoriesSection from "../components/landingPage/CategoriesSection";
 import Tabs from "../components/landingPage/Tabs";
 
 function Home(){
     return (
-        <Tabs/>
+        <div>
+            <CategoriesSection/>
+            <Tabs/>
+        </div>
     );
 }
 
