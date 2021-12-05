@@ -5,7 +5,8 @@ export const LANDING_PAGE_TAB_VALUES = {
 
 export const ITEM_SORT = {
     NEW_ARRIVALS: "STARTDATE",
-    LAST_CHANCE: "ENDDATE"
+    LAST_CHANCE: "ENDDATE",
+    ALPHABETICAL: "ALPHABETICAL"
 }
 
 export const DIRECTION = {

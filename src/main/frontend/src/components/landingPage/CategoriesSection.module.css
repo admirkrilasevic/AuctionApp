@@ -27,3 +27,7 @@
     text-align: left;
     padding: 16px;
 }
+
+.categoryButton:hover {
+    color: #8367D8;
+}

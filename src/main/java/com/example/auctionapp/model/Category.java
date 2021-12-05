@@ -40,4 +40,12 @@ public class Category {
             name = "category_id"
     )
     private List<Item> items;
+
+    @OneToMany(
+            cascade = CascadeType.ALL
+    )
+    @JoinColumn(
+            name = "subcategory_id"
+    )
+    private List<Item> subcategoryItems;
 }

@@ -7,24 +7,23 @@ function CategoriesSection() {
 
     const [categoriesList, setCategoriesList] = useState([]);
 
-    console.log(fetchAllCategories());
-
     useEffect(async () => {
         setCategoriesList(await fetchAllCategories());
     }, []);
 
-    const categoryButtons = [];
-    for (var i = 0; i < categoriesList.length; i++) {
-        if (categoriesList[i].parentCategoryId == null){
-            categoryButtons.push(<Link to={`/shop`} key={categoriesList[i].id}><button className={styles.categoryButton}>{categoriesList[i].name}</button></Link>);
-        }
-    }
-
     return (
         <div className={styles.categoriesSectionContainer}>
-            <div className = {styles.categoriesListContainer}>
+            <div className={styles.categoriesListContainer}>
                 <h3 className={styles.categoriesTitle}>CATEGORIES</h3>
-                {categoryButtons}
+                {categoriesList
+                .filter(function (category) {
+                    return category.parentCategoryId == null;
+                })
+                .map((category) => (
+                    <button className={styles.categoryButton} key={category.id}>
+                        {category.name}
+                    </button>
+                ))}
                 <Link to={`/shop`}><button className={styles.categoryButton}>All Categories</button></Link>
             </div>
         </div>

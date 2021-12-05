@@ -1,6 +1,13 @@
+import CategoriesMenu from "../components/shopPage/CategoriesMenu";
+import styles from "./Shop.module.css";
+import ShopPageItems from "../components/shopPage/ShopPageItems";
+
 function Shop(){
     return (
-        <h1>Shop</h1>
+        <div className={styles.shopPageElementsContainer}>
+            <CategoriesMenu/>
+            <ShopPageItems/>
+        </div>
     );
 }
 
