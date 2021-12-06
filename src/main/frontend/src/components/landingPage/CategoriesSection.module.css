@@ -5,7 +5,10 @@
 }
 
 .categoriesListContainer {
-    margin-left: 160px;
+    width: 1440px;
+    margin: auto;
+    padding-left: 90px;
+    padding-right: 90px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;

@@ -34,9 +34,7 @@ function App() {
                 }}
             />
             <Route path="/home">
-              <PageLayout>
-                <Home />
-              </PageLayout>
+              <Home />
             </Route>
             <Route path="/login">
               <PageLayout title="Login">
