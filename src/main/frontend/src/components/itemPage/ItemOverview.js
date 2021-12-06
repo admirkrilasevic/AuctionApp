@@ -134,7 +134,7 @@ function ItemOverview({...item}) {
                             <Col>
                                 <input 
                                     className={styles.bidInput} 
-                                    placeholder={`Enter $${highestBid+0.1} or higher`}           
+                                    placeholder={`Enter $${(highestBid == 0) ? (startingPrice+0.1) : (highestBid+0.1)} or higher`}           
                                     value={bidAmount}
                                     onChange={onChangeBidAmount}
                                 />
