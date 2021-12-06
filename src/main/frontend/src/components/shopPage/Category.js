@@ -1,7 +1,8 @@
-import styles from "./CategoriesMenuItem.module.css";
-import { useEffect, useState } from "react";
+import styles from "./Category.module.css";
+import { useState } from "react";
+import Subcategory from "./Subcategory";
 
-function CategoriesMenuItem({category}) {
+function Category({category}) {
 
     const [expanded, setExpanded] = useState(false);
 
@@ -18,14 +19,7 @@ function CategoriesMenuItem({category}) {
             {expanded && (
                 <div className={styles.subcategoriesContainer}>
                     {category.subcategories.map((subcategory) => (
-                        <div className={styles.subcategoryItem}>
-                            <input
-                                className={styles.subcategoryCheckbox}
-                                type="checkbox"
-                                value={subcategory.id}
-                            />
-                            {subcategory.name + " (" + (subcategory.subcategoryItems.length ? subcategory.subcategoryItems.length : 0) + ")"}
-                        </div>
+                        <Subcategory subcategory={subcategory}/>
                     ))}
                 </div>
             )}
@@ -33,4 +27,4 @@ function CategoriesMenuItem({category}) {
     );
 }
 
-export default CategoriesMenuItem;
+export default Category;

@@ -1,12 +1,11 @@
 import styles from "./CategoriesMenu.module.css";
 import { useEffect, useState } from "react";
 import { fetchAllCategories } from "../landingPage/ItemService";
-import CategoriesMenuItem from "./CategoriesMenuItem";
+import Category from "./Category";
 
 function CategoriesMenu() {
 
     const [categoriesList, setCategoriesList] = useState([]);
-    const [expanded, setExpanded] = useState(false);
 
     useEffect(async () => {
         setCategoriesList(await fetchAllCategories());
@@ -22,7 +21,7 @@ function CategoriesMenu() {
                         return category.parentCategoryId == null;
                     })
                     .map((category) => (
-                        <CategoriesMenuItem category={category}/>
+                        <Category category={category}/>
                     ))}
                 </div>
             </div>

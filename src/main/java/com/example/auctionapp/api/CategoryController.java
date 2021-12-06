@@ -3,10 +3,7 @@ package com.example.auctionapp.api;
 import com.example.auctionapp.model.Category;
 import com.example.auctionapp.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,6 +18,11 @@ public class CategoryController {
     @GetMapping
     public List<Category> getAllCategories() {
         return categoryService.getAllCategories();
+    }
+
+    @GetMapping("/countinsubcategory/{subcategoryId}")
+    public int countItemsInSubcategory(@PathVariable("subcategoryId")long subcategoryId) {
+        return categoryService.countItemsInSubcategory(subcategoryId);
     }
 
 }

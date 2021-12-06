@@ -32,20 +32,5 @@ public class Category {
             name = "parent_category"
     )
     private List<Category> subcategories;
-
-    @OneToMany(
-            cascade = CascadeType.ALL
-    )
-    @JoinColumn(
-            name = "category_id"
-    )
-    private List<Item> items;
-
-    @OneToMany(
-            cascade = CascadeType.ALL
-    )
-    @JoinColumn(
-            name = "subcategory_id"
-    )
-    private List<Item> subcategoryItems;
+    
 }

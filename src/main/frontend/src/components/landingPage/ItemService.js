@@ -42,3 +42,12 @@ export const fetchAllCategories = async () => {
     return res.data;
   })
 };
+
+export const getNoItemsInSubcategory = async (subcategoryId) => {
+  return axios
+  .get(`http://${ENVIRONMENT.HOST}/api/v1/categories/countinsubcategory/${subcategoryId}`
+  )
+  .then((res) => {
+    return res.data;
+  })
+};
