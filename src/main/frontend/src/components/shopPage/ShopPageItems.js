@@ -12,7 +12,7 @@ function ShopPageItems({categoryId}) {
   const [page, setPage] = useState(0);
 
   useEffect(async () => {
-    let itemsFromServer = await fetchItems(page, 9, ITEM_SORT.ALPHABETICAL, DIRECTION.ASCENDING);
+    let itemsFromServer = await fetchItems(page, 6, ITEM_SORT.ALPHABETICAL, DIRECTION.ASCENDING);
     setItems([...items, ...itemsFromServer.content]);
     setHasMoreItems(!itemsFromServer.last);
   }, [page]);
@@ -50,7 +50,7 @@ function ShopPageItems({categoryId}) {
             );
           })}
         </Row>
-        <button onClick={fetchData} className={styles.exploreMoreButton}>EXPLORE MORE</button>
+        {hasMoreItems && <button onClick={fetchData} className={styles.exploreMoreButton}>EXPLORE MORE</button>}
       </div>
     </InfiniteScroll>
   );
