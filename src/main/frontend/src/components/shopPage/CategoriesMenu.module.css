@@ -19,34 +19,3 @@
 .collapsibleCategoriesContainer {
     background-color: #FFF;
 }
-
-.collapsibleCategory {
-    width: 260px;
-    background-color: #FFF;
-    border: none;
-    text-align: left;
-    padding: 12px 24px;
-    font-size: 16px;
-}
-
-.collapsibleCategory:hover {
-    color: #8367D8;
-}
-
-.collapseIcon {
-    float: right;
-}
-
-.subcategoriesContainer {
-    text-align: left;
-}
-
-.subcategoryItem {
-    padding: 15px 28px;
-}
-
-.subcategoryCheckbox {
-    height: 15px;
-    width: 15px;
-    margin-right: 12.5px;
-}

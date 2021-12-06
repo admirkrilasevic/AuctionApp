@@ -1,6 +1,7 @@
 import styles from "./CategoriesMenu.module.css";
 import { useEffect, useState } from "react";
 import { fetchAllCategories } from "../landingPage/ItemService";
+import CategoriesMenuItem from "./CategoriesMenuItem";
 
 function CategoriesMenu() {
 
@@ -10,10 +11,6 @@ function CategoriesMenu() {
     useEffect(async () => {
         setCategoriesList(await fetchAllCategories());
     }, []);
-
-    const toggleExpandCollapse = () => {
-        setExpanded(!expanded);
-    };
 
     return (
         <div className={styles.menusContainer}>
@@ -25,26 +22,7 @@ function CategoriesMenu() {
                         return category.parentCategoryId == null;
                     })
                     .map((category) => (
-                        <div>
-                            <button className={styles.collapsibleCategory} key={category.id}>
-                                {category.name}
-                                <span className={styles.collapseIcon} onClick={toggleExpandCollapse}>{expanded ? "-" : "+"}</span>
-                            </button>
-                            {expanded && (
-                                <div className={styles.subcategoriesContainer}>
-                                    {category.subcategories.map((subcategory) => (
-                                        <div className={styles.subcategoryItem}>
-                                            <input
-                                                className={styles.subcategoryCheckbox}
-                                                type="checkbox"
-                                                value={subcategory.id}
-                                            />
-                                            {subcategory.name + " (" + (subcategory.subcategoryItems.length ? subcategory.subcategoryItems.length : 0) + ")"}
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
+                        <CategoriesMenuItem category={category}/>
                     ))}
                 </div>
             </div>
