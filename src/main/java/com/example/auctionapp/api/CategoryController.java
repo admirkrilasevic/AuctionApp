@@ -20,9 +20,4 @@ public class CategoryController {
         return categoryService.getAllCategories();
     }
 
-    @GetMapping("/countinsubcategory/{subcategoryId}")
-    public int countItemsInSubcategory(@PathVariable("subcategoryId")long subcategoryId) {
-        return categoryService.countItemsInSubcategory(subcategoryId);
-    }
-
 }

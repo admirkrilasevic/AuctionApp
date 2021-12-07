@@ -16,8 +16,5 @@ public class CategoryService {
     public List<Category> getAllCategories() {
         return categoryRepository.findAll();
     }
-
-    public int countItemsInSubcategory(long subcategoryId) {
-        return categoryRepository.countItemsInSubcategory(subcategoryId);
-    }
+    
 }

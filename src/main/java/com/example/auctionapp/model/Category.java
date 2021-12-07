@@ -1,9 +1,8 @@
 package com.example.auctionapp.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
+import org.hibernate.annotations.Formula;
+import org.springframework.data.repository.query.Param;
 
 import javax.persistence.*;
 import java.util.List;
@@ -32,5 +31,8 @@ public class Category {
             name = "parent_category"
     )
     private List<Category> subcategories;
-    
+
+    @Formula(value="(SELECT COUNT(i.id) FROM item i WHERE i.subcategory_id=id)")
+    private int noOfItems;
+
 }

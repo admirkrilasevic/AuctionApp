@@ -9,6 +9,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 
-    @Query("SELECT COUNT(i) FROM Item i WHERE i.subcategoryId = :subcategoryId")
-    int countItemsInSubcategory (@Param("subcategoryId") long subcategoryId);
 }
