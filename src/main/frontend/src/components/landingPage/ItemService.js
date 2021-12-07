@@ -7,6 +7,11 @@ export const fetchItems = async (page, size, sort, direction) => {
   return items.json();
 };
 
+export const fetchItemsByCategory = async (page, size, sort, direction, categoryId) => {
+  const items = await fetch(`http://${ENVIRONMENT.HOST}/api/v1/items/category/${categoryId}?page=${page}&size=${size}&sort=${sort}&direction=${direction}`);
+  return items.json();
+};
+
 export const fetchItemById = async (itemId) => {
   return axios
   .get(`http://${ENVIRONMENT.HOST}/api/v1/items/${itemId}`

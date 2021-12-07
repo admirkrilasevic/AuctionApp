@@ -2,7 +2,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { useEffect, useState } from "react";
 import Item from "../landingPage/Item";
 import { Row, Col } from "react-bootstrap";
-import { fetchItems } from '../landingPage/ItemService';
+import { fetchItems, fetchItemsByCategory } from '../landingPage/ItemService';
 import { ITEM_SORT, DIRECTION } from "../../constants";
 import styles from "./ShopPageItems.module.css";
 
@@ -12,7 +12,12 @@ function ShopPageItems({categoryId}) {
   const [page, setPage] = useState(0);
 
   useEffect(async () => {
-    let itemsFromServer = await fetchItems(page, 6, ITEM_SORT.ALPHABETICAL, DIRECTION.ASCENDING);
+    let itemsFromServer = "";
+    if(categoryId == 0){
+      itemsFromServer = await fetchItems(page, 6, ITEM_SORT.ALPHABETICAL, DIRECTION.ASCENDING);
+    } else {
+      itemsFromServer = await fetchItemsByCategory(page, 6, ITEM_SORT.ALPHABETICAL, DIRECTION.ASCENDING, categoryId);
+    }
     setItems([...items, ...itemsFromServer.content]);
     setHasMoreItems(!itemsFromServer.last);
   }, [page]);
@@ -28,15 +33,7 @@ function ShopPageItems({categoryId}) {
     >
       <div className="container-fluid">
         <Row>
-          {items
-          .filter(function (item) {
-            if (categoryId != 0) {
-              return item.categoryId==categoryId;
-            } else {
-              return item;
-            }
-          })
-          .map((item) => {
+          {items.map((item) => {
             return (
               <Col>
                 <Item 

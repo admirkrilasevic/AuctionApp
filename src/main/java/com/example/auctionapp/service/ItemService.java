@@ -41,4 +41,18 @@ public class ItemService {
             throw new NoSuchElementException("No such item exists");
         }
     }
+
+    public Page<Item> getItemsByCategoryId(int page, int size, ItemSort sort, Sort.Direction direction, long categoryId) {
+        PageRequest pageable = PageRequest.of(page, size, Sort.by(direction, sort.toString()));
+        List<Item> items = itemRepository.findAll();
+        List<Item> filteredItems = new ArrayList<>();
+        for (int i = 0; i < items.size(); i++){
+            if (items.get(i).getCategoryId() == categoryId) {
+                filteredItems.add(items.get(i));
+            }
+        }
+        Page<Item> itemsToReturn = new PageImpl<>(filteredItems, pageable, filteredItems.size());
+        return itemsToReturn;
+    }
+    
 }
