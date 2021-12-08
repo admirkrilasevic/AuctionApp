@@ -13,17 +13,14 @@ export const fetchItemsByCategory = async (page, size, sort, direction, category
 };
 
 export const fetchItemById = async (itemId) => {
-  return axios
-  .get(`http://${ENVIRONMENT.HOST}/api/v1/items/${itemId}`
-  )
+  return axios.get(`http://${ENVIRONMENT.HOST}/api/v1/items/${itemId}`)
   .then((res) => {
     return res.data;
   })
 };
 
 export const placeBid = async (token, itemId, amount) => {
-  return axios
-  .post(`http://${ENVIRONMENT.HOST}/api/v1/bid`, {
+  return axios.post(`http://${ENVIRONMENT.HOST}/api/v1/bid`, {
     itemId,
     amount
   }, {
@@ -40,9 +37,7 @@ export const placeBid = async (token, itemId, amount) => {
 };
 
 export const fetchAllCategories = async () => {
-  return axios
-  .get(`http://${ENVIRONMENT.HOST}/api/v1/categories`
-  )
+  return axios.get(`http://${ENVIRONMENT.HOST}/api/v1/categories`)
   .then((res) => {
     return res.data;
   })

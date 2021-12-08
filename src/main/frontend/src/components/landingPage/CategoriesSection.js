@@ -17,12 +17,12 @@ function CategoriesSection() {
                 <h3 className={styles.categoriesTitle}>CATEGORIES</h3>
                 {categoriesList
                 .filter(function (category) {
-                    return category.parentCategoryId == null;
+                    return category.parentCategoryId === null;
                 })
                 .map((category) => (
-                    <Link to={`/shop/${category.id}`}><button className={styles.categoryButton} key={category.id}>{category.name}</button></Link>
+                    <Link to={`/shop/${category.id}`} className={styles.categoryButton} key={category.id}>{category.name}</Link>
                 ))}
-                <Link to={`/shop/0`}><button className={styles.categoryButton}>All Categories</button></Link>
+                <Link to={`/shop/0`} className={styles.categoryButton}>All Categories</Link>
             </div>
         </div>
     );

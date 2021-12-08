@@ -26,3 +26,7 @@ export const BID_MESSAGE = {
 export const ITEM_PAGE_TAB_VALUES = {
     DETAILS: "Details"
 }
+
+export const SHOP_PAGE_ITEMS = {
+    PAGE_SIZE: 6
+}

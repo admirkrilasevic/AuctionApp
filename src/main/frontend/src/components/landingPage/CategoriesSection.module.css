@@ -29,6 +29,8 @@
     border-bottom: 1px solid #D8D8D8;
     text-align: left;
     padding: 16px;
+    text-decoration: none;
+    color: #000;
 }
 
 .categoryButton:hover {

@@ -19,7 +19,7 @@ function Category({category}) {
             {expanded && (
                 <div className={styles.subcategoriesContainer}>
                     {category.subcategories.map((subcategory) => (
-                        <Subcategory subcategory={subcategory}/>
+                        <Subcategory key={subcategory.id} subcategory={subcategory}/>
                     ))}
                 </div>
             )}

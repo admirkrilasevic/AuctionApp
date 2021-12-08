@@ -2,7 +2,6 @@ package com.example.auctionapp.model;
 
 import lombok.*;
 import org.hibernate.annotations.Formula;
-import org.springframework.data.repository.query.Param;
 
 import javax.persistence.*;
 import java.util.List;

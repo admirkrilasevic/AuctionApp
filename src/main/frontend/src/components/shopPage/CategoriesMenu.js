@@ -21,7 +21,7 @@ function CategoriesMenu() {
                         return category.parentCategoryId == null;
                     })
                     .map((category) => (
-                        <Category category={category}/>
+                        <Category key={category.id} category={category}/>
                     ))}
                 </div>
             </div>
