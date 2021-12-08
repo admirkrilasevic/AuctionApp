@@ -36,4 +36,11 @@ public class ItemController {
     Item getItemById(@PathVariable("itemId") long itemId){
         return itemService.getItemById(itemId).get();
     }
+
+    @GetMapping("/category/{categoryId}")
+    public @ResponseBody
+    Page<Item> getItemsByCategoryId(@RequestParam("page") int page, @RequestParam("size") int size, @RequestParam("sort") ItemSort sort, @RequestParam("direction") Sort.Direction direction, @PathVariable("categoryId") long categoryId){
+        return itemService.getItemsByCategoryId(page, size, sort, direction, categoryId);
+    }
+    
 }

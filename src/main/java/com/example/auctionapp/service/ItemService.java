@@ -39,4 +39,10 @@ public class ItemService {
             throw new NoSuchElementException("No such item exists");
         }
     }
+
+    public Page<Item> getItemsByCategoryId(int page, int size, ItemSort sort, Sort.Direction direction, long categoryId) {
+        PageRequest pageable = PageRequest.of(page, size, Sort.by(direction, sort.toString()));
+        return itemRepository.findByCategoryId(categoryId, pageable);
+    }
+
 }

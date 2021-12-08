@@ -1,0 +1,17 @@
+.subcategoryItem {
+    padding: 15px 28px;
+}
+
+.subcategoryCheckbox {
+    appearance: none;
+    cursor: pointer;
+    border: 1px solid #8367D8;
+    height: 15px;
+    width: 15px;
+    margin-right: 12.5px;
+    border-radius: 2px;
+}
+
+.subcategoryCheckbox:checked {
+    background-color: #8367D8;
+}

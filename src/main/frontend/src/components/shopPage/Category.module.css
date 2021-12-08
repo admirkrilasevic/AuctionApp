@@ -1,0 +1,20 @@
+.collapsibleCategory {
+    width: 260px;
+    background-color: #FFF;
+    border: none;
+    text-align: left;
+    padding: 12px 24px;
+    font-size: 16px;
+}
+
+.collapsibleCategory:hover {
+    color: #8367D8;
+}
+
+.collapseIcon {
+    float: right;
+}
+
+.subcategoriesContainer {
+    text-align: left;
+}

@@ -1,0 +1,38 @@
+.categoriesSectionContainer {
+    width: 100%;
+    background-color: #FCFCFC;
+    margin: 40px 0px;
+}
+
+.categoriesListContainer {
+    width: 1440px;
+    margin: auto;
+    padding-left: 90px;
+    padding-right: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.categoriesTitle {
+    font-size: 16px;
+    font-weight: bold;
+    color: #8367D8;
+    padding: 16px;
+}
+
+.categoryButton {
+    width: 262px;
+    height: 56px;
+    background-color: #FFF;
+    border: none;
+    border-bottom: 1px solid #D8D8D8;
+    text-align: left;
+    padding: 16px;
+    text-decoration: none;
+    color: #000;
+}
+
+.categoryButton:hover {
+    color: #8367D8;
+}

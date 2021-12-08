@@ -2,7 +2,8 @@ package com.example.auctionapp.enumeration;
 
 public enum ItemSort {
     ENDDATE("endDate"),
-    STARTDATE("startDate");
+    STARTDATE("startDate"),
+    ALPHABETICAL("name");
 
     String variableName;
 

@@ -21,8 +21,12 @@ function BiddersSection({bids}) {
         return formattedDate;
     }
 
+    console.log(bids);
+
     return (
-        <Row className={styles.biddersSection}>
+        <div>
+        {(bids) && (bids.length != 0) && 
+            (<Row className={styles.biddersSection}>
             <Container className={styles.biddersTable}>
                 <Row className={styles.headerRow}>
                     <Col xs={8}>Bidder</Col>
@@ -36,7 +40,9 @@ function BiddersSection({bids}) {
                     <Col className={styles.amountCol}>$ {bid.amount}</Col>
                 </Row>)}
             </Container>
-        </Row>
+            </Row>)
+        }
+        </div>
     );
 }
 

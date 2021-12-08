@@ -34,9 +34,7 @@ function App() {
                 }}
             />
             <Route path="/home">
-              <PageLayout>
-                <Home />
-              </PageLayout>
+              <Home />
             </Route>
             <Route path="/login">
               <PageLayout title="Login">
@@ -48,7 +46,7 @@ function App() {
                 <Register />
               </PageLayout>
             </Route>
-            <Route path="/shop">
+            <Route path="/shop/:categoryId">
               <PageLayout>
                 <Shop />
               </PageLayout>

@@ -19,7 +19,7 @@ const HeaderNavbar = () => {
                 </Col>
                 <Col className={styles.buttonsContainer}>
                     <NavLink to="/home" activeStyle={{ color: '#8367D8' }}>Home</NavLink>
-                    <NavLink to="/shop" activeStyle={{ color: '#8367D8' }}>Shop</NavLink>
+                    <NavLink to="/shop/0" activeStyle={{ color: '#8367D8' }}>Shop</NavLink>
                     <NavLink to="/account" activeStyle={{ color: '#8367D8' }}>My Account</NavLink>
                 </Col>
             </Row>
