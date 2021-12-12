@@ -47,3 +47,10 @@ export const fetchAllCategories = async () => {
     return res.data;
   })
 };
+
+export const fetchCategoryById = async (categoryId) => {
+  return axios.get(`http://${ENVIRONMENT.HOST}/api/v1/categories/${categoryId}`)
+  .then((res) => {
+    return res.data;
+  })
+};

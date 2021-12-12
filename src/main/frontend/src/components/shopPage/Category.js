@@ -1,5 +1,5 @@
 import styles from "./Category.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Subcategory from "./Subcategory";
 
 function Category({category, isSelected, onCategoryClick}) {
@@ -10,9 +10,14 @@ function Category({category, isSelected, onCategoryClick}) {
         setExpanded(!expanded);
     };
 
+    useEffect(() => {
+        if (isSelected(category.id))
+            toggleExpandCollapse()
+    }, []);
+
     return (
         <div>
-            <button className={isSelected(category.id) ? styles.collapsibleCategoryActive : styles.collapsibleCategory} key={category.id} onClick={() => onCategoryClick(category.id)}>
+            <button className={styles.collapsibleCategory} key={category.id} onClick={() => onCategoryClick(category.id)}>
                 {category.name}
                 <span className={styles.collapseIcon} onClick={toggleExpandCollapse}>{expanded ? "-" : "+"}</span>
             </button>

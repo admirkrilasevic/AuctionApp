@@ -1,15 +1,7 @@
 import styles from "./CategoriesMenu.module.css";
-import { useEffect, useState } from "react";
-import { fetchAllCategories } from "../landingPage/ItemService";
 import Category from "./Category";
 
-function CategoriesMenu({isSelectedCategory, onCategoryClick}) {
-
-    const [categoriesList, setCategoriesList] = useState([]);
-
-    useEffect(async () => {
-        setCategoriesList(await fetchAllCategories());
-    }, []);
+function CategoriesMenu({isSelectedCategory, onCategoryClick, categoriesList}) {
 
     return (
         <div className={styles.menusContainer}>
