@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { fetchAllCategories } from "../landingPage/ItemService";
 import Category from "./Category";
 
-function CategoriesMenu() {
+function CategoriesMenu({isSelectedCategory, onCategoryClick}) {
 
     const [categoriesList, setCategoriesList] = useState([]);
 
@@ -21,7 +21,7 @@ function CategoriesMenu() {
                         return category.parentCategoryId == null;
                     })
                     .map((category) => (
-                        <Category key={category.id} category={category}/>
+                        <Category key={category.id} category={category} isSelected={isSelectedCategory} onCategoryClick={onCategoryClick}/>
                     ))}
                 </div>
             </div>

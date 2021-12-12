@@ -42,5 +42,11 @@ public class ItemController {
     Page<Item> getItemsByCategoryId(@RequestParam("page") int page, @RequestParam("size") int size, @RequestParam("sort") ItemSort sort, @RequestParam("direction") Sort.Direction direction, @PathVariable("categoryId") long categoryId){
         return itemService.getItemsByCategoryId(page, size, sort, direction, categoryId);
     }
+
+    @GetMapping("/categories")
+    public @ResponseBody
+    Page<Item> getItemsByCategoryIds(@RequestParam("page") int page, @RequestParam("size") int size, @RequestParam("sort") ItemSort sort, @RequestParam("direction") Sort.Direction direction, @RequestParam("categoryIds") long[] categoryIds){
+        return itemService.getItemsByCategoryIds(page, size, sort, direction, categoryIds);
+    }
     
 }
