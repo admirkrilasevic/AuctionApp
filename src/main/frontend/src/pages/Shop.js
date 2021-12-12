@@ -20,7 +20,8 @@ function Shop(){
 	}
 
     const onCategoryClick = (clickedCategory) => {
-        setSelectedCategories([...selectedCategories, clickedCategory]);
+        if (!selectedCategories.find((category) => category == clickedCategory))
+            setSelectedCategories([...selectedCategories, clickedCategory]);
 	}
 
     const onRemoveClick = (clickedFilter) => {
@@ -29,8 +30,16 @@ function Shop(){
 
     return (
         <div className={styles.shopPageElementsContainer}>
-            <CategoriesMenu isSelectedCategory={isSelectedCategory} onCategoryClick={onCategoryClick} categoriesList={categoriesList}/>
-            <ShopPageItems selectedCategories={selectedCategories} categoriesList={categoriesList} onRemoveClick={onRemoveClick}/>
+            <CategoriesMenu 
+                isSelectedCategory={isSelectedCategory} 
+                onCategoryClick={onCategoryClick} 
+                categoriesList={categoriesList}
+            />
+            <ShopPageItems 
+                selectedCategories={selectedCategories} 
+                categoriesList={categoriesList} 
+                onRemoveClick={onRemoveClick}
+            />
         </div>
     );
 }

@@ -14,7 +14,7 @@ function ShopPageItems({selectedCategories, categoriesList, onRemoveClick}) {
 
   useEffect(async () => {
     let itemsFromServer = "";
-    if(selectedCategories.some((category) => category == 0)){
+    if (selectedCategories[0] == 0) {
       itemsFromServer = await fetchItems(page, SHOP_PAGE_ITEMS.PAGE_SIZE, ITEM_SORT.ALPHABETICAL, DIRECTION.ASCENDING);
     } else {
       itemsFromServer = await fetchItemsByCategories(page, SHOP_PAGE_ITEMS.PAGE_SIZE, ITEM_SORT.ALPHABETICAL, DIRECTION.ASCENDING, selectedCategories);
@@ -24,13 +24,8 @@ function ShopPageItems({selectedCategories, categoriesList, onRemoveClick}) {
   }, [page]);
 
   useEffect(async () => {
-    let itemsFromServer = "";
     setItems([]);
-    if(selectedCategories.some((category) => category == 0)){
-      itemsFromServer = await fetchItems(page, SHOP_PAGE_ITEMS.PAGE_SIZE, ITEM_SORT.ALPHABETICAL, DIRECTION.ASCENDING);
-    } else {
-      itemsFromServer = await fetchItemsByCategories(page, SHOP_PAGE_ITEMS.PAGE_SIZE, ITEM_SORT.ALPHABETICAL, DIRECTION.ASCENDING, selectedCategories);
-    }
+    let itemsFromServer = await fetchItemsByCategories(page, SHOP_PAGE_ITEMS.PAGE_SIZE, ITEM_SORT.ALPHABETICAL, DIRECTION.ASCENDING, selectedCategories);
     setItems([...itemsFromServer.content]);
     setHasMoreItems(!itemsFromServer.last);
   }, [selectedCategories]);
