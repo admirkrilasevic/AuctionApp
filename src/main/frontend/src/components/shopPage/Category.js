@@ -10,6 +10,11 @@ function Category({category, isSelected, onCategoryClick}) {
         setExpanded(!expanded);
     };
 
+    const onCategoryClickResponse = (id) => {
+        onCategoryClick(id);
+        toggleExpandCollapse();
+    };
+
     useEffect(() => {
         if (isSelected(category.id))
             toggleExpandCollapse()
@@ -17,9 +22,9 @@ function Category({category, isSelected, onCategoryClick}) {
 
     return (
         <div>
-            <button className={styles.collapsibleCategory} key={category.id} onClick={() => onCategoryClick(category.id)}>
+            <button className={styles.collapsibleCategory} key={category.id} onClick={() => onCategoryClickResponse(category.id)}>
                 {category.name}
-                <span className={styles.collapseIcon} onClick={toggleExpandCollapse}>{expanded ? "-" : "+"}</span>
+                <span className={styles.collapseIcon}>{expanded ? "-" : "+"}</span>
             </button>
             {expanded && (
                 <div className={styles.subcategoriesContainer}>
