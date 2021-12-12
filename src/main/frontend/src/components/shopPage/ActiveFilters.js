@@ -1,7 +1,6 @@
-import { fetchCategoryById } from "../landingPage/ItemService";
 import styles from "./ActiveFilters.module.css";
 
-function ActiveFilters({selectedCategories, categoriesList, onRemoveClick}) {
+function ActiveFilters({selectedCategories, categoriesList, onRemoveClick, onClearAllClick}) {
 
     const findCategoryNameById = (categoryId) => {
         const category = categoriesList.find((category) => category.id == categoryId);
@@ -19,13 +18,13 @@ function ActiveFilters({selectedCategories, categoriesList, onRemoveClick}) {
                         <div className={styles.filterContainer}>
                             <p className={styles.filterTitle}>Categories</p>
                             {categoryFilters.map((category) => 
-                                (<button className={styles.filter} onClick={onRemoveClick(category)}>
+                                (<button className={styles.filter} onClick={() => onRemoveClick(category)}>
                                     {findCategoryNameById(category)} <span className={styles.removeIcon}>x</span> 
                                 </button>)
                             )}
                         </div>
                     }
-                    <button className={styles.clearAllButton}>Clear all &ensp; x</button>
+                    <button className={styles.clearAllButton} onClick={() => onClearAllClick()}>Clear all &ensp; x</button>
                 </div>)
             }
         </div>

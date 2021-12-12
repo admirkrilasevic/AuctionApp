@@ -7,7 +7,7 @@ import styles from "./ShopPageItems.module.css";
 import { SHOP_PAGE_ITEMS } from "../../constants";
 import ActiveFilters from "./ActiveFilters";
 
-function ShopPageItems({selectedCategories, categoriesList, onRemoveClick}) {
+function ShopPageItems({selectedCategories, categoriesList, onRemoveClick, onClearAllClick}) {
   const [items, setItems] = useState([]);
   const [hasMoreItems, setHasMoreItems] = useState(true);
   const [page, setPage] = useState(0);
@@ -36,7 +36,12 @@ function ShopPageItems({selectedCategories, categoriesList, onRemoveClick}) {
 
   return (
     <div className="container-fluid">
-      {<ActiveFilters selectedCategories={selectedCategories} categoriesList={categoriesList} onRemoveClick={onRemoveClick}/>}
+      <ActiveFilters 
+        selectedCategories={selectedCategories} 
+        categoriesList={categoriesList} 
+        onRemoveClick={onRemoveClick}
+        onClearAllClick={onClearAllClick}
+      />
       <Row>
         {items.map((item) => {
           return (

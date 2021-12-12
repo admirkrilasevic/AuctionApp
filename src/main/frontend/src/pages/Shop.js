@@ -25,7 +25,13 @@ function Shop(){
 	}
 
     const onRemoveClick = (clickedFilter) => {
-        //setSelectedCategories(selectedCategories.filter((category) => category != clickedFilter));
+        setSelectedCategories(selectedCategories.filter((category) => category != clickedFilter));
+        if (selectedCategories.length == 0)
+            onClearAllClick();
+    }
+
+    const onClearAllClick = () => {
+        setSelectedCategories([0]);
     }
 
     return (
@@ -39,6 +45,7 @@ function Shop(){
                 selectedCategories={selectedCategories} 
                 categoriesList={categoriesList} 
                 onRemoveClick={onRemoveClick}
+                onClearAllClick={onClearAllClick}
             />
         </div>
     );
