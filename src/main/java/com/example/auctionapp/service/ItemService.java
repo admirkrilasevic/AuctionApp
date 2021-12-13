@@ -55,4 +55,16 @@ public class ItemService {
         return itemRepository.findAllByCategoryIdInOrSubcategoryIdIn(categoryIds, subcategoryIds, pageable);
     }
 
+    public double getMaxPrice(long[] itemIds) {
+        return itemRepository.getMaxPrice(itemIds);
+    }
+
+    public double getMinPrice(long[] itemIds) {
+        return itemRepository.getMinPrice(itemIds);
+    }
+
+    public double getAvgPrice(long[] itemIds) {
+        return itemRepository.getAvgPrice(itemIds);
+    }
+
 }

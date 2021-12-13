@@ -7,8 +7,8 @@ import styles from "./ShopPageItems.module.css";
 import { SHOP_PAGE_ITEMS } from "../../constants";
 import ActiveFilters from "./ActiveFilters";
 
-function ShopPageItems({selectedCategories, selectedSubcategories, categoriesList, onRemoveCategoryClick, onRemoveSubcategoryClick, onClearAllClick}) {
-  const [items, setItems] = useState([]);
+function ShopPageItems({items, setItems, selectedCategories, selectedSubcategories, priceRange, categoriesList, onRemoveCategoryClick, onRemoveSubcategoryClick, onClearAllClick}) {
+
   const [hasMoreItems, setHasMoreItems] = useState(true);
   const [page, setPage] = useState(0);
 
@@ -25,8 +25,6 @@ function ShopPageItems({selectedCategories, selectedSubcategories, categoriesLis
 
   useEffect(async () => {
     setItems([]);
-    console.log(selectedCategories);
-    console.log(selectedSubcategories);
     let itemsFromServer = await fetchItemsByCategoriesAndSubcategories(page, SHOP_PAGE_ITEMS.PAGE_SIZE, ITEM_SORT.ALPHABETICAL, DIRECTION.ASCENDING, selectedCategories, selectedSubcategories.map(c => c.id));
     setItems([...itemsFromServer.content]);
     setHasMoreItems(!itemsFromServer.last);

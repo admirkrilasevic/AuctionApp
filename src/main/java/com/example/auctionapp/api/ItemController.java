@@ -49,5 +49,20 @@ public class ItemController {
     public Page<Item> getItemsByCategoryOrSubcategoryIds(@RequestParam("page") int page, @RequestParam("size") int size, @RequestParam("sort") ItemSort sort, @RequestParam("direction") Sort.Direction direction, @RequestParam("categoryIds") long[] categoryIds, @RequestParam("subcategoryIds") long[] subcategoryIds){
         return itemService.getItemsByCategoryOrSubcategoryIds(page, size, sort, direction, categoryIds, subcategoryIds);
     }
+
+    @GetMapping("/maxprice")
+    public double getMaxPrice(@RequestParam("itemIds") long[] itemIds) {
+        return itemService.getMaxPrice(itemIds);
+    }
+
+    @GetMapping("/minprice")
+    public double getMinPrice(@RequestParam("itemIds") long[] itemIds) {
+        return itemService.getMinPrice(itemIds);
+    }
+
+    @GetMapping("/avgprice")
+    public double getAvgPrice(@RequestParam("itemIds") long[] itemIds) {
+        return itemService.getAvgPrice(itemIds);
+    }
     
 }
