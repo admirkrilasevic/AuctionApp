@@ -2,7 +2,7 @@ import styles from "./Category.module.css";
 import { useEffect, useState } from "react";
 import Subcategory from "./Subcategory";
 
-function Category({category, isSelected, onCategoryClick}) {
+function Category({category, isSelected, isChecked, onCategoryClick, onSubcategoryClick}) {
 
     const [expanded, setExpanded] = useState(false);
 
@@ -29,7 +29,7 @@ function Category({category, isSelected, onCategoryClick}) {
             {expanded && (
                 <div className={styles.subcategoriesContainer}>
                     {category.subcategories.map((subcategory) => (
-                        <Subcategory key={subcategory.id} subcategory={subcategory}/>
+                        <Subcategory key={subcategory.id} subcategory={subcategory} isChecked={isChecked} onSubcategoryClick={onSubcategoryClick}/>
                     ))}
                 </div>
             )}

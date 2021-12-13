@@ -9,14 +9,19 @@ function Shop(){
 
     const { categoryId } = useParams();
     const [selectedCategories, setSelectedCategories] = useState([categoryId]);
+    const [selectedSubcategories, setSelectedSubcategories] = useState([]);
     const [categoriesList, setCategoriesList] = useState([]);
 
     useEffect(async () => {
         setCategoriesList(await fetchAllCategories());
     }, []);
 
-    const isSelectedCategory = (selectedCategory) => {
+    const isSelected = (selectedCategory) => {
 		return selectedCategories.some((category) => category == selectedCategory) ? true : false;
+	}
+
+    const isChecked = (subcategoryId) => {
+		return selectedSubcategories.some((subcategory) => subcategory.id === subcategoryId) ? true : false
 	}
 
     const onCategoryClick = (clickedCategory) => {
@@ -24,9 +29,27 @@ function Shop(){
             setSelectedCategories([...selectedCategories, clickedCategory]);
 	}
 
-    const onRemoveClick = (clickedFilter) => {
-        setSelectedCategories(selectedCategories.filter((category) => category != clickedFilter));
+    const onSubcategoryClick = (clickedSubcategory) => {
+        if (!selectedSubcategories.find((subcategory) => subcategory == clickedSubcategory)) {
+            onRemoveCategoryClick(clickedSubcategory.parentCategoryId);
+            setSelectedSubcategories([...selectedSubcategories, clickedSubcategory]);
+        } else {
+            if (selectedSubcategories.length == 0) {
+                setSelectedCategories([...selectedCategories, clickedSubcategory.parentCategoryId]);
+            }
+            onRemoveSubcategoryClick(clickedSubcategory);
+        }
+	}
+
+    const onRemoveCategoryClick = (clickedCategory) => {
+        setSelectedCategories(selectedCategories.filter((category) => category != clickedCategory));
         if (selectedCategories.length == 0)
+            onClearAllClick();
+    }
+
+    const onRemoveSubcategoryClick = (clickedSubcategory) => {
+        setSelectedSubcategories(selectedSubcategories.filter((subcategory) => subcategory != clickedSubcategory));
+        if (selectedSubcategories.length == 0)
             onClearAllClick();
     }
 
@@ -37,14 +60,18 @@ function Shop(){
     return (
         <div className={styles.shopPageElementsContainer}>
             <CategoriesMenu 
-                isSelectedCategory={isSelectedCategory} 
+                isSelected={isSelected} 
+                isChecked={isChecked}
                 onCategoryClick={onCategoryClick} 
+                onSubcategoryClick={onSubcategoryClick}
                 categoriesList={categoriesList}
             />
             <ShopPageItems 
                 selectedCategories={selectedCategories} 
+                selectedSubcategories={selectedSubcategories}
                 categoriesList={categoriesList} 
-                onRemoveClick={onRemoveClick}
+                onRemoveCategoryClick={onRemoveCategoryClick}
+                onRemoveSubcategoryClick={onRemoveSubcategoryClick}
                 onClearAllClick={onClearAllClick}
             />
         </div>

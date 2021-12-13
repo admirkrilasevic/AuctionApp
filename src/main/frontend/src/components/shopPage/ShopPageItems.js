@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import Item from "../landingPage/Item";
 import { Row, Col } from "react-bootstrap";
-import { fetchItems, fetchItemsByCategories } from '../landingPage/ItemService';
+import { fetchItems, fetchItemsByCategories, fetchItemsByCategoriesAndSubcategories } from '../landingPage/ItemService';
 import { ITEM_SORT, DIRECTION } from "../../constants";
 import styles from "./ShopPageItems.module.css";
 import { SHOP_PAGE_ITEMS } from "../../constants";
 import ActiveFilters from "./ActiveFilters";
 
-function ShopPageItems({selectedCategories, categoriesList, onRemoveClick, onClearAllClick}) {
+function ShopPageItems({selectedCategories, selectedSubcategories, categoriesList, onRemoveCategoryClick, onRemoveSubcategoryClick, onClearAllClick}) {
   const [items, setItems] = useState([]);
   const [hasMoreItems, setHasMoreItems] = useState(true);
   const [page, setPage] = useState(0);
@@ -17,7 +17,7 @@ function ShopPageItems({selectedCategories, categoriesList, onRemoveClick, onCle
     if (selectedCategories[0] == 0) {
       itemsFromServer = await fetchItems(page, SHOP_PAGE_ITEMS.PAGE_SIZE, ITEM_SORT.ALPHABETICAL, DIRECTION.ASCENDING);
     } else {
-      itemsFromServer = await fetchItemsByCategories(page, SHOP_PAGE_ITEMS.PAGE_SIZE, ITEM_SORT.ALPHABETICAL, DIRECTION.ASCENDING, selectedCategories);
+      itemsFromServer = await fetchItemsByCategoriesAndSubcategories(page, SHOP_PAGE_ITEMS.PAGE_SIZE, ITEM_SORT.ALPHABETICAL, DIRECTION.ASCENDING, selectedCategories, selectedSubcategories.map(c => c.id));
     }
     setItems([...items, ...itemsFromServer.content]);
     setHasMoreItems(!itemsFromServer.last);
@@ -25,10 +25,12 @@ function ShopPageItems({selectedCategories, categoriesList, onRemoveClick, onCle
 
   useEffect(async () => {
     setItems([]);
-    let itemsFromServer = await fetchItemsByCategories(page, SHOP_PAGE_ITEMS.PAGE_SIZE, ITEM_SORT.ALPHABETICAL, DIRECTION.ASCENDING, selectedCategories);
+    console.log(selectedCategories);
+    console.log(selectedSubcategories);
+    let itemsFromServer = await fetchItemsByCategoriesAndSubcategories(page, SHOP_PAGE_ITEMS.PAGE_SIZE, ITEM_SORT.ALPHABETICAL, DIRECTION.ASCENDING, selectedCategories, selectedSubcategories.map(c => c.id));
     setItems([...itemsFromServer.content]);
     setHasMoreItems(!itemsFromServer.last);
-  }, [selectedCategories]);
+  }, [selectedCategories, selectedSubcategories]);
 
   const fetchData = async () => {
     setPage(page+1);
@@ -38,8 +40,10 @@ function ShopPageItems({selectedCategories, categoriesList, onRemoveClick, onCle
     <div className="container-fluid">
       <ActiveFilters 
         selectedCategories={selectedCategories} 
+        selectedSubcategories={selectedSubcategories}
         categoriesList={categoriesList} 
-        onRemoveClick={onRemoveClick}
+        onRemoveCategoryClick={onRemoveCategoryClick}
+        onRemoveSubcategoryClick={onRemoveSubcategoryClick}
         onClearAllClick={onClearAllClick}
       />
       <Row>

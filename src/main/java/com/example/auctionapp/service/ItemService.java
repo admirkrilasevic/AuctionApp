@@ -50,4 +50,9 @@ public class ItemService {
         return itemRepository.findAllByCategoryIdIn(categoryIds, pageable);
     }
 
+    public Page<Item> getItemsByCategoryOrSubcategoryIds(int page, int size, ItemSort sort, Sort.Direction direction, long[] categoryIds, long[] subcategoryIds) {
+        PageRequest pageable = PageRequest.of(page, size, Sort.by(direction, sort.toString()));
+        return itemRepository.findAllByCategoryIdInOrSubcategoryIdIn(categoryIds, subcategoryIds, pageable);
+    }
+
 }

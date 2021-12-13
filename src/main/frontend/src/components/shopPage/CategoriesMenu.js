@@ -1,7 +1,7 @@
 import styles from "./CategoriesMenu.module.css";
 import Category from "./Category";
 
-function CategoriesMenu({isSelectedCategory, onCategoryClick, categoriesList}) {
+function CategoriesMenu({isSelected, isChecked, onCategoryClick, onSubcategoryClick, categoriesList}) {
 
     return (
         <div className={styles.menusContainer}>
@@ -13,7 +13,14 @@ function CategoriesMenu({isSelectedCategory, onCategoryClick, categoriesList}) {
                         return category.parentCategoryId == null;
                     })
                     .map((category) => (
-                        <Category key={category.id} category={category} isSelected={isSelectedCategory} onCategoryClick={onCategoryClick}/>
+                        <Category 
+                            key={category.id} 
+                            category={category} 
+                            isSelected={isSelected} 
+                            isChecked={isChecked}
+                            onCategoryClick={onCategoryClick}
+                            onSubcategoryClick={onSubcategoryClick}
+                        />
                     ))}
                 </div>
             </div>

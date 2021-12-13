@@ -17,6 +17,11 @@ export const fetchItemsByCategories = async (page, size, sort, direction, catego
   return items.json();
 };
 
+export const fetchItemsByCategoriesAndSubcategories = async (page, size, sort, direction, categoryIds, subcategoryIds) => {
+  const items = await fetch(`http://${ENVIRONMENT.HOST}/api/v1/items/categoriesandsubcategories?page=${page}&size=${size}&sort=${sort}&direction=${direction}&categoryIds=${categoryIds}&subcategoryIds=${subcategoryIds}`);
+  return items.json();
+};
+
 export const fetchItemById = async (itemId) => {
   return axios.get(`http://${ENVIRONMENT.HOST}/api/v1/items/${itemId}`)
   .then((res) => {
