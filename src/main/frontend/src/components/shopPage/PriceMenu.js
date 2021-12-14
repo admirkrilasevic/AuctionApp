@@ -14,10 +14,13 @@ function PriceMenu({items, setItems, priceRange, setPriceRange}) {
 	useEffect(() => {
         loadPrices();
         setPriceRange([minPrice, maxPrice]);
+        setAvgPrice((maxPrice+minPrice)/2);
+	}, [items])
+
+    useEffect(() => {
         setFilterMinPrice(minPrice);
         setFilterMaxPrice(maxPrice);
-        setAvgPrice((maxPrice+minPrice)/2);
-	}, [items, maxPrice, minPrice])
+    }, [maxPrice, minPrice])
 
     useEffect(() => {
         setAvgPrice((filterMaxPrice+filterMinPrice)/2);

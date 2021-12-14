@@ -50,6 +50,19 @@ public class ItemController {
         return itemService.getItemsByCategoryOrSubcategoryIds(page, size, sort, direction, categoryIds, subcategoryIds);
     }
 
+    @GetMapping("/filtered")
+    public Page<Item> getFilteredItems(
+            @RequestParam("page") int page,
+            @RequestParam("size") int size,
+            @RequestParam("sort") ItemSort sort,
+            @RequestParam("direction") Sort.Direction direction,
+            @RequestParam("categoryIds") long[] categoryIds,
+            @RequestParam("subcategoryIds") long[] subcategoryIds,
+            @RequestParam("minPrice") double minPrice,
+            @RequestParam("maxPrice") double maxPrice){
+        return itemService.getFilteredItems(page, size, sort, direction, categoryIds, subcategoryIds, minPrice, maxPrice);
+    }
+
     @GetMapping("/maxprice")
     public double getMaxPrice(@RequestParam("itemIds") long[] itemIds) {
         return itemService.getMaxPrice(itemIds);

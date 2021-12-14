@@ -22,6 +22,11 @@ export const fetchItemsByCategoriesAndSubcategories = async (page, size, sort, d
   return items.json();
 };
 
+export const fetchFilteredItems = async (page, size, sort, direction, categoryIds, subcategoryIds, minPrice, maxPrice) => {
+  const items = await fetch(`http://${ENVIRONMENT.HOST}/api/v1/items/filtered?page=${page}&size=${size}&sort=${sort}&direction=${direction}&categoryIds=${categoryIds}&subcategoryIds=${subcategoryIds}&minPrice=${minPrice}&maxPrice=${maxPrice}`);
+  return items.json();
+};
+
 export const fetchItemById = async (itemId) => {
   return axios.get(`http://${ENVIRONMENT.HOST}/api/v1/items/${itemId}`)
   .then((res) => {

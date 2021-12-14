@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Item from "../landingPage/Item";
 import { Row, Col } from "react-bootstrap";
-import { fetchItems, fetchItemsByCategories, fetchItemsByCategoriesAndSubcategories } from '../landingPage/ItemService';
+import { fetchFilteredItems, fetchItems } from '../landingPage/ItemService';
 import { ITEM_SORT, DIRECTION } from "../../constants";
 import styles from "./ShopPageItems.module.css";
 import { SHOP_PAGE_ITEMS } from "../../constants";
@@ -17,7 +17,7 @@ function ShopPageItems({items, setItems, selectedCategories, selectedSubcategori
     if (selectedCategories[0] == 0) {
       itemsFromServer = await fetchItems(page, SHOP_PAGE_ITEMS.PAGE_SIZE, ITEM_SORT.ALPHABETICAL, DIRECTION.ASCENDING);
     } else {
-      itemsFromServer = await fetchItemsByCategoriesAndSubcategories(page, SHOP_PAGE_ITEMS.PAGE_SIZE, ITEM_SORT.ALPHABETICAL, DIRECTION.ASCENDING, selectedCategories, selectedSubcategories.map(c => c.id));
+      itemsFromServer = await fetchFilteredItems(page, SHOP_PAGE_ITEMS.PAGE_SIZE, ITEM_SORT.ALPHABETICAL, DIRECTION.ASCENDING, selectedCategories, selectedSubcategories.map(c => c.id), priceRange[0], priceRange[1]);
     }
     setItems([...items, ...itemsFromServer.content]);
     setHasMoreItems(!itemsFromServer.last);
@@ -25,7 +25,7 @@ function ShopPageItems({items, setItems, selectedCategories, selectedSubcategori
 
   useEffect(async () => {
     setItems([]);
-    let itemsFromServer = await fetchItemsByCategoriesAndSubcategories(page, SHOP_PAGE_ITEMS.PAGE_SIZE, ITEM_SORT.ALPHABETICAL, DIRECTION.ASCENDING, selectedCategories, selectedSubcategories.map(c => c.id));
+    let itemsFromServer = await fetchFilteredItems(page, SHOP_PAGE_ITEMS.PAGE_SIZE, ITEM_SORT.ALPHABETICAL, DIRECTION.ASCENDING, selectedCategories, selectedSubcategories.map(c => c.id), priceRange[0], priceRange[1]);
     setItems([...itemsFromServer.content]);
     setHasMoreItems(!itemsFromServer.last);
   }, [selectedCategories, selectedSubcategories]);
