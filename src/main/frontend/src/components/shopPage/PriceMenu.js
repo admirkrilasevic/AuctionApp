@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { getMaxPrice, getMinPrice } from "../landingPage/ItemService";
 import styles from "./PriceMenu.module.css";
 import { Slider } from '@material-ui/core';
 
@@ -12,7 +11,12 @@ function PriceMenu({items, setItems, priceRange, setPriceRange}) {
     const [avgPrice, setAvgPrice] = useState(0);
 
 	useEffect(() => {
-        loadPrices();
+        if (items.length > 0){
+            const sortedItems = [...items];
+            sortedItems.sort((a, b) => (a.startingPrice > b.startingPrice) ? 1 : -1);
+            setMinPrice(sortedItems[0].startingPrice);
+            setMaxPrice(sortedItems[sortedItems.length-1].startingPrice);
+        }
         setPriceRange([minPrice, maxPrice]);
         setAvgPrice((maxPrice+minPrice)/2);
 	}, [items])
@@ -25,11 +29,6 @@ function PriceMenu({items, setItems, priceRange, setPriceRange}) {
     useEffect(() => {
         setAvgPrice((filterMaxPrice+filterMinPrice)/2);
     }, [filterMaxPrice, filterMinPrice])
-
-    const loadPrices = () => {
-        getMinPrice(items.map((item) => item.id)).then(response => setMinPrice(response));
-        getMaxPrice(items.map((item) => item.id)).then(response => setMaxPrice(response));
-    }
 
     const onSliderChange = (e, newValues) => {
         setPriceRange(newValues);

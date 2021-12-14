@@ -62,15 +62,5 @@ public class ItemController {
             @RequestParam("maxPrice") double maxPrice){
         return itemService.getFilteredItems(page, size, sort, direction, categoryIds, subcategoryIds, minPrice, maxPrice);
     }
-
-    @GetMapping("/maxprice")
-    public double getMaxPrice(@RequestParam("itemIds") long[] itemIds) {
-        return itemService.getMaxPrice(itemIds);
-    }
-
-    @GetMapping("/minprice")
-    public double getMinPrice(@RequestParam("itemIds") long[] itemIds) {
-        return itemService.getMinPrice(itemIds);
-    }
     
 }

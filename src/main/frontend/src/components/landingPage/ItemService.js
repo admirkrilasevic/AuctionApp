@@ -64,17 +64,3 @@ export const fetchCategoryById = async (categoryId) => {
     return res.data;
   })
 };
-
-export const getMaxPrice = async (itemIds) => {
-  return axios.get(`http://${ENVIRONMENT.HOST}/api/v1/items/maxprice?itemIds=${itemIds}`)
-  .then((res) => {
-    return res.data;
-  })
-};
-
-export const getMinPrice = async (itemIds) => {
-  return axios.get(`http://${ENVIRONMENT.HOST}/api/v1/items/minprice?itemIds=${itemIds}`)
-  .then((res) => {
-    return res.data;
-  })
-};

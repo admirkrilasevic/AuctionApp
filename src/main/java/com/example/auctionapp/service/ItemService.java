@@ -57,15 +57,7 @@ public class ItemService {
 
     public Page<Item> getFilteredItems(int page, int size, ItemSort sort, Sort.Direction direction, long[] categoryIds, long[] subcategoryIds, double minPrice, double maxPrice) {
         PageRequest pageable = PageRequest.of(page, size, Sort.by(direction, sort.toString()));
-        return itemRepository.findAllByCategoryIdInOrSubcategoryIdInAndStartingPriceBetween(categoryIds, subcategoryIds, minPrice, maxPrice, pageable);
-    }
-
-    public double getMaxPrice(long[] itemIds) {
-        return itemRepository.getMaxPrice(itemIds);
-    }
-
-    public double getMinPrice(long[] itemIds) {
-        return itemRepository.getMinPrice(itemIds);
+        return itemRepository.getFilteredItems(categoryIds, subcategoryIds, minPrice, maxPrice, pageable);
     }
 
 }
