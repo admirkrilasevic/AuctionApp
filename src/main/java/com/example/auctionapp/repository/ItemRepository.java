@@ -23,7 +23,4 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     @Query(value = "SELECT MIN(starting_price) FROM item WHERE id IN :itemIds", nativeQuery = true)
     double getMinPrice(@Param("itemIds") long[] itemIds);
 
-    @Query(value = "SELECT AVG(starting_price) FROM item WHERE id IN :itemIds", nativeQuery = true)
-    double getAvgPrice(@Param("itemIds") long[] itemIds);
-
 }

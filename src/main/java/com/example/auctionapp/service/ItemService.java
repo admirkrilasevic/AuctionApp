@@ -63,8 +63,4 @@ public class ItemService {
         return itemRepository.getMinPrice(itemIds);
     }
 
-    public double getAvgPrice(long[] itemIds) {
-        return itemRepository.getAvgPrice(itemIds);
-    }
-
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAvgPrice, getMaxPrice, getMinPrice } from "../landingPage/ItemService";
+import { getMaxPrice, getMinPrice } from "../landingPage/ItemService";
 import styles from "./PriceMenu.module.css";
 import { Slider } from '@material-ui/core';
 
@@ -7,22 +7,21 @@ function PriceMenu({items, setItems, priceRange, setPriceRange}) {
 
 	const [minPrice, setMinPrice] = useState(0);
     const [maxPrice, setMaxPrice] = useState(100);
-    const [localMinPrice, setLocalMinPrice] = useState(0);
-    const [localMaxPrice, setLocalMaxPrice] = useState(100);
+    const [filterMinPrice, setFilterMinPrice] = useState(0);
+    const [filterMaxPrice, setFilterMaxPrice] = useState(100);
     const [avgPrice, setAvgPrice] = useState(0);
 
 	useEffect(() => {
         loadPrices();
         setPriceRange([minPrice, maxPrice]);
+        setFilterMinPrice(minPrice);
+        setFilterMaxPrice(maxPrice);
         setAvgPrice((maxPrice+minPrice)/2);
-	}, [items])
+	}, [items, maxPrice, minPrice])
 
     useEffect(() => {
-        setPriceRange([minPrice, maxPrice]);
-        setAvgPrice((maxPrice+minPrice)/2);
-        setLocalMinPrice(minPrice);
-        setLocalMaxPrice(maxPrice);
-    }, [maxPrice, minPrice])
+        setAvgPrice((filterMaxPrice+filterMinPrice)/2);
+    }, [filterMaxPrice, filterMinPrice])
 
     const loadPrices = () => {
         getMinPrice(items.map((item) => item.id)).then(response => setMinPrice(response));
@@ -31,16 +30,16 @@ function PriceMenu({items, setItems, priceRange, setPriceRange}) {
 
     const onSliderChange = (e, newValues) => {
         setPriceRange(newValues);
-        setLocalMinPrice(newValues[0]);
-        setLocalMaxPrice(newValues[1]);
+        setFilterMinPrice(newValues[0]);
+        setFilterMaxPrice(newValues[1]);
     }
 
     const onMinInputChange = (e) => {
-  
+        setFilterMinPrice(e.target.value);
     }
 
     const onMaxInputChange = (e) => {
-
+        setFilterMaxPrice(e.target.value);
     }
 
 	return (
@@ -49,12 +48,12 @@ function PriceMenu({items, setItems, priceRange, setPriceRange}) {
             <div className={styles.priceInputs}>
                 <input 
                     className={styles.minPriceInput}
-                    value={localMinPrice}
+                    value={filterMinPrice}
                     onChange={onMinInputChange} 
                 />
                 <input 
                     className={styles.maxPriceInput}
-                    value={localMaxPrice} 
+                    value={filterMaxPrice} 
                     onChange={onMaxInputChange} 
                 />
             </div>

@@ -59,10 +59,5 @@ public class ItemController {
     public double getMinPrice(@RequestParam("itemIds") long[] itemIds) {
         return itemService.getMinPrice(itemIds);
     }
-
-    @GetMapping("/avgprice")
-    public double getAvgPrice(@RequestParam("itemIds") long[] itemIds) {
-        return itemService.getAvgPrice(itemIds);
-    }
     
 }
