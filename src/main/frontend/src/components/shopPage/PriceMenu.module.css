@@ -2,27 +2,43 @@
     border: 1px solid #D8D8D8;
     width: 262px;
     margin-top: 32px;
+    padding: 24px;
 }
 
 .menuTitle {
     font-size: 16px;
     font-weight: bold;
     color: #8367D8;
-    padding: 24px;
     padding-bottom: 12px;
     text-align: left;
 }
 
-.slider {
+.priceInputs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
 
+.minPriceInput {
+    max-width: 80px;
+    height: 40px;
+    text-align: center;
+}
+
+.maxPriceInput {
+    max-width: 80px;
+    height: 40px;
+    text-align: center;
 }
 
 .priceRange {
+    text-align: left;
     font-size: 16px;
     font-weight: bold;
 }
 
 .priceAverage {
+    text-align: left;
     font-size: 16px;
     color: #9B9B9B;
 }
