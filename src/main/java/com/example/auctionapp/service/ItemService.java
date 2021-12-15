@@ -45,21 +45,6 @@ public class ItemService {
         }
     }
 
-    public Page<Item> getItemsByCategoryId(int page, int size, ItemSort sort, Sort.Direction direction, long categoryId) {
-        PageRequest pageable = PageRequest.of(page, size, Sort.by(direction, sort.toString()));
-        return itemRepository.findByCategoryId(categoryId, pageable);
-    }
-
-    public Page<Item> getItemsByCategoryIds(int page, int size, ItemSort sort, Sort.Direction direction, long[] categoryIds) {
-        PageRequest pageable = PageRequest.of(page, size, Sort.by(direction, sort.toString()));
-        return itemRepository.findAllByCategoryIdIn(categoryIds, pageable);
-    }
-
-    public Page<Item> getItemsByCategoryOrSubcategoryIds(int page, int size, ItemSort sort, Sort.Direction direction, long[] categoryIds, long[] subcategoryIds) {
-        PageRequest pageable = PageRequest.of(page, size, Sort.by(direction, sort.toString()));
-        return itemRepository.findAllByCategoryIdInOrSubcategoryIdIn(categoryIds, subcategoryIds, pageable);
-    }
-
     public Page<Item> getFilteredItems(int page, int size, ItemSort sort, Sort.Direction direction, Long[] categoryIds, long[] subcategoryIds, double minPrice, double maxPrice) {
         PageRequest pageable = PageRequest.of(page, size, Sort.by(direction, sort.toString()));
         if (categoryIds.length == 1 && subcategoryIds.length == 0){

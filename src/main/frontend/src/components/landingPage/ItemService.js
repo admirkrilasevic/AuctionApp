@@ -7,21 +7,6 @@ export const fetchItems = async (page, size, sort, direction) => {
   return items.json();
 };
 
-export const fetchItemsByCategory = async (page, size, sort, direction, categoryId) => {
-  const items = await fetch(`http://${ENVIRONMENT.HOST}/api/v1/items/category/${categoryId}?page=${page}&size=${size}&sort=${sort}&direction=${direction}`);
-  return items.json();
-};
-
-export const fetchItemsByCategories = async (page, size, sort, direction, categoryIds) => {
-  const items = await fetch(`http://${ENVIRONMENT.HOST}/api/v1/items/categories?page=${page}&size=${size}&sort=${sort}&direction=${direction}&categoryIds=${categoryIds}`);
-  return items.json();
-};
-
-export const fetchItemsByCategoriesAndSubcategories = async (page, size, sort, direction, categoryIds, subcategoryIds) => {
-  const items = await fetch(`http://${ENVIRONMENT.HOST}/api/v1/items/categoriesandsubcategories?page=${page}&size=${size}&sort=${sort}&direction=${direction}&categoryIds=${categoryIds}&subcategoryIds=${subcategoryIds}`);
-  return items.json();
-};
-
 export const fetchFilteredItems = async (page, size, sort, direction, categoryIds, subcategoryIds, minPrice, maxPrice) => {
   const items = await fetch(`http://${ENVIRONMENT.HOST}/api/v1/items/filtered?page=${page}&size=${size}&sort=${sort}&direction=${direction}&categoryIds=${categoryIds}&subcategoryIds=${subcategoryIds}&minPrice=${minPrice}&maxPrice=${maxPrice}`);
   return items.json();

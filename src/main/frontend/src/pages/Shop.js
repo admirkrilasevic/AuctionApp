@@ -54,8 +54,6 @@ function Shop(){
 
     const onRemoveSubcategoryClick = (clickedSubcategory) => {
         setSelectedSubcategories(selectedSubcategories.filter((subcategory) => subcategory != clickedSubcategory));
-        if (selectedSubcategories.length == 0)
-            history.push("/shop/0");
     }
 
     const onRemovePriceFilterClick = () => {
@@ -65,6 +63,7 @@ function Shop(){
     const onClearAllClick = () => {
         setSelectedCategories([]);
         setSelectedSubcategories([]);
+        setPriceRange([0, 200]);
         history.push("/shop/0");
     }
 
@@ -78,9 +77,6 @@ function Shop(){
                 categoriesList={categoriesList}
             >
             <PriceMenu
-                items={items}
-                selectedCategories={selectedCategories}
-                selectedSubcategories={selectedSubcategories}
                 priceRange={priceRange}
                 setPriceRange={setPriceRange}
             />

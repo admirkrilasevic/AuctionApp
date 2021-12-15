@@ -35,21 +35,6 @@ public class ItemController {
         return itemService.getItemById(itemId).get();
     }
 
-    @GetMapping("/category/{categoryId}")
-    public Page<Item> getItemsByCategoryId(@RequestParam("page") int page, @RequestParam("size") int size, @RequestParam("sort") ItemSort sort, @RequestParam("direction") Sort.Direction direction, @PathVariable("categoryId") long categoryId){
-        return itemService.getItemsByCategoryId(page, size, sort, direction, categoryId);
-    }
-
-    @GetMapping("/categories")
-    public Page<Item> getItemsByCategoryIds(@RequestParam("page") int page, @RequestParam("size") int size, @RequestParam("sort") ItemSort sort, @RequestParam("direction") Sort.Direction direction, @RequestParam("categoryIds") long[] categoryIds){
-        return itemService.getItemsByCategoryIds(page, size, sort, direction, categoryIds);
-    }
-
-    @GetMapping("/categoriesandsubcategories")
-    public Page<Item> getItemsByCategoryOrSubcategoryIds(@RequestParam("page") int page, @RequestParam("size") int size, @RequestParam("sort") ItemSort sort, @RequestParam("direction") Sort.Direction direction, @RequestParam("categoryIds") long[] categoryIds, @RequestParam("subcategoryIds") long[] subcategoryIds){
-        return itemService.getItemsByCategoryOrSubcategoryIds(page, size, sort, direction, categoryIds, subcategoryIds);
-    }
-
     @GetMapping("/filtered")
     public Page<Item> getFilteredItems(
             @RequestParam("page") int page,

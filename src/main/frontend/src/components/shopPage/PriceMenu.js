@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./PriceMenu.module.css";
 import { Slider } from '@material-ui/core';
 
-function PriceMenu({items, selectedCategories, selectedSubcategories, priceRange, setPriceRange}) {
+function PriceMenu({ priceRange, setPriceRange }) {
 
 	const [minPrice, setMinPrice] = useState(0);
     const [maxPrice, setMaxPrice] = useState(200);
