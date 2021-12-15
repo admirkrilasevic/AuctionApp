@@ -4,7 +4,7 @@ import { Slider } from '@material-ui/core';
 
 function PriceMenu({ priceRange, setPriceRange }) {
 
-	const [minPrice, setMinPrice] = useState(0);
+    const [minPrice, setMinPrice] = useState(0);
     const [maxPrice, setMaxPrice] = useState(200);
     const [avgPrice, setAvgPrice] = useState(0);
 
@@ -29,9 +29,9 @@ function PriceMenu({ priceRange, setPriceRange }) {
         setPriceRange([priceRange[0], e.target.value]);
     }
 
-	return (
-		<div className={styles.priceMenuContainer}>
-			<h6 className={styles.menuTitle}>FILTER BY PRICE</h6>
+    return (
+        <div className={styles.priceMenuContainer}>
+            <h6 className={styles.menuTitle}>FILTER BY PRICE</h6>
             <div className={styles.priceInputs}>
                 <input 
                     className={styles.minPriceInput}
@@ -52,9 +52,9 @@ function PriceMenu({ priceRange, setPriceRange }) {
                 onChange={onSliderChange}
             />
             <p className={styles.priceRange}>${priceRange[0]}-${priceRange[1]}</p>
-			<p className={styles.priceAverage}>The average price is ${avgPrice.toFixed(2)}</p>
-		</div>
-	)
+            <p className={styles.priceAverage}>The average price is ${avgPrice.toFixed(2)}</p>
+        </div>
+    )
 }
 
 export default PriceMenu;

@@ -43,7 +43,7 @@ function Shop(){
             }
             onRemoveSubcategoryClick(clickedSubcategory);
         }
-	}
+    }
 
     const onRemoveCategoryClick = (clickedCategory) => {
         const updatedCategories = selectedCategories.filter((category) => category != clickedCategory);
