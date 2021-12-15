@@ -10,11 +10,11 @@ function PriceMenu({ priceRange, setPriceRange }) {
 
 	useEffect(() => {
         setPriceRange([minPrice, maxPrice]);
-        setAvgPrice((maxPrice+minPrice)/2);
+        setAvgPrice((priceRange[0]+priceRange[1])/2);
 	}, [])
 
     useEffect(() => {
-        setAvgPrice((maxPrice+minPrice)/2);
+        setAvgPrice((priceRange[0]+priceRange[1])/2);
     }, [priceRange])
 
     const onSliderChange = (e, newValues) => {
