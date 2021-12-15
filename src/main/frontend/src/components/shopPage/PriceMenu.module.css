@@ -20,12 +20,14 @@
 }
 
 .minPriceInput {
+    border: 2px solid #D8D8D8;
     max-width: 80px;
     height: 40px;
     text-align: center;
 }
 
 .maxPriceInput {
+    border: 2px solid #D8D8D8;
     max-width: 80px;
     height: 40px;
     text-align: center;
