@@ -1,7 +1,7 @@
 import CategoriesMenu from "../components/shopPage/CategoriesMenu";
 import styles from "./Shop.module.css";
 import ShopPageItems from "../components/shopPage/ShopPageItems";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { useState, useEffect } from "react";
 import { fetchAllCategories } from "../components/landingPage/ItemService";
 import PriceMenu from "../components/shopPage/PriceMenu";
@@ -14,6 +14,7 @@ function Shop(){
     const [selectedSubcategories, setSelectedSubcategories] = useState([]);
     const [categoriesList, setCategoriesList] = useState([]);
     const [priceRange, setPriceRange] = useState([0, 100]);
+    const history = useHistory();
 
     useEffect(async () => {
         setCategoriesList(await fetchAllCategories());
@@ -45,20 +46,22 @@ function Shop(){
 	}
 
     const onRemoveCategoryClick = (clickedCategory) => {
-        setSelectedCategories(selectedCategories.filter((category) => category != clickedCategory));
+        const updatedCategories = selectedCategories.filter((category) => category !== clickedCategory);
+        setSelectedCategories(updatedCategories);
         if (selectedCategories.length == 0)
-            onClearAllClick();
+            history.push("/shop/0");
     }
 
     const onRemoveSubcategoryClick = (clickedSubcategory) => {
         setSelectedSubcategories(selectedSubcategories.filter((subcategory) => subcategory != clickedSubcategory));
         if (selectedSubcategories.length == 0)
-            onClearAllClick();
+            history.push("/shop/0");
     }
 
     const onClearAllClick = () => {
-        setSelectedCategories([0]);
+        setSelectedCategories([]);
         setSelectedSubcategories([]);
+        history.push("/shop/0");
     }
 
     return (
@@ -72,7 +75,8 @@ function Shop(){
             >
             <PriceMenu
                 items={items}
-                setItems={setItems}
+                selectedCategories={selectedCategories}
+                selectedSubcategories={selectedSubcategories}
                 priceRange={priceRange}
                 setPriceRange={setPriceRange}
             />

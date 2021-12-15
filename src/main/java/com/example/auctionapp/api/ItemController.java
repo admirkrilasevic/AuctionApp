@@ -56,7 +56,7 @@ public class ItemController {
             @RequestParam("size") int size,
             @RequestParam("sort") ItemSort sort,
             @RequestParam("direction") Sort.Direction direction,
-            @RequestParam("categoryIds") long[] categoryIds,
+            @RequestParam("categoryIds") Long[] categoryIds,
             @RequestParam("subcategoryIds") long[] subcategoryIds,
             @RequestParam("minPrice") double minPrice,
             @RequestParam("maxPrice") double maxPrice){

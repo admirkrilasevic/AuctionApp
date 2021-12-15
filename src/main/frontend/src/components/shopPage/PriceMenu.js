@@ -2,12 +2,10 @@ import { useEffect, useState } from "react";
 import styles from "./PriceMenu.module.css";
 import { Slider } from '@material-ui/core';
 
-function PriceMenu({items, setItems, priceRange, setPriceRange}) {
+function PriceMenu({items, selectedCategories, selectedSubcategories, priceRange, setPriceRange}) {
 
 	const [minPrice, setMinPrice] = useState(0);
     const [maxPrice, setMaxPrice] = useState(100);
-    const [filterMinPrice, setFilterMinPrice] = useState(0);
-    const [filterMaxPrice, setFilterMaxPrice] = useState(100);
     const [avgPrice, setAvgPrice] = useState(0);
 
 	useEffect(() => {
@@ -19,29 +17,22 @@ function PriceMenu({items, setItems, priceRange, setPriceRange}) {
         }
         setPriceRange([minPrice, maxPrice]);
         setAvgPrice((maxPrice+minPrice)/2);
-	}, [items])
+	}, [selectedCategories, selectedSubcategories, minPrice, maxPrice])
 
     useEffect(() => {
-        setFilterMinPrice(minPrice);
-        setFilterMaxPrice(maxPrice);
-    }, [maxPrice, minPrice])
-
-    useEffect(() => {
-        setAvgPrice((filterMaxPrice+filterMinPrice)/2);
-    }, [filterMaxPrice, filterMinPrice])
+        setAvgPrice((maxPrice+minPrice)/2);
+    }, [priceRange])
 
     const onSliderChange = (e, newValues) => {
         setPriceRange(newValues);
-        setFilterMinPrice(newValues[0]);
-        setFilterMaxPrice(newValues[1]);
     }
 
     const onMinInputChange = (e) => {
-        setFilterMinPrice(e.target.value);
+        setMinPrice(e.target.value);
     }
 
     const onMaxInputChange = (e) => {
-        setFilterMaxPrice(e.target.value);
+        setMaxPrice(e.target.value);
     }
 
 	return (
@@ -50,12 +41,12 @@ function PriceMenu({items, setItems, priceRange, setPriceRange}) {
             <div className={styles.priceInputs}>
                 <input 
                     className={styles.minPriceInput}
-                    value={filterMinPrice}
+                    value={priceRange[0]}
                     onChange={onMinInputChange} 
                 />
                 <input 
                     className={styles.maxPriceInput}
-                    value={filterMaxPrice} 
+                    value={priceRange[1]} 
                     onChange={onMaxInputChange} 
                 />
             </div>
