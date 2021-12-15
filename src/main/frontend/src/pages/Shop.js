@@ -13,7 +13,7 @@ function Shop(){
     const [selectedCategories, setSelectedCategories] = useState([categoryId]);
     const [selectedSubcategories, setSelectedSubcategories] = useState([]);
     const [categoriesList, setCategoriesList] = useState([]);
-    const [priceRange, setPriceRange] = useState([0, 100]);
+    const [priceRange, setPriceRange] = useState([0, 200]);
     const history = useHistory();
 
     useEffect(async () => {
@@ -46,9 +46,9 @@ function Shop(){
 	}
 
     const onRemoveCategoryClick = (clickedCategory) => {
-        const updatedCategories = selectedCategories.filter((category) => category !== clickedCategory);
+        const updatedCategories = selectedCategories.filter((category) => category != clickedCategory);
         setSelectedCategories(updatedCategories);
-        if (selectedCategories.length == 0)
+        if (updatedCategories.length == 0)
             history.push("/shop/0");
     }
 
@@ -56,6 +56,10 @@ function Shop(){
         setSelectedSubcategories(selectedSubcategories.filter((subcategory) => subcategory != clickedSubcategory));
         if (selectedSubcategories.length == 0)
             history.push("/shop/0");
+    }
+
+    const onRemovePriceFilterClick = () => {
+        setPriceRange([0, 200]);
     }
 
     const onClearAllClick = () => {
@@ -90,6 +94,7 @@ function Shop(){
                 categoriesList={categoriesList} 
                 onRemoveCategoryClick={onRemoveCategoryClick}
                 onRemoveSubcategoryClick={onRemoveSubcategoryClick}
+                onRemovePriceFilterClick={onRemovePriceFilterClick}
                 onClearAllClick={onClearAllClick}
             />
         </div>

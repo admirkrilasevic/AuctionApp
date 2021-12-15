@@ -5,19 +5,13 @@ import { Slider } from '@material-ui/core';
 function PriceMenu({items, selectedCategories, selectedSubcategories, priceRange, setPriceRange}) {
 
 	const [minPrice, setMinPrice] = useState(0);
-    const [maxPrice, setMaxPrice] = useState(100);
+    const [maxPrice, setMaxPrice] = useState(200);
     const [avgPrice, setAvgPrice] = useState(0);
 
 	useEffect(() => {
-        if (items.length > 0){
-            const sortedItems = [...items];
-            sortedItems.sort((a, b) => (a.startingPrice > b.startingPrice) ? 1 : -1);
-            setMinPrice(sortedItems[0].startingPrice);
-            setMaxPrice(sortedItems[sortedItems.length-1].startingPrice);
-        }
         setPriceRange([minPrice, maxPrice]);
         setAvgPrice((maxPrice+minPrice)/2);
-	}, [selectedCategories, selectedSubcategories, minPrice, maxPrice])
+	}, [])
 
     useEffect(() => {
         setAvgPrice((maxPrice+minPrice)/2);
@@ -28,11 +22,11 @@ function PriceMenu({items, selectedCategories, selectedSubcategories, priceRange
     }
 
     const onMinInputChange = (e) => {
-        setMinPrice(e.target.value);
+        setPriceRange([e.target.value, priceRange[1]]);
     }
 
     const onMaxInputChange = (e) => {
-        setMaxPrice(e.target.value);
+        setPriceRange([priceRange[0], e.target.value]);
     }
 
 	return (
