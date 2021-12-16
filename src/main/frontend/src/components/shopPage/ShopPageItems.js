@@ -7,7 +7,17 @@ import styles from "./ShopPageItems.module.css";
 import { SHOP_PAGE_ITEMS } from "../../constants";
 import ActiveFilters from "./ActiveFilters";
 
-function ShopPageItems({items, setItems, selectedCategories, selectedSubcategories, priceRange, categoriesList, onRemoveCategoryClick, onRemoveSubcategoryClick, onRemovePriceFilterClick, onClearAllClick}) {
+function ShopPageItems(
+  {items, 
+  setItems, 
+  selectedCategories, 
+  selectedSubcategories, 
+  priceRange, 
+  categoriesList, 
+  onRemoveCategoryClick, 
+  onRemoveSubcategoryClick, 
+  onRemovePriceFilterClick, 
+  onClearAllClick}) {
 
   const [hasMoreItems, setHasMoreItems] = useState(true);
   const [page, setPage] = useState(0);
@@ -19,7 +29,7 @@ function ShopPageItems({items, setItems, selectedCategories, selectedSubcategori
     setHasMoreItems(!itemsFromServer.last);
   }, [page, filterUpdate]);
 
-  useEffect(async () => {
+  useEffect(() => {
     setItems([]);
     setHasMoreItems(true);
     setPage(0);
