@@ -11,7 +11,7 @@ function Shop(){
 
     const { categoryId } = useParams();
     const [items, setItems] = useState([]);
-    const [selectedCategories, setSelectedCategories] = useState([categoryId]);
+    const [selectedCategories, setSelectedCategories] = useState([parseInt(categoryId)]);
     const [selectedSubcategories, setSelectedSubcategories] = useState([]);
     const [categoriesList, setCategoriesList] = useState([]);
     const [priceRange, setPriceRange] = useState([0, 200]);
@@ -22,11 +22,11 @@ function Shop(){
     }, []);
 
     const isSelected = (selectedCategory) => {
-		return selectedCategories.some((category) => category == selectedCategory) ? true : false;
+		return selectedCategories.some((category) => category == selectedCategory);
 	}
 
     const isChecked = (subcategoryId) => {
-		return selectedSubcategories.some((subcategory) => subcategory.id === subcategoryId) ? true : false
+		return selectedSubcategories.some((subcategory) => subcategory.id === subcategoryId);
 	}
 
     const onCategoryClick = (clickedCategory) => {

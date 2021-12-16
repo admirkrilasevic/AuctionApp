@@ -3,11 +3,12 @@ import styles from "./PriceMenu.module.css";
 import { Slider } from '@material-ui/core';
 import { createTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
+import { PRICE_RANGE } from "../../constants";
 
 function PriceMenu({ priceRange, setPriceRange }) {
 
-    const [minPrice, setMinPrice] = useState(0);
-    const [maxPrice, setMaxPrice] = useState(200);
+    const [minPrice, setMinPrice] = useState(PRICE_RANGE.MIN);
+    const [maxPrice, setMaxPrice] = useState(PRICE_RANGE.MAX);
     const [avgPrice, setAvgPrice] = useState(0);
 
 	useEffect(() => {
