@@ -10,30 +10,26 @@ function ActiveFilters({selectedCategories, selectedSubcategories, priceRange, c
 
     const categoryFilters = selectedCategories.filter((category) => category != 0);
 
+    const renderCategoryActiveFilter = (categories, onRemove) => {
+        const categoryType = typeof(categories[0]);
+        return (
+            <div className={styles.filterContainer}>
+                <p className={styles.filterTitle}>Categories</p>
+                {categories.map((category) => 
+                    (<button className={styles.filter} onClick={() => onRemove(category)}>
+                        {categoryType == "number" ? findCategoryNameById(category) : (findCategoryNameById(category.parentCategoryId) + "/" + category.name)} <span className={styles.removeIcon}>x</span> 
+                    </button>)
+                )}
+            </div>
+        )
+    }
+
     return (
         <div>
             {(categoryFilters.length > 0 || selectedSubcategories.length > 0 || priceRange[0] > 0 || priceRange[1] < 200) &&
                 (<div className={styles.allFiltersContainer}>
-                    {categoryFilters.length > 0 && 
-                        <div className={styles.filterContainer}>
-                            <p className={styles.filterTitle}>Categories</p>
-                            {categoryFilters.map((category) => 
-                                (<button className={styles.filter} onClick={() => onRemoveCategoryClick(category)}>
-                                    {findCategoryNameById(category)} <span className={styles.removeIcon}>x</span> 
-                                </button>)
-                            )}
-                        </div>
-                    }
-                    {selectedSubcategories.length > 0 && 
-                        <div className={styles.filterContainer}>
-                            <p className={styles.filterTitle}>Categories</p>
-                            {selectedSubcategories.map((subcategory) => 
-                                (<button className={styles.filter} onClick={() => onRemoveSubcategoryClick(subcategory)}>
-                                    {findCategoryNameById(subcategory.parentCategoryId) + "/" + subcategory.name} <span className={styles.removeIcon}>x</span> 
-                                </button>)
-                            )}
-                        </div>
-                    }
+                    {categoryFilters.length > 0 && renderCategoryActiveFilter(categoryFilters, onRemoveCategoryClick)}
+                    {selectedSubcategories.length > 0 && renderCategoryActiveFilter(selectedSubcategories, onRemoveSubcategoryClick)}
                     {(priceRange[0] > 0 || priceRange[1] < 200) && 
                         <div className={styles.filterContainer}>
                             <p className={styles.filterTitle}>Price range</p>
