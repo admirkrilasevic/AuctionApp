@@ -34,4 +34,7 @@ public class Category {
     @Formula(value="(SELECT COUNT(i.id) FROM item i WHERE i.subcategory_id=id)")
     private int noOfItems;
 
+    public Long getId() {
+        return id;
+    }
 }
