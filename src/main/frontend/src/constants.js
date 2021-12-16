@@ -30,3 +30,8 @@ export const ITEM_PAGE_TAB_VALUES = {
 export const SHOP_PAGE_ITEMS = {
     PAGE_SIZE: 6
 }
+
+export const PRICE_RANGE = {
+    MIN: 0,
+    MAX: 200
+}

@@ -5,6 +5,7 @@ import { useHistory, useParams } from "react-router";
 import { useState, useEffect } from "react";
 import { fetchAllCategories } from "../components/landingPage/ItemService";
 import PriceMenu from "../components/shopPage/PriceMenu";
+import { PRICE_RANGE } from "../constants";
 
 function Shop(){
 
@@ -57,13 +58,13 @@ function Shop(){
     }
 
     const onRemovePriceFilterClick = () => {
-        setPriceRange([0, 200]);
+        setPriceRange([PRICE_RANGE.MIN, PRICE_RANGE.MAX]);
     }
 
     const onClearAllClick = () => {
         setSelectedCategories([]);
         setSelectedSubcategories([]);
-        setPriceRange([0, 200]);
+        setPriceRange([PRICE_RANGE.MIN, PRICE_RANGE.MAX]);
         history.push("/shop/0");
     }
 
