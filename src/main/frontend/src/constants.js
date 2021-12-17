@@ -40,3 +40,8 @@ export const PRICE_RANGE = {
 export const PAGE_VALUES = {
     INITIAL: 0
 }
+
+export const VIEWS = {
+    GRID: "Grid",
+    LIST: "List"
+}

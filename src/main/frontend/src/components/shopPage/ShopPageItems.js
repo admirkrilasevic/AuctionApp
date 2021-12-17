@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import Item from "../landingPage/Item";
 import { Row, Col } from "react-bootstrap";
 import { fetchFilteredItems } from '../landingPage/ItemService';
-import { ITEM_SORT, DIRECTION, SHOP_PAGE_ITEMS, PAGE_VALUES } from "../../constants";
+import { ITEM_SORT, DIRECTION, SHOP_PAGE_ITEMS, PAGE_VALUES, VIEWS } from "../../constants";
 import styles from "./ShopPageItems.module.css";
 import ActiveFilters from "./ActiveFilters";
+import { BsGrid3X3 } from "react-icons/bs";
+import { BsList } from "react-icons/bs";
 
 function ShopPageItems(
   {items, 
@@ -20,6 +22,7 @@ function ShopPageItems(
 
   const [hasMoreItems, setHasMoreItems] = useState(true);
   const [page, setPage] = useState(PAGE_VALUES.INITIAL);
+  const [view, setView] = useState(VIEWS.GRID);
   const [sort, setSort] = useState({
     by: ITEM_SORT.ALPHABETICAL,
     direction: DIRECTION.ASCENDING
@@ -93,6 +96,10 @@ function ShopPageItems(
     })
   };
 
+  const onGridListSwitch = (newView) => {
+    setView(newView);
+  }
+
   return (
     <div className="container-fluid">
       <ActiveFilters 
@@ -111,22 +118,42 @@ function ShopPageItems(
             <option value={[option.value.by, option.value.direction]} key={[option.value.by, option.value.direction]}>{option.name}</option>
           ))}
         </select>
+        <div className={styles.gridListSwitch}>
+          <button className={(view == VIEWS.GRID) ? styles.gridListButtonActive : styles.gridListButton} onClick={() => onGridListSwitch(VIEWS.GRID)}><BsGrid3X3/>&ensp;Grid</button>
+          <button className={(view == VIEWS.LIST) ? styles.gridListButtonActive : styles.gridListButton} onClick={() => onGridListSwitch(VIEWS.LIST)}><BsList/>&ensp;List</button>
+        </div>
       </div>
-      <Row>
-        {items.map((item) => {
-          return (
-            <Col>
-              <Item 
-                key={item.id}
-                id={item.id}
-                photo={item.photo}
-                name={item.name}
-                startingPrice={item.startingPrice}
-              />
-            </Col>
-          );
-        })}
-      </Row>
+      {
+        (view == VIEWS.GRID) ?
+          (<Row>
+            {items.map((item) => {
+              return (
+                <Col>
+                  <Item 
+                    key={item.id}
+                    id={item.id}
+                    photo={item.photo}
+                    name={item.name}
+                    startingPrice={item.startingPrice}
+                  />
+                </Col>
+              );
+            })}
+          </Row>) :
+          (items.map((item) => {
+              return (
+                <Row>
+                  <Item 
+                    key={item.id}
+                    id={item.id}
+                    photo={item.photo}
+                    name={item.name}
+                    startingPrice={item.startingPrice}
+                  />
+                </Row>
+              );
+          }))
+      }
       {hasMoreItems && <button onClick={fetchData} className={styles.exploreMoreButton}>EXPLORE MORE</button>}
     </div>
   );
