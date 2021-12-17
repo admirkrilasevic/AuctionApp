@@ -1,0 +1,53 @@
+.itemContainer {
+    height: 350px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.photo {
+    width: 262px;
+    height: 350px;
+    object-fit: contain;
+}
+
+.itemInfoContainer {
+    margin-left: 24px;
+    text-align: left;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.description {
+    color: #9B9B9B;
+}
+
+.startPrice {
+    font-size: 32px;
+    color: #8367D8;
+    margin: 47px 0px;
+}
+
+.itemLink {
+    text-decoration: none;
+    color: inherit;
+    text-align: left;
+}
+
+.itemLink:hover {
+    color: #8367D8;
+}
+
+.bidButton {
+    text-decoration: none;
+    border: 1px solid #D8D8D8;
+    padding: 8px;
+    color: inherit;
+}
+
+.bidButton:hover {
+    color: #8367D8;
+}
+  

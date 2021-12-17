@@ -7,6 +7,7 @@ import styles from "./ShopPageItems.module.css";
 import ActiveFilters from "./ActiveFilters";
 import { BsGrid3X3 } from "react-icons/bs";
 import { BsList } from "react-icons/bs";
+import ListItem from "./ListItem";
 
 function ShopPageItems(
   {items, 
@@ -143,11 +144,12 @@ function ShopPageItems(
           (items.map((item) => {
               return (
                 <Row>
-                  <Item 
+                  <ListItem 
                     key={item.id}
                     id={item.id}
                     photo={item.photo}
                     name={item.name}
+                    description={item.description}
                     startingPrice={item.startingPrice}
                   />
                 </Row>
