@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import Item from "../landingPage/Item";
 import { Row, Col } from "react-bootstrap";
 import { fetchFilteredItems } from '../landingPage/ItemService';
-import { ITEM_SORT, DIRECTION } from "../../constants";
+import { ITEM_SORT, DIRECTION, SHOP_PAGE_ITEMS, PAGE_VALUES } from "../../constants";
 import styles from "./ShopPageItems.module.css";
-import { SHOP_PAGE_ITEMS } from "../../constants";
 import ActiveFilters from "./ActiveFilters";
 
 function ShopPageItems(
@@ -20,11 +19,11 @@ function ShopPageItems(
   onClearAllClick}) {
 
   const [hasMoreItems, setHasMoreItems] = useState(true);
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(PAGE_VALUES.INITIAL);
 
   const fetchItems = async (newPage) => {
     let itemsFromServer = await fetchFilteredItems(newPage, SHOP_PAGE_ITEMS.PAGE_SIZE, ITEM_SORT.ALPHABETICAL, DIRECTION.ASCENDING, selectedCategories, selectedSubcategories.map(c => c.id), priceRange.min, priceRange.max);
-    const oldItems = (newPage == 0) ? [] : items;
+    const oldItems = (newPage == PAGE_VALUES.INITIAL) ? [] : items;
     setItems([...oldItems, ...itemsFromServer.content]);
     setHasMoreItems(!itemsFromServer.last);
   }
@@ -36,8 +35,8 @@ function ShopPageItems(
   useEffect(() => {
     setItems([]);
     setHasMoreItems(true);
-    setPage(0);
-    fetchItems(0);
+    setPage(PAGE_VALUES.INITIAL);
+    fetchItems(PAGE_VALUES.INITIAL);
   }, [selectedCategories, selectedSubcategories, priceRange]);
 
   const fetchData = async () => {

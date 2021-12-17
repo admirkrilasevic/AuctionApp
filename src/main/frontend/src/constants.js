@@ -35,3 +35,7 @@ export const PRICE_RANGE = {
     MIN: 0,
     MAX: 200
 }
+
+export const PAGE_VALUES = {
+    INITIAL: 0
+}
