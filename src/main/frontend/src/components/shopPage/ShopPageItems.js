@@ -86,10 +86,11 @@ function ShopPageItems(
   };
 
   const onSortSelect = (e) => {
+    const newSort = e.target.value.split(",");
     setSort({
-      by: e.target.value.by,
-      direction: e.target.value.direction
-    });
+      by: newSort[0],
+      direction: newSort[1]
+    })
   };
 
   return (
@@ -107,7 +108,7 @@ function ShopPageItems(
       <div className={styles.sortAndViewContainer}>
         <select className={styles.sortDropdown} onChange={onSortSelect}>
           {options.map((option) => (
-            <option value={{by: option.value.by, direction: option.value.direction}}>{option.name}</option>
+            <option value={[option.value.by, option.value.direction]} key={[option.value.by, option.value.direction]}>{option.name}</option>
           ))}
         </select>
       </div>
