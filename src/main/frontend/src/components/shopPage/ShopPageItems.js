@@ -1,26 +1,43 @@
 import { useEffect, useState } from "react";
 import Item from "../landingPage/Item";
 import { Row, Col } from "react-bootstrap";
-import { fetchItems, fetchItemsByCategory } from '../landingPage/ItemService';
-import { ITEM_SORT, DIRECTION } from "../../constants";
+import { fetchFilteredItems } from '../landingPage/ItemService';
+import { ITEM_SORT, DIRECTION, SHOP_PAGE_ITEMS, PAGE_VALUES } from "../../constants";
 import styles from "./ShopPageItems.module.css";
-import { SHOP_PAGE_ITEMS } from "../../constants";
+import ActiveFilters from "./ActiveFilters";
 
-function ShopPageItems({categoryId}) {
-  const [items, setItems] = useState([]);
+function ShopPageItems(
+  {items, 
+  setItems, 
+  selectedCategories, 
+  selectedSubcategories, 
+  priceRange, 
+  categoriesList, 
+  onRemoveCategoryClick, 
+  onRemoveSubcategoryClick, 
+  onRemovePriceFilterClick, 
+  onClearAllClick}) {
+
   const [hasMoreItems, setHasMoreItems] = useState(true);
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(PAGE_VALUES.INITIAL);
+
+  const fetchItems = async (newPage) => {
+    let itemsFromServer = await fetchFilteredItems(newPage, SHOP_PAGE_ITEMS.PAGE_SIZE, ITEM_SORT.ALPHABETICAL, DIRECTION.ASCENDING, selectedCategories, selectedSubcategories.map(c => c.id), priceRange.min, priceRange.max);
+    const oldItems = (newPage == PAGE_VALUES.INITIAL) ? [] : items;
+    setItems([...oldItems, ...itemsFromServer.content]);
+    setHasMoreItems(!itemsFromServer.last);
+  }
 
   useEffect(async () => {
-    let itemsFromServer = "";
-    if(categoryId == 0){
-      itemsFromServer = await fetchItems(page, SHOP_PAGE_ITEMS.PAGE_SIZE, ITEM_SORT.ALPHABETICAL, DIRECTION.ASCENDING);
-    } else {
-      itemsFromServer = await fetchItemsByCategory(page, SHOP_PAGE_ITEMS.PAGE_SIZE, ITEM_SORT.ALPHABETICAL, DIRECTION.ASCENDING, categoryId);
-    }
-    setItems([...items, ...itemsFromServer.content]);
-    setHasMoreItems(!itemsFromServer.last);
+    fetchItems(page)
   }, [page]);
+
+  useEffect(() => {
+    setItems([]);
+    setHasMoreItems(true);
+    setPage(PAGE_VALUES.INITIAL);
+    fetchItems(PAGE_VALUES.INITIAL);
+  }, [selectedCategories, selectedSubcategories, priceRange]);
 
   const fetchData = async () => {
     setPage(page+1);
@@ -28,6 +45,16 @@ function ShopPageItems({categoryId}) {
 
   return (
     <div className="container-fluid">
+      <ActiveFilters 
+        selectedCategories={selectedCategories} 
+        selectedSubcategories={selectedSubcategories}
+        priceRange={priceRange}
+        categoriesList={categoriesList} 
+        onRemoveCategoryClick={onRemoveCategoryClick}
+        onRemoveSubcategoryClick={onRemoveSubcategoryClick}
+        onRemovePriceFilterClick={onRemovePriceFilterClick}
+        onClearAllClick={onClearAllClick}
+      />
       <Row>
         {items.map((item) => {
           return (

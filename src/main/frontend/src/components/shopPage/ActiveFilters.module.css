@@ -1,0 +1,38 @@
+.allFiltersContainer {
+    display: flex;
+    align-items: flex-start;
+}
+
+.filterTitle {
+    color: #9B9B9B;
+    font-size: 14px;
+    text-align: left;
+    margin-bottom: 8px;
+}
+
+.filter {
+    background-color: #FFF;
+    border: none;
+    padding: 0;
+    font-size: 16px;
+    text-align: left;
+}
+
+.removeIcon {
+    margin-left: 12px;
+    color: #9B9B9B;
+    margin-right: 20px;
+}
+
+.clearAllButton {
+    margin-right: 0px;
+    margin-left: auto;
+    background-color: #FFF;
+    border: 1px solid #D8D8D8;
+    padding: 0;
+    font-size: 16px;
+    text-align: left;
+    color: #9B9B9B;
+    font-weight: bold;
+    padding: 8px 16px;
+}

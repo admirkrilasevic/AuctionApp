@@ -1,15 +1,7 @@
 import styles from "./CategoriesMenu.module.css";
-import { useEffect, useState } from "react";
-import { fetchAllCategories } from "../landingPage/ItemService";
 import Category from "./Category";
 
-function CategoriesMenu() {
-
-    const [categoriesList, setCategoriesList] = useState([]);
-
-    useEffect(async () => {
-        setCategoriesList(await fetchAllCategories());
-    }, []);
+function CategoriesMenu({isSelected, isChecked, onCategoryClick, onSubcategoryClick, categoriesList, children}) {
 
     return (
         <div className={styles.menusContainer}>
@@ -21,10 +13,18 @@ function CategoriesMenu() {
                         return category.parentCategoryId == null;
                     })
                     .map((category) => (
-                        <Category key={category.id} category={category}/>
+                        <Category 
+                            key={category.id} 
+                            category={category} 
+                            isSelected={isSelected} 
+                            isChecked={isChecked}
+                            onCategoryClick={onCategoryClick}
+                            onSubcategoryClick={onSubcategoryClick}
+                        />
                     ))}
                 </div>
             </div>
+            {children}
         </div>
     );
 }

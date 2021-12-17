@@ -26,21 +26,26 @@ public class ItemController {
     }
 
     @GetMapping("/search")
-    public @ResponseBody
-    Page<Item> getItems(@RequestParam("page") int page, @RequestParam("size") int size, @RequestParam("sort") ItemSort sort, @RequestParam("direction") Sort.Direction direction) {
+    public Page<Item> getItems(@RequestParam("page") int page, @RequestParam("size") int size, @RequestParam("sort") ItemSort sort, @RequestParam("direction") Sort.Direction direction) {
         return itemService.getItems(page, size, sort, direction);
     }
 
     @GetMapping("/{itemId}")
-    public @ResponseBody
-    Item getItemById(@PathVariable("itemId") long itemId){
+    public Item getItemById(@PathVariable("itemId") long itemId){
         return itemService.getItemById(itemId).get();
     }
 
-    @GetMapping("/category/{categoryId}")
-    public @ResponseBody
-    Page<Item> getItemsByCategoryId(@RequestParam("page") int page, @RequestParam("size") int size, @RequestParam("sort") ItemSort sort, @RequestParam("direction") Sort.Direction direction, @PathVariable("categoryId") long categoryId){
-        return itemService.getItemsByCategoryId(page, size, sort, direction, categoryId);
+    @GetMapping("/filtered")
+    public Page<Item> getFilteredItems(
+            @RequestParam("page") int page,
+            @RequestParam("size") int size,
+            @RequestParam("sort") ItemSort sort,
+            @RequestParam("direction") Sort.Direction direction,
+            @RequestParam("categoryIds") Long[] categoryIds,
+            @RequestParam("subcategoryIds") long[] subcategoryIds,
+            @RequestParam("minPrice") double minPrice,
+            @RequestParam("maxPrice") double maxPrice){
+        return itemService.getFilteredItems(page, size, sort, direction, categoryIds, subcategoryIds, minPrice, maxPrice);
     }
     
 }

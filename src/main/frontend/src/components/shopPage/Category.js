@@ -1,8 +1,8 @@
 import styles from "./Category.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Subcategory from "./Subcategory";
 
-function Category({category}) {
+function Category({category, isSelected, isChecked, onCategoryClick, onSubcategoryClick}) {
 
     const [expanded, setExpanded] = useState(false);
 
@@ -10,16 +10,26 @@ function Category({category}) {
         setExpanded(!expanded);
     };
 
+    const onCategoryClickResponse = (id) => {
+        onCategoryClick(id);
+        toggleExpandCollapse();
+    };
+
+    useEffect(() => {
+        if (isSelected(category.id))
+            toggleExpandCollapse()
+    }, []);
+
     return (
         <div>
-            <button className={styles.collapsibleCategory} key={category.id}>
+            <button className={styles.collapsibleCategory} key={category.id} onClick={() => onCategoryClickResponse(category.id)}>
                 {category.name}
-                <span className={styles.collapseIcon} onClick={toggleExpandCollapse}>{expanded ? "-" : "+"}</span>
+                <span className={styles.collapseIcon}>{expanded ? "-" : "+"}</span>
             </button>
             {expanded && (
                 <div className={styles.subcategoriesContainer}>
                     {category.subcategories.map((subcategory) => (
-                        <Subcategory key={subcategory.id} subcategory={subcategory}/>
+                        <Subcategory key={subcategory.id} subcategory={subcategory} isChecked={isChecked} onSubcategoryClick={onSubcategoryClick}/>
                     ))}
                 </div>
             )}

@@ -7,8 +7,8 @@ export const fetchItems = async (page, size, sort, direction) => {
   return items.json();
 };
 
-export const fetchItemsByCategory = async (page, size, sort, direction, categoryId) => {
-  const items = await fetch(`http://${ENVIRONMENT.HOST}/api/v1/items/category/${categoryId}?page=${page}&size=${size}&sort=${sort}&direction=${direction}`);
+export const fetchFilteredItems = async (page, size, sort, direction, categoryIds, subcategoryIds, minPrice, maxPrice) => {
+  const items = await fetch(`http://${ENVIRONMENT.HOST}/api/v1/items/filtered?page=${page}&size=${size}&sort=${sort}&direction=${direction}&categoryIds=${categoryIds}&subcategoryIds=${subcategoryIds}&minPrice=${minPrice}&maxPrice=${maxPrice}`);
   return items.json();
 };
 
@@ -38,6 +38,13 @@ export const placeBid = async (token, itemId, amount) => {
 
 export const fetchAllCategories = async () => {
   return axios.get(`http://${ENVIRONMENT.HOST}/api/v1/categories`)
+  .then((res) => {
+    return res.data;
+  })
+};
+
+export const fetchCategoryById = async (categoryId) => {
+  return axios.get(`http://${ENVIRONMENT.HOST}/api/v1/categories/${categoryId}`)
   .then((res) => {
     return res.data;
   })

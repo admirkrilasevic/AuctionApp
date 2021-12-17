@@ -41,4 +41,7 @@ public class Bid {
         this.date = date;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

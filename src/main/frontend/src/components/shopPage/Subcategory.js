@@ -1,6 +1,6 @@
 import styles from "./Subcategory.module.css";
 
-function Subcategory({subcategory}) {
+function Subcategory({subcategory, isChecked, onSubcategoryClick}) {
 
     return (
         <div className={styles.subcategoryItem}>
@@ -8,6 +8,8 @@ function Subcategory({subcategory}) {
                 className={styles.subcategoryCheckbox}
                 type="checkbox"
                 value={subcategory.id}
+                checked={isChecked(subcategory.id)}
+                onChange={() => onSubcategoryClick(subcategory)}
             />
             {subcategory.name + " (" + subcategory.noOfItems + ")"}
         </div>

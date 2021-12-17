@@ -1,0 +1,46 @@
+.priceMenuContainer {
+    border: 1px solid #D8D8D8;
+    width: 262px;
+    margin-top: 32px;
+    padding: 24px;
+}
+
+.menuTitle {
+    font-size: 16px;
+    font-weight: bold;
+    color: #8367D8;
+    padding-bottom: 12px;
+    text-align: left;
+}
+
+.priceInputs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.minPriceInput {
+    border: 2px solid #D8D8D8;
+    max-width: 80px;
+    height: 40px;
+    text-align: center;
+}
+
+.maxPriceInput {
+    border: 2px solid #D8D8D8;
+    max-width: 80px;
+    height: 40px;
+    text-align: center;
+}
+
+.priceRange {
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.priceAverage {
+    text-align: left;
+    font-size: 16px;
+    color: #9B9B9B;
+}
