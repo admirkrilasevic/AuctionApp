@@ -8,3 +8,15 @@
     border: none;
     margin: 100px 0px;
 }
+
+.sortAndViewContainer {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 32px;
+}
+
+.sortDropdown {
+    padding: 12px 24px;
+    font-size: 16px;
+    border: 2px solid #D8D8D8;
+}
