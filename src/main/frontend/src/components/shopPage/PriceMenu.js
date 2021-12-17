@@ -12,24 +12,36 @@ function PriceMenu({ priceRange, setPriceRange }) {
     const [avgPrice, setAvgPrice] = useState(0);
 
 	useEffect(() => {
-        setPriceRange([minPrice, maxPrice]);
-        setAvgPrice((priceRange[0]+priceRange[1])/2);
+        setPriceRange({
+            min: PRICE_RANGE.MIN,
+            max: PRICE_RANGE.MAX
+        });
+        setAvgPrice((priceRange.min+priceRange.max)/2);
 	}, [])
 
     useEffect(() => {
-        setAvgPrice((priceRange[0]+priceRange[1])/2);
+        setAvgPrice((priceRange.min+priceRange.max)/2);
     }, [priceRange])
 
     const onSliderChange = (e, newValues) => {
-        setPriceRange(newValues);
+        setPriceRange({
+            min: newValues[0],
+            max: newValues[1]
+        });
     }
 
     const onMinInputChange = (e) => {
-        setPriceRange([e.target.value, priceRange[1]]);
+        setPriceRange({
+            min: e.target.value,
+            max: priceRange.max
+        });
     }
 
     const onMaxInputChange = (e) => {
-        setPriceRange([priceRange[0], e.target.value]);
+        setPriceRange({
+            min: priceRange.min,
+            max: e.target.value
+        });
     }
 
     const muiTheme = createTheme({
@@ -54,12 +66,12 @@ function PriceMenu({ priceRange, setPriceRange }) {
             <div className={styles.priceInputs}>
                 <input 
                     className={styles.minPriceInput}
-                    value={priceRange[0]}
+                    value={priceRange.min}
                     onChange={onMinInputChange} 
                 />
                 <input 
                     className={styles.maxPriceInput}
-                    value={priceRange[1]} 
+                    value={priceRange.max} 
                     onChange={onMaxInputChange} 
                 />
             </div>
@@ -67,12 +79,12 @@ function PriceMenu({ priceRange, setPriceRange }) {
                 <Slider
                     min={minPrice}
                     max={maxPrice}
-                    value={priceRange}
+                    value={[priceRange.min, priceRange.max]}
                     step={0.1}
                     onChange={onSliderChange}
                 />
             </ThemeProvider>
-            <p className={styles.priceRange}>${priceRange[0]}-${priceRange[1]}</p>
+            <p className={styles.priceRange}>${priceRange.min}-${priceRange.max}</p>
             <p className={styles.priceAverage}>The average price is ${avgPrice.toFixed(2)}</p>
         </div>
     )

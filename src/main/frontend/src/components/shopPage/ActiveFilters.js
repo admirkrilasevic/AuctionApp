@@ -1,4 +1,5 @@
 import styles from "./ActiveFilters.module.css";
+import { PRICE_RANGE } from "../../constants";
 
 function ActiveFilters({selectedCategories, selectedSubcategories, priceRange, categoriesList, onRemoveCategoryClick, onRemoveSubcategoryClick, onRemovePriceFilterClick, onClearAllClick}) {
 
@@ -27,15 +28,15 @@ function ActiveFilters({selectedCategories, selectedSubcategories, priceRange, c
 
     return (
         <div>
-            {(categoryFilters.length > 0 || selectedSubcategories.length > 0 || priceRange[0] > 0 || priceRange[1] < 200) &&
+            {(categoryFilters.length > 0 || selectedSubcategories.length > 0 || priceRange.min > PRICE_RANGE.MIN || priceRange.max < PRICE_RANGE.MAX) &&
                 (<div className={styles.allFiltersContainer}>
                     {categoryFilters.length > 0 && renderCategoryActiveFilter(categoryFilters, onRemoveCategoryClick)}
                     {selectedSubcategories.length > 0 && renderCategoryActiveFilter(selectedSubcategories, onRemoveSubcategoryClick)}
-                    {(priceRange[0] > 0 || priceRange[1] < 200) && 
+                    {(priceRange.min > PRICE_RANGE.MIN || priceRange.max < PRICE_RANGE.MAX) && 
                         <div className={styles.filterContainer}>
                             <p className={styles.filterTitle}>Price range</p>
                             <button className={styles.filter} onClick={() => onRemovePriceFilterClick()}>
-                                ${priceRange[0]}-${priceRange[1]} <span className={styles.removeIcon}>x</span> 
+                                ${priceRange.min}-${priceRange.max} <span className={styles.removeIcon}>x</span> 
                             </button>
                         </div>
                     }

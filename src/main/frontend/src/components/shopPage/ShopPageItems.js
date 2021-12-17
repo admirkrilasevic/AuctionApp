@@ -23,7 +23,7 @@ function ShopPageItems(
   const [page, setPage] = useState(0);
 
   const fetchItems = async (newPage) => {
-    let itemsFromServer = await fetchFilteredItems(newPage, SHOP_PAGE_ITEMS.PAGE_SIZE, ITEM_SORT.ALPHABETICAL, DIRECTION.ASCENDING, selectedCategories, selectedSubcategories.map(c => c.id), priceRange[0], priceRange[1]);
+    let itemsFromServer = await fetchFilteredItems(newPage, SHOP_PAGE_ITEMS.PAGE_SIZE, ITEM_SORT.ALPHABETICAL, DIRECTION.ASCENDING, selectedCategories, selectedSubcategories.map(c => c.id), priceRange.min, priceRange.max);
     const oldItems = (newPage == 0) ? [] : items;
     setItems([...oldItems, ...itemsFromServer.content]);
     setHasMoreItems(!itemsFromServer.last);

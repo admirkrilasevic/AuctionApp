@@ -14,7 +14,10 @@ function Shop(){
     const [selectedCategories, setSelectedCategories] = useState([parseInt(categoryId)]);
     const [selectedSubcategories, setSelectedSubcategories] = useState([]);
     const [categoriesList, setCategoriesList] = useState([]);
-    const [priceRange, setPriceRange] = useState([0, 200]);
+    const [priceRange, setPriceRange] = useState({
+        min: PRICE_RANGE.MIN,
+        max: PRICE_RANGE.MAX
+    });
     const history = useHistory();
 
     useEffect(async () => {
@@ -58,13 +61,19 @@ function Shop(){
     }
 
     const onRemovePriceFilterClick = () => {
-        setPriceRange([PRICE_RANGE.MIN, PRICE_RANGE.MAX]);
+        setPriceRange({
+            min: PRICE_RANGE.MIN,
+            max: PRICE_RANGE.MAX
+        });
     }
 
     const onClearAllClick = () => {
         setSelectedCategories([]);
         setSelectedSubcategories([]);
-        setPriceRange([PRICE_RANGE.MIN, PRICE_RANGE.MAX]);
+        setPriceRange({
+            min: PRICE_RANGE.MIN,
+            max: PRICE_RANGE.MAX
+        });
         history.push("/shop/0");
     }
 
