@@ -21,19 +21,23 @@ function ShopPageItems(
 
   const [hasMoreItems, setHasMoreItems] = useState(true);
   const [page, setPage] = useState(0);
-  const [filterUpdate, setFilterUpdate] = useState(true);
+
+  const fetchItems = async (newPage) => {
+    let itemsFromServer = await fetchFilteredItems(newPage, SHOP_PAGE_ITEMS.PAGE_SIZE, ITEM_SORT.ALPHABETICAL, DIRECTION.ASCENDING, selectedCategories, selectedSubcategories.map(c => c.id), priceRange[0], priceRange[1]);
+    const oldItems = (newPage == 0) ? [] : items;
+    setItems([...oldItems, ...itemsFromServer.content]);
+    setHasMoreItems(!itemsFromServer.last);
+  }
 
   useEffect(async () => {
-    let itemsFromServer = await fetchFilteredItems(page, SHOP_PAGE_ITEMS.PAGE_SIZE, ITEM_SORT.ALPHABETICAL, DIRECTION.ASCENDING, selectedCategories, selectedSubcategories.map(c => c.id), priceRange[0], priceRange[1]);
-    setItems([...items, ...itemsFromServer.content]);
-    setHasMoreItems(!itemsFromServer.last);
-  }, [page, filterUpdate]);
+    fetchItems(page)
+  }, [page]);
 
   useEffect(() => {
     setItems([]);
     setHasMoreItems(true);
     setPage(0);
-    setFilterUpdate(!filterUpdate);
+    fetchItems(0);
   }, [selectedCategories, selectedSubcategories, priceRange]);
 
   const fetchData = async () => {
