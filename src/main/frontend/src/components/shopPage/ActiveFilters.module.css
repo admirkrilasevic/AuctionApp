@@ -1,6 +1,7 @@
 .allFiltersContainer {
     display: flex;
     align-items: flex-start;
+    margin-bottom: 24px;
 }
 
 .filterTitle {

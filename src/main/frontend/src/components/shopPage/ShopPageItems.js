@@ -20,9 +20,51 @@ function ShopPageItems(
 
   const [hasMoreItems, setHasMoreItems] = useState(true);
   const [page, setPage] = useState(PAGE_VALUES.INITIAL);
+  const [sort, setSort] = useState({
+    by: ITEM_SORT.ALPHABETICAL,
+    direction: DIRECTION.ASCENDING
+  });
+
+  const options = [
+    {
+      value: {
+        by: ITEM_SORT.ALPHABETICAL,
+        direction: DIRECTION.ASCENDING
+      },
+      name: "Default Sorting",
+    },
+    {
+      value: {
+        by: ITEM_SORT.NEW_ARRIVALS,
+        direction: DIRECTION.DESCENDING
+      },
+      name: "Sort by Newness",
+    },
+    {
+      value: {
+        by: ITEM_SORT.LAST_CHANCE,
+        direction: DIRECTION.ASCENDING
+      },
+      name: "Sort by Time Left",
+    },
+    {
+      value: {
+        by: ITEM_SORT.PRICE,
+        direction: DIRECTION.ASCENDING
+      },
+      name: "Sort by Price: Low to High",
+    },
+    {
+      value: {
+        by: ITEM_SORT.PRICE,
+        direction: DIRECTION.DESCENDING
+      },
+      name: "Sort by Price: High to Low",
+    }
+  ];
 
   const fetchItems = async (newPage) => {
-    let itemsFromServer = await fetchFilteredItems(newPage, SHOP_PAGE_ITEMS.PAGE_SIZE, ITEM_SORT.ALPHABETICAL, DIRECTION.ASCENDING, selectedCategories, selectedSubcategories.map(c => c.id), priceRange.min, priceRange.max);
+    let itemsFromServer = await fetchFilteredItems(newPage, SHOP_PAGE_ITEMS.PAGE_SIZE, sort.by, sort.direction, selectedCategories, selectedSubcategories.map(c => c.id), priceRange.min, priceRange.max);
     const oldItems = (newPage == PAGE_VALUES.INITIAL) ? [] : items;
     setItems([...oldItems, ...itemsFromServer.content]);
     setHasMoreItems(!itemsFromServer.last);
@@ -37,10 +79,18 @@ function ShopPageItems(
     setHasMoreItems(true);
     setPage(PAGE_VALUES.INITIAL);
     fetchItems(PAGE_VALUES.INITIAL);
-  }, [selectedCategories, selectedSubcategories, priceRange]);
+  }, [selectedCategories, selectedSubcategories, priceRange, sort]);
 
   const fetchData = async () => {
     setPage(page+1);
+  };
+
+  const onSortSelect = (e) => {
+    const newSort = e.target.value.split(",");
+    setSort({
+      by: newSort[0],
+      direction: newSort[1]
+    })
   };
 
   return (
@@ -55,6 +105,13 @@ function ShopPageItems(
         onRemovePriceFilterClick={onRemovePriceFilterClick}
         onClearAllClick={onClearAllClick}
       />
+      <div className={styles.sortAndViewContainer}>
+        <select className={styles.sortDropdown} onChange={onSortSelect}>
+          {options.map((option) => (
+            <option value={[option.value.by, option.value.direction]} key={[option.value.by, option.value.direction]}>{option.name}</option>
+          ))}
+        </select>
+      </div>
       <Row>
         {items.map((item) => {
           return (
