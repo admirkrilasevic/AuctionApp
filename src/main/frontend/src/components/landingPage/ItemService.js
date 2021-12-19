@@ -10,24 +10,24 @@ if (process.env.REACT_APP_API_URL) {
 }
 
 export const fetchItems = async (page, size, sort, direction) => {
-  const items = await fetch(`http://${API_URL}/api/v1/items/search?page=${page}&size=${size}&sort=${sort}&direction=${direction}`);
+  const items = await fetch(`${API_URL}/api/v1/items/search?page=${page}&size=${size}&sort=${sort}&direction=${direction}`);
   return items.json();
 };
 
 export const fetchFilteredItems = async (page, size, sort, direction, categoryIds, subcategoryIds, minPrice, maxPrice) => {
-  const items = await fetch(`http://${API_URL}/api/v1/items/filtered?page=${page}&size=${size}&sort=${sort}&direction=${direction}&categoryIds=${categoryIds}&subcategoryIds=${subcategoryIds}&minPrice=${minPrice}&maxPrice=${maxPrice}`);
+  const items = await fetch(`${API_URL}/api/v1/items/filtered?page=${page}&size=${size}&sort=${sort}&direction=${direction}&categoryIds=${categoryIds}&subcategoryIds=${subcategoryIds}&minPrice=${minPrice}&maxPrice=${maxPrice}`);
   return items.json();
 };
 
 export const fetchItemById = async (itemId) => {
-  return axios.get(`http://${API_URL}/api/v1/items/${itemId}`)
+  return axios.get(`${API_URL}/api/v1/items/${itemId}`)
   .then((res) => {
     return res.data;
   })
 };
 
 export const placeBid = async (token, itemId, amount) => {
-  return axios.post(`http://${API_URL}/api/v1/bid`, {
+  return axios.post(`${API_URL}/api/v1/bid`, {
     itemId,
     amount
   }, {
@@ -44,14 +44,14 @@ export const placeBid = async (token, itemId, amount) => {
 };
 
 export const fetchAllCategories = async () => {
-  return axios.get(`http://${API_URL}/api/v1/categories`)
+  return axios.get(`${API_URL}/api/v1/categories`)
   .then((res) => {
     return res.data;
   })
 };
 
 export const fetchCategoryById = async (categoryId) => {
-  return axios.get(`http://${API_URL}/api/v1/categories/${categoryId}`)
+  return axios.get(`${API_URL}/api/v1/categories/${categoryId}`)
   .then((res) => {
     return res.data;
   })
