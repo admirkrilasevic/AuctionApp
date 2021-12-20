@@ -1,6 +1,12 @@
 import axios from "axios";
+import { ENVIRONMENT } from "../../constants";
 
-const API_URL = "http://localhost:8080/api/v1/auth/";
+let API_URL = "";
+if (process.env.REACT_APP_API_URL) {
+  API_URL = `${process.env.REACT_APP_API_URL}/api/v1/auth/`;
+} else {
+  API_URL = `${ENVIRONMENT.HOST}/api/v1/auth/`;
+}
 
 const register = (name, surname, email, password) => {
   return axios.post(API_URL + "register", {

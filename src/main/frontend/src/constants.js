@@ -16,7 +16,7 @@ export const DIRECTION = {
 }
 
 export const ENVIRONMENT = {
-    HOST: "localhost:8080"
+    HOST: "http://localhost:8080"
 }
 
 export const BID_MESSAGE = {

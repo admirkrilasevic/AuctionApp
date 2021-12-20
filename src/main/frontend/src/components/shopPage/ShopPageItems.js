@@ -42,28 +42,28 @@ function ShopPageItems(
         by: ITEM_SORT.NEW_ARRIVALS,
         direction: DIRECTION.DESCENDING
       },
-      name: "Sort by Newness",
+      name: "Added: New to Old",
     },
     {
       value: {
         by: ITEM_SORT.LAST_CHANCE,
         direction: DIRECTION.ASCENDING
       },
-      name: "Sort by Time Left",
+      name: "Time Left",
     },
     {
       value: {
         by: ITEM_SORT.PRICE,
         direction: DIRECTION.ASCENDING
       },
-      name: "Sort by Price: Low to High",
+      name: "Price: Low to High",
     },
     {
       value: {
         by: ITEM_SORT.PRICE,
         direction: DIRECTION.DESCENDING
       },
-      name: "Sort by Price: High to Low",
+      name: "Price: High to Low",
     }
   ];
 
