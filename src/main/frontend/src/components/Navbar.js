@@ -22,17 +22,17 @@ const HeaderNavbar = () => {
                     </div>
                 </Col>
                 <Col className={styles.buttonsContainer}>
-                    <NavLink to="/home" activeStyle={{ color: '#8367D8' }}>Home</NavLink>
-                    <NavLink to="/shop/0" activeStyle={{ color: '#8367D8' }}>Shop</NavLink>
+                    <NavLink to="/home" activeClassName={styles.activeLink}>Home</NavLink>
+                    <NavLink to="/shop/0" activeClassName={styles.activeLink}>Shop</NavLink>
                     <Dropdown onMouseOver={() => setShowDropdown(true)} onMouseLeave={() => setShowDropdown(false)} className={styles.dropdown}>
-                        <Dropdown.Toggle variant="none" className={styles.dropdownToggle}>
-                            <NavLink to="/account/Profile" activeStyle={{ color: '#8367D8' }}>MY ACCOUNT</NavLink>
+                        <Dropdown.Toggle variant="none" className={styles.dropdownToggle} onClick={() => setShowDropdown(false)}>
+                            <NavLink to="/account/Profile" activeClassName={styles.activeLink}>MY ACCOUNT</NavLink>
                         </Dropdown.Toggle>
                         <Dropdown.Menu className={styles.dropdownMenu} show={showDropdown}>
-                            <Dropdown.Item><NavLink to="/account/Profile">Profile</NavLink></Dropdown.Item>
-                            <Dropdown.Item><NavLink to="/account/Seller">Become Seller</NavLink></Dropdown.Item>
-                            <Dropdown.Item><NavLink to="/account/Bids">Your bids</NavLink></Dropdown.Item>
-                            <Dropdown.Item><NavLink to="/account/Settings">Settings</NavLink></Dropdown.Item>
+                            <Dropdown.Item><NavLink to="/account/Profile" activeClassName={styles.activeLink}>Profile</NavLink></Dropdown.Item>
+                            <Dropdown.Item><NavLink to="/account/Seller" activeClassName={styles.activeLink}>Become Seller</NavLink></Dropdown.Item>
+                            <Dropdown.Item><NavLink to="/account/Bids" activeClassName={styles.activeLink}>Your bids</NavLink></Dropdown.Item>
+                            <Dropdown.Item><NavLink to="/account/Settings" activeClassName={styles.activeLink}>Settings</NavLink></Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </Col>
