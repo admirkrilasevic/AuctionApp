@@ -54,7 +54,8 @@ function ItemOverview({...item}) {
     };
 
     const handlePlacingBid = () => {
-        if (bidAmount < highestBid) {
+        if ((bidAmount <= highestBid) || (bidAmount <= startingPrice) || (bidAmount == undefined)) {
+            console.log(bidAmount);
             setBidMessage(BID_MESSAGE.TRY_AGAIN);
             setBidMessageStyle(styles.bidMessageHeaderTryAgain);
         }
