@@ -55,3 +55,24 @@
     width: 58px;
     padding: 15px;
 }
+
+.dropdown {
+    display: inline;
+}
+
+.dropdownToggle {
+    padding: 0px;
+    padding-bottom: 5px;
+}
+
+.dropdownToggle a {
+    margin: 0px;
+}
+
+.dropdownToggle::after {
+    content: none;
+}
+
+.dropdown:hover .dropdownMenu {
+    display: block;
+}
