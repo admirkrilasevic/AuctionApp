@@ -45,3 +45,10 @@ export const VIEWS = {
     GRID: "Grid",
     LIST: "List"
 }
+
+export const ACCOUNT_SECTIONS = {
+    PROFILE: "Profile",
+    SELLER: "Seller",
+    BIDS: "Bids",
+    SETTINGS: "Settings"
+}

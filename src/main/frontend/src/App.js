@@ -51,7 +51,7 @@ function App() {
                 <Shop />
               </PageLayout>
             </Route>
-            <Route path="/account">
+            <Route path="/account/:section">
               <PageLayout>
                 <Account />
               </PageLayout>

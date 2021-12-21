@@ -1,0 +1,42 @@
+.accountContainer {
+    margin-top: 40px;
+}
+
+.sectionButtons {
+    display: flex;
+    align-items: flex-start;
+}
+
+.sectionButton {
+    text-decoration: none;
+    border: none;
+    font-size: 18px;
+    padding: 16px;
+    background-color: inherit;
+}
+
+.sectionButtonActive {
+    text-decoration: none;
+    border: none;
+    font-size: 18px;
+    padding: 16px;
+    background-color: #8367D8;
+    color: #FFF;
+}
+
+.sectionButton:hover {
+    background-color: #8367D8;
+    color: #FFF;
+}
+
+.addItemButton {
+    background-color: #8367D8;
+    margin-left: auto;
+    margin-right: 0px;
+    padding: 16px 50px;
+    text-decoration: none;
+    border: none;
+    color: #FFF;
+    font-size: 18px;
+    font-weight: bold;
+}
