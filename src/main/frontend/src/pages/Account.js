@@ -11,6 +11,9 @@ import PageLayout from "../components/PageLayout.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { BsFillPersonFill as ProfileIcon, BsListUl as SellerIcon } from "react-icons/bs";
+import { BiDollarCircle as BidsIcon } from "react-icons/bi";
+import { IoSettingsOutline as SettingsIcon } from "react-icons/io5";
 
 function Account(){
 
@@ -40,10 +43,10 @@ function Account(){
             <PageLayout title={selectedSection} breadcrumbs={[previousPage, arrowIcon, currentPage]}>
                 <div className={styles.accountContainer}>
                     <div className={styles.sectionButtons}>
-                        <button className={(selectedSection == ACCOUNT_SECTIONS.PROFILE) ? styles.sectionButtonActive : styles.sectionButton} onClick={() => setSelectedSection(ACCOUNT_SECTIONS.PROFILE)}>Profile</button>
-                        <button className={(selectedSection == ACCOUNT_SECTIONS.SELLER) ? styles.sectionButtonActive : styles.sectionButton} onClick={() => setSelectedSection(ACCOUNT_SECTIONS.SELLER)}>Seller</button>
-                        <button className={(selectedSection == ACCOUNT_SECTIONS.BIDS) ? styles.sectionButtonActive : styles.sectionButton} onClick={() => setSelectedSection(ACCOUNT_SECTIONS.BIDS)}>Bids</button>
-                        <button className={(selectedSection == ACCOUNT_SECTIONS.SETTINGS) ? styles.sectionButtonActive : styles.sectionButton} onClick={() => setSelectedSection(ACCOUNT_SECTIONS.SETTINGS)}>Settings</button>
+                        <button className={(selectedSection == ACCOUNT_SECTIONS.PROFILE) ? styles.sectionButtonActive : styles.sectionButton} onClick={() => setSelectedSection(ACCOUNT_SECTIONS.PROFILE)}><ProfileIcon className={styles.reactIcons}/>&ensp;{ACCOUNT_SECTIONS.PROFILE}</button>
+                        <button className={(selectedSection == ACCOUNT_SECTIONS.SELLER) ? styles.sectionButtonActive : styles.sectionButton} onClick={() => setSelectedSection(ACCOUNT_SECTIONS.SELLER)}><SellerIcon className={styles.reactIcons}/>&ensp;{ACCOUNT_SECTIONS.SELLER}</button>
+                        <button className={(selectedSection == ACCOUNT_SECTIONS.BIDS) ? styles.sectionButtonActive : styles.sectionButton} onClick={() => setSelectedSection(ACCOUNT_SECTIONS.BIDS)}><BidsIcon className={styles.reactIcons}/>&ensp;{ACCOUNT_SECTIONS.BIDS}</button>
+                        <button className={(selectedSection == ACCOUNT_SECTIONS.SETTINGS) ? styles.sectionButtonActive : styles.sectionButton} onClick={() => setSelectedSection(ACCOUNT_SECTIONS.SETTINGS)}><SettingsIcon className={styles.reactIcons}/>&ensp;{ACCOUNT_SECTIONS.SETTINGS}</button>
                         <button className={styles.addItemButton}>+ &ensp; ADD ITEM</button>
                     </div>
                     {displaySelection(selectedSection)}
