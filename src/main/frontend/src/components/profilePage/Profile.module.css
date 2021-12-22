@@ -104,6 +104,23 @@ input[type="file"] {
     text-align: left;
 }
 
+.radioButtonContainer {
+    margin-bottom: 24px;
+}
+
+.radioButtonContainer input{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 1px solid #8367D8;
+    appearance: none;
+}
+
+.radioButtonContainer input:checked{
+    background-color: #8367D8;
+    color: #8367D8;
+}
+
 .cardLabelsContainer {
     display: flex;
     justify-content: space-between;

@@ -1,8 +1,16 @@
 import styles from "./Profile.module.css";
 import { Row, Col } from "react-bootstrap";
 import { dates, months, years, countries } from "../../constants";
+import { useState } from "react";
 
 const Profile = () => {
+
+  const [paymentMethod, setPaymentMethod] = useState("card");
+
+  const onPaymentMethodChange = () => {
+
+  }
+
   return (
     <div className={styles.profileContainer}> 
 
@@ -56,28 +64,41 @@ const Profile = () => {
 
       <div className={styles.sectionContainer}>
         <div className={styles.sectionTitle}>
-          Credit Card
+          Payment Information
         </div>
         <div className={styles.rightAlignContainer}>
-          <p>Name on Card</p>
-          <input className={styles.inputField} placeholder="Name on Card"/>
-          <p>Card Number</p>
-          <input className={styles.inputField} placeholder="Card Number"/>
-          <div className={styles.cardLabelsContainer}>
-            <p>Expiration Date</p>
-            <p>CVC/CVV</p>
+          <div className={styles.radioButtonContainer}>
+            <input checked={paymentMethod === "paypal"} type="radio" value="paypal" name="paypal" onChange={() => setPaymentMethod("paypal")}/> &ensp; PayPal
           </div>
-          <div className={styles.sameRowContainer}>
-            <select className={styles.smallInputField}>
-              <option>DD</option>
-              {dates.map((date) => <option>{date}</option>)}
-            </select>
-            <select className={styles.smallInputField}>
-              <option>MM</option>
-              {months.map((month) => <option>{month}</option>)}
-            </select>
-            <input className={styles.smallInputField} placeholder="CVC/CVV"/>
+          <div className={styles.radioButtonContainer}>
+            <input checked={paymentMethod === "card"} type="radio" value="card" name="card" onChange={() => setPaymentMethod("card")}/> &ensp; Credit Card
           </div>
+          { (paymentMethod === "card") ? 
+          <div>
+            <p>Name on Card</p>
+            <input className={styles.inputField} placeholder="Name on Card"/>
+            <p>Card Number</p>
+            <input className={styles.inputField} placeholder="Card Number"/>
+            <div className={styles.cardLabelsContainer}>
+              <p>Expiration Date</p>
+              <p>CVC/CVV</p>
+            </div>
+            <div className={styles.sameRowContainer}>
+              <select className={styles.smallInputField}>
+                <option>DD</option>
+                {dates.map((date) => <option>{date}</option>)}
+              </select>
+              <select className={styles.smallInputField}>
+                <option>MM</option>
+                {months.map((month) => <option>{month}</option>)}
+              </select>
+              <input className={styles.smallInputField} placeholder="CVC/CVV"/>
+            </div>
+          </div> : 
+          <div>
+            <p>PayPal Email Address</p>
+            <input className={styles.inputField} placeholder="PayPal Email Address"/>
+          </div>}
         </div>
       </div>
 
