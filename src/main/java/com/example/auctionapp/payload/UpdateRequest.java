@@ -2,9 +2,9 @@ package com.example.auctionapp.payload;
 
 import java.util.Date;
 
-public class AuthResponse {
-    private String token;
-    private Long id;
+public class UpdateRequest {
+
+    private long id;
     private String name;
     private String surname;
     private String email;
@@ -13,31 +13,11 @@ public class AuthResponse {
     private String phoneNumber;
     private String photo;
 
-    public AuthResponse(String token, Long id, String name, String surname, String email, String gender, Date dateOfBirth, String phoneNumber, String photo) {
-        this.token = token;
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
-        this.phoneNumber = phoneNumber;
-        this.photo = photo;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -96,5 +76,15 @@ public class AuthResponse {
     public void setPhoto(String photo) {
         this.photo = photo;
     }
-}
 
+    public UpdateRequest(long id, String name, String surname, String email, String gender, Date dateOfBirth, String phoneNumber, String photo) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.phoneNumber = phoneNumber;
+        this.photo = photo;
+    }
+}

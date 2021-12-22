@@ -33,25 +33,25 @@ input[type="file"] {
     display: none;
 }
 
-.photoContainer {
+.photoSection {
     margin-top: 24px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.emptyPhoto {
-    border: 1px solid #D8D8D8;
-    background-color: #FCFCFC;
-    font-weight: bold;
+.photoContainer {
     width: 350px;
     height: 350px;
     border-radius: 50%;
+    border: 1px solid #D8D8D8;
+    background-color: #FCFCFC;
 }
 
-.emptyPhoto span {
+.photoContainer span {
     top: 50%;
     position: relative;
+    font-weight: bold;
 }
 
 .uploadContainer {

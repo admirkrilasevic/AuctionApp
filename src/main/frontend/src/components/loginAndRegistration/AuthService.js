@@ -27,9 +27,20 @@ const login = (email, password) => {
       if (response.data.token) {
         localStorage.setItem("user", JSON.stringify(response.data));
       }
-
       return response.data;
     });
+};
+
+const update = (id, name, surname, email, gender, dateOfBirth, phoneNumber) => {
+  return axios.put(API_URL + "update", {
+    id,
+    name,
+    surname,
+    email,
+    gender,
+    dateOfBirth,
+    phoneNumber
+  });
 };
 
 const logout = () => {
@@ -44,5 +55,6 @@ export default {
   register,
   login,
   logout,
-  getCurrentUser
+  getCurrentUser,
+  update
 };

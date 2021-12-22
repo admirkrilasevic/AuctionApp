@@ -46,7 +46,11 @@ public class AuthService {
                 user.getId(),
                 user.getName(),
                 user.getSurname(),
-                user.getEmail());
+                user.getEmail(),
+                user.getGender(),
+                user.getDateOfBirth(),
+                user.getPhoneNumber(),
+                user.getPhoto());
 
         return response;
     }

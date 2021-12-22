@@ -1,8 +1,11 @@
 package com.example.auctionapp.service;
 
+import com.example.auctionapp.model.User;
+import com.example.auctionapp.payload.UpdateRequest;
 import com.example.auctionapp.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -27,5 +30,17 @@ public class UserService implements UserDetailsService {
         return loadUserByUsername(email);
     }
 
+    public ResponseEntity<?> updateUser(UpdateRequest updateRequest) {
+        User user = userRepository.getById(updateRequest.getId());
+        user.setName(updateRequest.getName());
+        user.setSurname(updateRequest.getSurname());
+        user.setEmail(updateRequest.getEmail());
+        user.setGender(updateRequest.getGender());
+        user.setDateOfBirth(updateRequest.getDateOfBirth());
+        user.setPhoneNumber(updateRequest.getPhoneNumber());
+        user.setPhoto(updateRequest.getPhoto());
+        userRepository.save(user);
+        return ResponseEntity.ok("User updated");
+    }
 
 }
