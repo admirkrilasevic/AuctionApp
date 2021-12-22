@@ -40,3 +40,16 @@
     font-size: 18px;
     font-weight: bold;
 }
+
+.arrowIcon {
+    margin-top: 5px;
+}
+
+.breadcrumbsLink {
+    text-decoration: none;
+    color: inherit;
+}
+
+.breadcrumbsLink:hover {
+    color: #8367D8;
+}

@@ -52,9 +52,7 @@ function App() {
               </PageLayout>
             </Route>
             <Route path="/account/:section">
-              <PageLayout>
-                <Account />
-              </PageLayout>
+              <Account />
             </Route>
             <Route path="/about">
               <PageLayout title="About Us">
