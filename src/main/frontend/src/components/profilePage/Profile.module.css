@@ -17,6 +17,7 @@
 
 .buttonContainer {
     text-align: right;
+    margin-bottom: 170px;
 }
 
 .saveButton {
@@ -26,7 +27,6 @@
     padding: 8px 24px;
     font-weight: bold;
     font-size: 18px;
-    margin-bottom: 170px;
 }
 
 input[type="file"] {

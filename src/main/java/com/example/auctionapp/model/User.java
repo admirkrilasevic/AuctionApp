@@ -6,9 +6,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Date;
 
 @EqualsAndHashCode
 @NoArgsConstructor
@@ -51,7 +51,7 @@ public class User implements UserDetails {
     private String gender;
 
     @Column(name = "date_of_birth")
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
 
     @Column(name = "phone_no")
     private String phoneNumber;
@@ -59,7 +59,7 @@ public class User implements UserDetails {
     @Column
     private String photo;
 
-    public User(Long id, @NonNull String name, @NonNull String surname, @NonNull String email, @NonNull String password, String role, String gender, Date dateOfBirth, String phoneNumber, String photo) {
+    public User(Long id, @NonNull String name, @NonNull String surname, @NonNull String email, @NonNull String password, String role, String gender, LocalDate dateOfBirth, String phoneNumber, String photo) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -88,11 +88,11 @@ public class User implements UserDetails {
         this.gender = gender;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 

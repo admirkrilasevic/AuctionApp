@@ -1,6 +1,6 @@
 package com.example.auctionapp.payload;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class AuthResponse {
     private String token;
@@ -9,11 +9,11 @@ public class AuthResponse {
     private String surname;
     private String email;
     private String gender;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     private String phoneNumber;
     private String photo;
 
-    public AuthResponse(String token, Long id, String name, String surname, String email, String gender, Date dateOfBirth, String phoneNumber, String photo) {
+    public AuthResponse(String token, Long id, String name, String surname, String email, String gender, LocalDate dateOfBirth, String phoneNumber, String photo) {
         this.token = token;
         this.id = id;
         this.name = name;
@@ -73,11 +73,11 @@ public class AuthResponse {
         this.gender = gender;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 

@@ -17,14 +17,30 @@ const Profile = () => {
   const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber ? user.phoneNumber : "");
   const [photo, setPhoto] = useState(user.photo ? user.photo : "");
 
+  const [showMessage, setShowMessage] = useState(false);
+
   const onChangeInput = (e, setter) => {
     const newValue = e.target.value;
     setter(newValue);
   };
 
+  const onChangeDate = (e, type) => {
+    const newValue = e.target.value;
+    const date = dateOfBirth.substr(8,2);
+    const month = dateOfBirth.substr(5,2);
+    const year = dateOfBirth.substr(0,4);
+    if (type === "date") {
+      setDateOfBirth(year+"-"+month+"-"+newValue);
+    } else if (type === "month") {
+      setDateOfBirth(year+"-"+newValue+"-"+date);
+    } else {
+      setDateOfBirth(newValue+"-"+month+"-"+date);
+    }
+  }
+
   const updateUserInfo = () => {
-    console.log(user.id, name, surname, email);
-    AuthService.update(user.id, name, surname, email);
+    AuthService.update(user.id, name, surname, email, gender, dateOfBirth, phoneNumber);
+    setShowMessage(true);
   };
 
   return (
@@ -60,15 +76,15 @@ const Profile = () => {
             </select>
             <p>Date of Birth</p>
             <div className={styles.sameRowContainer}>
-              <select className={styles.smallInputField} value={(dateOfBirth.length > 0) ? (parseInt(dateOfBirth.substr(8,2))+1) : null}>
+              <select className={styles.smallInputField} value={(dateOfBirth.length > 0) ? dateOfBirth.substr(8,2) : null} onChange={e => onChangeDate(e, "date")}>
                 <option disabled selected hidden>DD</option>
                 {dates.map((date) => <option>{date}</option>)}
               </select>
-              <select className={styles.smallInputField} value={(dateOfBirth.length > 0) ? ((dateOfBirth.substr(5,1) == 0) ? dateOfBirth.substr(6,1) : dateOfBirth.substr(5,2)) : null}>
+              <select className={styles.smallInputField} value={(dateOfBirth.length > 0) ? dateOfBirth.substr(5,2) : null} onChange={e => onChangeDate(e, "month")}>
                 <option disabled selected hidden>MM</option>
                 {months.map((month) => <option>{month}</option>)}
               </select>
-              <select className={styles.smallInputField} value={(dateOfBirth.length > 0) ? dateOfBirth.substr(0,4) : null}>
+              <select className={styles.smallInputField} value={(dateOfBirth.length > 0) ? dateOfBirth.substr(0,4) : null} onChange={e => onChangeDate(e, "year")}>
                 <option disabled selected hidden>YYYY</option>
                 {years.map((year) => <option>{year}</option>)}
               </select>
@@ -148,6 +164,7 @@ const Profile = () => {
 
       <div className={styles.buttonContainer}>
         <button className={styles.saveButton} onClick={updateUserInfo}>SAVE INFO&ensp;{">"}</button>
+        {showMessage && <p>Information updated sucessfully!</p>}
       </div>
 
     </div>

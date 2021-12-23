@@ -1,6 +1,6 @@
 package com.example.auctionapp.payload;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class UpdateRequest {
 
@@ -9,7 +9,7 @@ public class UpdateRequest {
     private String surname;
     private String email;
     private String gender;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     private String phoneNumber;
     private String photo;
 
@@ -53,11 +53,11 @@ public class UpdateRequest {
         this.gender = gender;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -77,7 +77,7 @@ public class UpdateRequest {
         this.photo = photo;
     }
 
-    public UpdateRequest(long id, String name, String surname, String email, String gender, Date dateOfBirth, String phoneNumber, String photo) {
+    public UpdateRequest(long id, String name, String surname, String email, String gender, LocalDate dateOfBirth, String phoneNumber, String photo) {
         this.id = id;
         this.name = name;
         this.surname = surname;
