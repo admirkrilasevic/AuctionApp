@@ -1,5 +1,7 @@
 package com.example.auctionapp.payload;
 
+import com.example.auctionapp.model.Address;
+
 import java.time.LocalDate;
 
 public class AuthResponse {
@@ -12,8 +14,9 @@ public class AuthResponse {
     private LocalDate dateOfBirth;
     private String phoneNumber;
     private String photo;
+    private Address address;
 
-    public AuthResponse(String token, Long id, String name, String surname, String email, String gender, LocalDate dateOfBirth, String phoneNumber, String photo) {
+    public AuthResponse(String token, Long id, String name, String surname, String email, String gender, LocalDate dateOfBirth, String phoneNumber, String photo, Address address) {
         this.token = token;
         this.id = id;
         this.name = name;
@@ -23,6 +26,7 @@ public class AuthResponse {
         this.dateOfBirth = dateOfBirth;
         this.phoneNumber = phoneNumber;
         this.photo = photo;
+        this.address = address;
     }
 
     public String getToken() {
@@ -95,6 +99,14 @@ public class AuthResponse {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }
 

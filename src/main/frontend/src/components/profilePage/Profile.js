@@ -17,6 +17,13 @@ const Profile = () => {
   const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber ? user.phoneNumber : "");
   const [photo, setPhoto] = useState(user.photo ? user.photo : "");
 
+  const [address, setAddress] = useState(user.address.address);
+  const [city, setCity] = useState(user.address.city);
+  const [zipCode, setZipCode] = useState(user.address.zipCode);
+  const [country, setCountry] = useState(user.address.country);
+  const [phone, setPhone] = useState(user.address.phone);
+  const [state, setState] = useState(user.address.state);
+
   const [showMessage, setShowMessage] = useState(false);
 
   const onChangeInput = (e, setter) => {
@@ -143,19 +150,19 @@ const Profile = () => {
         </div>
         <div className={styles.rightAlignContainer}>
           <p>Street</p>
-          <input className={styles.inputField} placeholder="Street"/>
+          <input className={styles.inputField} placeholder="Street" value={address}/>
           <div className={styles.cityLabelsContainer}>
             <p>City</p>
             <p>Zip Code</p>
           </div>
           <div className={styles.sameRowContainer}>
-            <input className={styles.mediumInputField} placeholder="City"/>
-            <input className={styles.mediumInputField} placeholder="Zip Code"/>
+            <input className={styles.mediumInputField} placeholder="City" value={city}/>
+            <input className={styles.mediumInputField} placeholder="Zip Code" value={zipCode}/>
           </div>
           <p>State</p>
-          <input className={styles.inputField} placeholder="State"/>
+          <input className={styles.inputField} placeholder="State" value={state}/>
           <p>Country</p>
-          <select className={styles.inputField}>
+          <select className={styles.inputField} value={country}>
             <option disabled selected hidden>Country</option>
             {countries.map((country) => <option>{country}</option>)}
           </select>

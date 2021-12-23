@@ -50,7 +50,8 @@ public class AuthService {
                 user.getGender(),
                 user.getDateOfBirth(),
                 user.getPhoneNumber(),
-                user.getPhoto());
+                user.getPhoto(),
+                user.getAddress());
 
         return response;
     }
