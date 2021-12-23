@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./Seller.module.css";
+import tableStyles from "./Table.module.css";
 import { SELLER_TABS } from "../../constants";
 import { fetchItemsByUserId } from "../landingPage/ItemService";
 import AuthService from "../loginAndRegistration/AuthService";
@@ -44,8 +45,8 @@ const Seller = () => {
         }
     }
 
-    const activeItems = items.filter((item) => item.state==="active");
-    const soldItems = items.filter((item) => item.state==="sold");
+    const activeItems = items && items.filter((item) => item.state==="active");
+    const soldItems = items && items.filter((item) => item.state==="sold");
 
     return (
         <div className={styles.sellerContainer}>
@@ -55,25 +56,25 @@ const Seller = () => {
                     <button className={(activeTab === SELLER_TABS.ACTIVE) ? styles.activeTab : styles.tab} onClick={() => setActiveTab(SELLER_TABS.ACTIVE)}>{SELLER_TABS.ACTIVE}</button>
                     <button className={(activeTab === SELLER_TABS.SOLD) ? styles.activeTab : styles.tab} onClick={() => setActiveTab(SELLER_TABS.SOLD)}>{SELLER_TABS.SOLD}</button>
                 </div>
-                <Container className={styles.itemsTable}>
-                    <Row className={styles.headerRow}>
+                <Container className={tableStyles.table}>
+                    <Row className={tableStyles.headerRow}>
                         <Col>Item</Col>
                         <Col>Name</Col>
                         <Col>Time Left</Col>
-                        <Col>Your Price</Col>
+                        <Col>Starting Price</Col>
                         <Col>No. Bids</Col>
                         <Col>Highest Bid</Col>
                         <Col></Col>
                     </Row>
                     {((activeTab === SELLER_TABS.ACTIVE) ? activeItems : soldItems).map((item) => 
-                    <Row className={styles.contentRow}>
-                        <Col className={styles.verticalCenter}><img src={item.photo} className={styles.tableImages}/></Col>
-                        <Col className={styles.verticalCenter}>{item.name}</Col>
-                        <Col className={styles.verticalCenter}>{calculateTimeLeft(item.endDate)}</Col>
-                        <Col className={styles.verticalCenter}>$ {item.startingPrice}</Col>
-                        <Col className={styles.verticalCenter}>{item.bids.length}</Col>
-                        <Col className={styles.highestBidCol}>$ {calculateHighestBid(item.bids)}</Col>
-                        <Col className={styles.verticalCenter}><Link to={`/items/${item.id}`} className={styles.viewItemLink}>VIEW</Link></Col>
+                    <Row className={tableStyles.contentRow}>
+                        <Col className={tableStyles.verticalCenter}><img src={item.photo} className={tableStyles.tableImages}/></Col>
+                        <Col className={tableStyles.verticalCenter}>{item.name}</Col>
+                        <Col className={tableStyles.verticalCenter}>{calculateTimeLeft(item.endDate)}</Col>
+                        <Col className={tableStyles.verticalCenter}>$ {item.startingPrice}</Col>
+                        <Col className={tableStyles.verticalCenter}>{item.bids.length}</Col>
+                        <Col className={tableStyles.highestBidCol}>$ {calculateHighestBid(item.bids)}</Col>
+                        <Col className={tableStyles.verticalCenter}><Link to={`/items/${item.id}`} className={tableStyles.viewItemLink}>VIEW</Link></Col>
                     </Row>
                     )}
                 </Container>

@@ -63,3 +63,10 @@ export const fetchItemsByUserId = async (userId) => {
     return res.data;
   })
 };
+
+export const fetchItemsByBidUserId = async (userId) => {
+  return axios.get(`${API_URL}/api/v1/items/user/bid/${userId}`)
+  .then((res) => {
+    return res.data;
+  })
+};

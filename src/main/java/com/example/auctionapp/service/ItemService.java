@@ -72,4 +72,8 @@ public class ItemService {
         return itemRepository.getItemsByUserId(userId);
     }
 
+    public List<Item> getItemsByBidUserId(Long userId) {
+        return itemRepository.getItemsByBidUserId(userId);
+    }
+
 }

@@ -52,5 +52,10 @@ public class ItemController {
     public List<Item> getItemsByUserId(@PathVariable("userId") Long userId){
         return itemService.getItemsByUserId(userId);
     }
+
+    @GetMapping("/user/bid/{userId}")
+    public List<Item> getItemsByBidUserId(@PathVariable("userId") Long userId){
+        return itemService.getItemsByBidUserId(userId);
+    }
     
 }
