@@ -17,11 +17,11 @@ const Profile = () => {
   const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber ? user.phoneNumber : "");
   const [photo, setPhoto] = useState(user.photo ? user.photo : "");
 
-  const [street, setStreet] = useState(user.address.street);
-  const [city, setCity] = useState(user.address.city);
-  const [zipCode, setZipCode] = useState(user.address.zipCode);
-  const [country, setCountry] = useState(user.address.country);
-  const [state, setState] = useState(user.address.state);
+  const [street, setStreet] = useState(user.address ? user.address.street : "");
+  const [city, setCity] = useState(user.address ? user.address.city : "");
+  const [zipCode, setZipCode] = useState(user.address ? user.address.zipCode : "");
+  const [country, setCountry] = useState(user.address ? user.address.country : null);
+  const [state, setState] = useState(user.address ? user.address.state : "");
 
   const [showMessage, setShowMessage] = useState(false);
 
@@ -45,7 +45,7 @@ const Profile = () => {
   }
 
   const updateUserInfo = () => {
-    AuthService.update(user.id, name, surname, email, gender, dateOfBirth, phoneNumber, photo, user.address.id, street, city, zipCode, state, country);
+    AuthService.update(user.id, name, surname, email, gender, dateOfBirth, phoneNumber, photo, user.address ? user.address.id : null, street, city, zipCode, state, country);
     setShowMessage(true);
   };
 
