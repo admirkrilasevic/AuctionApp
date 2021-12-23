@@ -13,6 +13,61 @@ public class UpdateRequest {
     private String phoneNumber;
     private String photo;
 
+    private Long addressId;
+    private String street;
+    private String city;
+    private String zipCode;
+    private String state;
+    private String country;
+
+    public Long getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(Long addressId) {
+        this.addressId = addressId;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
     public long getId() {
         return id;
     }
@@ -77,7 +132,7 @@ public class UpdateRequest {
         this.photo = photo;
     }
 
-    public UpdateRequest(long id, String name, String surname, String email, String gender, LocalDate dateOfBirth, String phoneNumber, String photo) {
+    public UpdateRequest(long id, String name, String surname, String email, String gender, LocalDate dateOfBirth, String phoneNumber, String photo, long addressId, String street, String city, String zipCode, String state, String country) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -86,5 +141,11 @@ public class UpdateRequest {
         this.dateOfBirth = dateOfBirth;
         this.phoneNumber = phoneNumber;
         this.photo = photo;
+        this.addressId = addressId;
+        this.street = street;
+        this.city = city;
+        this.zipCode = zipCode;
+        this.state = state;
+        this.country = country;
     }
 }

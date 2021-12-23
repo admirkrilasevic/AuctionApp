@@ -31,7 +31,7 @@ const login = (email, password) => {
     });
 };
 
-const update = (id, name, surname, email, gender, dateOfBirth, phoneNumber) => {
+const update = (id, name, surname, email, gender, dateOfBirth, phoneNumber, photo, addressId, street, city, zipCode, state, country) => {
   return axios.put(API_URL + "update", {
     id,
     name,
@@ -39,7 +39,14 @@ const update = (id, name, surname, email, gender, dateOfBirth, phoneNumber) => {
     email,
     gender,
     dateOfBirth,
-    phoneNumber
+    phoneNumber,
+    photo,
+    addressId,
+    street,
+    city,
+    zipCode,
+    state,
+    country
   });
 };
 

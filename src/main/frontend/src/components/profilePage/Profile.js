@@ -17,11 +17,10 @@ const Profile = () => {
   const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber ? user.phoneNumber : "");
   const [photo, setPhoto] = useState(user.photo ? user.photo : "");
 
-  const [address, setAddress] = useState(user.address.address);
+  const [street, setStreet] = useState(user.address.street);
   const [city, setCity] = useState(user.address.city);
   const [zipCode, setZipCode] = useState(user.address.zipCode);
   const [country, setCountry] = useState(user.address.country);
-  const [phone, setPhone] = useState(user.address.phone);
   const [state, setState] = useState(user.address.state);
 
   const [showMessage, setShowMessage] = useState(false);
@@ -46,7 +45,7 @@ const Profile = () => {
   }
 
   const updateUserInfo = () => {
-    AuthService.update(user.id, name, surname, email, gender, dateOfBirth, phoneNumber);
+    AuthService.update(user.id, name, surname, email, gender, dateOfBirth, phoneNumber, photo, user.address.id, street, city, zipCode, state, country);
     setShowMessage(true);
   };
 
@@ -150,19 +149,19 @@ const Profile = () => {
         </div>
         <div className={styles.rightAlignContainer}>
           <p>Street</p>
-          <input className={styles.inputField} placeholder="Street" value={address}/>
+          <input className={styles.inputField} placeholder="Street" value={street} onChange={e => onChangeInput(e, setStreet)}/>
           <div className={styles.cityLabelsContainer}>
             <p>City</p>
             <p>Zip Code</p>
           </div>
           <div className={styles.sameRowContainer}>
-            <input className={styles.mediumInputField} placeholder="City" value={city}/>
-            <input className={styles.mediumInputField} placeholder="Zip Code" value={zipCode}/>
+            <input className={styles.mediumInputField} placeholder="City" value={city} onChange={e => onChangeInput(e, setCity)}/>
+            <input className={styles.mediumInputField} placeholder="Zip Code" value={zipCode} onChange={e => onChangeInput(e, setZipCode)}/>
           </div>
           <p>State</p>
-          <input className={styles.inputField} placeholder="State" value={state}/>
+          <input className={styles.inputField} placeholder="State" value={state} onChange={e => onChangeInput(e, setState)}/>
           <p>Country</p>
-          <select className={styles.inputField} value={country}>
+          <select className={styles.inputField} value={country} onChange={e => onChangeInput(e, setCountry)}>
             <option disabled selected hidden>Country</option>
             {countries.map((country) => <option>{country}</option>)}
           </select>

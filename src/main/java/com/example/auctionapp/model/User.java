@@ -12,7 +12,6 @@ import java.util.Collections;
 
 @EqualsAndHashCode
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(schema = "public")
 public class User implements UserDetails {
@@ -64,7 +63,7 @@ public class User implements UserDetails {
     @JoinColumn(name = "id")
     private Address address;
 
-    public User(Long id, @NonNull String name, @NonNull String surname, @NonNull String email, @NonNull String password, String role, String gender, LocalDate dateOfBirth, String phoneNumber, String photo) {
+    public User(Long id, @NonNull String name, @NonNull String surname, @NonNull String email, @NonNull String password, String role, String gender, LocalDate dateOfBirth, String phoneNumber, String photo, Address address) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -75,6 +74,7 @@ public class User implements UserDetails {
         this.dateOfBirth = dateOfBirth;
         this.phoneNumber = phoneNumber;
         this.photo = photo;
+        this.address = address;
     }
 
     public Address getAddress() {

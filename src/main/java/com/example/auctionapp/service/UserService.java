@@ -1,5 +1,6 @@
 package com.example.auctionapp.service;
 
+import com.example.auctionapp.model.Address;
 import com.example.auctionapp.model.User;
 import com.example.auctionapp.payload.UpdateRequest;
 import com.example.auctionapp.repository.UserRepository;
@@ -39,6 +40,17 @@ public class UserService implements UserDetailsService {
         user.setDateOfBirth(updateRequest.getDateOfBirth());
         user.setPhoneNumber(updateRequest.getPhoneNumber());
         user.setPhoto(updateRequest.getPhoto());
+        Address address = new Address(
+                updateRequest.getId(),
+                updateRequest.getStreet(),
+                updateRequest.getCity(),
+                updateRequest.getZipCode(),
+                updateRequest.getState(),
+                updateRequest.getCountry());
+        if (updateRequest.getAddressId() != null) {
+            address.setId(updateRequest.getAddressId());
+        }
+        user.setAddress(address);
         userRepository.save(user);
         return ResponseEntity.ok("User updated");
     }
