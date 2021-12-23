@@ -47,7 +47,7 @@ function Account(){
                         <button className={(selectedSection == ACCOUNT_SECTIONS.SELLER) ? styles.sectionButtonActive : styles.sectionButton} onClick={() => setSelectedSection(ACCOUNT_SECTIONS.SELLER)}><SellerIcon className={styles.reactIcons}/>&ensp;{ACCOUNT_SECTIONS.SELLER}</button>
                         <button className={(selectedSection == ACCOUNT_SECTIONS.BIDS) ? styles.sectionButtonActive : styles.sectionButton} onClick={() => setSelectedSection(ACCOUNT_SECTIONS.BIDS)}><BidsIcon className={styles.reactIcons}/>&ensp;{ACCOUNT_SECTIONS.BIDS}</button>
                         <button className={(selectedSection == ACCOUNT_SECTIONS.SETTINGS) ? styles.sectionButtonActive : styles.sectionButton} onClick={() => setSelectedSection(ACCOUNT_SECTIONS.SETTINGS)}><SettingsIcon className={styles.reactIcons}/>&ensp;{ACCOUNT_SECTIONS.SETTINGS}</button>
-                        <button className={styles.addItemButton}>+ &ensp; ADD ITEM</button>
+                        {(selectedSection == ACCOUNT_SECTIONS.SELLER) && <button className={styles.addItemButton}>+ &ensp; ADD ITEM</button>}
                     </div>
                     {displaySelection(selectedSection)}
                 </div>

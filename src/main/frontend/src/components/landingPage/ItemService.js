@@ -56,3 +56,10 @@ export const fetchCategoryById = async (categoryId) => {
     return res.data;
   })
 };
+
+export const fetchItemsByUserId = async (userId) => {
+  return axios.get(`${API_URL}/api/v1/items/user/${userId}`)
+  .then((res) => {
+    return res.data;
+  })
+};

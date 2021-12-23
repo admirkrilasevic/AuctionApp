@@ -307,3 +307,14 @@ export const countries = [
   "Zimbabwe",
   "Åland Islands"
 ];
+
+export const GENDER = {
+    MALE: "Male",
+    FEMALE: "Female",
+    OTHER: "Other"
+}
+
+export const SELLER_TABS = {
+    ACTIVE: "Active",
+    SOLD: "Sold"
+}

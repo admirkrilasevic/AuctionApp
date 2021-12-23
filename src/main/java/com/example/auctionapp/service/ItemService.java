@@ -68,4 +68,8 @@ public class ItemService {
         return categoryIds;
     }
 
+    public List<Item> getItemsByUserId(Long userId) {
+        return itemRepository.getItemsByUserId(userId);
+    }
+
 }

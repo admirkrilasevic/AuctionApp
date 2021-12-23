@@ -1,6 +1,6 @@
 import styles from "./Profile.module.css";
 import { Row, Col } from "react-bootstrap";
-import { dates, months, years, countries } from "../../constants";
+import { dates, months, years, countries, GENDER } from "../../constants";
 import { useState } from "react";
 import AuthService from "../loginAndRegistration/AuthService";
 import FileBase64 from "react-file-base64";
@@ -90,9 +90,9 @@ const Profile = () => {
             <p>I Am</p>
             <select className={styles.inputField} onChange={e => onChangeInput(e, setGender)} value={gender}>
               <option disabled selected hidden>Gender</option>
-              <option>Male</option>
-              <option>Female</option>
-              <option>Other</option>
+              <option>{GENDER.MALE}</option>
+              <option>{GENDER.FEMALE}</option>
+              <option>{GENDER.OTHER}</option>
             </select>
             <p>Date of Birth</p>
             <div className={styles.sameRowContainer}>
