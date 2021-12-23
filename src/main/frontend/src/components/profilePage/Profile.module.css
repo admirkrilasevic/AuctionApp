@@ -46,6 +46,7 @@ input[type="file"] {
     border-radius: 50%;
     border: 1px solid #D8D8D8;
     background-color: #FCFCFC;
+    object-fit: cover;
 }
 
 .photoContainer span {

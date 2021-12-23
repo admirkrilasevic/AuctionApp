@@ -3,6 +3,8 @@ import { Row, Col } from "react-bootstrap";
 import { dates, months, years, countries } from "../../constants";
 import { useState } from "react";
 import AuthService from "../loginAndRegistration/AuthService";
+import FileBase64 from "react-file-base64";
+import axios from "axios";
 
 const Profile = () => {
 
@@ -49,6 +51,18 @@ const Profile = () => {
     setShowMessage(true);
   };
 
+  const uploadImage = async (e) => {
+    const res = axios.post(
+      'https://api.cloudinary.com/v1_1/dtm8an029/image/upload',
+      {
+        upload_preset: "o1u6dtrg",
+        file: e[0].base64
+      }
+    ).then((response) => {
+        setPhoto(response.data.secure_url);
+    });
+  }
+
   return (
     <div className={styles.profileContainer}> 
 
@@ -63,7 +77,7 @@ const Profile = () => {
             </div>
             <div className={styles.uploadContainer}>
               <label className={styles.photoUpload}>
-                <input type="file" name="profileImage" accept="image/*"></input>
+                <FileBase64 multiple={true} onDone={uploadImage}/>
                 Change Photo
               </label>
             </div>
