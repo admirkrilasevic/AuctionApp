@@ -79,7 +79,7 @@ const Bids = () => {
                     <Col className={tableStyles.verticalCenter}>{calculateTimeLeft(item.endDate)}</Col>
                     <Col className={tableStyles.verticalCenter}>$ {bids[index].amount}</Col>
                     <Col className={tableStyles.verticalCenter}>{item.bids.length}</Col>
-                    <Col className={tableStyles.highestBidCol}>$ {calculateHighestBid(item.bids)}</Col>
+                    <Col className={(bids[index].amount >= calculateHighestBid(item.bids)) ? tableStyles.highestBidCol : tableStyles.notHighestBidCol}>$ {calculateHighestBid(item.bids)}</Col>
                     <Col className={tableStyles.verticalCenter}><Link to={`/items/${item.id}`} className={tableStyles.viewItemLink}>VIEW</Link></Col>
                 </Row>
                 )}

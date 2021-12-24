@@ -34,6 +34,13 @@
     justify-content: center;
 }
 
+.notHighestBidCol {
+    color: #0066CC;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .viewItemLink {
     text-decoration: none;
     border: 3px solid #D8D8D8;
