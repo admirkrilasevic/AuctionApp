@@ -70,3 +70,10 @@ export const fetchItemsByBidUserId = async (userId) => {
     return res.data;
   })
 };
+
+export const fetchAllItems = async () => {
+  return axios.get(`${API_URL}/api/v1/items`)
+  .then((res) => {
+    return res.data;
+  })
+};
