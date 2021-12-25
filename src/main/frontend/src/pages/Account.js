@@ -20,11 +20,13 @@ function Account(){
     const { loggedIn } = useContext(AuthContext);
     const { section } = useParams();
     const [selectedSection, setSelectedSection] = useState(section);
+    const [message, setMessage] = useState();
+    const [messageStyle, setMessageStyle] = useState();
     
     const displaySelection = (selection) => {
         switch (selection) {
             case ACCOUNT_SECTIONS.PROFILE :
-                return <Profile/>
+                return <Profile setMessage={setMessage} setMessageStyle={setMessageStyle}/>
             case ACCOUNT_SECTIONS.SELLER :
                 return <Seller/>
             case ACCOUNT_SECTIONS.BIDS :
@@ -44,7 +46,7 @@ function Account(){
 
     return (
         loggedIn ? (
-            <PageLayout title={selectedSection} breadcrumbs={[previousPage, arrowIcon, currentPage]}>
+            <PageLayout title={selectedSection} breadcrumbs={[previousPage, arrowIcon, currentPage]} message={message} messageStyle={messageStyle}>
                 <div className={styles.accountContainer}>
                     <div className={styles.sectionButtons}>
                         <Link to={"/account/Profile"} className={(selectedSection == ACCOUNT_SECTIONS.PROFILE) ? styles.sectionButtonActive : styles.sectionButton}><ProfileIcon className={styles.reactIcons}/>&ensp;{ACCOUNT_SECTIONS.PROFILE}</Link>

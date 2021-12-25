@@ -143,3 +143,15 @@ input[type="file"] {
     justify-content: space-between;
     width: 345px;
 }
+
+.headerMessageSuccess {
+    color: #417505;
+    text-align: start;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: #F0F3EE;
+    height: 60px;
+    width: 100%;
+    padding: 18px 160px;
+    margin-top: 10px;
+}

@@ -6,7 +6,7 @@ import AuthService from "../loginAndRegistration/AuthService";
 import FileBase64 from "react-file-base64";
 import axios from "axios";
 
-const Profile = () => {
+const Profile = ({setMessage, setMessageStyle}) => {
 
   const [paymentMethod, setPaymentMethod] = useState("card");
 
@@ -24,8 +24,6 @@ const Profile = () => {
   const [zipCode, setZipCode] = useState(user.address ? user.address.zipCode : "");
   const [country, setCountry] = useState(user.address ? user.address.country : null);
   const [state, setState] = useState(user.address ? user.address.state : "");
-
-  const [showMessage, setShowMessage] = useState(false);
 
   const onChangeInput = (e, setter) => {
     const newValue = e.target.value;
@@ -48,7 +46,9 @@ const Profile = () => {
 
   const updateUserInfo = () => {
     AuthService.update(user.id, name, surname, email, gender, dateOfBirth, phoneNumber, photo, user.address ? user.address.id : null, street, city, zipCode, state, country);
-    setShowMessage(true);
+    setMessage("Information successfully updated");
+    setMessageStyle(styles.headerMessageSuccess);
+    window.scrollTo(0, 0);
   };
 
   const uploadImage = async (e) => {
@@ -184,7 +184,6 @@ const Profile = () => {
 
       <div className={styles.buttonContainer}>
         <button className={styles.saveButton} onClick={updateUserInfo}>SAVE INFO&ensp;{">"}</button>
-        {showMessage && <p>Information updated sucessfully!</p>}
       </div>
 
     </div>
