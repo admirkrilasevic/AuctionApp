@@ -25,6 +25,9 @@ const Seller = () => {
     const calculateTimeLeft = (endDate) => {
         const date1 = new Date(endDate);
         const date2 = new Date();
+        if (date2 > date1) {
+            return "ENDED";
+        }
         const interval = TimeInterval.fromTimeBetweenTwoDates(date1, date2);
         const hours = interval.inHours();
         if (hours < 24) {
@@ -45,8 +48,8 @@ const Seller = () => {
         }
     }
 
-    const activeItems = items && items.filter((item) => item.state==="active");
-    const soldItems = items && items.filter((item) => item.state==="sold");
+    const activeItems = items && items.filter((item) => calculateTimeLeft(item.endDate) != "ENDED");
+    const soldItems = items && items.filter((item) =>  calculateTimeLeft(item.endDate) == "ENDED");
 
     return (
         <div className={styles.sellerContainer}>
