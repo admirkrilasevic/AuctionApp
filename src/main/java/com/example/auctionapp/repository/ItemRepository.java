@@ -13,7 +13,10 @@ import java.util.List;
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Long> {
 
-    @Query("select i from Item i where (i.categoryId in :categoryIds or i.subcategoryId in :subcategoryIds) and i.startingPrice between :minPrice and :maxPrice")
+    @Query("select i from Item i where i.endDate > current_date")
+    Page<Item> getItems(Pageable pageable);
+
+    @Query("select i from Item i where (i.categoryId in :categoryIds or i.subcategoryId in :subcategoryIds) and i.startingPrice between :minPrice and :maxPrice and i.endDate > current_date")
     Page<Item> getFilteredItems(@Param("categoryIds") Long[] categoryIds, @Param("subcategoryIds") long[] subcategoryIds, @Param("minPrice") double minPrice, @Param("maxPrice") double maxPrice, Pageable pageable);
 
     @Query("select i from Item i where i.userId = :userId")
