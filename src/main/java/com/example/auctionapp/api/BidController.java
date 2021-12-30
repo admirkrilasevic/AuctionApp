@@ -17,7 +17,7 @@ public class BidController {
     BidService bidService;
 
     @PostMapping
-    public ResponseEntity<?> itemBid(HttpServletRequest httpServletRequest, @RequestBody BiddingRequest biddingRequest) {
+    public ResponseEntity<?> placeBid(HttpServletRequest httpServletRequest, @RequestBody BiddingRequest biddingRequest) {
         ResponseEntity<?> token = bidService.placeBid(httpServletRequest, biddingRequest);
         return ResponseEntity.ok(token);
     }
