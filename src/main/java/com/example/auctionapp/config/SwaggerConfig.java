@@ -1,5 +1,6 @@
 package com.example.auctionapp.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.PathSelectors;
@@ -17,6 +18,12 @@ import java.util.List;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
+
+    @Value ("${api.docs.appUrl}")
+    String appUrl;
+
+    @Value ("${api.docs.contactEmail}")
+    String contactEmail;
 
     @Bean
     public Docket api() {
@@ -46,12 +53,14 @@ public class SwaggerConfig {
     }
 
     private ApiInfo apiInfo() {
+
+
         return new ApiInfo(
                 "AuctionApp API",
                 "Models and controllers used within the application.",
                 "1.0",
                 "Terms of Service",
-                new Contact("AuctionApp", "https://auction-app-abh-internship.herokuapp.com", "admirkrilasevic@gmail.com"),
+                new Contact("AuctionApp", appUrl, contactEmail),
                 "API license",
                 "API license URL",
                 Collections.emptyList());
