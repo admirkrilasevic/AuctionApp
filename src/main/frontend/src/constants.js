@@ -320,5 +320,11 @@ export const SELLER_TABS = {
 }
 
 export const TIME_LEFT = {
-    ENDED: "ENDED"
+  ENDED: "ENDED"
+}
+
+export const SELL_PAGE_SECTIONS = {
+    ITEM: "Item",
+    PRICE: "Price",
+    LOCATION: "Location"
 }
