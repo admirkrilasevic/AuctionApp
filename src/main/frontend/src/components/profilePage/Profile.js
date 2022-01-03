@@ -44,12 +44,19 @@ const Profile = ({setMessage, setMessageStyle}) => {
     }
   }
 
-  const updateUserInfo = () => {
-    AuthService.update(user.id, name, surname, email, gender, dateOfBirth, phoneNumber, photo, user.address ? user.address.id : null, street, city, zipCode, state, country);
+  const updateUserInfo = async () => {
+    await AuthService.update(user.id, name, surname, email, gender, dateOfBirth, phoneNumber, photo, user.address ? user.address.id : null, street, city, zipCode, state, country);
     setMessage("Information successfully updated");
     setMessageStyle(styles.headerMessageSuccess);
     window.scrollTo(0, 0);
+    refreshLocalStorage();
   };
+
+  const refreshLocalStorage = () => {
+    const password = user.password;
+    AuthService.logout();
+    AuthService.login(email, password);
+  }
 
   const uploadImage = async (e) => {
     const res = axios.post(

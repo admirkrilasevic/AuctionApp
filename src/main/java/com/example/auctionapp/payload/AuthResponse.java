@@ -10,23 +10,33 @@ public class AuthResponse {
     private String name;
     private String surname;
     private String email;
+    private String password;
     private String gender;
     private LocalDate dateOfBirth;
     private String phoneNumber;
     private String photo;
     private Address address;
 
-    public AuthResponse(String token, Long id, String name, String surname, String email, String gender, LocalDate dateOfBirth, String phoneNumber, String photo, Address address) {
+    public AuthResponse(String token, Long id, String name, String surname, String email, String password, String gender, LocalDate dateOfBirth, String phoneNumber, String photo, Address address) {
         this.token = token;
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.email = email;
+        this.password = password;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
         this.phoneNumber = phoneNumber;
         this.photo = photo;
         this.address = address;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getToken() {

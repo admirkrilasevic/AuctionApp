@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 public class UserService implements UserDetailsService {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
     JwtUtils jwtUtils;
