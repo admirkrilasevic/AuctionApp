@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { AuthContext } from "../components/loginAndRegistration/AuthContext.js";
 import Bids from "../components/profilePage/Bids.js";
 import Profile from "../components/profilePage/Profile.js"
@@ -22,6 +22,7 @@ function Account(){
     const [selectedSection, setSelectedSection] = useState(section);
     const [message, setMessage] = useState();
     const [messageStyle, setMessageStyle] = useState();
+    const history = useHistory();
     
     const displaySelection = (selection) => {
         switch (selection) {
@@ -58,7 +59,7 @@ function Account(){
                     {displaySelection(selectedSection)}
                 </div>
             </PageLayout>
-        ) : <h3>You are not logged in!</h3>
+        ) : <div>{history.push("/register")}</div>
     );
 }
 
