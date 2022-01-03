@@ -4,6 +4,7 @@ import com.example.auctionapp.model.Address;
 import com.example.auctionapp.model.User;
 import com.example.auctionapp.payload.UpdateRequest;
 import com.example.auctionapp.repository.UserRepository;
+import com.example.auctionapp.security.JwtUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,12 +13,17 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Service
 @AllArgsConstructor
 public class UserService implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+    UserRepository userRepository;
+
+    @Autowired
+    JwtUtils jwtUtils;
 
     /*UserDetailsService interface requires implementation of loadUserByUsername,
     although users are loaded by email, so there is a separate loadUserByEmail method*/
@@ -60,6 +66,14 @@ public class UserService implements UserDetailsService {
         }
         userRepository.save(user);
         return ResponseEntity.ok("User updated");
+    }
+
+    public ResponseEntity<?> deactivateAccount(HttpServletRequest httpServletRequest) {
+        String token = jwtUtils.getToken(httpServletRequest);
+        User user = (User) loadUserByEmail(jwtUtils.getEmailFromJwtToken(token));
+        user.setDeactivated(true);
+        userRepository.save(user);
+        return ResponseEntity.ok("User account deactivated");
     }
 
 }

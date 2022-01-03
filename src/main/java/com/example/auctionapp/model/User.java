@@ -1,6 +1,7 @@
 package com.example.auctionapp.model;
 
 import lombok.*;
+import org.hibernate.annotations.Where;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,8 +13,10 @@ import java.util.Collections;
 
 @EqualsAndHashCode
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(schema = "public")
+@Where(clause = "deactivated = false")
 public class User implements UserDetails {
 
     @Id
@@ -39,14 +42,6 @@ public class User implements UserDetails {
     @Column
     private String role;
 
-    public User(@NonNull String name, @NonNull String surname, @NonNull String email, @NonNull String password, String role) {
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.password = password;
-        this.role = role;
-    }
-
     @Column
     private String gender;
 
@@ -59,9 +54,20 @@ public class User implements UserDetails {
     @Column
     private String photo;
 
+    @Column
+    private boolean deactivated;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id")
     private Address address;
+
+    public User(@NonNull String name, @NonNull String surname, @NonNull String email, @NonNull String password, String role) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
 
     public User(Long id, @NonNull String name, @NonNull String surname, @NonNull String email, @NonNull String password, String role, String gender, LocalDate dateOfBirth, String phoneNumber, String photo, Address address) {
         this.id = id;
@@ -75,6 +81,14 @@ public class User implements UserDetails {
         this.phoneNumber = phoneNumber;
         this.photo = photo;
         this.address = address;
+    }
+
+    public boolean isDeactivated() {
+        return deactivated;
+    }
+
+    public void setDeactivated(boolean deactivated) {
+        this.deactivated = deactivated;
     }
 
     public Address getAddress() {

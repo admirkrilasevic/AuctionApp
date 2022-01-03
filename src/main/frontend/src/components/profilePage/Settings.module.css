@@ -1,0 +1,38 @@
+.settingsContainer {
+    margin-top: 65px;
+    margin-bottom: 100px;
+}
+
+.settingsSection {
+    border: 1px solid #E3E3E3;
+    text-align: left;
+    width: 550px;
+}
+
+.sectionHeader {
+    background-color: #FCFCFC;
+    padding: 16px 32px;
+}
+
+.sectionContent {
+    padding: 16px 32px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.deactivateButton {
+    border: 3px solid #D8D8D8;
+    background-color: inherit;
+    padding: 12px 32px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #000;
+    text-align: center;
+    margin: 30px 0px;
+}
+
+.deactivateButton:hover {
+    color: #8367D8;
+}

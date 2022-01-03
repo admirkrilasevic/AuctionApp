@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -37,6 +38,11 @@ public class AuthController {
     @PutMapping("/update")
     public ResponseEntity<?> update(@RequestBody UpdateRequest updateRequest) {
         return userService.updateUser(updateRequest);
+    }
+
+    @PutMapping("/deactivate")
+    public ResponseEntity<?> deactivate(HttpServletRequest httpServletRequest) {
+        return userService.deactivateAccount(httpServletRequest);
     }
 
 }

@@ -50,6 +50,14 @@ const update = (id, name, surname, email, gender, dateOfBirth, phoneNumber, phot
   });
 };
 
+const deactivate = (token) => {
+  return axios.put(API_URL + "deactivate", {}, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+};
+
 const logout = () => {
   localStorage.removeItem("user");
 };
@@ -63,5 +71,6 @@ export default {
   login,
   logout,
   getCurrentUser,
-  update
+  update,
+  deactivate
 };
