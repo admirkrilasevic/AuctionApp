@@ -5,6 +5,7 @@ import { useState } from "react";
 import AuthService from "../loginAndRegistration/AuthService";
 import FileBase64 from "react-file-base64";
 import axios from "axios";
+import { isEmail } from "validator";
 
 const Profile = ({setMessage, setMessageStyle}) => {
 
@@ -45,11 +46,35 @@ const Profile = ({setMessage, setMessageStyle}) => {
   }
 
   const updateUserInfo = async () => {
-    await AuthService.update(user.id, name, surname, email, gender, dateOfBirth, phoneNumber, photo, user.address ? user.address.id : null, street, city, zipCode, state, country);
-    setMessage("Information successfully updated");
-    setMessageStyle(styles.headerMessageSuccess);
-    window.scrollTo(0, 0);
-    refreshLocalStorage();
+    if (name == "" || surname == "" || email == "") {
+      setMessage("Following fields cannot be empty: First Name, Last Name, Email Address");
+      setMessageStyle(styles.headerMessageError);
+      window.scrollTo(0, 0);
+    } 
+    else if (!isEmail(email)) {
+      setMessage("Invalid Email Address");
+      setMessageStyle(styles.headerMessageError);
+      window.scrollTo(0, 0);
+    }
+    else if (street == "" && city == "" && zipCode == "" && state == "" && country == null) {
+      await AuthService.update(user.id, name, surname, email, gender, dateOfBirth, phoneNumber, photo, user.address ? user.address.id : null, street, city, zipCode, state, country);
+      setMessage("Information successfully updated");
+      setMessageStyle(styles.headerMessageSuccess);
+      window.scrollTo(0, 0);
+      refreshLocalStorage();
+    }
+    else if (street != "" && city != "" && zipCode != "" && state != "" && country != null) {
+      await AuthService.update(user.id, name, surname, email, gender, dateOfBirth, phoneNumber, photo, user.address ? user.address.id : null, street, city, zipCode, state, country);
+      setMessage("Information successfully updated");
+      setMessageStyle(styles.headerMessageSuccess);
+      window.scrollTo(0, 0);
+      refreshLocalStorage();
+    }
+    else {
+      setMessage("If you wish to add an address, please fill in all the address fields");
+      setMessageStyle(styles.headerMessageError);
+      window.scrollTo(0, 0);
+    }
   };
 
   const refreshLocalStorage = () => {
