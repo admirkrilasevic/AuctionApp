@@ -13,11 +13,11 @@ function SellPage(){
     const displaySection = (selection) => {
         switch (selection) {
             case SELL_PAGE_SECTIONS.ITEM :
-                return <ItemInfo/>
+                return <ItemInfo setCurrentSection={setCurrentSection}/>
             case SELL_PAGE_SECTIONS.PRICE :
-                return <PriceAndDate/>
+                return <PriceAndDate setCurrentSection={setCurrentSection}/>
             case SELL_PAGE_SECTIONS.LOCATION :
-                return <LocationAndShipping/>
+                return <LocationAndShipping setCurrentSection={setCurrentSection}/>
         }
     };
 
