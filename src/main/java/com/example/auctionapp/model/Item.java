@@ -59,4 +59,18 @@ public class Item {
             name = "item_id"
     )
     private List<Bid> bids;
+
+    public Item(Long id, Long userId, String name, Long categoryId, Long subcategoryId, String description, String photo, double startingPrice, Date startDate, Date endDate, Long addressId) {
+        this.id = id;
+        this.userId = userId;
+        this.name = name;
+        this.categoryId = categoryId;
+        this.subcategoryId = subcategoryId;
+        this.description = description;
+        this.photo = photo;
+        this.startingPrice = startingPrice;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.addressId = addressId;
+    }
 }

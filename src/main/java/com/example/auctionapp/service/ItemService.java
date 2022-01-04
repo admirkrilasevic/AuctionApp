@@ -2,6 +2,7 @@ package com.example.auctionapp.service;
 
 import com.example.auctionapp.enumeration.ItemSort;
 import com.example.auctionapp.model.Category;
+import com.example.auctionapp.payload.AddItemRequest;
 import com.example.auctionapp.repository.ItemRepository;
 import com.example.auctionapp.model.Item;
 import lombok.AllArgsConstructor;
@@ -9,12 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
@@ -73,6 +72,15 @@ public class ItemService {
 
     public List<Item> getItemsByBidUserId(Long userId) {
         return itemRepository.getItemsByBidUserId(userId);
+    }
+
+    public ResponseEntity<?> addItem(AddItemRequest addItemRequest) {
+        Item item = new Item(addItemRequest.getId(), addItemRequest.getUserId(), addItemRequest.getName(),
+                addItemRequest.getCategoryId(), addItemRequest.getSubcategoryId(), addItemRequest.getDescription(),
+                addItemRequest.getPhoto(), addItemRequest.getStartingPrice(), addItemRequest.getStartDate(),
+                addItemRequest.getEndDate(), addItemRequest.getAddressId());
+        itemRepository.save(item);
+        return ResponseEntity.ok("Item successfully added");
     }
 
 }
