@@ -1,10 +1,9 @@
 import { SELL_PAGE_SECTIONS } from "../../constants";
-import styles from "./PriceAndDate.module.css";
 import formStyles from "./SectionForms.module.css";
 import { AiOutlineCalendar } from "react-icons/ai";
 import { IconContext } from "react-icons/lib";
 
-const PriceAndDate = ({setCurrentSection}) => {
+const PriceAndDate = ({setCurrentSection, price, setPrice, startDate, setStartDate, endDate, setEndDate}) => {
     return (
         <div className={formStyles.formContainer}>
             <div className={formStyles.formTitle}>
@@ -14,17 +13,17 @@ const PriceAndDate = ({setCurrentSection}) => {
                 <p>Your starting price</p>
                 <div className={formStyles.inputWithIcon}>
                     <span>$</span>
-                    <input></input>
+                    <input value={price} onChange={(e) => setPrice(e.target.value)}></input>
                 </div>
             </div>
             <div className={formStyles.twoInSameRow}>
                 <IconContext.Provider value={{size: "25px"}}>
                     <div className={formStyles.dateInput}> 
-                        <input placeholder="dd/mm/yyyy"></input>
+                        <input placeholder="dd/mm/yyyy" value={startDate} onChange={(e) => setStartDate(e.target.value)}></input>
                         <span><AiOutlineCalendar/></span>
                     </div>
                     <div className={formStyles.dateInput}>
-                        <input placeholder="dd/mm/yyyy"></input>
+                        <input placeholder="dd/mm/yyyy" value={endDate} onChange={(e) => setEndDate(e.target.value)}></input>
                         <span><AiOutlineCalendar/></span>
                     </div>
                 </IconContext.Provider>

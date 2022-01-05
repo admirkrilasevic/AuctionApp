@@ -10,14 +10,61 @@ function SellPage(){
 
     const [currentSection, setCurrentSection] = useState(SELL_PAGE_SECTIONS.ITEM);
 
+    const [name, setName] = useState();
+    const [category, setCategory] = useState();
+    const [subcategory, setSubcategory] = useState();
+    const [description, setDescription] = useState();
+    const [photos, setPhotos] = useState([]);
+    const [price, setPrice] = useState();
+    const [startDate, setStartDate] = useState();
+    const [endDate, setEndDate] = useState();
+    const [street, setStreet] = useState();
+    const [city, setCity] = useState();
+    const [zipCode, setZipCode] = useState();
+    const [state, setState] = useState();
+    const [country, setCountry] = useState();
+
+
     const displaySection = (selection) => {
         switch (selection) {
             case SELL_PAGE_SECTIONS.ITEM :
-                return <ItemInfo setCurrentSection={setCurrentSection}/>
+                return <ItemInfo 
+                    setCurrentSection={setCurrentSection}
+                    name={name}
+                    setName={setName}
+                    category={category}
+                    setCategory={setCategory}
+                    subcategory={subcategory}
+                    setSubcategory={setSubcategory}
+                    description={description}
+                    setDescription={setDescription}
+                    photos={photos}
+                    setPhotos={setPhotos}
+                />
             case SELL_PAGE_SECTIONS.PRICE :
-                return <PriceAndDate setCurrentSection={setCurrentSection}/>
+                return <PriceAndDate 
+                    setCurrentSection={setCurrentSection}
+                    price={price}
+                    setPrice={setPrice}
+                    startDate={startDate}
+                    setStartDate={setStartDate}
+                    endDate={endDate}
+                    setEndDate={setEndDate}
+                />
             case SELL_PAGE_SECTIONS.LOCATION :
-                return <LocationAndShipping setCurrentSection={setCurrentSection}/>
+                return <LocationAndShipping 
+                    setCurrentSection={setCurrentSection}
+                    street={street}
+                    setStreet={setStreet}
+                    city={city}
+                    setCity={setCity}
+                    zipCode={zipCode}
+                    setZipCode={setZipCode}
+                    state={state}
+                    setState={setState}
+                    country={country}
+                    setCountry={setCountry}
+                />
         }
     };
 
