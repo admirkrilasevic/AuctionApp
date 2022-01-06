@@ -3,7 +3,7 @@ import styles from "./Shop.module.css";
 import ShopPageItems from "../components/shopPage/ShopPageItems";
 import { useHistory, useParams } from "react-router";
 import { useState, useEffect } from "react";
-import { fetchAllCategories } from "../components/landingPage/ItemService";
+import { fetchAllCategories } from "../utils/ItemService";
 import PriceMenu from "../components/shopPage/PriceMenu";
 import { PRICE_RANGE } from "../constants";
 

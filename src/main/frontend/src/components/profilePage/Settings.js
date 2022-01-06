@@ -1,7 +1,7 @@
 import styles from "./Settings.module.css";
-import AuthService from "../loginAndRegistration/AuthService";
+import AuthService from "../../utils/AuthService";
 import { useContext } from "react";
-import { AuthContext } from "../loginAndRegistration/AuthContext";
+import { AuthContext } from "../../utils/AuthContext";
 import { useHistory } from "react-router";
 
 const Settings = () => {

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
-import { AuthContext } from "../components/loginAndRegistration/AuthContext.js";
+import { AuthContext } from "../utils/AuthContext.js";
 import Bids from "../components/profilePage/Bids.js";
 import Profile from "../components/profilePage/Profile.js"
 import Seller from "../components/profilePage/Seller.js";

@@ -2,7 +2,7 @@ package com.example.auctionapp.service;
 
 import com.example.auctionapp.model.Address;
 import com.example.auctionapp.model.User;
-import com.example.auctionapp.payload.UpdateRequest;
+import com.example.auctionapp.payload.UserUpdateRequest;
 import com.example.auctionapp.repository.UserRepository;
 import com.example.auctionapp.security.JwtUtils;
 import lombok.AllArgsConstructor;
@@ -37,30 +37,29 @@ public class UserService implements UserDetailsService {
         return loadUserByUsername(email);
     }
 
-    public ResponseEntity<?> updateUser(UpdateRequest updateRequest) {
-        User user = userRepository.getById(updateRequest.getId());
-        user.setName(updateRequest.getName());
-        user.setSurname(updateRequest.getSurname());
-        user.setEmail(updateRequest.getEmail());
-        user.setGender(updateRequest.getGender());
-        user.setDateOfBirth(updateRequest.getDateOfBirth());
-        user.setPhoneNumber(updateRequest.getPhoneNumber());
-        user.setPhoto(updateRequest.getPhoto());
-        if (updateRequest.getId() != null &&
-            updateRequest.getStreet() != null &&
-            updateRequest.getCity() != null &&
-            updateRequest.getZipCode() != null &&
-            updateRequest.getState() != null &&
-            updateRequest.getCountry() != null) {
+    public ResponseEntity<?> updateUser(UserUpdateRequest userUpdateRequest) {
+        User user = userRepository.getById(userUpdateRequest.getId());
+        user.setName(userUpdateRequest.getName());
+        user.setSurname(userUpdateRequest.getSurname());
+        user.setEmail(userUpdateRequest.getEmail());
+        user.setGender(userUpdateRequest.getGender());
+        user.setDateOfBirth(userUpdateRequest.getDateOfBirth());
+        user.setPhoneNumber(userUpdateRequest.getPhoneNumber());
+        user.setPhoto(userUpdateRequest.getPhoto());
+        if (userUpdateRequest.getStreet() != null &&
+            userUpdateRequest.getCity() != null &&
+            userUpdateRequest.getZipCode() != null &&
+            userUpdateRequest.getState() != null &&
+            userUpdateRequest.getCountry() != null) {
                 Address address = new Address(
-                        updateRequest.getId(),
-                        updateRequest.getStreet(),
-                        updateRequest.getCity(),
-                        updateRequest.getZipCode(),
-                        updateRequest.getState(),
-                        updateRequest.getCountry());
-                if (updateRequest.getAddressId() != null) {
-                    address.setId(updateRequest.getAddressId());
+                        userUpdateRequest.getId(),
+                        userUpdateRequest.getStreet(),
+                        userUpdateRequest.getCity(),
+                        userUpdateRequest.getZipCode(),
+                        userUpdateRequest.getState(),
+                        userUpdateRequest.getCountry());
+                if (userUpdateRequest.getAddressId() != null) {
+                    address.setId(userUpdateRequest.getAddressId());
                 }
                 user.setAddress(address);
         }

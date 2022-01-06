@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Item from "../landingPage/Item";
 import { Row, Col } from "react-bootstrap";
-import { fetchFilteredItems } from '../landingPage/ItemService';
+import { fetchFilteredItems } from '../../utils/ItemService';
 import { ITEM_SORT, DIRECTION, SHOP_PAGE_ITEMS, PAGE_VALUES, VIEWS } from "../../constants";
 import styles from "./ShopPageItems.module.css";
 import ActiveFilters from "./ActiveFilters";

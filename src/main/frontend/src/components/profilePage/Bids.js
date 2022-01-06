@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import styles from "./Bids.module.css";
 import tableStyles from "./Table.module.css";
-import { fetchItemsByBidUserId, fetchAllItems } from "../landingPage/ItemService";
-import AuthService from "../loginAndRegistration/AuthService";
+import { fetchItemsByBidUserId, fetchAllItems } from "../../utils/ItemService";
+import AuthService from "../../utils/AuthService";
 import { Container, Row, Col } from "react-bootstrap";
 import { TimeInterval } from 'time-interval-js';
 import { Link } from "react-router-dom";
-import { calculateTimeLeft } from "../Utils";
+import { calculateTimeLeft } from "../../utils/Utils";
 
 const Bids = () => {
 

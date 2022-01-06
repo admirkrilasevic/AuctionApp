@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ENVIRONMENT } from "../../constants";
+import { ENVIRONMENT } from "../constants";
 
 let API_URL = "";
 if (process.env.REACT_APP_API_URL) {
@@ -31,33 +31,6 @@ const login = (email, password) => {
     });
 };
 
-const update = (id, name, surname, email, gender, dateOfBirth, phoneNumber, photo, addressId, street, city, zipCode, state, country) => {
-  return axios.put(API_URL + "update", {
-    id,
-    name,
-    surname,
-    email,
-    gender,
-    dateOfBirth,
-    phoneNumber,
-    photo,
-    addressId,
-    street,
-    city,
-    zipCode,
-    state,
-    country
-  });
-};
-
-const deactivate = (token) => {
-  return axios.put(API_URL + "deactivate", {}, {
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  });
-};
-
 const logout = () => {
   localStorage.removeItem("user");
 };
@@ -70,7 +43,5 @@ export default {
   register,
   login,
   logout,
-  getCurrentUser,
-  update,
-  deactivate
+  getCurrentUser
 };

@@ -2,10 +2,11 @@ import styles from "./Profile.module.css";
 import { Row, Col } from "react-bootstrap";
 import { dates, months, years, countries, GENDER } from "../../constants";
 import { useState } from "react";
-import AuthService from "../loginAndRegistration/AuthService";
+import AuthService from "../../utils/AuthService";
 import FileBase64 from "react-file-base64";
-import axios from "axios";
+import { uploadImage } from "../../utils/ImageService";
 import { isEmail } from "validator";
+import UserService from "../../utils/UserService";
 
 const Profile = ({setMessage, setMessageStyle}) => {
 
@@ -62,7 +63,7 @@ const Profile = ({setMessage, setMessageStyle}) => {
       window.scrollTo(0, 0);
     }
     else {
-      await AuthService.update(user.id, name, surname, email, gender, dateOfBirth, phoneNumber, photo, user.address ? user.address.id : null, street, city, zipCode, state, country);
+      await UserService.update(user.id, name, surname, email, gender, dateOfBirth, phoneNumber, photo, user.address ? user.address.id : null, street, city, zipCode, state, country);
       setMessage("Information successfully updated");
       setMessageStyle(styles.headerMessageSuccess);
       window.scrollTo(0, 0);
@@ -74,18 +75,6 @@ const Profile = ({setMessage, setMessageStyle}) => {
     const allFieldsAreEmpty = fields.every(field => !field || field.trim() === "");
     const allFieldsAreFilled = fields.every(field => field && field.trim() !== "");
     return allFieldsAreEmpty || allFieldsAreFilled;
-  }
-
-  const uploadImage = async (e) => {
-    const res = axios.post(
-      'https://api.cloudinary.com/v1_1/dtm8an029/image/upload',
-      {
-        upload_preset: "o1u6dtrg",
-        file: e[0].base64
-      }
-    ).then((response) => {
-        setPhoto(response.data.secure_url);
-    });
   }
 
   return (
@@ -102,7 +91,7 @@ const Profile = ({setMessage, setMessageStyle}) => {
             </div>
             <div className={styles.uploadContainer}>
               <label className={styles.photoUpload}>
-                <FileBase64 multiple={true} onDone={uploadImage}/>
+                <FileBase64 multiple={true} onDone={e => uploadImage(e, setPhoto)}/>
                 Change Photo
               </label>
             </div>

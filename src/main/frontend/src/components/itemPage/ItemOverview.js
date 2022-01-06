@@ -7,11 +7,11 @@ import { faAngleRight, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import PageLayout from '../PageLayout';
 import { BID_MESSAGE } from "../../constants";
 import { useContext, useEffect, useRef, useState } from 'react';
-import { AuthContext } from '../loginAndRegistration/AuthContext';
+import { AuthContext } from '../../utils/AuthContext';
 import BiddersSection from './BiddersSection';
 import { Link } from "react-router-dom";
-import { placeBid } from '../landingPage/ItemService';
-import { calculateTimeLeft } from "../Utils";
+import { placeBid } from '../../utils/ItemService';
+import { calculateTimeLeft } from "../../utils/Utils";
 
 function ItemOverview({...item}) {
 
@@ -55,7 +55,6 @@ function ItemOverview({...item}) {
 
     const handlePlacingBid = () => {
         if ((bidAmount <= highestBid) || (bidAmount <= startingPrice) || (bidAmount == undefined)) {
-            console.log(bidAmount);
             setBidMessage(BID_MESSAGE.TRY_AGAIN);
             setBidMessageStyle(styles.bidMessageHeaderTryAgain);
         }

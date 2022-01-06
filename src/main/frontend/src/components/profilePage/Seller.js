@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import styles from "./Seller.module.css";
 import tableStyles from "./Table.module.css";
-import { SELLER_TABS } from "../../constants";
-import { fetchItemsByUserId } from "../landingPage/ItemService";
-import AuthService from "../loginAndRegistration/AuthService";
+import { SELLER_TABS, TIME_LEFT } from "../../constants";
+import { fetchItemsByUserId } from "../../utils/ItemService";
+import AuthService from "../../utils/AuthService";
 import { FiShoppingCart } from "react-icons/fi";
 import { IconContext } from "react-icons";
 import { Container, Row, Col } from "react-bootstrap";
-import { calculateTimeLeft } from "../Utils";
+import { calculateTimeLeft } from "../../utils/Utils";
 import { Link } from "react-router-dom";
 
 const Seller = () => {
@@ -31,8 +31,8 @@ const Seller = () => {
         }
     }
 
-    const activeItems = items && items.filter((item) => calculateTimeLeft(item.endDate) != "ENDED");
-    const soldItems = items && items.filter((item) =>  calculateTimeLeft(item.endDate) == "ENDED");
+    const activeItems = items && items.filter((item) => calculateTimeLeft(item.endDate) != TIME_LEFT.ENDED);
+    const soldItems = items && items.filter((item) =>  calculateTimeLeft(item.endDate) == TIME_LEFT.ENDED);
 
     return (
         <div className={styles.sellerContainer}>

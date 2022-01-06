@@ -2,11 +2,11 @@ import styles from "./Forms.module.css"
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-import Validations from "./Validations";
-import AuthService from "./AuthService";
+import Validations from "../../utils/Validations";
+import AuthService from "../../utils/AuthService";
 import { useState, useRef, useContext } from "react";
 import { useHistory } from "react-router";
-import { AuthContext } from "./AuthContext";
+import { AuthContext } from "../../utils/AuthContext";
 
 function LoginForm() {
   const form = useRef();

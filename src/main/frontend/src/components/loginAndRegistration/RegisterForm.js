@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-import AuthService from "./AuthService";
-import Validations from "./Validations"
+import AuthService from "../../utils/AuthService";
+import Validations from "../../utils/Validations"
 import { useState, useRef } from "react";
 
 function RegisterForm() {

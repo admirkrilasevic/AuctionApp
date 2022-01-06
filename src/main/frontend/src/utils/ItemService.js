@@ -1,4 +1,4 @@
-import { ENVIRONMENT } from "../../constants";
+import { ENVIRONMENT } from "../constants";
 import axios from "axios";
 import { requestHandler } from "./RequestHandler";
 

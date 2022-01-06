@@ -318,3 +318,7 @@ export const SELLER_TABS = {
     ACTIVE: "Active",
     SOLD: "Sold"
 }
+
+export const TIME_LEFT = {
+    ENDED: "ENDED"
+}

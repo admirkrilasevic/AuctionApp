@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import ItemOverview from "../components/itemPage/ItemOverview";
-import { fetchItemById } from "../components/landingPage/ItemService";
+import { fetchItemById } from "../utils/ItemService";
 
 
 function ItemPage(){

@@ -1,7 +1,7 @@
 import styles from "./CategoriesSection.module.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { fetchAllCategories } from "./ItemService";
+import { fetchAllCategories } from "../../utils/ItemService";
 
 function CategoriesSection() {
 

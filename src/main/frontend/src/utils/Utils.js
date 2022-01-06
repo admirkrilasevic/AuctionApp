@@ -1,10 +1,11 @@
 import { TimeInterval } from 'time-interval-js';
+import { TIME_LEFT } from '../constants';
 
 export const calculateTimeLeft = (endDate) => {
     const date1 = new Date(endDate);
     const date2 = new Date();
     if (date2 > date1) {
-        return "ENDED";
+        return TIME_LEFT.ENDED;
     }
     const interval = TimeInterval.fromTimeBetweenTwoDates(date1, date2);
     const hours = interval.inHours();

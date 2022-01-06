@@ -2,7 +2,7 @@ package com.example.auctionapp.payload;
 
 import java.time.LocalDate;
 
-public class UpdateRequest {
+public class UserUpdateRequest {
 
     private Long id;
     private String name;
@@ -20,7 +20,7 @@ public class UpdateRequest {
     private String state;
     private String country;
 
-    public UpdateRequest(Long id, String name, String surname, String email, String gender, LocalDate dateOfBirth, String phoneNumber, String photo, Long addressId, String street, String city, String zipCode, String state, String country) {
+    public UserUpdateRequest(Long id, String name, String surname, String email, String gender, LocalDate dateOfBirth, String phoneNumber, String photo, Long addressId, String street, String city, String zipCode, String state, String country) {
         this.id = id;
         this.name = name;
         this.surname = surname;
