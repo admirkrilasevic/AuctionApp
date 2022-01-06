@@ -47,7 +47,6 @@ public class AuthService {
                 user.getName(),
                 user.getSurname(),
                 user.getEmail(),
-                authenticationRequest.getPassword(),
                 user.getGender(),
                 user.getDateOfBirth(),
                 user.getPhoneNumber(),

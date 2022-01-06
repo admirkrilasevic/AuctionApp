@@ -66,7 +66,6 @@ const Profile = ({setMessage, setMessageStyle}) => {
       setMessage("Information successfully updated");
       setMessageStyle(styles.headerMessageSuccess);
       window.scrollTo(0, 0);
-      //refreshLocalStorage();
     }
   };
 
@@ -75,12 +74,6 @@ const Profile = ({setMessage, setMessageStyle}) => {
     const allFieldsAreEmpty = fields.every(field => !field || field.trim() === "");
     const allFieldsAreFilled = fields.every(field => field && field.trim() !== "");
     return allFieldsAreEmpty || allFieldsAreFilled;
-  }
-
-  const refreshLocalStorage = () => {
-    const password = user.password;
-    AuthService.logout();
-    AuthService.login(email, password);
   }
 
   const uploadImage = async (e) => {
