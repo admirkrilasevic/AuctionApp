@@ -13,6 +13,6 @@ export const calculateTimeLeft = (endDate) => {
     } else if (hours >= 24 && hours < 168) {
         return Math.round(hours/24) + " days " + Math.round(hours%24) + " hours" ;
     } else {
-        return Math.round(hours/186) + " weeks " + Math.round((hours%168)/24) + " days";
+        return Math.round(hours/168) + " weeks " + Math.round((hours%168)/24) + " days";
     }
 };
