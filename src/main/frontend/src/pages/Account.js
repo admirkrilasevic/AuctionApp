@@ -19,7 +19,7 @@ function Account(){
 
     const { loggedIn } = useContext(AuthContext);
     const { section } = useParams();
-    const [selectedSection, setSelectedSection] = useState(section);
+    const [selectedSection, setSelectedSection] = useState(section.charAt(0).toUpperCase() + section.substr(1).toLowerCase());
     const [message, setMessage] = useState();
     const [messageStyle, setMessageStyle] = useState();
     const history = useHistory();
@@ -38,11 +38,11 @@ function Account(){
     }
 
     useEffect(() => {
-        setSelectedSection(section);
+        setSelectedSection(section.charAt(0).toUpperCase() + section.substr(1).toLowerCase());
     }, [section])
 
     const arrowIcon = <FontAwesomeIcon className={styles.arrowIcon} icon={faArrowRight}/>;
-    const previousPage = <Link to="/account/Profile" className={styles.breadcrumbsLink}><li>My Account&ensp;</li></Link>;
+    const previousPage = <Link to="/account/profile" className={styles.breadcrumbsLink}><li>My Account&ensp;</li></Link>;
     const currentPage = <li className="purpleText">&ensp;{selectedSection}</li>;
 
     return (
@@ -50,10 +50,10 @@ function Account(){
             <PageLayout title={selectedSection} breadcrumbs={[previousPage, arrowIcon, currentPage]} message={message} messageStyle={messageStyle}>
                 <div className={styles.accountContainer}>
                     <div className={styles.sectionButtons}>
-                        <Link to={"/account/Profile"} className={(selectedSection == ACCOUNT_SECTIONS.PROFILE) ? styles.sectionButtonActive : styles.sectionButton}><ProfileIcon className={styles.reactIcons}/>&ensp;{ACCOUNT_SECTIONS.PROFILE}</Link>
-                        <Link to={"/account/Seller"} className={(selectedSection == ACCOUNT_SECTIONS.SELLER) ? styles.sectionButtonActive : styles.sectionButton}><SellerIcon className={styles.reactIcons}/>&ensp;{ACCOUNT_SECTIONS.SELLER}</Link>
-                        <Link to={"/account/Bids"} className={(selectedSection == ACCOUNT_SECTIONS.BIDS) ? styles.sectionButtonActive : styles.sectionButton}><BidsIcon className={styles.reactIcons}/>&ensp;{ACCOUNT_SECTIONS.BIDS}</Link>
-                        <Link to={"/account/Settings"} className={(selectedSection == ACCOUNT_SECTIONS.SETTINGS) ? styles.sectionButtonActive : styles.sectionButton}><SettingsIcon className={styles.reactIcons}/>&ensp;{ACCOUNT_SECTIONS.SETTINGS}</Link>
+                        <Link to={"/account/profile"} className={(selectedSection == ACCOUNT_SECTIONS.PROFILE) ? styles.sectionButtonActive : styles.sectionButton}><ProfileIcon className={styles.reactIcons}/>&ensp;{ACCOUNT_SECTIONS.PROFILE}</Link>
+                        <Link to={"/account/seller"} className={(selectedSection == ACCOUNT_SECTIONS.SELLER) ? styles.sectionButtonActive : styles.sectionButton}><SellerIcon className={styles.reactIcons}/>&ensp;{ACCOUNT_SECTIONS.SELLER}</Link>
+                        <Link to={"/account/bids"} className={(selectedSection == ACCOUNT_SECTIONS.BIDS) ? styles.sectionButtonActive : styles.sectionButton}><BidsIcon className={styles.reactIcons}/>&ensp;{ACCOUNT_SECTIONS.BIDS}</Link>
+                        <Link to={"/account/settings"} className={(selectedSection == ACCOUNT_SECTIONS.SETTINGS) ? styles.sectionButtonActive : styles.sectionButton}><SettingsIcon className={styles.reactIcons}/>&ensp;{ACCOUNT_SECTIONS.SETTINGS}</Link>
                         {(selectedSection == ACCOUNT_SECTIONS.SELLER) && <button className={styles.addItemButton}>+ &ensp; ADD ITEM</button>}
                     </div>
                     {displaySelection(selectedSection)}
