@@ -22,17 +22,17 @@ const HeaderNavbar = () => {
                     </div>
                 </Col>
                 <Col className={styles.buttonsContainer}>
-                    <NavLink to="/home" activeClassName={styles.activeLink}>Home</NavLink>
-                    <NavLink to="/shop/0" activeClassName={styles.activeLink}>Shop</NavLink>
+                    <NavLink to="/home" activeStyle={{ color: '#8367D8' }}>Home</NavLink>
+                    <NavLink to="/shop/0" activeStyle={{ color: '#8367D8' }}>Shop</NavLink>
                     <Dropdown onMouseOver={() => setShowDropdown(true)} onMouseLeave={() => setShowDropdown(false)} className={styles.dropdown}>
                         <Dropdown.Toggle variant="none" className={styles.dropdownToggle} onClick={() => setShowDropdown(false)}>
-                            <NavLink to="/account/profile" activeClassName={styles.activeLink}>MY ACCOUNT</NavLink>
+                            <NavLink to="/account/profile" activeStyle={{ color: '#8367D8' }}>MY ACCOUNT</NavLink>
                         </Dropdown.Toggle>
                         <Dropdown.Menu className={styles.dropdownMenu} show={showDropdown}>
-                            <Dropdown.Item><NavLink to="/account/profile" activeClassName={styles.activeLink}>Profile</NavLink></Dropdown.Item>
-                            <Dropdown.Item><NavLink to="/account/seller" activeClassName={styles.activeLink}>Become Seller</NavLink></Dropdown.Item>
-                            <Dropdown.Item><NavLink to="/account/bids" activeClassName={styles.activeLink}>Your bids</NavLink></Dropdown.Item>
-                            <Dropdown.Item><NavLink to="/account/settings" activeClassName={styles.activeLink}>Settings</NavLink></Dropdown.Item>
+                            <Dropdown.Item><NavLink to="/account/profile" activeStyle={{ color: '#8367D8' }}>Profile</NavLink></Dropdown.Item>
+                            <Dropdown.Item><NavLink to="/account/seller" activeStyle={{ color: '#8367D8' }}>Become Seller</NavLink></Dropdown.Item>
+                            <Dropdown.Item><NavLink to="/account/bids" activeStyle={{ color: '#8367D8' }}>Your bids</NavLink></Dropdown.Item>
+                            <Dropdown.Item><NavLink to="/account/settings" activeStyle={{ color: '#8367D8' }}>Settings</NavLink></Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </Col>
