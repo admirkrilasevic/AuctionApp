@@ -56,26 +56,26 @@ const Profile = ({setMessage, setMessageStyle}) => {
       setMessageStyle(styles.headerMessageError);
       window.scrollTo(0, 0);
     }
-    else if (street == "" && city == "" && zipCode == "" && state == "" && country == null) {
-      await AuthService.update(user.id, name, surname, email, gender, dateOfBirth, phoneNumber, photo, user.address ? user.address.id : null, street, city, zipCode, state, country);
-      setMessage("Information successfully updated");
-      setMessageStyle(styles.headerMessageSuccess);
-      window.scrollTo(0, 0);
-      refreshLocalStorage();
-    }
-    else if (street != "" && city != "" && zipCode != "" && state != "" && country != null) {
-      await AuthService.update(user.id, name, surname, email, gender, dateOfBirth, phoneNumber, photo, user.address ? user.address.id : null, street, city, zipCode, state, country);
-      setMessage("Information successfully updated");
-      setMessageStyle(styles.headerMessageSuccess);
-      window.scrollTo(0, 0);
-      refreshLocalStorage();
-    }
-    else {
+    else if (!isAddressComplete()){
       setMessage("If you wish to add an address, please fill in all the address fields");
       setMessageStyle(styles.headerMessageError);
       window.scrollTo(0, 0);
     }
+    else {
+      await AuthService.update(user.id, name, surname, email, gender, dateOfBirth, phoneNumber, photo, user.address ? user.address.id : null, street, city, zipCode, state, country);
+      setMessage("Information successfully updated");
+      setMessageStyle(styles.headerMessageSuccess);
+      window.scrollTo(0, 0);
+      //refreshLocalStorage();
+    }
   };
+
+  const isAddressComplete = () => {
+    const fields = [street, city, zipCode, state, country];
+    const allFieldsAreEmpty = fields.every(field => !field || field.trim() === "");
+    const allFieldsAreFilled = fields.every(field => field && field.trim() !== "");
+    return allFieldsAreEmpty || allFieldsAreFilled;
+  }
 
   const refreshLocalStorage = () => {
     const password = user.password;
