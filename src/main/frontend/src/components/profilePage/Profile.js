@@ -1,12 +1,14 @@
 import styles from "./Profile.module.css";
 import { Row, Col } from "react-bootstrap";
 import { dates, months, years, countries, GENDER } from "../../constants";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import AuthService from "../../utils/AuthService";
 import FileBase64 from "react-file-base64";
 import { uploadImage } from "../../utils/ImageService";
 import { isEmail } from "validator";
 import UserService from "../../utils/UserService";
+import { useHistory } from "react-router";
+import { AuthContext } from "../../utils/AuthContext";
 
 const Profile = ({setMessage, setMessageStyle}) => {
 
@@ -26,6 +28,9 @@ const Profile = ({setMessage, setMessageStyle}) => {
   const [zipCode, setZipCode] = useState(user.address ? user.address.zipCode : "");
   const [country, setCountry] = useState(user.address ? user.address.country : null);
   const [state, setState] = useState(user.address ? user.address.state : "");
+
+  const history = useHistory();
+  const { setToken, setLoggedIn } = useContext(AuthContext);
 
   const onChangeInput = (e, setter) => {
     const newValue = e.target.value;
@@ -63,10 +68,20 @@ const Profile = ({setMessage, setMessageStyle}) => {
       window.scrollTo(0, 0);
     }
     else {
-      await UserService.update(user.id, name, surname, email, gender, dateOfBirth, phoneNumber, photo, user.address ? user.address.id : null, street, city, zipCode, state, country);
-      setMessage("Information successfully updated");
-      setMessageStyle(styles.headerMessageSuccess);
-      window.scrollTo(0, 0);
+      await UserService.update(user.id, name, surname, email, gender, dateOfBirth, phoneNumber, photo, user.address ? user.address.id : null, street, city, zipCode, state, country, user.token);
+      if (user.email !== email) {
+        setMessage("Information successfully updated. Since your email has been changed, you will be logged out now and asked to log in again.");
+        setMessageStyle(styles.headerMessageSuccess);
+        window.scrollTo(0, 0);
+        AuthService.logout();
+        setTimeout(() => history.push("/login"), 4000);
+        setTimeout(() => setToken(false), 4000);
+      } 
+      else {
+        setMessage("Information successfully updated");
+        setMessageStyle(styles.headerMessageSuccess);
+        window.scrollTo(0, 0);
+      }
     }
   };
 

@@ -63,8 +63,8 @@ public class UserService implements UserDetailsService {
                 }
                 user.setAddress(address);
         }
-        userRepository.save(user);
-        return ResponseEntity.ok("User updated");
+        User updatedUser = userRepository.save(user);
+        return ResponseEntity.ok().body(updatedUser);
     }
 
     public ResponseEntity<?> deactivateAccount(HttpServletRequest httpServletRequest) {

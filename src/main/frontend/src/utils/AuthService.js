@@ -32,10 +32,13 @@ const login = (email, password) => {
 };
 
 const logout = () => {
-  localStorage.removeItem("user");
+  localStorage.clear();
 };
 
 const getCurrentUser = () => {
+  if (!!localStorage.getItem("updatedUser")) {
+    return JSON.parse(localStorage.getItem("updatedUser"));
+  }
   return JSON.parse(localStorage.getItem("user"));
 };
 
