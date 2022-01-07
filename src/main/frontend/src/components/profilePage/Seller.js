@@ -73,7 +73,7 @@ const Seller = () => {
                     <FiShoppingCart/>
                 </IconContext.Provider>
                 You do not have any scheduled items for sale.
-                <button className={styles.startSellingButton}>START SELLING</button>
+                <Link to="/sell" className={styles.startSellingButton}>START SELLING</Link>
             </div>}
         </div>
     );

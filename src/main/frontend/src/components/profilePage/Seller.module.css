@@ -61,4 +61,10 @@
     font-weight: bold;
     font-size: 18px;
     margin-top: 75px;
+    color: #000;
+}
+
+.startSellingButton:hover {
+    color: #FFF;
+    background-color: #8367D8;
 }
