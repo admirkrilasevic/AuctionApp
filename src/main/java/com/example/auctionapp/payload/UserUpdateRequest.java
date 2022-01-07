@@ -12,7 +12,6 @@ public class UserUpdateRequest {
     private LocalDate dateOfBirth;
     private String phoneNumber;
     private String photo;
-
     private Long addressId;
     private String street;
     private String city;

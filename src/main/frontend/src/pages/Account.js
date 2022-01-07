@@ -19,7 +19,7 @@ function Account(){
 
     const { loggedIn } = useContext(AuthContext);
     const { section } = useParams();
-    const [selectedSection, setSelectedSection] = useState(section.charAt(0).toUpperCase() + section.substr(1).toLowerCase());
+    const [selectedSection, setSelectedSection] = useState();
     const [message, setMessage] = useState();
     const [messageStyle, setMessageStyle] = useState();
     const history = useHistory();
@@ -37,8 +37,12 @@ function Account(){
         }
     }
 
+    const convertToTitleCase = (string) => {
+        return string.charAt(0).toUpperCase() + string.substr(1).toLowerCase()
+    }
+
     useEffect(() => {
-        setSelectedSection(section.charAt(0).toUpperCase() + section.substr(1).toLowerCase());
+        setSelectedSection(convertToTitleCase(section));
     }, [section])
 
     const arrowIcon = <FontAwesomeIcon className={styles.arrowIcon} icon={faArrowRight}/>;
