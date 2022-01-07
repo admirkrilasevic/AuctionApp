@@ -1,0 +1,169 @@
+.profileContainer {
+    margin-top: 80px;
+}
+
+.sectionContainer {
+    width: 100%;
+    border: 1px solid #E3E3E3;
+    margin-bottom: 20px;
+}
+
+.sectionTitle {
+    background-color: #FCFCFC;
+    text-align: left;
+    padding: 16px 32px;
+    font-size: 18px;
+}
+
+.buttonContainer {
+    text-align: right;
+    margin-bottom: 170px;
+}
+
+.saveButton {
+    text-decoration: none;
+    border: 3px solid #8367D8;
+    background-color: inherit;
+    padding: 8px 24px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.photoSection {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.photoContainer {
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    border: 1px solid #D8D8D8;
+    background-color: #FCFCFC;
+    object-fit: cover;
+}
+
+.photoContainer span {
+    top: 50%;
+    position: relative;
+    font-weight: bold;
+}
+
+.uploadContainer {
+    margin-top: 30px;
+}
+
+.photoUpload {
+    border: 3px solid #8367D8;
+    font-size: 18px;
+    font-weight: bold;
+    width: 350px;
+    padding: 5px 0px;
+    text-align: center;
+}
+
+.infoContainer {
+    text-align: left;
+    margin-top: 24px;
+}
+
+.inputField {
+    border: 1px solid #D8D8D8;
+    background-color: #FCFCFC;
+    width: 546px;
+    height: 63px;
+    padding-left: 24px;
+    margin-bottom: 24px;
+    color: #9B9B9B;
+}
+
+.sameRowContainer {
+    width: 546px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.smallInputField {
+    border: 1px solid #D8D8D8;
+    background-color: #FCFCFC;
+    width: 166px;
+    height: 63px;
+    padding-left: 24px;
+    margin-bottom: 24px;
+    color: #9B9B9B;
+}
+
+.rightAlignContainer {
+    margin-top: 24px;
+    margin-left: 640px;
+    text-align: left;
+}
+
+.radioButtonContainer {
+    margin-bottom: 24px;
+}
+
+.radioButtonContainer input{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 1px solid #8367D8;
+    appearance: none;
+}
+
+.radioButtonContainer input:checked{
+    background-color: #8367D8;
+    color: #8367D8;
+}
+
+.cardLabelsContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 450px;
+}
+
+.mediumInputField {
+    border: 1px solid #D8D8D8;
+    background-color: #FCFCFC;
+    width: 263px;
+    height: 63px;
+    padding-left: 24px;
+    margin-bottom: 24px;
+    color: #9B9B9B;
+}
+
+.cityLabelsContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 345px;
+}
+
+.headerMessageSuccess {
+    color: #417505;
+    text-align: start;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: #F0F3EE;
+    height: 60px;
+    width: 100%;
+    padding: 18px 160px;
+    margin-top: 10px;
+}
+
+.headerMessageError {
+    color: #AB944E;
+    text-align: start;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: #F6F2E5;
+    height: 60px;
+    width: 100%;
+    padding: 18px 160px;
+    margin-top: 10px;
+}

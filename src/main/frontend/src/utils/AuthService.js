@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ENVIRONMENT } from "../../constants";
+import { ENVIRONMENT } from "../constants";
 
 let API_URL = "";
 if (process.env.REACT_APP_API_URL) {
@@ -27,16 +27,18 @@ const login = (email, password) => {
       if (response.data.token) {
         localStorage.setItem("user", JSON.stringify(response.data));
       }
-
       return response.data;
     });
 };
 
 const logout = () => {
-  localStorage.removeItem("user");
+  localStorage.clear();
 };
 
 const getCurrentUser = () => {
+  if (!!localStorage.getItem("updatedUser")) {
+    return JSON.parse(localStorage.getItem("updatedUser"));
+  }
   return JSON.parse(localStorage.getItem("user"));
 };
 

@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import SocialNetworks from './SocialNetworks';
 import { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router";
-import AuthService from "./loginAndRegistration/AuthService";
-import { AuthContext } from './loginAndRegistration/AuthContext';
+import AuthService from "../utils/AuthService";
+import { AuthContext } from '../utils/AuthContext';
 
 const Header = () => {
 

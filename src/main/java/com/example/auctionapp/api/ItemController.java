@@ -47,5 +47,15 @@ public class ItemController {
             @RequestParam("maxPrice") double maxPrice){
         return itemService.getFilteredItems(page, size, sort, direction, categoryIds, subcategoryIds, minPrice, maxPrice);
     }
+
+    @GetMapping("/user/{userId}")
+    public List<Item> getItemsByUserId(@PathVariable("userId") Long userId){
+        return itemService.getItemsByUserId(userId);
+    }
+
+    @GetMapping("/user/bid/{userId}")
+    public List<Item> getItemsByBidUserId(@PathVariable("userId") Long userId){
+        return itemService.getItemsByBidUserId(userId);
+    }
     
 }

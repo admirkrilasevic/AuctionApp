@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import Item from "../landingPage/Item";
 import { Row, Col } from "react-bootstrap";
-import { fetchFilteredItems } from '../landingPage/ItemService';
+import { fetchFilteredItems } from '../../utils/ItemService';
 import { ITEM_SORT, DIRECTION, SHOP_PAGE_ITEMS, PAGE_VALUES, VIEWS } from "../../constants";
 import styles from "./ShopPageItems.module.css";
 import ActiveFilters from "./ActiveFilters";
-import { BsGrid3X3 } from "react-icons/bs";
-import { BsList } from "react-icons/bs";
+import { BsGrid3X3, BsList } from "react-icons/bs";
 import ListItem from "./ListItem";
 
 function ShopPageItems(
@@ -120,8 +119,12 @@ function ShopPageItems(
           ))}
         </select>
         <div className={styles.gridListSwitch}>
-          <button className={(view == VIEWS.GRID) ? styles.gridListButtonActive : styles.gridListButton} onClick={() => onGridListSwitch(VIEWS.GRID)}><BsGrid3X3/>&ensp;Grid</button>
-          <button className={(view == VIEWS.LIST) ? styles.gridListButtonActive : styles.gridListButton} onClick={() => onGridListSwitch(VIEWS.LIST)}><BsList/>&ensp;List</button>
+          <button className={(view == VIEWS.GRID) ? styles.gridListButtonActive : styles.gridListButton} onClick={() => onGridListSwitch(VIEWS.GRID)}>
+            <BsGrid3X3 className={styles.reactIcons}/>&ensp;{VIEWS.GRID}
+          </button>
+          <button className={(view == VIEWS.LIST) ? styles.gridListButtonActive : styles.gridListButton} onClick={() => onGridListSwitch(VIEWS.LIST)}>
+            <BsList className={styles.reactIcons}/>&ensp;{VIEWS.LIST}
+          </button>
         </div>
       </div>
       {

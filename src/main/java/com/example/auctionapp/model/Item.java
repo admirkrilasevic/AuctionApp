@@ -49,9 +49,6 @@ public class Item {
     @Column(name = "end_date")
     private Date endDate;
 
-    @Column
-    private String state;
-
     @Column(name = "address_id")
     private Long addressId;
 

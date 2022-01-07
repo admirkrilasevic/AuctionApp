@@ -1,0 +1,64 @@
+.accountContainer {
+    margin-top: 40px;
+}
+
+.sectionButtons {
+    display: flex;
+    align-items: flex-start;
+}
+
+.sectionButton {
+    text-decoration: none;
+    border: none;
+    font-size: 18px;
+    padding: 16px;
+    background-color: inherit;
+    color: #000;
+}
+
+.sectionButtonActive {
+    text-decoration: none;
+    border: none;
+    font-size: 18px;
+    padding: 16px;
+    background-color: #8367D8;
+    color: #FFF;
+}
+
+.sectionButton:hover {
+    background-color: #8367D8;
+    color: #FFF;
+}
+
+.sectionButtonActive:hover {
+    color: #FFF;
+}
+
+.addItemButton {
+    background-color: #8367D8;
+    margin-left: auto;
+    margin-right: 0px;
+    padding: 16px 50px;
+    text-decoration: none;
+    border: none;
+    color: #FFF;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.arrowIcon {
+    margin-top: 5px;
+}
+
+.breadcrumbsLink {
+    text-decoration: none;
+    color: inherit;
+}
+
+.breadcrumbsLink:hover {
+    color: #8367D8;
+}
+
+.reactIcons {
+    margin-bottom: 3px;
+}

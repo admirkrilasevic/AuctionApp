@@ -13,7 +13,7 @@ import TermsConditions from './pages/TermsAndConditions';
 import PrivacyPolicy from './pages/PrivacyAndPolicy';
 import PageLayout from './components/PageLayout';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
-import { AuthProvider } from './components/loginAndRegistration/AuthContext';
+import { AuthProvider } from './utils/AuthContext';
 import ItemPage from './pages/ItemPage';
 
 function App() {
@@ -51,10 +51,8 @@ function App() {
                 <Shop />
               </PageLayout>
             </Route>
-            <Route path="/account">
-              <PageLayout>
-                <Account />
-              </PageLayout>
+            <Route path="/account/:section">
+              <Account />
             </Route>
             <Route path="/about">
               <PageLayout title="About Us">

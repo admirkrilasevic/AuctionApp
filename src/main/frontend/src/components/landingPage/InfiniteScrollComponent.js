@@ -2,7 +2,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { useEffect, useState } from "react";
 import Item from "./Item";
 import { Row, Col } from "react-bootstrap";
-import { fetchItems } from './ItemService';
+import { fetchItems } from '../../utils/ItemService';
 import { LANDING_PAGE_TAB_VALUES, ITEM_SORT, DIRECTION } from "../../constants";
 
 function InfiniteScrollComponent(props) {

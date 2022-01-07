@@ -1,11 +1,9 @@
 package com.example.auctionapp.payload;
 
-import com.example.auctionapp.model.Address;
-
 import java.time.LocalDate;
 
-public class AuthResponse {
-    private String token;
+public class UserUpdateRequest {
+
     private Long id;
     private String name;
     private String surname;
@@ -14,10 +12,14 @@ public class AuthResponse {
     private LocalDate dateOfBirth;
     private String phoneNumber;
     private String photo;
-    private Address address;
+    private Long addressId;
+    private String street;
+    private String city;
+    private String zipCode;
+    private String state;
+    private String country;
 
-    public AuthResponse(String token, Long id, String name, String surname, String email, String gender, LocalDate dateOfBirth, String phoneNumber, String photo, Address address) {
-        this.token = token;
+    public UserUpdateRequest(Long id, String name, String surname, String email, String gender, LocalDate dateOfBirth, String phoneNumber, String photo, Long addressId, String street, String city, String zipCode, String state, String country) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -26,15 +28,12 @@ public class AuthResponse {
         this.dateOfBirth = dateOfBirth;
         this.phoneNumber = phoneNumber;
         this.photo = photo;
-        this.address = address;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
+        this.addressId = addressId;
+        this.street = street;
+        this.city = city;
+        this.zipCode = zipCode;
+        this.state = state;
+        this.country = country;
     }
 
     public Long getId() {
@@ -101,12 +100,51 @@ public class AuthResponse {
         this.photo = photo;
     }
 
-    public Address getAddress() {
-        return address;
+    public Long getAddressId() {
+        return addressId;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setAddressId(Long addressId) {
+        this.addressId = addressId;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 }
-

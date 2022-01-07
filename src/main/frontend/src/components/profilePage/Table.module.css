@@ -1,0 +1,57 @@
+.table {
+    text-align: left;
+    border: 1px solid #E3E3E3;
+    font-weight: bold;
+    margin-bottom: 100px;
+}
+
+.headerRow {
+    background-color: #FCFCFC;
+    font-weight: normal;
+    padding: 20px;
+}
+
+.contentRow {
+    padding: 20px;
+}
+
+.verticalCenter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.tableImages {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.highestBidCol {
+    color: #417505;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.notHighestBidCol {
+    color: #0066CC;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.viewItemLink {
+    text-decoration: none;
+    border: 3px solid #D8D8D8;
+    background-color: inherit;
+    padding: 10px 0px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #000;
+    text-align: center;
+}
+
+.viewItemLink:hover {
+    color: #8367D8;
+}

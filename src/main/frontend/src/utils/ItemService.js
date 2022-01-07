@@ -1,4 +1,4 @@
-import { ENVIRONMENT } from "../../constants";
+import { ENVIRONMENT } from "../constants";
 import axios from "axios";
 import { requestHandler } from "./RequestHandler";
 
@@ -52,6 +52,27 @@ export const fetchAllCategories = async () => {
 
 export const fetchCategoryById = async (categoryId) => {
   return axios.get(`${API_URL}/api/v1/categories/${categoryId}`)
+  .then((res) => {
+    return res.data;
+  })
+};
+
+export const fetchItemsByUserId = async (userId) => {
+  return axios.get(`${API_URL}/api/v1/items/user/${userId}`)
+  .then((res) => {
+    return res.data;
+  })
+};
+
+export const fetchItemsByBidUserId = async (userId) => {
+  return axios.get(`${API_URL}/api/v1/items/user/bid/${userId}`)
+  .then((res) => {
+    return res.data;
+  })
+};
+
+export const fetchAllItems = async () => {
+  return axios.get(`${API_URL}/api/v1/items`)
   .then((res) => {
     return res.data;
   })

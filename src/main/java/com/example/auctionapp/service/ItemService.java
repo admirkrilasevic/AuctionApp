@@ -32,8 +32,7 @@ public class ItemService {
 
     public Page<Item> getItems(int page, int size, ItemSort sort, Sort.Direction direction) {
         PageRequest pageable = PageRequest.of(page, size, Sort.by(direction, sort.toString()));
-        Page<Item> items = itemRepository.findAll(pageable);
-        return items;
+        return itemRepository.getItems(pageable);
     }
 
     public Optional<Item> getItemById(long id) {
@@ -66,6 +65,14 @@ public class ItemService {
         }
         categoryIds = categoryIdList.toArray(new Long[categoryIdList.size()]);
         return categoryIds;
+    }
+
+    public List<Item> getItemsByUserId(Long userId) {
+        return itemRepository.getItemsByUserId(userId);
+    }
+
+    public List<Item> getItemsByBidUserId(Long userId) {
+        return itemRepository.getItemsByBidUserId(userId);
     }
 
 }

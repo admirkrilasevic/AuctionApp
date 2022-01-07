@@ -1,11 +1,13 @@
 package com.example.auctionapp.model;
 
 import lombok.*;
+import org.hibernate.annotations.Where;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -14,6 +16,7 @@ import java.util.Collections;
 @AllArgsConstructor
 @Entity
 @Table(schema = "public")
+@Where(clause = "deactivated = false")
 public class User implements UserDetails {
 
     @Id
@@ -39,12 +42,93 @@ public class User implements UserDetails {
     @Column
     private String role;
 
+    @Column
+    private String gender;
+
+    @Column(name = "date_of_birth")
+    private LocalDate dateOfBirth;
+
+    @Column(name = "phone_no")
+    private String phoneNumber;
+
+    @Column
+    private String photo;
+
+    @Column
+    private boolean deactivated;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id")
+    private Address address;
+
     public User(@NonNull String name, @NonNull String surname, @NonNull String email, @NonNull String password, String role) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
         this.role = role;
+    }
+
+    public User(Long id, @NonNull String name, @NonNull String surname, @NonNull String email, @NonNull String password, String role, String gender, LocalDate dateOfBirth, String phoneNumber, String photo, Address address) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.phoneNumber = phoneNumber;
+        this.photo = photo;
+        this.address = address;
+    }
+
+    public boolean isDeactivated() {
+        return deactivated;
+    }
+
+    public void setDeactivated(boolean deactivated) {
+        this.deactivated = deactivated;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public Long getId() {

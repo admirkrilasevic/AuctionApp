@@ -7,11 +7,11 @@ import { faAngleRight, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import PageLayout from '../PageLayout';
 import { BID_MESSAGE } from "../../constants";
 import { useContext, useEffect, useRef, useState } from 'react';
-import { AuthContext } from '../loginAndRegistration/AuthContext';
+import { AuthContext } from '../../utils/AuthContext';
 import BiddersSection from './BiddersSection';
 import { Link } from "react-router-dom";
-import { placeBid } from '../landingPage/ItemService';
-import { TimeInterval } from 'time-interval-js';
+import { placeBid } from '../../utils/ItemService';
+import { calculateTimeLeft } from "../../utils/Utils";
 
 function ItemOverview({...item}) {
 
@@ -41,7 +41,7 @@ function ItemOverview({...item}) {
     useEffect(() => {
         setHighestBid(calculateHighestBid());
         setNoOfBids(calculateNumberOfBids());
-        setTimeLeft(calculateTimeLeft());
+        setTimeLeft(calculateTimeLeft(endDate));
     }, [itemBids]);
 
     useEffect(() => {
@@ -54,7 +54,7 @@ function ItemOverview({...item}) {
     };
 
     const handlePlacingBid = () => {
-        if (bidAmount < highestBid) {
+        if ((bidAmount <= highestBid) || (bidAmount <= startingPrice) || (bidAmount == undefined)) {
             setBidMessage(BID_MESSAGE.TRY_AGAIN);
             setBidMessageStyle(styles.bidMessageHeaderTryAgain);
         }
@@ -80,20 +80,6 @@ function ItemOverview({...item}) {
             return sortedbids[sortedbids.length-1].amount;
         } else {
             return 0;
-        }
-    }
-
-    const calculateTimeLeft = () => {
-        const date1 = new Date(endDate);
-        const date2 = new Date();
-        const interval = TimeInterval.fromTimeBetweenTwoDates(date1, date2);
-        const hours = interval.inHours();
-        if (hours < 24) {
-            return Math.round(hours) + " hours";
-        } else if (hours >= 24 && hours < 168) {
-            return Math.round(hours/24) + " days " + Math.round(hours%24) + " hours" ;
-        } else {
-            return Math.round(hours/186) + " weeks " + Math.round((hours%168)/24) + " days";
         }
     }
   
