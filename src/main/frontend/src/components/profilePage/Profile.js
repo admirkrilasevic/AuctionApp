@@ -70,12 +70,10 @@ const Profile = ({setMessage, setMessageStyle}) => {
     else {
       await UserService.update(user.id, name, surname, email, gender, dateOfBirth, phoneNumber, photo, user.address ? user.address.id : null, street, city, zipCode, state, country, user.token);
       if (user.email !== email) {
-        setMessage("Information successfully updated. Since your email has been changed, you will be logged out now and asked to log in again.");
-        setMessageStyle(styles.headerMessageSuccess);
-        window.scrollTo(0, 0);
         AuthService.logout();
-        setTimeout(() => history.push("/login"), 4000);
-        setTimeout(() => setToken(false), 4000);
+        window.alert("Information successfully updated. Since your email has been changed, you will be logged out now and asked to log in again.");
+        history.push("/login");
+        setToken(false);
       } 
       else {
         setMessage("Information successfully updated");
