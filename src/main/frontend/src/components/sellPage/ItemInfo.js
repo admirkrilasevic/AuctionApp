@@ -3,7 +3,7 @@ import formStyles from "./SectionForms.module.css";
 import FileBase64 from 'react-file-base64';
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { fetchAllCategories } from "../landingPage/ItemService";
+import { fetchAllCategories } from "../../utils/ItemService";
 
 const ItemInfo = ({setCurrentSection, name, setName, category, setCategory, subcategory, setSubcategory, description, setDescription, photos, setPhotos}) => {
 
