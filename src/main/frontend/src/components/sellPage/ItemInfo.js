@@ -1,32 +1,17 @@
 import { SELL_PAGE_SECTIONS } from "../../constants";
 import formStyles from "./SectionForms.module.css";
 import FileBase64 from 'react-file-base64';
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { fetchAllCategories } from "../../utils/ItemService";
+import { uploadImages } from "../../utils/ImageService";
 
 const ItemInfo = ({setCurrentSection, name, setName, category, setCategory, subcategory, setSubcategory, description, setDescription, photos, setPhotos}) => {
-
-    const uploadPhotos = async (e) => {
-        for (let i = 0; i < e.length; i++) {
-            axios.post(
-            'https://api.cloudinary.com/v1_1/dtm8an029/image/upload',
-            {
-                upload_preset: "o1u6dtrg",
-                file: e[i].base64
-            }
-            ).then((response) => {
-                setPhotos([...photos, response.data.secure_url]);
-            });
-        }
-    }
 
     const [allCategories, setAllCategories] = useState();
 
     useEffect(async () => {
-        const cat = await fetchAllCategories();
-        console.log(cat);
-        setAllCategories(cat);
+        const fetchedCategories = await fetchAllCategories();
+        setAllCategories(fetchedCategories);
     }, [])
 
     const categories = allCategories && allCategories.filter((category) => category.parentCategoryId == null);
@@ -57,12 +42,16 @@ const ItemInfo = ({setCurrentSection, name, setName, category, setCategory, subc
                 <div className={formStyles.wordLimit}>100 words (700 characters)</div>
             </div>
             <div className={formStyles.photoUpload}>
+                {(photos !== null) ? 
+                <div className={formStyles.imagesContainer}>
+                    {photos.map((photo) => <img src={photo}></img>)}
+                </div> :
                 <label>
-                    <FileBase64 multiple={true} onDone={uploadPhotos}/>
+                    <FileBase64 multiple={true} onDone={e => uploadImages(e, photos, setPhotos)}/>
                     <p>Upload Photos</p>
                     <p>or just drag and drop</p>
                     <p>+Add at least 3 photos</p>
-                </label>
+                </label>}
             </div>
             <div className={formStyles.buttonsContainer}>
                 <button className={formStyles.nextButton} onClick={() => setCurrentSection(SELL_PAGE_SECTIONS.PRICE)}>NEXT</button>

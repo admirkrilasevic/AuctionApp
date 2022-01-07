@@ -24,6 +24,28 @@ function SellPage(){
     const [state, setState] = useState();
     const [country, setCountry] = useState();
 
+    const formatDate = (date) => {
+        const day = date.substr(0,2);
+        const month = date.substr(3,2);
+        const year = date.substr(6,4);
+        return year+"-"+month+"-"+day;
+    }
+
+    const addItem = () => {
+        console.log(name);
+        console.log(category);
+        console.log(subcategory);
+        console.log(description);
+        console.log(photos.join(";"));
+        console.log(price);
+        console.log(formatDate(startDate));
+        console.log(formatDate(endDate));
+        console.log(street);
+        console.log(city);
+        console.log(zipCode);
+        console.log(state);
+        console.log(country);
+    }
 
     const displaySection = (selection) => {
         switch (selection) {
@@ -64,6 +86,7 @@ function SellPage(){
                     setState={setState}
                     country={country}
                     setCountry={setCountry}
+                    addItem={addItem}
                 />
         }
     };

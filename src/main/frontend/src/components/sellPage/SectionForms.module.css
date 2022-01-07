@@ -241,3 +241,16 @@ input[type="file"] {
 .formText {
     margin-top: 48px;
 }
+
+.imagesContainer {
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.imagesContainer img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}

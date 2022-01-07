@@ -1,6 +1,6 @@
 package com.example.auctionapp.payload;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class AddItemRequest {
 
@@ -12,11 +12,11 @@ public class AddItemRequest {
     private String description;
     private String photo;
     private double startingPrice;
-    private Date startDate;
-    private Date endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private Long addressId;
 
-    public AddItemRequest(Long id, Long userId, String name, Long categoryId, Long subcategoryId, String description, String photo, double startingPrice, Date startDate, Date endDate, Long addressId) {
+    public AddItemRequest(Long id, Long userId, String name, Long categoryId, Long subcategoryId, String description, String photo, double startingPrice, LocalDate startDate, LocalDate endDate, Long addressId) {
         this.id = id;
         this.userId = userId;
         this.name = name;
@@ -94,19 +94,19 @@ public class AddItemRequest {
         this.startingPrice = startingPrice;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 

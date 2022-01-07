@@ -2,11 +2,7 @@ import { SELL_PAGE_SECTIONS } from "../../constants";
 import formStyles from "./SectionForms.module.css";
 import { countries } from "../../constants";
 
-const LocationAndShipping = ({setCurrentSection, street, setStreet, city, setCity, zipCode, setZipCode, state, setState, country, setCountry}) => {
-
-    const addItem = () => {
-        
-    }
+const LocationAndShipping = ({setCurrentSection, street, setStreet, city, setCity, zipCode, setZipCode, state, setState, country, setCountry, addItem}) => {
 
     return (
         <div className={formStyles.formContainer}>
