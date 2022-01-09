@@ -60,8 +60,7 @@ public class Item {
     )
     private List<Bid> bids;
 
-    public Item(Long id, Long userId, String name, Long categoryId, Long subcategoryId, String description, String photo, double startingPrice, LocalDate startDate, LocalDate endDate, Long addressId) {
-        this.id = id;
+    public Item(Long userId, String name, Long categoryId, Long subcategoryId, String description, String photo, double startingPrice, LocalDate startDate, LocalDate endDate, Long addressId) {
         this.userId = userId;
         this.name = name;
         this.categoryId = categoryId;

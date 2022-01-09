@@ -5,11 +5,15 @@ import { SELL_PAGE_SECTIONS } from "../constants";
 import { FaCircle } from "react-icons/fa";
 import PriceAndDate from "../components/sellPage/PriceAndDate";
 import LocationAndShipping from "../components/sellPage/LocationAndShipping";
+import { addItemRequest } from "../utils/ItemService";
+import AuthService from "../utils/AuthService";
+import PageLayout from "../components/PageLayout";
 
 function SellPage(){
 
     const [currentSection, setCurrentSection] = useState(SELL_PAGE_SECTIONS.ITEM);
 
+    const user = AuthService.getCurrentUser();
     const [name, setName] = useState();
     const [category, setCategory] = useState();
     const [subcategory, setSubcategory] = useState();
@@ -18,11 +22,14 @@ function SellPage(){
     const [price, setPrice] = useState();
     const [startDate, setStartDate] = useState();
     const [endDate, setEndDate] = useState();
-    const [street, setStreet] = useState();
-    const [city, setCity] = useState();
-    const [zipCode, setZipCode] = useState();
-    const [state, setState] = useState();
-    const [country, setCountry] = useState();
+    const [street, setStreet] = useState(user.street ? user.street : null);
+    const [city, setCity] = useState(user.city ? user.city : null);
+    const [zipCode, setZipCode] = useState(user.zipCode ? user.zipCode : null);
+    const [state, setState] = useState(user.state ? user.state : null);
+    const [country, setCountry] = useState(user.country ? user.country : null);
+
+    const [message, setMessage] = useState();
+    const [messageStyle, setMessageStyle] = useState();
 
     const formatDate = (date) => {
         const day = date.substr(0,2);
@@ -31,13 +38,13 @@ function SellPage(){
         return year+"-"+month+"-"+day;
     }
 
-    const addItem = () => {
+    const addItem = async () => {
         console.log(name);
-        console.log(category);
-        console.log(subcategory);
+        console.log(Number(category));
+        console.log(Number(subcategory));
         console.log(description);
-        console.log(photos.join(";"));
-        console.log(price);
+        console.log(String(photos.join(";")));
+        console.log(Number(price));
         console.log(formatDate(startDate));
         console.log(formatDate(endDate));
         console.log(street);
@@ -45,6 +52,11 @@ function SellPage(){
         console.log(zipCode);
         console.log(state);
         console.log(country);
+        const response = await addItemRequest(user.token, name, parseInt(category), parseInt(subcategory), description, String(photos.join(";")), parseFloat(price), formatDate(startDate), 
+            formatDate(endDate), user.addressId ? user.addressId : null, street, city, zipCode, state, country);
+        console.log(response);
+        setMessage("Item added");
+        setMessageStyle(styles.headerMessageSuccess);
     }
 
     const displaySection = (selection) => {
@@ -92,16 +104,18 @@ function SellPage(){
     };
 
     return (
-        <div className={styles.sellPageContainer}>
-            <div className={styles.switchContainer}>
-                <ul>
-                    <li onClick={() => setCurrentSection(SELL_PAGE_SECTIONS.ITEM)} className={currentSection === SELL_PAGE_SECTIONS.ITEM ? styles.activeSection : ""}><FaCircle/></li>
-                    <li onClick={() => setCurrentSection(SELL_PAGE_SECTIONS.PRICE)} className={currentSection === SELL_PAGE_SECTIONS.PRICE ? styles.activeSection : ""}><FaCircle/></li>
-                    <li onClick={() => setCurrentSection(SELL_PAGE_SECTIONS.LOCATION)} className={currentSection === SELL_PAGE_SECTIONS.LOCATION ? styles.activeSection : ""}><FaCircle/></li>
-                </ul>
+        <PageLayout message={message} messageStyle={messageStyle}>
+            <div className={styles.sellPageContainer}>
+                <div className={styles.switchContainer}>
+                    <ul>
+                        <li onClick={() => setCurrentSection(SELL_PAGE_SECTIONS.ITEM)} className={currentSection === SELL_PAGE_SECTIONS.ITEM ? styles.activeSection : ""}><FaCircle/></li>
+                        <li onClick={() => setCurrentSection(SELL_PAGE_SECTIONS.PRICE)} className={currentSection === SELL_PAGE_SECTIONS.PRICE ? styles.activeSection : ""}><FaCircle/></li>
+                        <li onClick={() => setCurrentSection(SELL_PAGE_SECTIONS.LOCATION)} className={currentSection === SELL_PAGE_SECTIONS.LOCATION ? styles.activeSection : ""}><FaCircle/></li>
+                    </ul>
+                </div>
+                {displaySection(currentSection)}
             </div>
-            {displaySection(currentSection)}
-        </div>
+        </PageLayout>
     );
 }
 

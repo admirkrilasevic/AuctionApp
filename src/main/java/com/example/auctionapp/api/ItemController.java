@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @CrossOrigin
@@ -61,8 +62,8 @@ public class ItemController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> addItem(@RequestBody AddItemRequest addItemRequest) {
-        return itemService.addItem(addItemRequest);
+    public ResponseEntity<?> addItem(HttpServletRequest httpServletRequest, @RequestBody AddItemRequest addItemRequest) {
+        return itemService.addItem(httpServletRequest, addItemRequest);
     }
     
 }

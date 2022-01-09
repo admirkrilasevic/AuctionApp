@@ -15,7 +15,7 @@ const ItemInfo = ({setCurrentSection, name, setName, category, setCategory, subc
     }, [])
 
     const categories = allCategories && allCategories.filter((category) => category.parentCategoryId == null);
-    const subcategories = allCategories && allCategories.filter((category) => category.parentCategoryId != null);
+    const subcategories = allCategories && allCategories.filter((subcategory) => subcategory.parentCategoryId == category);
 
     return (
         <div className={formStyles.formContainer}>
@@ -27,13 +27,15 @@ const ItemInfo = ({setCurrentSection, name, setName, category, setCategory, subc
                 <input className={formStyles.formInput} value={name} onChange={(e) => setName(e.target.value)}></input>
             </div>
             <div className={formStyles.twoInSameRow}>
-                <select className={formStyles.formSelect} value={category} onChange={(e) => setCategory(e.target.value)}>
+                <select className={formStyles.formSelect} onChange={(e) => setCategory(e.target.value)}>
                     <option disabled selected hidden>Select Category</option>
-                    {categories && categories.map((category) => <option>{category.name}</option>)}
+                    {categories && categories.map((category) => <option value={category.id}>{category.name}</option>)}
+                    {console.log(category)}
                 </select>
-                <select className={formStyles.formSelect} value={subcategory} onChange={(e) => setSubcategory(e.target.value)}>
+                <select className={formStyles.formSelect} onChange={(e) => setSubcategory(e.target.value)}>
                     <option disabled selected hidden>Select Subcategory</option>
-                    {subcategories && subcategories.map((category) => <option>{category.name}</option>)}
+                    {subcategories && subcategories.map((category) => <option value={category.id}>{category.name}</option>)}
+                    {console.log(subcategory)}
                 </select>
             </div>
             <div className={formStyles.formSection}>
@@ -42,7 +44,7 @@ const ItemInfo = ({setCurrentSection, name, setName, category, setCategory, subc
                 <div className={formStyles.wordLimit}>100 words (700 characters)</div>
             </div>
             <div className={formStyles.photoUpload}>
-                {(photos !== null) ? 
+                {(photos.length > 0) ? 
                 <div className={formStyles.imagesContainer}>
                     {photos.map((photo) => <img src={photo}></img>)}
                 </div> :

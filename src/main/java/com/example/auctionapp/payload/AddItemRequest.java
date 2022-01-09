@@ -4,8 +4,6 @@ import java.time.LocalDate;
 
 public class AddItemRequest {
 
-    private Long id;
-    private Long userId;
     private String name;
     private Long categoryId;
     private Long subcategoryId;
@@ -15,10 +13,13 @@ public class AddItemRequest {
     private LocalDate startDate;
     private LocalDate endDate;
     private Long addressId;
+    private String street;
+    private String city;
+    private String zipCode;
+    private String state;
+    private String country;
 
-    public AddItemRequest(Long id, Long userId, String name, Long categoryId, Long subcategoryId, String description, String photo, double startingPrice, LocalDate startDate, LocalDate endDate, Long addressId) {
-        this.id = id;
-        this.userId = userId;
+    public AddItemRequest(String name, Long categoryId, Long subcategoryId, String description, String photo, double startingPrice, LocalDate startDate, LocalDate endDate, Long addressId, String street, String city, String zipCode, String state, String country) {
         this.name = name;
         this.categoryId = categoryId;
         this.subcategoryId = subcategoryId;
@@ -28,22 +29,11 @@ public class AddItemRequest {
         this.startDate = startDate;
         this.endDate = endDate;
         this.addressId = addressId;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
+        this.street = street;
+        this.city = city;
+        this.zipCode = zipCode;
+        this.state = state;
+        this.country = country;
     }
 
     public String getName() {
@@ -116,5 +106,45 @@ public class AddItemRequest {
 
     public void setAddressId(Long addressId) {
         this.addressId = addressId;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 }
