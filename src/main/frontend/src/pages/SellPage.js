@@ -38,25 +38,13 @@ function SellPage(){
         return year+"-"+month+"-"+day;
     }
 
-    const addItem = async () => {
-        console.log(name);
-        console.log(Number(category));
-        console.log(Number(subcategory));
-        console.log(description);
-        console.log(String(photos.join(";")));
-        console.log(Number(price));
-        console.log(formatDate(startDate));
-        console.log(formatDate(endDate));
-        console.log(street);
-        console.log(city);
-        console.log(zipCode);
-        console.log(state);
-        console.log(country);
-        const response = await addItemRequest(user.token, name, parseInt(category), parseInt(subcategory), description, String(photos.join(";")), parseFloat(price), formatDate(startDate), 
-            formatDate(endDate), user.addressId ? user.addressId : null, street, city, zipCode, state, country);
-        console.log(response);
-        setMessage("Item added");
-        setMessageStyle(styles.headerMessageSuccess);
+    const addItem = () => {
+        addItemRequest(user.token, name, category, subcategory, description, photos.join(";"), price, formatDate(startDate), 
+            formatDate(endDate), user.addressId ? user.addressId : null, street, city, zipCode, state, country)
+            .then((response) => {
+                setMessage(response + " successfully added");
+                setMessageStyle(styles.headerMessageSuccess);
+            });
     }
 
     const displaySection = (selection) => {

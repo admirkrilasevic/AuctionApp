@@ -78,14 +78,14 @@ export const fetchAllItems = async () => {
   })
 };
 
-export const addItemRequest = async (token, name, category, subcategory, description, photos, price, startDate, endDate, addressId, street, city, zipCode, state, country ) => {
+export const addItemRequest = async (token, name, categoryId, subcategoryId, description, photo, startingPrice, startDate, endDate, addressId, street, city, zipCode, state, country ) => {
   return axios.post(`${API_URL}/api/v1/items/add`, {
     name,
-    category,
-    subcategory,
+    categoryId,
+    subcategoryId,
     description,
-    photos,
-    price,
+    photo,
+    startingPrice,
     startDate,
     endDate, 
     addressId,
