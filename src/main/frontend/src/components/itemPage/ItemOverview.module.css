@@ -26,12 +26,14 @@
     width: 453px;
     height: 662px;
     object-fit: contain;
+    margin-top: 32px;
 }
 
 .itemInfoContainer {
     text-align: left;
     margin-left: 117px;
     margin-top: 32px;
+    margin-bottom: 100px;
 }
 
 .bidsInfoContainer {
@@ -81,6 +83,8 @@
     flex-direction: row;
     justify-content: space-evenly;
     height: 100px;
+    margin-top: 32px;
+    margin-bottom: 100px;
 }
 
 .optionalImage {
