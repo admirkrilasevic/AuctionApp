@@ -13,7 +13,6 @@ function ActiveFilters({selectedCategories, selectedSubcategories, priceRange, c
 
     const renderCategoryActiveFilter = (categories, onRemove) => {
         const categoryType = typeof(categories[0]);
-        console.log(categoryType);
         return (
             <div className={styles.filterContainer}>
                 <p className={styles.filterTitle}>Categories</p>

@@ -35,12 +35,10 @@ const ItemInfo = ({setCurrentSection, name, setName, category, setCategory, subc
                 <select className={formStyles.formSelect} onChange={(e) => setCategory(e.target.value)}>
                     <option disabled selected hidden>Select Category</option>
                     {categories && categories.map((category) => <option value={category.id}>{category.name}</option>)}
-                    {console.log(category)}
                 </select>
                 <select className={formStyles.formSelect} onChange={(e) => setSubcategory(e.target.value)}>
                     <option disabled selected hidden>Select Subcategory</option>
                     {subcategories && subcategories.map((category) => <option value={category.id}>{category.name}</option>)}
-                    {console.log(subcategory)}
                 </select>
             </div>
             <div className={formStyles.formSection}>
