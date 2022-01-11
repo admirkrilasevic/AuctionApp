@@ -110,20 +110,25 @@
     margin-bottom: 70px;
 }
 
-.photoUpload label{
+.photoInput {
     margin: 125px 0px;
 }
 
-.photoUpload label p:nth-child(2){
+.uploadButton {
     color: #8367D8;
     font-size: 18px;
     font-weight: bold;
+    cursor: pointer;
 }
 
-.photoUpload label p:last-child{
+.photosDisclaimer {
     color: #9B9B9B;
     font-size: 14px;
     font-weight: bold;
+}
+
+.clearButton {
+    cursor: pointer;
 }
 
 input[type="file"] {

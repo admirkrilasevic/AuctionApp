@@ -3,7 +3,13 @@ import formStyles from "./SectionForms.module.css";
 import { AiOutlineCalendar } from "react-icons/ai";
 import { IconContext } from "react-icons/lib";
 
-const PriceAndDate = ({setCurrentSection, price, setPrice, startDate, setStartDate, endDate, setEndDate}) => {
+const PriceAndDate = ({setCurrentSection, price, setPrice, startDate, setStartDate, endDate, setEndDate, validatePriceAndDate}) => {
+
+    const onNextClick = () => {
+        if (validatePriceAndDate())
+            setCurrentSection(SELL_PAGE_SECTIONS.LOCATION);
+    }
+
     return (
         <div className={formStyles.formContainer}>
             <div className={formStyles.formTitle}>
@@ -13,7 +19,7 @@ const PriceAndDate = ({setCurrentSection, price, setPrice, startDate, setStartDa
                 <p>Your starting price</p>
                 <div className={formStyles.inputWithIcon}>
                     <span>$</span>
-                    <input value={price} onChange={(e) => setPrice(e.target.value)}></input>
+                    <input value={price} placeholder="eg. 10.5, 5, 20.23" onChange={(e) => setPrice(e.target.value)}></input>
                 </div>
             </div>
             <div className={formStyles.twoInSameRow}>
@@ -33,7 +39,7 @@ const PriceAndDate = ({setCurrentSection, price, setPrice, startDate, setStartDa
             </div>
             <div className={formStyles.buttonsContainer}>
                 <button className={formStyles.backButton} onClick={() => setCurrentSection(SELL_PAGE_SECTIONS.ITEM)}>BACK</button>
-                <button className={formStyles.nextButton} onClick={() => setCurrentSection(SELL_PAGE_SECTIONS.LOCATION)}>NEXT</button>
+                <button className={formStyles.nextButton} onClick={() => onNextClick()}>NEXT</button>
             </div>
       </div>
     );

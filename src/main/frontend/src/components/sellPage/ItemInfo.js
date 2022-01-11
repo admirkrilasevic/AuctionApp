@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { fetchAllCategories } from "../../utils/ItemService";
 import { uploadImages } from "../../utils/ImageService";
 
-const ItemInfo = ({setCurrentSection, name, setName, category, setCategory, subcategory, setSubcategory, description, setDescription, photos, setPhotos}) => {
+const ItemInfo = ({setCurrentSection, name, setName, category, setCategory, subcategory, setSubcategory, description, setDescription, photos, setPhotos, validateItemInfo}) => {
 
     const [allCategories, setAllCategories] = useState();
 
@@ -16,6 +16,11 @@ const ItemInfo = ({setCurrentSection, name, setName, category, setCategory, subc
 
     const categories = allCategories && allCategories.filter((category) => category.parentCategoryId == null);
     const subcategories = allCategories && allCategories.filter((subcategory) => subcategory.parentCategoryId == category);
+
+    const onNextClick = () => {
+        if (validateItemInfo())
+            setCurrentSection(SELL_PAGE_SECTIONS.PRICE);
+    }
 
     return (
         <div className={formStyles.formContainer}>
@@ -45,18 +50,24 @@ const ItemInfo = ({setCurrentSection, name, setName, category, setCategory, subc
             </div>
             <div className={formStyles.photoUpload}>
                 {(photos.length > 0) ? 
-                <div className={formStyles.imagesContainer}>
-                    {photos.map((photo) => <img src={photo}></img>)}
+                <div>
+                    <div className={formStyles.imagesContainer}>
+                        {photos.map((photo) => <img src={photo}></img>)}
+                    </div>
+                    <label>
+                        <p className={formStyles.uploadButton}>Upload More Photos</p>
+                        <FileBase64 multiple={true} onDone={e => uploadImages(e, photos, setPhotos)}/>
+                    </label>
+                    <p onClick={() => setPhotos([])} className={formStyles.clearButton}>Clear</p>
                 </div> :
-                <label>
+                <label className={formStyles.photoInput}>
                     <FileBase64 multiple={true} onDone={e => uploadImages(e, photos, setPhotos)}/>
-                    <p>Upload Photos</p>
-                    <p>or just drag and drop</p>
-                    <p>+Add at least 3 photos</p>
+                    <p className={formStyles.uploadButton}>Upload Photos</p>
+                    <p className={formStyles.photosDisclaimer}>+Add at least 3 photos</p>
                 </label>}
             </div>
             <div className={formStyles.buttonsContainer}>
-                <button className={formStyles.nextButton} onClick={() => setCurrentSection(SELL_PAGE_SECTIONS.PRICE)}>NEXT</button>
+                <button className={formStyles.nextButton} onClick={() => onNextClick()}>NEXT</button>
             </div>
       </div>
     );
