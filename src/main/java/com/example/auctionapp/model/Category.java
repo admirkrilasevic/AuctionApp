@@ -31,7 +31,7 @@ public class Category {
     )
     private List<Category> subcategories;
 
-    @Formula(value="(SELECT COUNT(i.id) FROM item i WHERE i.subcategory_id=id)")
+    @Formula(value="(SELECT COUNT(i.id) FROM item i WHERE i.subcategory_id=id AND i.end_date > now())")
     private int noOfItems;
 
     public Long getId() {
