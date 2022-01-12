@@ -1,7 +1,7 @@
 import styles from "./Profile.module.css";
 import { Row, Col } from "react-bootstrap";
 import { dates, months, years, countries, GENDER } from "../../constants";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AuthService from "../../utils/AuthService";
 import FileBase64 from "react-file-base64";
 import { uploadImage } from "../../utils/ImageService";
@@ -19,7 +19,9 @@ const Profile = ({setMessage, setMessageStyle}) => {
   const [surname, setSurname] = useState(user.surname);
   const [email, setEmail] = useState(user.email);
   const [gender, setGender] = useState(user.gender ? user.gender : null);
-  const [dateOfBirth, setDateOfBirth] = useState(user.dateOfBirth ? user.dateOfBirth : "");
+  const [date, setDate] = useState(user.dateOfBirth ? user.dateOfBirth.substr(8,2) : null);
+  const [month, setMonth] = useState(user.dateOfBirth ? user.dateOfBirth.substr(5,2) : null);
+  const [year, setYear] = useState(user.dateOfBirth ? user.dateOfBirth.substr(0,4) : null);
   const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber ? user.phoneNumber : "");
   const [photo, setPhoto] = useState(user.photo ? user.photo : "");
 
@@ -36,20 +38,6 @@ const Profile = ({setMessage, setMessageStyle}) => {
     const newValue = e.target.value;
     setter(newValue);
   };
-
-  const onChangeDate = (e, type) => {
-    const newValue = e.target.value;
-    const date = dateOfBirth.substr(8,2);
-    const month = dateOfBirth.substr(5,2);
-    const year = dateOfBirth.substr(0,4);
-    if (type === "date") {
-      setDateOfBirth(year+"-"+month+"-"+newValue);
-    } else if (type === "month") {
-      setDateOfBirth(year+"-"+newValue+"-"+date);
-    } else {
-      setDateOfBirth(newValue+"-"+month+"-"+date);
-    }
-  }
 
   const updateUserInfo = async () => {
     if (name == "" || surname == "" || email == "") {
@@ -68,6 +56,7 @@ const Profile = ({setMessage, setMessageStyle}) => {
       window.scrollTo(0, 0);
     }
     else {
+      const dateOfBirth = year+"-"+month+"-"+date;
       await UserService.update(user.id, name, surname, email, gender, dateOfBirth, phoneNumber, photo, user.address ? user.address.id : null, street, city, zipCode, state, country, user.token);
       if (user.email !== email) {
         AuthService.logout();
@@ -123,15 +112,15 @@ const Profile = ({setMessage, setMessageStyle}) => {
             </select>
             <p>Date of Birth</p>
             <div className={styles.sameRowContainer}>
-              <select className={styles.smallInputField} value={(dateOfBirth.length > 0) ? dateOfBirth.substr(8,2) : null} onChange={e => onChangeDate(e, "date")}>
+              <select className={styles.smallInputField} value={date} onChange={e => onChangeInput(e, setDate)}>
                 <option disabled selected hidden>DD</option>
                 {dates.map((date) => <option>{date}</option>)}
               </select>
-              <select className={styles.smallInputField} value={(dateOfBirth.length > 0) ? dateOfBirth.substr(5,2) : null} onChange={e => onChangeDate(e, "month")}>
+              <select className={styles.smallInputField} value={month} onChange={e => onChangeInput(e, setMonth)}>
                 <option disabled selected hidden>MM</option>
                 {months.map((month) => <option>{month}</option>)}
               </select>
-              <select className={styles.smallInputField} value={(dateOfBirth.length > 0) ? dateOfBirth.substr(0,4) : null} onChange={e => onChangeDate(e, "year")}>
+              <select className={styles.smallInputField} value={year} onChange={e => onChangeInput(e, setYear)}>
                 <option disabled selected hidden>YYYY</option>
                 {years.map((year) => <option>{year}</option>)}
               </select>
