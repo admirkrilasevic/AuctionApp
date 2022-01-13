@@ -80,7 +80,7 @@ function RegisterForm() {
           name="name"
           value={name}
           onChange={onChangeName}
-          validations={[Validations.required]}
+          validations={[Validations.required, Validations.validName]}
         />
       </div>
       <div className={styles.formSection}>
@@ -91,7 +91,7 @@ function RegisterForm() {
           name="surname"
           value={surname}
           onChange={onChangeSurname}
-          validations={[Validations.required]}
+          validations={[Validations.required, Validations.validName]}
         />
       </div>
       <div className={styles.formSection}>
