@@ -1,6 +1,5 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
-import { AuthContext } from "../utils/AuthContext.js";
 import Bids from "../components/profilePage/Bids.js";
 import Profile from "../components/profilePage/Profile.js"
 import Seller from "../components/profilePage/Seller.js";
@@ -14,10 +13,10 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { BsFillPersonFill as ProfileIcon, BsListUl as SellerIcon } from "react-icons/bs";
 import { BiDollarCircle as BidsIcon } from "react-icons/bi";
 import { IoSettingsOutline as SettingsIcon } from "react-icons/io5";
+import AuthService from "../utils/AuthService.js";
 
 function Account(){
 
-    const { loggedIn } = useContext(AuthContext);
     const { section } = useParams();
     const [selectedSection, setSelectedSection] = useState();
     const [message, setMessage] = useState();
@@ -49,8 +48,10 @@ function Account(){
     const previousPage = <Link to="/account/profile" className={styles.breadcrumbsLink}><li>My Account&ensp;</li></Link>;
     const currentPage = <li className="purpleText">&ensp;{selectedSection}</li>;
 
+    const userLoggedIn = !!AuthService.getCurrentUser();
+
     return (
-        loggedIn ? (
+        userLoggedIn ? (
             <PageLayout title={selectedSection} breadcrumbs={[previousPage, arrowIcon, currentPage]} message={message} messageStyle={messageStyle}>
                 <div className={styles.accountContainer}>
                     <div className={styles.sectionButtons}>
