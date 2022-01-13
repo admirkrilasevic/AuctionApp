@@ -14,8 +14,8 @@ export const fetchItems = async (page, size, sort, direction) => {
   return items.json();
 };
 
-export const fetchFilteredItems = async (page, size, sort, direction, categoryIds, subcategoryIds, minPrice, maxPrice) => {
-  const items = await fetch(`${API_URL}/api/v1/items/filtered?page=${page}&size=${size}&sort=${sort}&direction=${direction}&categoryIds=${categoryIds}&subcategoryIds=${subcategoryIds}&minPrice=${minPrice}&maxPrice=${maxPrice}`);
+export const fetchFilteredItems = async (search, page, size, sort, direction, categoryIds, subcategoryIds, minPrice, maxPrice) => {
+  const items = await fetch(`${API_URL}/api/v1/items/filtered?search=${search}&page=${page}&size=${size}&sort=${sort}&direction=${direction}&categoryIds=${categoryIds}&subcategoryIds=${subcategoryIds}&minPrice=${minPrice}&maxPrice=${maxPrice}`);
   return items.json();
 };
 

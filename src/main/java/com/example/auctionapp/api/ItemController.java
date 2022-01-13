@@ -40,6 +40,7 @@ public class ItemController {
 
     @GetMapping("/filtered")
     public Page<Item> getFilteredItems(
+            @RequestParam("search") String search,
             @RequestParam("page") int page,
             @RequestParam("size") int size,
             @RequestParam("sort") ItemSort sort,
@@ -48,7 +49,7 @@ public class ItemController {
             @RequestParam("subcategoryIds") long[] subcategoryIds,
             @RequestParam("minPrice") double minPrice,
             @RequestParam("maxPrice") double maxPrice){
-        return itemService.getFilteredItems(page, size, sort, direction, categoryIds, subcategoryIds, minPrice, maxPrice);
+        return itemService.getFilteredItems(search, page, size, sort, direction, categoryIds, subcategoryIds, minPrice, maxPrice);
     }
 
     @GetMapping("/user/{userId}")

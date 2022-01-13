@@ -1,13 +1,26 @@
 import styles from './Navbar.module.css'
 import { Container, Col,  Row, Dropdown } from 'react-bootstrap';
 import logo from '../assets/auction-app-logo.png';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 import { AiOutlineSearch as SearchIcon } from 'react-icons/ai';
 import { useState } from 'react';
 
 const HeaderNavbar = () => {
 
     const [showDropdown, setShowDropdown] = useState(false);
+    const search = new URLSearchParams(useLocation().search).get("searchText");
+    const [searchText, setSearchText] = useState(search ? search : null);
+
+    const onSearchChange = (e) => {
+        const value = e.target.value;
+        setSearchText(value);
+    }
+
+    const onEnterPressed = (e) => {
+        const keyPressed = e.key;
+        if (keyPressed === "Enter")
+            window.location.replace(`/shop/0?searchText=${searchText}`);
+    }
 
     return(
         <Container className={styles.navbarContainer}>
@@ -17,7 +30,7 @@ const HeaderNavbar = () => {
                 </Col>
                 <Col xs={6}>
                     <div className={styles.searchContainer}>
-                        <input className={styles.searchBar} type="search" placeholder="Try enter: Shoes"></input>
+                        <input className={styles.searchBar} type="search" placeholder="Try enter: Shoes" onChange={e => onSearchChange(e)} onKeyDown={e => onEnterPressed(e)}></input>
                         <SearchIcon className={styles.searchIcon}/>
                     </div>
                 </Col>

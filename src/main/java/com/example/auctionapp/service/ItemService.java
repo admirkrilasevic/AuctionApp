@@ -57,7 +57,7 @@ public class ItemService {
         }
     }
 
-    public Page<Item> getFilteredItems(int page, int size, ItemSort sort, Sort.Direction direction, Long[] categoryIds, long[] subcategoryIds, double minPrice, double maxPrice) {
+    public Page<Item> getFilteredItems(String search, int page, int size, ItemSort sort, Sort.Direction direction, Long[] categoryIds, long[] subcategoryIds, double minPrice, double maxPrice) {
         PageRequest pageable = PageRequest.of(page, size, Sort.by(direction, sort.toString()));
         if (categoryIds.length == 1 && subcategoryIds.length == 0){
             if (categoryIds[0] == 0) {
@@ -66,7 +66,11 @@ public class ItemService {
         } else if (categoryIds.length == 0 && subcategoryIds.length == 0){
             categoryIds = getCategoryIds();
         }
-        return itemRepository.getFilteredItems(categoryIds, subcategoryIds, minPrice, maxPrice, pageable);
+        if (Objects.equals(search, "null")) {
+            return itemRepository.getFilteredItems(categoryIds, subcategoryIds, minPrice, maxPrice, pageable);
+        } else {
+            return itemRepository.getFilteredItemsWithSearch(search.toLowerCase(), categoryIds, subcategoryIds, minPrice, maxPrice, pageable);
+        }
     }
 
     private Long[] getCategoryIds() {
