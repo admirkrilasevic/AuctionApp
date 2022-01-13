@@ -12,7 +12,6 @@ import java.util.Collection;
 import java.util.Collections;
 
 @EqualsAndHashCode
-@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(schema = "public")
@@ -81,6 +80,9 @@ public class User implements UserDetails {
         this.phoneNumber = phoneNumber;
         this.photo = photo;
         this.address = address;
+    }
+
+    public User() {
     }
 
     public boolean isDeactivated() {
