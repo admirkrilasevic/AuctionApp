@@ -3,14 +3,15 @@ import formStyles from "./SectionForms.module.css";
 import { useEffect, useState } from "react";
 import { fetchAllCategories } from "../../utils/ItemService";
 import PhotoUpload from "./PhotoUpload";
+import { validateItemInfo } from "../../utils/AddItemValidations";
 
 const ItemInfo = ({setCurrentSection, 
     name, setName, 
     category, setCategory, 
     subcategory, setSubcategory, 
     description, setDescription, 
-    photos, setPhotos, 
-    validateItemInfo}) => {
+    photos, setPhotos,
+    setMessage, setMessageStyle}) => {
 
     const [allCategories, setAllCategories] = useState();
 
@@ -23,7 +24,7 @@ const ItemInfo = ({setCurrentSection,
     const subcategories = allCategories && allCategories.filter((subcategory) => subcategory.parentCategoryId == category);
 
     const onNextClick = () => {
-        if (validateItemInfo()) {
+        if (validateItemInfo(name, category, subcategory, description, photos, setMessage, setMessageStyle)) {
             setCurrentSection(SELL_PAGE_SECTIONS.PRICE);
         }
     }

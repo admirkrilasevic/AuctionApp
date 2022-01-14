@@ -1,8 +1,22 @@
 import { SELL_PAGE_SECTIONS } from "../../constants";
 import formStyles from "./SectionForms.module.css";
 import { countries } from "../../constants";
+import { validateLocation } from "../../utils/AddItemValidations";
 
-const LocationAndShipping = ({setCurrentSection, street, setStreet, city, setCity, zipCode, setZipCode, state, setState, country, setCountry, validateLocation}) => {
+const LocationAndShipping = ({setCurrentSection, 
+    street, setStreet, 
+    city, setCity, 
+    zipCode, setZipCode, 
+    state, setState, 
+    country, setCountry, 
+    setMessage, setMessageStyle,
+    saveItem}) => {
+
+    const onDoneClick = () => {
+        if (validateLocation(street, city, zipCode, state, country, setMessage, setMessageStyle)) {
+            saveItem();
+        }
+    }
 
     return (
         <div className={formStyles.formContainer}>
@@ -36,7 +50,7 @@ const LocationAndShipping = ({setCurrentSection, street, setStreet, city, setCit
             </div>
             <div className={formStyles.buttonsContainer}>
                 <button className={formStyles.backButton} onClick={() => setCurrentSection(SELL_PAGE_SECTIONS.PRICE)}>BACK</button>
-                <button className={formStyles.doneButton} onClick={() => validateLocation()}>DONE</button>
+                <button className={formStyles.doneButton} onClick={() => onDoneClick()}>DONE</button>
             </div>
       </div>
     );

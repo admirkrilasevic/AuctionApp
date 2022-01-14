@@ -2,12 +2,18 @@ import { SELL_PAGE_SECTIONS } from "../../constants";
 import formStyles from "./SectionForms.module.css";
 import { AiOutlineCalendar } from "react-icons/ai";
 import { IconContext } from "react-icons/lib";
+import { validatePriceAndDate } from "../../utils/AddItemValidations";
 
-const PriceAndDate = ({setCurrentSection, price, setPrice, startDate, setStartDate, endDate, setEndDate, validatePriceAndDate}) => {
+const PriceAndDate = ({setCurrentSection, 
+    price, setPrice, 
+    startDate, setStartDate, 
+    endDate, setEndDate,
+    setMessage, setMessageStyle}) => {
 
     const onNextClick = () => {
-        if (validatePriceAndDate())
+        if (validatePriceAndDate(price, startDate, endDate, setMessage, setMessageStyle)) {
             setCurrentSection(SELL_PAGE_SECTIONS.LOCATION);
+        }       
     }
 
     return (

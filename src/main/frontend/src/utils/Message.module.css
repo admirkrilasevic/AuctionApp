@@ -1,0 +1,23 @@
+.headerMessageSuccess {
+    color: #417505;
+    text-align: start;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: #F0F3EE;
+    height: 60px;
+    width: 100%;
+    padding: 18px 160px;
+    margin-top: 10px;
+}
+
+.headerMessageError {
+    color: #AB944E;
+    text-align: start;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: #F6F2E5;
+    height: 60px;
+    width: 100%;
+    padding: 18px 160px;
+    margin-top: 10px;
+}

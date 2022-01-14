@@ -18,7 +18,6 @@ function SellPage(){
         const month = ((date.getMonth() + 1) < 10) ? ("0" + (date.getMonth() + 1)) : (date.getMonth() + 1);
         const year = date.getFullYear();
         return day + "/" + month + "/" + year;
-        
     }
 
     const user = AuthService.getCurrentUser();
@@ -57,86 +56,6 @@ function SellPage(){
             });
     }
 
-    const validateLocation = () => {
-        const locationComplete = street && city && zipCode && state && country;
-
-        if (!locationComplete) {
-            setMessage("Please fill in all the fields");
-            setMessageStyle(styles.headerMessageError);
-            window.scrollTo(0, 0);
-        } else {
-            saveItem();
-        }
-    }
-
-    const validatePriceAndDate = () => {
-        const validPrice = new RegExp("\\d+\.?\\d*");
-        const validDateFormat = new RegExp("\\d{2}\/\\d{2}\/\\d{4}");
-        const priceAndDateComplete = price && startDate && endDate;
-
-        if (!priceAndDateComplete) {
-            setMessage("Please fill in all the fields");
-            setMessageStyle(styles.headerMessageError);
-            window.scrollTo(0, 0);
-        } else if (!validPrice.test(price)){
-            setMessage("Price has an invalid format, make sure to follow the given example");
-            setMessageStyle(styles.headerMessageError);
-            window.scrollTo(0, 0);
-        } else if (!validDateFormat.test(startDate) || !validDateFormat.test(endDate)){
-            setMessage("Date has an invalid format, make sure to follow the given example");
-            setMessageStyle(styles.headerMessageError);
-            window.scrollTo(0, 0);
-        } else if (!validateDateValues(startDate) || !validateDateValues(endDate)){
-            setMessage("Date is out of normal range");
-            setMessageStyle(styles.headerMessageError);
-            window.scrollTo(0, 0);
-        } else {
-            setMessage();
-            setMessageStyle();
-            return true;
-        }
-    }
-
-    const validateDateValues = (date) => {
-        const day = date.substr(0,2);
-        const month = date.substr(3,2);
-        const year = date.substr(6,4);
-        if (day > 0 && day < 32 && month > 0 && month < 13 && year >= 2022) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    const validateItemInfo = () => {
-        const validName = new RegExp('\\w+');
-        const validDescription = description && description.length <= 700 && description.split(" ").length <= 100;
-        const validPhotos = photos && photos.length >= 3;
-        const itemInfoComplete = name && category && subcategory && description && photos;
-
-        if (!itemInfoComplete) {
-            setMessage("Please fill in all the fields");
-            setMessageStyle(styles.headerMessageError);
-            window.scrollTo(0, 0);
-        } else if (!validName.test(name)){
-            setMessage("Item name should not contain any special characters");
-            setMessageStyle(styles.headerMessageError);
-            window.scrollTo(0, 0);
-        } else if (!validDescription){
-            setMessage("Item description should not be longer than 100 words or 700 characters");
-            setMessageStyle(styles.headerMessageError);
-            window.scrollTo(0, 0);
-        } else if (!validPhotos){
-            setMessage("Please add at least 3 photos");
-            setMessageStyle(styles.headerMessageError);
-            window.scrollTo(0, 0);
-        } else {
-            setMessage();
-            setMessageStyle();
-            return true;
-        }
-    }
-
     const displaySection = (selection) => {
         switch (selection) {
             case SELL_PAGE_SECTIONS.ITEM :
@@ -152,7 +71,8 @@ function SellPage(){
                     setDescription={setDescription}
                     photos={photos}
                     setPhotos={setPhotos}
-                    validateItemInfo={validateItemInfo}
+                    setMessage={setMessage}
+                    setMessageStyle={setMessageStyle}
                 />
             case SELL_PAGE_SECTIONS.PRICE :
                 return <PriceAndDate 
@@ -163,7 +83,8 @@ function SellPage(){
                     setStartDate={setStartDate}
                     endDate={endDate}
                     setEndDate={setEndDate}
-                    validatePriceAndDate={validatePriceAndDate}
+                    setMessage={setMessage}
+                    setMessageStyle={setMessageStyle}
                 />
             case SELL_PAGE_SECTIONS.LOCATION :
                 return <LocationAndShipping 
@@ -178,7 +99,9 @@ function SellPage(){
                     setState={setState}
                     country={country}
                     setCountry={setCountry}
-                    validateLocation={validateLocation}
+                    setMessage={setMessage}
+                    setMessageStyle={setMessageStyle}
+                    saveItem={saveItem}
                 />
         }
     };
