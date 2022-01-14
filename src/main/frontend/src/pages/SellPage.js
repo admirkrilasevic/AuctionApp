@@ -13,6 +13,14 @@ function SellPage(){
 
     const [currentSection, setCurrentSection] = useState(SELL_PAGE_SECTIONS.ITEM);
 
+    const formatCurrentDate = (date) => {
+        const day = (date.getDate() < 10) ? ("0" + date.getDate()) : date.getDate();
+        const month = ((date.getMonth() + 1) < 10) ? ("0" + (date.getMonth() + 1)) : (date.getMonth() + 1);
+        const year = date.getFullYear();
+        return day + "/" + month + "/" + year;
+        
+    }
+
     const user = AuthService.getCurrentUser();
     const [name, setName] = useState();
     const [category, setCategory] = useState();
@@ -20,7 +28,8 @@ function SellPage(){
     const [description, setDescription] = useState();
     const [photos, setPhotos] = useState([]);
     const [price, setPrice] = useState();
-    const [startDate, setStartDate] = useState();
+    const currentDate = formatCurrentDate(new Date());
+    const [startDate, setStartDate] = useState(currentDate);
     const [endDate, setEndDate] = useState();
     const [street, setStreet] = useState(user.street ? user.street : null);
     const [city, setCity] = useState(user.city ? user.city : null);
