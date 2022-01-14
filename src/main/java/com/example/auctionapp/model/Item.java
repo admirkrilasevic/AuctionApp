@@ -72,4 +72,8 @@ public class Item {
         this.endDate = endDate;
         this.addressId = addressId;
     }
+
+    public String getName() {
+        return name;
+    }
 }
