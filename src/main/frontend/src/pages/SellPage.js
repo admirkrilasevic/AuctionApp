@@ -5,7 +5,7 @@ import { SELL_PAGE_SECTIONS } from "../constants";
 import { FaCircle } from "react-icons/fa";
 import PriceAndDate from "../components/sellPage/PriceAndDate";
 import LocationAndShipping from "../components/sellPage/LocationAndShipping";
-import { addItemRequest } from "../utils/ItemService";
+import { addItem } from "../utils/ItemService";
 import AuthService from "../utils/AuthService";
 import PageLayout from "../components/PageLayout";
 
@@ -38,8 +38,8 @@ function SellPage(){
         return year+"-"+month+"-"+day;
     }
 
-    const addItem = () => {
-        addItemRequest(user.token, name, category, subcategory, description, photos.join(";"), price, formatDate(startDate), 
+    const saveItem = () => {
+        addItem(user.token, name, category, subcategory, description, photos.join(";"), price, formatDate(startDate), 
             formatDate(endDate), user.addressId ? user.addressId : null, street, city, zipCode, state, country)
             .then((response) => {
                 setMessage(response + " successfully added");
@@ -56,7 +56,7 @@ function SellPage(){
             setMessageStyle(styles.headerMessageError);
             window.scrollTo(0, 0);
         } else {
-            addItem();
+            saveItem();
         }
     }
 
