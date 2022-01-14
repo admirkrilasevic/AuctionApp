@@ -1,10 +1,11 @@
 import axios from "axios";
+import { CLOUDINARY } from "../constants";
 
 export const uploadImage = async (e, setPhoto) => {
     axios.post(
-      'https://api.cloudinary.com/v1_1/dtm8an029/image/upload',
+      CLOUDINARY.URL,
       {
-        upload_preset: "o1u6dtrg",
+        upload_preset: CLOUDINARY.PRESET,
         file: e[0].base64
       }
     ).then((response) => {
@@ -12,12 +13,12 @@ export const uploadImage = async (e, setPhoto) => {
     });
 }
 
-export const uploadImages = async (e, photos, setPhotos) => {
+export const uploadImages = async (e, setPhotos) => {
   for (let i = 0; i < e.length; i++) {
     axios.post(
-      'https://api.cloudinary.com/v1_1/dtm8an029/image/upload',
+      CLOUDINARY.URL,
       {
-        upload_preset: "o1u6dtrg",
+        upload_preset: CLOUDINARY.PRESET,
         file: e[i].base64
       }
     ).then((response) => {
