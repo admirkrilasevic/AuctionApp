@@ -52,8 +52,7 @@ const validateDateValues = (date) => {
 }
 
 export const validateItemInfo = (name, category, subcategory, description, photos, setMessage, setMessageStyle) => {
-    const validName = new RegExp('\\w+');
-    const validDescription = description && description.length <= 700 && description.split(" ").length <= 100;
+    const validName = new RegExp("^[\\w\\s]+$");
     const validPhotos = photos && photos.length >= 3;
     const itemInfoComplete = name && category && subcategory && description && photos;
 
@@ -63,10 +62,6 @@ export const validateItemInfo = (name, category, subcategory, description, photo
         window.scrollTo(0, 0);
     } else if (!validName.test(name)){
         setMessage("Item name should not contain any special characters");
-        setMessageStyle(styles.headerMessageError);
-        window.scrollTo(0, 0);
-    } else if (!validDescription){
-        setMessage("Item description should not be longer than 100 words or 700 characters");
         setMessageStyle(styles.headerMessageError);
         window.scrollTo(0, 0);
     } else if (!validPhotos){

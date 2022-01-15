@@ -13,7 +13,7 @@ export const uploadImage = async (e, setPhoto) => {
     });
 }
 
-export const uploadImages = async (e, setPhotos) => {
+export const uploadImages = async (e, photos, setPhotos) => {
   for (let i = 0; i < e.length; i++) {
     axios.post(
       CLOUDINARY.URL,

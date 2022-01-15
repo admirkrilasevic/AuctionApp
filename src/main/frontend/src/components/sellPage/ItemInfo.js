@@ -50,7 +50,7 @@ const ItemInfo = ({setCurrentSection,
             </div>
             <div className={formStyles.formSection}>
                 <p>Description</p>
-                <input className={formStyles.descriptionInput} value={description} onChange={(e) => setDescription(e.target.value)}></input>
+                <textarea className={formStyles.descriptionInput} value={description} maxlength="700" onChange={(e) => setDescription(e.target.value)}></textarea>
                 <div className={formStyles.wordLimit}>100 words (700 characters)</div>
             </div>
             <PhotoUpload photos={photos} setPhotos={setPhotos}/>
