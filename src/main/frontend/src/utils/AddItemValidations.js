@@ -12,17 +12,29 @@ export const validateLocation = (street, city, zipCode, state, country, setMessa
     }
 }
 
-export const validatePriceAndDate = (price, startDate, endDate, setMessage, setMessageStyle) => {
-    const validPrice = new RegExp("\\d+\.?\\d*");
-    const validDateFormat = new RegExp("\\d{2}\/\\d{2}\/\\d{4}");
-    const priceAndDateComplete = price && startDate && endDate;
+export const validatePrice = (price, setMessage, setMessageStyle) => {
+    const validPrice = new RegExp("^\\d+\.?\\d*$");
 
-    if (!priceAndDateComplete) {
+    if (!price) {
         setMessage("Please fill in all the fields");
         setMessageStyle(styles.headerMessageError);
         window.scrollTo(0, 0);
     } else if (!validPrice.test(price)){
         setMessage("Price has an invalid format, make sure to follow the given example");
+        setMessageStyle(styles.headerMessageError);
+        window.scrollTo(0, 0);
+    } else {
+        setMessage();
+        setMessageStyle();
+        return true;
+    }
+}
+
+export const validateDate = (startDate, endDate, setMessage, setMessageStyle) => {
+    const validDateFormat = new RegExp("\\d{2}\/\\d{2}\/\\d{4}");
+
+    if (!(startDate && endDate)) {
+        setMessage("Please fill in all the fields");
         setMessageStyle(styles.headerMessageError);
         window.scrollTo(0, 0);
     } else if (!validDateFormat.test(startDate) || !validDateFormat.test(endDate)){
