@@ -320,5 +320,16 @@ export const SELLER_TABS = {
 }
 
 export const TIME_LEFT = {
-    ENDED: "ENDED"
+  ENDED: "ENDED"
+}
+
+export const SELL_PAGE_SECTIONS = {
+    ITEM: "Item",
+    PRICE: "Price",
+    LOCATION: "Location"
+}
+
+export const CLOUDINARY = {
+    URL: "https://api.cloudinary.com/v1_1/dtm8an029/image/upload",
+    PRESET: "o1u6dtrg"
 }

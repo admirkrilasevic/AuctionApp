@@ -15,6 +15,7 @@ import PageLayout from './components/PageLayout';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import { AuthProvider } from './utils/AuthContext';
 import ItemPage from './pages/ItemPage';
+import SellPage from './pages/SellPage';
 
 function App() {
   return (
@@ -71,6 +72,9 @@ function App() {
             </Route>
             <Route path="/items/:itemId">
               <ItemPage />
+            </Route>
+            <Route path="/sell">
+              <SellPage />
             </Route>
           </Switch>
           <Footer />

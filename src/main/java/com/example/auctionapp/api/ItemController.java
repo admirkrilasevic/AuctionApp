@@ -2,13 +2,16 @@ package com.example.auctionapp.api;
 
 import com.example.auctionapp.enumeration.ItemSort;
 import com.example.auctionapp.model.Item;
+import com.example.auctionapp.payload.AddItemRequest;
 import com.example.auctionapp.service.ItemService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @CrossOrigin
@@ -54,8 +57,13 @@ public class ItemController {
     }
 
     @GetMapping("/user/bid/{userId}")
-    public List<Item> getItemsByBidUserId(@PathVariable("userId") Long userId){
+    public List<Item> getItemsByBidUserId(@PathVariable("userId") Long userId) {
         return itemService.getItemsByBidUserId(userId);
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<?> addItem(HttpServletRequest httpServletRequest, @RequestBody AddItemRequest addItemRequest) {
+        return itemService.addItem(httpServletRequest, addItemRequest);
     }
     
 }

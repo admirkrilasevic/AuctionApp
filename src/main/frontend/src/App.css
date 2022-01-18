@@ -73,3 +73,12 @@
   margin-top: 75px;
   margin-bottom: 60px;
 }
+
+.samplePageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  color: #9B9B9B;
+  text-align: left;
+  margin: 50px 0px;
+}

@@ -21,8 +21,6 @@ function BiddersSection({bids}) {
         return formattedDate;
     }
 
-    console.log(bids);
-
     return (
         <div>
         {(bids) && (bids.length != 0) && 

@@ -1,0 +1,43 @@
+.sellPageContainer {
+    margin-top: 40px;
+    margin-bottom: 100px;
+}
+
+.switchContainer ul {
+    list-style-type: none;
+    padding: 0px;
+}
+
+.switchContainer li {
+    display: inline;
+    margin: 20px;
+    color: #9B9B9B;
+}
+
+.activeSection {
+    color: #8367D8!important;
+}
+
+.headerMessageSuccess {
+    color: #417505;
+    text-align: start;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: #F0F3EE;
+    height: 60px;
+    width: 100%;
+    padding: 18px 160px;
+    margin-top: 10px;
+}
+
+.headerMessageError {
+    color: #AB944E;
+    text-align: start;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: #F6F2E5;
+    height: 60px;
+    width: 100%;
+    padding: 18px 160px;
+    margin-top: 10px;
+}

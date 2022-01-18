@@ -4,7 +4,7 @@ import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -43,11 +43,11 @@ public class Item {
 
     @NotNull
     @Column(name = "start_date")
-    private Date startDate;
+    private LocalDate startDate;
 
     @NotNull
     @Column(name = "end_date")
-    private Date endDate;
+    private LocalDate endDate;
 
     @Column(name = "address_id")
     private Long addressId;
@@ -59,4 +59,21 @@ public class Item {
             name = "item_id"
     )
     private List<Bid> bids;
+
+    public Item(Long userId, String name, Long categoryId, Long subcategoryId, String description, String photo, double startingPrice, LocalDate startDate, LocalDate endDate, Long addressId) {
+        this.userId = userId;
+        this.name = name;
+        this.categoryId = categoryId;
+        this.subcategoryId = subcategoryId;
+        this.description = description;
+        this.photo = photo;
+        this.startingPrice = startingPrice;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.addressId = addressId;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

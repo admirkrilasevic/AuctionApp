@@ -1,0 +1,261 @@
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 738px;
+    padding-bottom: 32px;
+    border: 1px solid #d8d8d8;
+    box-sizing: border-box;
+    margin: 16px auto;
+    margin-top: 40px;
+}
+
+.formTitle {
+    padding: 23px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+    height: 75px;
+    width: 100%;
+    background-color: #FCFCFC;
+}
+
+.formSection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 548px;
+    margin-top: 32px;
+}
+  
+.formInput {
+    border: 1px solid #d8d8d8;
+    box-sizing: border-box;
+    padding: 18px 42px 18px 24px;
+    width: 548px;
+    height: 63px;
+    background-color: #FCFCFC;
+}
+
+.mediumInputField {
+    border: 1px solid #d8d8d8;
+    box-sizing: border-box;
+    padding: 18px 42px 18px 24px;
+    width: 262px;
+    height: 63px;
+    background-color: #FCFCFC;
+}
+
+.countrySelect {
+    border: 1px solid #d8d8d8;
+    box-sizing: border-box;
+    padding: 18px 42px 18px 24px;
+    width: 548px;
+    height: 63px;
+    background-color: #FCFCFC;
+    color: #9B9B9B;
+    margin-bottom: 50px;
+}
+
+.twoInSameRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 548px;
+    margin-top: 32px;
+}
+
+.twoInSameRowNoMargin {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 548px;
+}
+
+.cityContainer {
+    text-align: left;
+    margin-top: 32px;
+}
+
+.formSelect {
+    border: 2px solid #d8d8d8;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    width: 260px;
+    height: 50px;
+}
+
+.descriptionInput {
+    border: 1px solid #d8d8d8;
+    box-sizing: border-box;
+    padding: 18px 42px 18px 24px;
+    width: 548px;
+    height: 369px;
+    background-color: #FCFCFC;
+}
+
+.wordLimit {
+    margin-top: 16px;
+    margin-right: 0;
+    margin-left: auto;
+    color: #9B9B9B;
+}
+
+.photoUpload {
+    width: 548px;
+    height: 392px;
+    background-color: #FCFCFC;
+    border: 1px dashed #d8d8d8;
+    margin-top: 32px;
+    margin-bottom: 70px;
+}
+
+.photoInput {
+    margin: 125px 0px;
+}
+
+.uploadButton {
+    color: #8367D8;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.photosDisclaimer {
+    color: #9B9B9B;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.clearButton {
+    cursor: pointer;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.image {
+    margin-top: 100px;
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
+
+.dateInput {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+
+.dateInput span {
+    border: 1px solid #d8d8d8;
+    border-left: none;
+    box-sizing: border-box;
+    padding: 18px;
+    width: 64px;
+    height: 64px;
+    background-color: #FCFCFC;
+}
+
+.dateInput input {
+    border: 1px solid #d8d8d8;
+    border-right: none;
+    box-sizing: border-box;
+    padding: 18px 42px 18px 24px;
+    width: 198px;
+    height: 64px;
+    background-color: #FCFCFC;
+}
+
+.inputWithIcon {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.inputWithIcon span {
+    border: 1px solid #d8d8d8;
+    border-right: none;
+    box-sizing: border-box;
+    padding: 18px;
+    width: 64px;
+    height: 64px;
+    background-color: #FCFCFC;
+}
+
+.inputWithIcon input {
+    border: 1px solid #d8d8d8;
+    box-sizing: border-box;
+    padding: 18px 42px 18px 24px;
+    width: 484px;
+    height: 64px;
+    background-color: #FCFCFC;
+}
+
+.noteText {
+    text-align: left;
+    color: #9B9B9B;
+    margin-bottom: 50px;
+}
+
+.buttonsContainer {
+    width: 100%;
+}
+  
+.nextButton {
+    text-decoration: none;
+    border: 3px solid #8367D8;
+    background-color: inherit;
+    padding: 12px 100px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #000;
+    text-align: center;
+    float: right;
+    margin-right: 30px;
+}
+
+.backButton {
+    text-decoration: none;
+    border: 3px solid #D8D8D8;
+    background-color: inherit;
+    padding: 12px 100px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #000;
+    text-align: center;
+    float: left;
+    margin-left: 30px;
+}
+
+.doneButton {
+    text-decoration: none;
+    border: 3px solid #8367D8;
+    background-color: #8367D8;
+    padding: 12px 100px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #FFF;
+    text-align: center;
+    float: right;
+    margin-right: 30px;
+}
+
+.formText {
+    margin-top: 48px;
+}
+
+.imagesContainer {
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.imagesContainer img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}

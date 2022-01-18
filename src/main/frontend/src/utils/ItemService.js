@@ -77,3 +77,32 @@ export const fetchAllItems = async () => {
     return res.data;
   })
 };
+
+export const addItem = async (token, name, categoryId, subcategoryId, description, photo, startingPrice, startDate, endDate, addressId, street, city, zipCode, state, country ) => {
+  return axios.post(`${API_URL}/api/v1/items/add`, {
+    name,
+    categoryId,
+    subcategoryId,
+    description,
+    photo,
+    startingPrice,
+    startDate,
+    endDate, 
+    addressId,
+    street,
+    city,
+    zipCode,
+    state,
+    country
+  }, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    },
+  })
+  .then((res) => {
+    return res.data;
+  })
+  .catch((error) => {
+    requestHandler(error.response);
+  });
+};

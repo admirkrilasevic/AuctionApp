@@ -1,20 +1,24 @@
 package com.example.auctionapp.service;
 
 import com.example.auctionapp.enumeration.ItemSort;
+import com.example.auctionapp.model.Address;
 import com.example.auctionapp.model.Category;
+import com.example.auctionapp.model.User;
+import com.example.auctionapp.payload.AddItemRequest;
+import com.example.auctionapp.repository.AddressRepository;
 import com.example.auctionapp.repository.ItemRepository;
 import com.example.auctionapp.model.Item;
+import com.example.auctionapp.security.JwtUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import javax.servlet.http.HttpServletRequest;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
@@ -25,6 +29,15 @@ public class ItemService {
 
     @Autowired
     CategoryService categoryService;
+
+    @Autowired
+    JwtUtils jwtUtils;
+
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    AddressRepository addressRepository;
 
     public List<Item> getAllItems() {
         return itemRepository.findAll();
@@ -73,6 +86,26 @@ public class ItemService {
 
     public List<Item> getItemsByBidUserId(Long userId) {
         return itemRepository.getItemsByBidUserId(userId);
+    }
+
+    public ResponseEntity<?> addItem(HttpServletRequest httpServletRequest, AddItemRequest addItemRequest) {
+        String token = jwtUtils.getToken(httpServletRequest);
+        User user = (User) userService.loadUserByEmail(jwtUtils.getEmailFromJwtToken(token));
+        Long addressId;
+        if (addItemRequest.getAddressId() == null) {
+            Address address = new Address(user.getId(), addItemRequest.getStreet(), addItemRequest.getCity(),
+                    addItemRequest.getZipCode(), addItemRequest.getState(), addItemRequest.getCountry());
+            Address savedAddress = addressRepository.save(address);
+            addressId = savedAddress.getId();
+        } else {
+            addressId = addItemRequest.getAddressId();
+        }
+        Item item = new Item(user.getId(), addItemRequest.getName(),
+                addItemRequest.getCategoryId(), addItemRequest.getSubcategoryId(), addItemRequest.getDescription(),
+                addItemRequest.getPhoto(), addItemRequest.getStartingPrice(), addItemRequest.getStartDate(),
+                addItemRequest.getEndDate(), addressId);
+        Item savedItem = itemRepository.save(item);
+        return ResponseEntity.ok().body(savedItem.getName());
     }
 
 }

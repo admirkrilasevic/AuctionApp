@@ -46,6 +46,11 @@
     font-weight: bold;
 }
 
+.addItemButton:hover {
+    color: #8367D8;
+    background-color: #FFF;
+}
+
 .arrowIcon {
     margin-top: 5px;
 }

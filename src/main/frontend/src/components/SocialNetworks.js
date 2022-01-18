@@ -11,16 +11,13 @@ const SocialNetworks = () => {
     return (
         <ul className={styles.socials}>
             <li>
-                <a href=""><FontAwesomeIcon icon={faFacebook} size="2x"/></a>
+                <a href="https://www.facebook.com"><FontAwesomeIcon icon={faFacebook} size="2x"/></a>
             </li>
             <li>
-                <a href=""><FontAwesomeIcon icon={faInstagram} size="2x"/></a>
+                <a href="https://www.instagram.com"><FontAwesomeIcon icon={faInstagram} size="2x"/></a>
             </li>
             <li>
-                <a href=""><FontAwesomeIcon icon={faTwitter} size="2x"/></a>
-            </li>
-            <li>
-                <a href=""><FontAwesomeIcon icon={faGooglePlus} size="2x"/></a>
+                <a href="https://www.twitter.com"><FontAwesomeIcon icon={faTwitter} size="2x"/></a>
             </li>
         </ul>
     );
