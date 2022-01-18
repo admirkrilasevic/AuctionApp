@@ -30,8 +30,20 @@ const validPassword = (value) => {
   }
 };
 
+const validName = (value) => {
+  const validateName = new RegExp("^[\\w\\sčšđćž]+$");
+  if (!validateName.test(value)) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        Names cannot contain any special characters.
+     </div>
+    );
+  }
+};
+
 export default {
   required,
   validEmail,
-  validPassword
+  validPassword,
+  validName
 };
