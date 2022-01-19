@@ -77,7 +77,7 @@ function ShopPageItems(
 
   useEffect(async () => {
     fetchItems(page)
-  }, [page]);
+  }, [page, search]);
 
   useEffect(() => {
     setItems([]);

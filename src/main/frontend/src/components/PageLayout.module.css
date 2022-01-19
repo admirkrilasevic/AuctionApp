@@ -31,3 +31,33 @@
     display: flex;
     color: #9B9B9B;
 }
+
+.didYouMeanContainer {
+    color: #000;
+    text-align: start;
+    font-size: 16px;
+    background-color: #FAFAFA;
+    height: 60px;
+    width: 100%;
+    padding: 18px 160px;
+    margin-top: 32px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.didYouMean {
+    margin-left: 320px;
+    font-size: 18px;
+    color: #9B9B9B;
+}
+
+.suggestion {
+    font-size: 18px;
+    color: #8367D8;
+    margin: 0px 20px;
+    text-decoration: none;
+}
+.suggestion:hover {
+    color: #000;
+}

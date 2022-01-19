@@ -116,4 +116,8 @@ public class ItemService {
         return itemRepository.getRecommendedProducts(categoryId, name);
     }
 
+    public List<String> getItemsByLevenshteinDistance(String searchText) {
+        return itemRepository.getItemsByLevenshteinDistance(searchText.toLowerCase());
+    }
+
 }

@@ -78,6 +78,7 @@ export const fetchAllItems = async () => {
   })
 };
 
+<<<<<<< HEAD
 export const addItem = async (token, name, categoryId, subcategoryId, description, photo, startingPrice, startDate, endDate, addressId, street, city, zipCode, state, country ) => {
   return axios.post(`${API_URL}/api/v1/items/add`, {
     name,
@@ -105,6 +106,13 @@ export const addItem = async (token, name, categoryId, subcategoryId, descriptio
   .catch((error) => {
     requestHandler(error.response);
   });
+=======
+export const getItemsByLevenshteinDistance = async (searchText) => {
+  return axios.get(`${API_URL}/api/v1/items/levenshtein/${searchText}`)
+  .then((res) => {
+    return res.data;
+  })
+>>>>>>> dbe786e (implemented did you mean feature)
 };
 
 export const getRecommendedProducts = async (categoryId, name) => {

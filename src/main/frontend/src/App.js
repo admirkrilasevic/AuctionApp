@@ -48,9 +48,7 @@ function App() {
               </PageLayout>
             </Route>
             <Route path="/shop/:categoryId">
-              <PageLayout>
-                <Shop />
-              </PageLayout>
+              <Shop />
             </Route>
             <Route path="/account/:section">
               <Account />
