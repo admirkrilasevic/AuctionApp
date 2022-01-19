@@ -106,3 +106,10 @@ export const addItem = async (token, name, categoryId, subcategoryId, descriptio
     requestHandler(error.response);
   });
 };
+
+export const getRecommendedProducts = async (categoryId, name) => {
+  return axios.get(`${API_URL}/api/v1/items/recommended/${categoryId}/${name}`)
+  .then((res) => {
+    return res.data;
+  })
+};
