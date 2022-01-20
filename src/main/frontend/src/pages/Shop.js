@@ -3,7 +3,7 @@ import styles from "./Shop.module.css";
 import ShopPageItems from "../components/shopPage/ShopPageItems";
 import { useHistory, useLocation, useParams } from "react-router";
 import { useState, useEffect } from "react";
-import { fetchAllCategories, getItemsByLevenshteinDistance } from "../utils/ItemService";
+import { fetchAllCategories, getSearchSuggestions } from "../utils/ItemService";
 import PriceMenu from "../components/shopPage/PriceMenu";
 import { PRICE_RANGE } from "../constants";
 import PageLayout from "../components/PageLayout";
@@ -25,8 +25,8 @@ function Shop(){
 
     useEffect(async () => {
         setCategoriesList(await fetchAllCategories());
-        const itemNames = await getItemsByLevenshteinDistance(search);
-        setSuggestions(itemNames);
+        const searchSuggestions = await getSearchSuggestions(search);
+        setSuggestions(searchSuggestions);
     }, []);
 
     const isSelected = (selectedCategory) => {

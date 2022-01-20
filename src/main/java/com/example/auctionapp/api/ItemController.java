@@ -67,15 +67,19 @@ public class ItemController {
         return itemService.addItem(httpServletRequest, addItemRequest);
     }
 
-
     @GetMapping("/recommended/{categoryId}/{name}")
     public List<Item> getRecommendedProducts(@PathVariable("categoryId") Long categoryId, @PathVariable("name") String name) {
         return itemService.getRecommendedProducts(categoryId, name);
     }
 
     @GetMapping("/levenshtein/{searchText}")
-    public List<String> getItemsByLevenShteinDistance(@PathVariable("searchText") String searchText){
+    public List<String> getItemsByLevenShteinDistance(@PathVariable("searchText") String searchText) {
         return itemService.getItemsByLevenshteinDistance(searchText);
+    }
+
+    @GetMapping("/suggestions/{searchText}")
+    public List<String> getSearchSuggestions(@PathVariable("searchText") String searchText){
+        return itemService.getSearchSuggestions(searchText);
     }
     
 }

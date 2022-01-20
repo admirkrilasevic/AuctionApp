@@ -10,6 +10,7 @@ import com.example.auctionapp.repository.ItemRepository;
 import com.example.auctionapp.model.Item;
 import com.example.auctionapp.security.JwtUtils;
 import lombok.AllArgsConstructor;
+import org.jline.utils.Levenshtein;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -120,4 +121,21 @@ public class ItemService {
         return itemRepository.getItemsByLevenshteinDistance(searchText.toLowerCase());
     }
 
+    public List<String> getSearchSuggestions(String searchText) {
+        List<Item> allItems = getAllItems();
+        List<String> suggestions = new ArrayList<String>();
+        for (int i = 0; i < allItems.size(); i++) {
+            String fullName = allItems.get(i).getName();
+            String[] nameParts = fullName.split(" ");
+            for (int j = 0; j < nameParts.length; j++) {
+                double levenshteinDistance = Levenshtein.distance(nameParts[j].toLowerCase(), searchText.toLowerCase());
+                String firstLetterOfName = String.valueOf(nameParts[j].charAt(0));
+                String nameInSentenceCase = firstLetterOfName.toUpperCase() + nameParts[j].substring(1);
+                if ( levenshteinDistance > 0 && levenshteinDistance <= 2 && !suggestions.contains(nameInSentenceCase)) {
+                    suggestions.add(nameInSentenceCase);
+                }
+            }
+        }
+        return suggestions;
+    }
 }
