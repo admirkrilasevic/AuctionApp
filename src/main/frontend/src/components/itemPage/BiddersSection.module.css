@@ -21,3 +21,14 @@
 .amountCol {
     color: #417505;
 }
+
+.loadMoreButton {
+    width: 256px;
+    height: 59px;
+    background-color: #8367D8;
+    color: #FFF;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    margin-top: 20px;
+}
