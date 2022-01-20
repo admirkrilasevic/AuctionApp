@@ -31,7 +31,7 @@ const HeaderNavbar = () => {
                 <Col xs={6}>
                     <div className={styles.searchContainer}>
                         <input className={styles.searchBar} type="search" placeholder="Try enter: Shoes" onChange={e => onSearchChange(e)} onKeyDown={e => onEnterPressed(e)}></input>
-                        <SearchIcon className={styles.searchIcon}/>
+                        <SearchIcon onClick={() => window.location.replace(`/shop/0?searchText=${searchText}`)} className={styles.searchIcon}/>
                     </div>
                 </Col>
                 <Col className={styles.buttonsContainer}>
