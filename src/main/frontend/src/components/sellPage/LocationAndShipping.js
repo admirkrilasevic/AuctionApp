@@ -27,7 +27,7 @@ const LocationAndShipping = ({setCurrentSection,
                 <p>Street</p>
                 <input className={formStyles.formInput} placeholder="Street" value={street} onChange={(e) => setStreet(e.target.value)}/>
             </div>
-            <div className={formStyles.cityContainer}>
+            <div className={formStyles.twoInSameRowDiv}>
                 <span className={formStyles.twoInSameRowNoMargin}>
                     <p>City</p>
                     <p>Zip Code</p>

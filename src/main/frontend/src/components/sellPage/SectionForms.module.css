@@ -54,7 +54,6 @@
     height: 63px;
     background-color: #FCFCFC;
     color: #9B9B9B;
-    margin-bottom: 50px;
 }
 
 .twoInSameRow {
@@ -72,7 +71,7 @@
     width: 548px;
 }
 
-.cityContainer {
+.twoInSameRowDiv {
     text-align: left;
     margin-top: 32px;
 }
@@ -228,6 +227,7 @@ input[type="file"] {
     text-align: center;
     float: left;
     margin-left: 30px;
+    margin-top: 50px;
 }
 
 .doneButton {
@@ -241,6 +241,7 @@ input[type="file"] {
     text-align: center;
     float: right;
     margin-right: 30px;
+    margin-top: 50px;
 }
 
 .formText {

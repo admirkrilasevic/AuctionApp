@@ -75,7 +75,7 @@ const Bids = () => {
                     <Col className={(bids[index].amount >= calculateHighestBid(item.bids)) ? tableStyles.highestBidCol : tableStyles.notHighestBidCol}>$ {calculateHighestBid(item.bids)}</Col>
                     <Col className={tableStyles.verticalCenter}>
                         <Link 
-                            to={isReadyForPayment(bids[index].amount, item.bids, item.endDate) ? `/payment` : `/items/${item.id}`} 
+                            to={isReadyForPayment(bids[index].amount, item.bids, item.endDate) ? `/payment/${item.id}/${calculateHighestBid(item.bids)}` : `/items/${item.id}`} 
                             className={isReadyForPayment(bids[index].amount, item.bids, item.endDate) ? tableStyles.payLink : tableStyles.viewItemLink}
                         >
                             {isReadyForPayment(bids[index].amount, item.bids, item.endDate) ? "PAY" : "VIEW"}

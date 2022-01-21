@@ -75,7 +75,7 @@ function App() {
             <Route path="/sell">
               <SellPage />
             </Route>
-            <Route path="/payment">
+            <Route path="/payment/:itemId/:price">
               <Payment />
             </Route>
           </Switch>
