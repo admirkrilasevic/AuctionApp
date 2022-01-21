@@ -46,6 +46,12 @@ const Bids = () => {
         return bids;
     }
 
+    const isReadyForPayment = (amount, bids, date) => {
+        const endDate = new Date(date);
+        const now = new Date();
+        return (amount >= calculateHighestBid(bids)) && (endDate < now);
+    }
+
     return (
         <div className={styles.bidsContainer}>
         {(items && items.length > 0) &&
@@ -67,7 +73,14 @@ const Bids = () => {
                     <Col className={tableStyles.verticalCenter}>$ {bids[index].amount}</Col>
                     <Col className={tableStyles.verticalCenter}>{item.bids.length}</Col>
                     <Col className={(bids[index].amount >= calculateHighestBid(item.bids)) ? tableStyles.highestBidCol : tableStyles.notHighestBidCol}>$ {calculateHighestBid(item.bids)}</Col>
-                    <Col className={tableStyles.verticalCenter}><Link to={`/items/${item.id}`} className={tableStyles.viewItemLink}>VIEW</Link></Col>
+                    <Col className={tableStyles.verticalCenter}>
+                        <Link 
+                            to={isReadyForPayment(bids[index].amount, item.bids, item.endDate) ? `/payment` : `/items/${item.id}`} 
+                            className={isReadyForPayment(bids[index].amount, item.bids, item.endDate) ? tableStyles.payLink : tableStyles.viewItemLink}
+                        >
+                            {isReadyForPayment(bids[index].amount, item.bids, item.endDate) ? "PAY" : "VIEW"}
+                        </Link>
+                    </Col>
                 </Row>
                 )}
             </Container>}

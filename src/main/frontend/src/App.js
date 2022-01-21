@@ -16,6 +16,7 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 import { AuthProvider } from './utils/AuthContext';
 import ItemPage from './pages/ItemPage';
 import SellPage from './pages/SellPage';
+import Payment from './components/profilePage/Payment';
 
 function App() {
   return (
@@ -73,6 +74,9 @@ function App() {
             </Route>
             <Route path="/sell">
               <SellPage />
+            </Route>
+            <Route path="/payment">
+              <Payment />
             </Route>
           </Switch>
           <Footer />
