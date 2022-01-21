@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Set;
 
 @CrossOrigin
 @RequestMapping("api/v1/items")
@@ -78,7 +79,7 @@ public class ItemController {
     }
 
     @GetMapping("/suggestions/{searchText}")
-    public List<String> getSearchSuggestions(@PathVariable("searchText") String searchText){
+    public Set<String> getSearchSuggestions(@PathVariable("searchText") String searchText){
         return itemService.getSearchSuggestions(searchText);
     }
     
