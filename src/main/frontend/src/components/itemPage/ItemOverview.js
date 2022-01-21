@@ -127,7 +127,7 @@ function ItemOverview({...item}) {
                                 <span className="purpleText">{timeLeft}</span>
                             </p>
                         </div>
-                        {loggedIn && 
+                        {loggedIn && !(new Date(endDate) < new Date()) ?
                         (<Row className={styles.placeBidContainer}>
                             <Col>
                                 <input 
@@ -147,7 +147,10 @@ function ItemOverview({...item}) {
                                     <FontAwesomeIcon icon={faAngleRight}/>
                                 </Button>
                             </Col>
-                        </Row>)}
+                        </Row>) :
+                        <Row>
+                            <div className={styles.congratsMessage}>Congratulations! You outbid the competition.</div>    
+                        </Row>}
                         <Row className={styles.tabSection}>
                             <Tabs description={description}/>
                         </Row>
