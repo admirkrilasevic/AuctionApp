@@ -21,6 +21,15 @@
     justify-content: center;
 }
 
+.verticalCenter a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.verticalCenter a:hover {
+    color: #8367D8;
+}
+
 .tableImages {
     width: 80px;
     height: 80px;
