@@ -86,3 +86,41 @@ export const validateItemInfo = (name, category, subcategory, description, photo
         return true;
     }
 }
+
+export const validateCardInfo = (name, number, expDate, cvc, setMessage, setMessageStyle) => {
+    const validName = new RegExp("^[\\w\\s]+$");
+    const validMaestro = new RegExp("^(5018|5081|5044|5020|5038|603845|6304|6759|676[1-3]|6799|6220|504834|504817|504645)[0-9]{8,15}$");
+    const validMasterCard = new RegExp("^5[1-5][0-9]{14}$|^2(?:2(?:2[1-9]|[3-9][0-9])|[3-6][0-9][0-9]|7(?:[01][0-9]|20))[0-9]{12}$");
+    const validVisa = new RegExp("^4[0-9]{12}(?:[0-9]{3})?$");
+    const validAmerican = new RegExp("^3[47][0-9]{13}$");
+    const validExpDate = new RegExp("^\\d{2}\/\\d{2}$");
+    const validCvc = new RegExp("^\\d{3,4}$");
+    const cardInfoComplete = name && number && expDate && cvc;
+    const validCardType = validMaestro.test(number) || validVisa.test(number) || validMasterCard.test(number) || validAmerican.test(number);
+
+    if (!cardInfoComplete) {
+        setMessage("Please fill in all the fields");
+        setMessageStyle(styles.headerMessageError);
+        window.scrollTo(0, 0);
+    } else if (!validName.test(name)){
+        setMessage("Name should not contain any special characters");
+        setMessageStyle(styles.headerMessageError);
+        window.scrollTo(0, 0);
+    } else if (!validCardType){
+        setMessage("Only MasterCard, Maestro, Visa or American Express are accepted");
+        setMessageStyle(styles.headerMessageError);
+        window.scrollTo(0, 0);
+    } else if (!validExpDate.test(expDate)){
+        setMessage("Expiration date should follow MM/YY format");
+        setMessageStyle(styles.headerMessageError);
+        window.scrollTo(0, 0);
+    } else if (!validCvc.test(cvc)){
+        setMessage("CVC/CVV is invalid");
+        setMessageStyle(styles.headerMessageError);
+        window.scrollTo(0, 0);
+    } else {
+        setMessage();
+        setMessageStyle();
+        return true;
+    }
+}

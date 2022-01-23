@@ -4,7 +4,7 @@ import formStyles from "../sellPage/SectionForms.module.css"
 import AuthService from "../../utils/AuthService";
 import { useState } from "react";
 import { countries } from "../../constants";
-import { validateLocation } from "../../utils/AddItemValidations";
+import { validateCardInfo, validateLocation } from "../../utils/AddItemValidations";
 import PageLayout from "../PageLayout";
 import { processPayment } from "../../utils/PaymentService";
 
@@ -30,8 +30,17 @@ const Payment = () => {
     const [messageStyle, setMessageStyle] = useState();
 
     const onDoneClick = () => {
-        if(validateLocation(street, city, zipCode, state, country, setMessage, setMessageStyle)) {
-            //add validation for card and start payment process
+        if(validateLocation(street, city, zipCode, state, country, setMessage, setMessageStyle) && validateCardInfo(name, number, expDate, cvc, setMessage, setMessageStyle)) {
+            //start payment process
+            console.log(street)
+            console.log(city)
+            console.log(zipCode)
+            console.log(state)
+            console.log(country)
+            console.log(name)
+            console.log(number)
+            console.log(expDate)
+            console.log(cvc)
         }
     }
 
