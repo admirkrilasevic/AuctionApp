@@ -21,12 +21,12 @@
     justify-content: center;
 }
 
-.verticalCenter a {
+.nameLink {
     text-decoration: none;
     color: inherit;
 }
 
-.verticalCenter a:hover {
+.nameLink:hover {
     color: #8367D8;
 }
 

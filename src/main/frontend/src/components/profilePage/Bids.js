@@ -68,7 +68,7 @@ const Bids = () => {
                 {items.map((item, index) => 
                 <Row className={tableStyles.contentRow}>
                     <Col className={tableStyles.verticalCenter}><img src={item.photo} className={tableStyles.tableImages}/></Col>
-                    <Col className={tableStyles.verticalCenter}><Link to={`/items/${item.id}`}>{item.name}</Link></Col>
+                    <Col className={tableStyles.verticalCenter}><Link to={`/items/${item.id}`} className={tableStyles.nameLink}>{item.name}</Link></Col>
                     <Col className={tableStyles.verticalCenter}>{calculateTimeLeft(item.endDate)}</Col>
                     <Col className={tableStyles.verticalCenter}>$ {bids[index].amount}</Col>
                     <Col className={tableStyles.verticalCenter}>{item.bids.length}</Col>
