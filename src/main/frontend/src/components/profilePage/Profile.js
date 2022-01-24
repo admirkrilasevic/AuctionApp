@@ -1,7 +1,7 @@
 import styles from "./Profile.module.css";
 import { Row, Col } from "react-bootstrap";
-import { dates, months, years, countries, GENDER } from "../../constants";
-import { useContext, useEffect, useState } from "react";
+import { dates, months, years, GENDER, countryCodes } from "../../constants";
+import { useContext, useState } from "react";
 import AuthService from "../../utils/AuthService";
 import FileBase64 from "react-file-base64";
 import { uploadImage } from "../../utils/ImageService";
@@ -193,7 +193,7 @@ const Profile = ({setMessage, setMessageStyle}) => {
           <p>Country</p>
           <select className={styles.inputField} value={country} onChange={e => onChangeInput(e, setCountry)}>
             <option disabled selected hidden>Country</option>
-            {countries.map((country) => <option>{country}</option>)}
+            {countryCodes.map((country) => <option value={country.code}>{country.name}</option>)}
           </select>
         </div>
       </div>

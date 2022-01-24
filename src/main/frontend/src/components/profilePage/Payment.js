@@ -2,8 +2,8 @@ import { useParams } from "react-router";
 import styles from "./Payment.module.css";
 import formStyles from "../sellPage/SectionForms.module.css"
 import AuthService from "../../utils/AuthService";
-import { useEffect, useState } from "react";
-import { countries } from "../../constants";
+import { useState } from "react";
+import { countryCodes } from "../../constants";
 import { validateLocation } from "../../utils/AddItemValidations";
 import PageLayout from "../PageLayout";
 import { processPayment } from "../../utils/PaymentService";
@@ -43,7 +43,7 @@ const Payment = () => {
                     name: user.name,
                     address: {
                         city: city,
-                        country: "BA",
+                        country: country,
                         line1: street,
                         postal_code: zipCode,
                         state: state
@@ -94,7 +94,7 @@ const Payment = () => {
                     <p>Country</p>
                     <select className={formStyles.countrySelect} value={country} onChange={(e) => setCountry(e.target.value)}>
                         <option disabled selected hidden>Country</option>
-                        {countries.map((country) => <option>{country}</option>)}
+                        {countryCodes.map((country) => <option value={country.code}>{country.name}</option>)}
                     </select>
                 </div>
                 <div className={formStyles.twoInSameRowDiv}>
