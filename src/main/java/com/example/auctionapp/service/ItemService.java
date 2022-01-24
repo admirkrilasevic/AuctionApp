@@ -19,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -118,13 +119,10 @@ public class ItemService {
         return itemRepository.getRecommendedProducts(categoryId, name);
     }
 
-    public List<String> getItemsByLevenshteinDistance(String searchText) {
-        return itemRepository.getItemsByLevenshteinDistance(searchText.toLowerCase());
-    }
-
     public Set<String> getSearchSuggestions(String searchText) {
         List<Item> allItems = getAllItems();
         Set<String> suggestions = allItems.stream()
+                .filter(item -> item.getEndDate().compareTo(LocalDate.now()) > 0)
                 .map(item -> item.getName())
                 .filter(names -> Arrays.stream(names.split(" "))
                         .anyMatch(name -> isSimilarName(name, searchText)))

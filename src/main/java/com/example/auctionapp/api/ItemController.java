@@ -73,11 +73,6 @@ public class ItemController {
         return itemService.getRecommendedProducts(categoryId, name);
     }
 
-    @GetMapping("/levenshtein/{searchText}")
-    public List<String> getItemsByLevenShteinDistance(@PathVariable("searchText") String searchText) {
-        return itemService.getItemsByLevenshteinDistance(searchText);
-    }
-
     @GetMapping("/suggestions/{searchText}")
     public Set<String> getSearchSuggestions(@PathVariable("searchText") String searchText){
         return itemService.getSearchSuggestions(searchText);

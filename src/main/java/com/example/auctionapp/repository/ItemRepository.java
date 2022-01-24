@@ -32,7 +32,4 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     @Query(value = "select * from item i where i.category_id = :categoryId and i.name != :name limit 3", nativeQuery = true)
     List<Item> getRecommendedProducts(@Param("categoryId") Long categoryId, @Param("name") String name);
 
-    @Query(value = "SELECT i.name FROM item i WHERE levenshtein(LOWER(i.name), :searchText) <= 2", nativeQuery = true)
-    List<String> getItemsByLevenshteinDistance(@Param("searchText") final String searchText);
-
 }
