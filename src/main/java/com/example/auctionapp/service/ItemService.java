@@ -108,4 +108,8 @@ public class ItemService {
         return ResponseEntity.ok().body(savedItem.getName());
     }
 
+    public List<Item> getRecommendedProducts(Long categoryId, String name) {
+        return itemRepository.getRecommendedProducts(categoryId, name);
+    }
+
 }

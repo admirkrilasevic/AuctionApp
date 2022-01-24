@@ -65,5 +65,10 @@ public class ItemController {
     public ResponseEntity<?> addItem(HttpServletRequest httpServletRequest, @RequestBody AddItemRequest addItemRequest) {
         return itemService.addItem(httpServletRequest, addItemRequest);
     }
+
+    @GetMapping("/recommended/{categoryId}/{name}")
+    public List<Item> getRecommendedProducts(@PathVariable("categoryId") Long categoryId, @PathVariable("name") String name) {
+        return itemService.getRecommendedProducts(categoryId, name);
+    }
     
 }

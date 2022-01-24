@@ -6,16 +6,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import PageLayout from '../PageLayout';
 import { BID_MESSAGE } from "../../constants";
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../utils/AuthContext';
 import BiddersSection from './BiddersSection';
 import { Link } from "react-router-dom";
-import { placeBid } from '../../utils/ItemService';
+import { getRecommendedProducts, placeBid } from '../../utils/ItemService';
 import { calculateTimeLeft } from "../../utils/Utils";
+import AuthService from '../../utils/AuthService';
+import Item from '../landingPage/Item';
 
 function ItemOverview({...item}) {
-
-    const { id, name, photo, startingPrice, description, endDate, bids } = item;
+    const { id, name, photo, startingPrice, description, endDate, bids, userId, categoryId } = item;
     const { token, loggedIn } = useContext(AuthContext);
 
     const [itemBids, setItemBids] = useState([]);
@@ -33,6 +34,17 @@ function ItemOverview({...item}) {
     const arrowIcon = <FontAwesomeIcon className={styles.arrowIcon} icon={faArrowRight}/>;
     const previousPage = <Link to="/home" className={styles.breadcrumbsLink}><li>Home&ensp;</li></Link>;
     const currentPage = <li className="purpleText">&ensp;Single Item</li>;
+
+    const [recommendedProducts, setRecommendedProducts] = useState([]);
+
+    const user = AuthService.getCurrentUser();
+
+    useEffect(async () => {
+        if (categoryId) {
+            const recommended = await getRecommendedProducts(categoryId, name);
+            setRecommendedProducts(recommended);
+        }
+    }, [categoryId]);
 
     useEffect(() => {
         setCurrentImage(imagesArray[0]);
@@ -141,7 +153,25 @@ function ItemOverview({...item}) {
                         </Row>
                     </Col>
                 </Row>
-                {loggedIn && <BiddersSection bids={bids}/>}
+                {loggedIn && (userId === user.id) && <BiddersSection bids={bids}/>}
+                {(userId !== user.id) && recommendedProducts &&
+                    <div>
+                        <div className={styles.recommendedProductsTitle}>Recommended Products</div>
+                        <div className={styles.recommendedProductsContainer}>
+                            {console.log(recommendedProducts)}
+                            {recommendedProducts.map((item) => {
+                                return (
+                                        <Item 
+                                            key={item.id}
+                                            id={item.id}
+                                            photo={item.photo}
+                                            name={item.name}
+                                            startingPrice={item.startingPrice}
+                                        />
+                                );
+                            })}
+                        </div>
+                    </div>}
             </Container>
         </PageLayout>
     );

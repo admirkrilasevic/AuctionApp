@@ -24,4 +24,7 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
     @Query(value = "select * from item i join bid b on i.id = b.item_id where b.user_id = :userId", nativeQuery = true)
     List<Item> getItemsByBidUserId(@Param("userId") Long userId);
+
+    @Query(value = "select * from item i where i.category_id = :categoryId and i.name != :name limit 3", nativeQuery = true)
+    List<Item> getRecommendedProducts(@Param("categoryId") Long categoryId, @Param("name") String name);
 }
