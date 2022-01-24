@@ -16,7 +16,7 @@ const PageLayout = ({title, message, messageStyle, breadcrumbs, didYouMean, chil
                 <p>{message}</p>
             </div>
             }
-            { (didYouMean.length > 0) &&
+            { (didYouMean && didYouMean.length > 0) &&
             <div className={styles.didYouMeanContainer}>
                 <p className={styles.didYouMean}>Did you mean?</p>
                 {didYouMean.map((suggestion) => (
