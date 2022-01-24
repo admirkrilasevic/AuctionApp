@@ -68,7 +68,7 @@ public class ItemService {
         } else if (categoryIds.length == 0 && subcategoryIds.length == 0){
             categoryIds = getCategoryIds();
         }
-        if (Objects.equals(search, "null")) {
+        if (search.isBlank()) {
             return itemRepository.getFilteredItems(categoryIds, subcategoryIds, minPrice, maxPrice, pageable);
         } else {
             return itemRepository.getFilteredItemsWithSearch(search.toLowerCase(), categoryIds, subcategoryIds, minPrice, maxPrice, pageable);

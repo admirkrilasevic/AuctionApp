@@ -9,7 +9,7 @@ const HeaderNavbar = () => {
 
     const [showDropdown, setShowDropdown] = useState(false);
     const search = new URLSearchParams(useLocation().search).get("searchText");
-    const [searchText, setSearchText] = useState(search ? search : null);
+    const [searchText, setSearchText] = useState(search ? search : "");
 
     const onSearchChange = (e) => {
         const value = e.target.value;
