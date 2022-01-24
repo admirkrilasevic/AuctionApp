@@ -5,7 +5,7 @@ import Tabs from './Tabs';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import PageLayout from '../PageLayout';
-import { BID_MESSAGE } from "../../constants";
+import { BID_MESSAGE, ITEM_MESSAGE } from "../../constants";
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../utils/AuthContext';
 import BiddersSection from './BiddersSection';
@@ -16,7 +16,7 @@ import AuthService from '../../utils/AuthService';
 import Item from '../landingPage/Item';
 
 function ItemOverview({...item}) {
-    const { id, name, photo, startingPrice, description, endDate, bids, userId, categoryId } = item;
+    const { id, name, photo, startingPrice, description, endDate, bids, userId, categoryId, sold } = item;
     const { token, loggedIn } = useContext(AuthContext);
 
     const [itemBids, setItemBids] = useState([]);
@@ -94,6 +94,15 @@ function ItemOverview({...item}) {
             return 0;
         }
     }
+
+    const getIdOfHighestBidder = () => {
+        if (itemBids.length > 0) {
+            const sortedbids = itemBids.sort();
+            return sortedbids[sortedbids.length-1].userId;
+        } else {
+            return 0;
+        }
+    }
   
     return (
         <PageLayout title={name} message={bidMessage} messageStyle={bidMessageStyle} breadcrumbs={[previousPage, arrowIcon, currentPage]}>
@@ -149,7 +158,9 @@ function ItemOverview({...item}) {
                             </Col>
                         </Row>) :
                         <Row>
-                            <div className={styles.congratsMessage}>Congratulations! You outbid the competition.</div>    
+                            {sold ? 
+                            <div className={styles.congratsMessage}>{user.id === getIdOfHighestBidder() ? ITEM_MESSAGE.BOUGHT : ITEM_MESSAGE.SOLD}</div> :
+                            <div className={styles.congratsMessage}>{user.id === getIdOfHighestBidder() ? ITEM_MESSAGE.CONGRATS : ITEM_MESSAGE.ENDED}</div>}    
                         </Row>}
                         <Row className={styles.tabSection}>
                             <Tabs description={description}/>

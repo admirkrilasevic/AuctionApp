@@ -337,3 +337,10 @@ export const CLOUDINARY = {
 export const STRIPE = {
     PUBLIC_KEY: "pk_test_51KJwtoIUCUcIjRQux8a2az6fPG0dTXtzedTm0FMMwKiykTAjluVccryP63GxK8bTc5mAQZR7snrrEwAGnoHbHUT300i4FjQdrW"
 }
+
+export const ITEM_MESSAGE = {
+    CONGRATS: "Congratulations! You outbid the competition.",
+    ENDED: "Auction has ended and the highest bidder won.",
+    BOUGHT: "You bought this item.",
+    SOLD: "This item has been sold."
+}
