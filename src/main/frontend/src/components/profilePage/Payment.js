@@ -4,11 +4,16 @@ import formStyles from "../sellPage/SectionForms.module.css"
 import AuthService from "../../utils/AuthService";
 import { useState } from "react";
 import { countries } from "../../constants";
-import { validateCardInfo, validateLocation } from "../../utils/AddItemValidations";
+import { validateLocation } from "../../utils/AddItemValidations";
 import PageLayout from "../PageLayout";
 import { processPayment } from "../../utils/PaymentService";
+import { CardCvcElement, CardExpiryElement, CardNumberElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import messageStyles from "../../utils/Message.module.css";
 
 const Payment = () => {
+    
+    const elements = useElements();
+    const stripe = useStripe();
 
     const { itemId } = useParams();
     const { price } = useParams();
@@ -21,7 +26,7 @@ const Payment = () => {
     const [state, setState] = useState(user.state ? user.state : null);
     const [country, setCountry] = useState(user.country ? user.country : null);
 
-    const [name, setName] = useState();
+    const [name, setName] = useState(user.name ? user.name : null);
     const [number, setNumber] = useState();
     const [expDate, setExpDate] = useState();
     const [cvc, setCvc] = useState();
@@ -29,18 +34,39 @@ const Payment = () => {
     const [message, setMessage] = useState();
     const [messageStyle, setMessageStyle] = useState();
 
-    const onDoneClick = () => {
-        if(validateLocation(street, city, zipCode, state, country, setMessage, setMessageStyle) && validateCardInfo(name, number, expDate, cvc, setMessage, setMessageStyle)) {
-            //start payment process
-            console.log(street)
-            console.log(city)
-            console.log(zipCode)
-            console.log(state)
-            console.log(country)
-            console.log(name)
-            console.log(number)
-            console.log(expDate)
-            console.log(cvc)
+    const onDoneClick = async () => {
+        if(validateLocation(street, city, zipCode, state, country, setMessage, setMessageStyle) && name) {
+
+            const cardElement = elements.getElement(CardNumberElement)
+
+            const paymentMethodResponse = await stripe.createPaymentMethod({
+                type: 'card',
+                card: cardElement,
+                billing_details: {
+                    email: user.email,
+                    name: user.name,
+                    address: {
+                        city: city,
+                        country: "BA",
+                        line1: street,
+                        postal_code: zipCode,
+                        state: state
+                    }
+                }
+            })
+
+            if (paymentMethodResponse) {
+                const paymentResponse = await processPayment(user.token, itemId, price, paymentMethodResponse.paymentMethod.id)
+                if (paymentResponse === "succeeded") {
+                    setMessage("Payment successful!");
+                    setMessageStyle(messageStyles.headerMessageSuccess);
+                    window.scrollTo(0, 0);
+                } else {
+                    setMessage(paymentResponse);
+                    setMessageStyle(messageStyles.headerMessageError);
+                    window.scrollTo(0, 0);
+                }
+            }
         }
     }
 
@@ -82,7 +108,7 @@ const Payment = () => {
                     </span>
                     <span className={formStyles.twoInSameRowNoMargin}>
                         <input className={formStyles.mediumInputField} placeholder="Name on card" onChange={(e) => setName(e.target.value)}/>
-                        <input className={formStyles.mediumInputField} placeholder="Card number" onChange={(e) => setNumber(e.target.value)}/>
+                        <CardNumberElement className={styles.cardComponent}/>
                     </span>
                 </div>
                 <div className={formStyles.twoInSameRowDiv}>
@@ -91,15 +117,15 @@ const Payment = () => {
                         <p>CVC/CV</p>
                     </span>
                     <span className={formStyles.twoInSameRowNoMargin}>
-                        <input className={formStyles.mediumInputField} placeholder="DD/YY" onChange={(e) => setExpDate(e.target.value)}/>
-                        <input className={formStyles.mediumInputField} placeholder="CVC/CV" onChange={(e) => setCvc(e.target.value)}/>
+                        <CardExpiryElement className={styles.cardComponent}/>
+                        <CardCvcElement className={styles.cardComponent}/>
                     </span>
                 </div>
                 <div className={formStyles.buttonsContainer}>
                     <button className={formStyles.doneButton} onClick={() => onDoneClick()}>DONE</button>
                 </div>
         </div>
-      </PageLayout>
+    </PageLayout>
     );
 }
 

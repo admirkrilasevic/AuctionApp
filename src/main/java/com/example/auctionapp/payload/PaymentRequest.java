@@ -2,43 +2,37 @@ package com.example.auctionapp.payload;
 
 public class PaymentRequest {
 
-    public enum Currency{
-        INR,USD;
-    }
-    private String description;
-    private int amount;
-    private Currency currency;
-    private String stripeEmail;
-    private Token token;
+    private Long itemId;
+    private double amount;
+    private String paymentMethod;
 
-    public String getDescription() {
-        return description;
+    public PaymentRequest(Long itemId, double amount, String paymentMethod) {
+        this.itemId = itemId;
+        this.amount = amount;
+        this.paymentMethod = paymentMethod;
     }
-    public void setDescription(String description) {
-        this.description = description;
+
+    public Long getItemId() {
+        return itemId;
     }
-    public int getAmount() {
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    public double getAmount() {
         return amount;
     }
-    public void setAmount(int amount) {
+
+    public void setAmount(double amount) {
         this.amount = amount;
     }
-    public Currency getCurrency() {
-        return currency;
+
+    public String getPaymentMethod() {
+        return paymentMethod;
     }
-    public void setCurrency(Currency currency) {
-        this.currency = currency;
-    }
-    public String getStripeEmail() {
-        return stripeEmail;
-    }
-    public void setStripeEmail(String stripeEmail) {
-        this.stripeEmail = stripeEmail;
-    }
-    public Token getToken() {
-        return token;
-    }
-    public void setToken(Token stripeToken) {
-        this.token = stripeToken;
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 }

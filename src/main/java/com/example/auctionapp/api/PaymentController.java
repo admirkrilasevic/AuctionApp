@@ -14,14 +14,11 @@ import org.springframework.web.bind.annotation.*;
 public class PaymentController {
 
     @Autowired
-    PaymentService service;
+    PaymentService paymentService;
 
     @PostMapping
-    public ResponseEntity<?> completePayment(@RequestBody PaymentRequest request) throws StripeException {
-        String chargeId = service.charge(request);
-        return chargeId != null ?
-                new ResponseEntity("Payment successful", HttpStatus.OK) :
-                new ResponseEntity("Payment unsuccessful", HttpStatus.BAD_REQUEST);
+    public String completePayment(@RequestBody PaymentRequest paymentRequest) throws StripeException {
+        return paymentService.processPayment(paymentRequest);
     }
 
 }

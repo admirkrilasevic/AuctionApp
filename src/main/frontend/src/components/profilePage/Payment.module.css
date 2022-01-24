@@ -1,0 +1,9 @@
+.cardComponent {
+    outline: none;
+    border: 1px solid #d8d8d8;
+    box-sizing: border-box;
+    padding: 18px 42px 18px 24px;
+    width: 262px;
+    height: 63px;
+    background-color: #FCFCFC;
+}

@@ -333,3 +333,7 @@ export const CLOUDINARY = {
     URL: "https://api.cloudinary.com/v1_1/dtm8an029/image/upload",
     PRESET: "o1u6dtrg"
 }
+
+export const STRIPE = {
+    PUBLIC_KEY: "pk_test_51KJwtoIUCUcIjRQux8a2az6fPG0dTXtzedTm0FMMwKiykTAjluVccryP63GxK8bTc5mAQZR7snrrEwAGnoHbHUT300i4FjQdrW"
+}

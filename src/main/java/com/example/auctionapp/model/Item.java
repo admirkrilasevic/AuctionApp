@@ -52,6 +52,9 @@ public class Item {
     @Column(name = "address_id")
     private Long addressId;
 
+    @Column
+    private boolean sold;
+
     @OneToMany(
             cascade = CascadeType.ALL
     )
