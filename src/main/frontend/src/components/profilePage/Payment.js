@@ -97,6 +97,15 @@ const Payment = () => {
                         {countryCodes.map((country) => <option value={country.code}>{country.name}</option>)}
                     </select>
                 </div>
+                <div className={formStyles.formSection}>
+                    <span className={styles.acceptedCards}>We accept the following credit cards</span>
+                    <div className={styles.cardImagesContainer}>
+                        <img src="https://usa.visa.com/dam/VCOM/regional/lac/ENG/Default/Partner%20With%20Us/Payment%20Technology/visapos/full-color-800x450.jpg"></img>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png"></img>
+                        <img src="https://seekvectorlogo.com/wp-content/uploads/2019/09/maestro-vector-logo.png"></img>
+                        <img src="https://brandessenceresearch.com/assets/images/blog/content_img/American%20Express-.jpg"></img>
+                    </div>
+                </div>
                 <div className={formStyles.twoInSameRowDiv}>
                     <span className={formStyles.twoInSameRowNoMargin}>
                         <p>Name on card</p>
