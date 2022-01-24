@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Set;
 
 @CrossOrigin
 @RequestMapping("api/v1/items")
@@ -40,6 +41,7 @@ public class ItemController {
 
     @GetMapping("/filtered")
     public Page<Item> getFilteredItems(
+            @RequestParam("search") String search,
             @RequestParam("page") int page,
             @RequestParam("size") int size,
             @RequestParam("sort") ItemSort sort,
@@ -48,7 +50,7 @@ public class ItemController {
             @RequestParam("subcategoryIds") long[] subcategoryIds,
             @RequestParam("minPrice") double minPrice,
             @RequestParam("maxPrice") double maxPrice){
-        return itemService.getFilteredItems(page, size, sort, direction, categoryIds, subcategoryIds, minPrice, maxPrice);
+        return itemService.getFilteredItems(search, page, size, sort, direction, categoryIds, subcategoryIds, minPrice, maxPrice);
     }
 
     @GetMapping("/user/{userId}")
@@ -69,6 +71,11 @@ public class ItemController {
     @GetMapping("/recommended/{categoryId}/{name}")
     public List<Item> getRecommendedProducts(@PathVariable("categoryId") Long categoryId, @PathVariable("name") String name) {
         return itemService.getRecommendedProducts(categoryId, name);
+    }
+
+    @GetMapping("/suggestions/{searchText}")
+    public Set<String> getSearchSuggestions(@PathVariable("searchText") String searchText){
+        return itemService.getSearchSuggestions(searchText);
     }
     
 }

@@ -7,6 +7,7 @@ import styles from "./ShopPageItems.module.css";
 import ActiveFilters from "./ActiveFilters";
 import { BsGrid3X3, BsList } from "react-icons/bs";
 import ListItem from "./ListItem";
+import { useLocation } from "react-router";
 
 function ShopPageItems(
   {items, 
@@ -20,6 +21,7 @@ function ShopPageItems(
   onRemovePriceFilterClick, 
   onClearAllClick}) {
 
+  const search = new URLSearchParams(useLocation().search).get("searchText");
   const [hasMoreItems, setHasMoreItems] = useState(true);
   const [page, setPage] = useState(PAGE_VALUES.INITIAL);
   const [view, setView] = useState(VIEWS.GRID);
@@ -67,7 +69,7 @@ function ShopPageItems(
   ];
 
   const fetchItems = async (newPage) => {
-    let itemsFromServer = await fetchFilteredItems(newPage, SHOP_PAGE_ITEMS.PAGE_SIZE, sort.by, sort.direction, selectedCategories, selectedSubcategories.map(c => c.id), priceRange.min, priceRange.max);
+    let itemsFromServer = await fetchFilteredItems(search ? search : "", newPage, SHOP_PAGE_ITEMS.PAGE_SIZE, sort.by, sort.direction, selectedCategories, selectedSubcategories.map(c => c.id), priceRange.min, priceRange.max);
     const oldItems = (newPage == PAGE_VALUES.INITIAL) ? [] : items;
     setItems([...oldItems, ...itemsFromServer.content]);
     setHasMoreItems(!itemsFromServer.last);
@@ -75,7 +77,7 @@ function ShopPageItems(
 
   useEffect(async () => {
     fetchItems(page)
-  }, [page]);
+  }, [page, search]);
 
   useEffect(() => {
     setItems([]);

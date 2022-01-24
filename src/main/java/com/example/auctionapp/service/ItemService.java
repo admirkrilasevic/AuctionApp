@@ -10,6 +10,7 @@ import com.example.auctionapp.repository.ItemRepository;
 import com.example.auctionapp.model.Item;
 import com.example.auctionapp.security.JwtUtils;
 import lombok.AllArgsConstructor;
+import org.jline.utils.Levenshtein;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,7 +19,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -57,7 +60,7 @@ public class ItemService {
         }
     }
 
-    public Page<Item> getFilteredItems(int page, int size, ItemSort sort, Sort.Direction direction, Long[] categoryIds, long[] subcategoryIds, double minPrice, double maxPrice) {
+    public Page<Item> getFilteredItems(String search, int page, int size, ItemSort sort, Sort.Direction direction, Long[] categoryIds, long[] subcategoryIds, double minPrice, double maxPrice) {
         PageRequest pageable = PageRequest.of(page, size, Sort.by(direction, sort.toString()));
         if (categoryIds.length == 1 && subcategoryIds.length == 0){
             if (categoryIds[0] == 0) {
@@ -66,7 +69,11 @@ public class ItemService {
         } else if (categoryIds.length == 0 && subcategoryIds.length == 0){
             categoryIds = getCategoryIds();
         }
-        return itemRepository.getFilteredItems(categoryIds, subcategoryIds, minPrice, maxPrice, pageable);
+        if (search.isBlank()) {
+            return itemRepository.getFilteredItems(categoryIds, subcategoryIds, minPrice, maxPrice, pageable);
+        } else {
+            return itemRepository.getFilteredItemsWithSearch(search.toLowerCase(), categoryIds, subcategoryIds, minPrice, maxPrice, pageable);
+        }
     }
 
     private Long[] getCategoryIds() {
@@ -110,6 +117,23 @@ public class ItemService {
 
     public List<Item> getRecommendedProducts(Long categoryId, String name) {
         return itemRepository.getRecommendedProducts(categoryId, name);
+    }
+
+    public Set<String> getSearchSuggestions(String searchText) {
+        List<Item> allItems = getAllItems();
+        Set<String> suggestions = allItems.stream()
+                .filter(item -> item.getEndDate().compareTo(LocalDate.now()) > 0)
+                .map(item -> item.getName())
+                .filter(names -> Arrays.stream(names.split(" "))
+                        .anyMatch(name -> isSimilarName(name, searchText)))
+                .limit(3)
+                .collect(Collectors.toSet());
+        return suggestions;
+    }
+
+    private boolean isSimilarName(String name, String searchString) {
+        int distance = Levenshtein.distance(name.toLowerCase(), searchString.toLowerCase());
+        return distance > 0 && distance < 2;
     }
 
 }

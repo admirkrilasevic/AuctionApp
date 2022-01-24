@@ -1,14 +1,17 @@
 import CategoriesMenu from "../components/shopPage/CategoriesMenu";
 import styles from "./Shop.module.css";
 import ShopPageItems from "../components/shopPage/ShopPageItems";
-import { useHistory, useParams } from "react-router";
+import { useHistory, useLocation, useParams } from "react-router";
 import { useState, useEffect } from "react";
-import { fetchAllCategories } from "../utils/ItemService";
+import { fetchAllCategories, getSearchSuggestions } from "../utils/ItemService";
 import PriceMenu from "../components/shopPage/PriceMenu";
 import { PRICE_RANGE } from "../constants";
+import PageLayout from "../components/PageLayout";
 
 function Shop(){
 
+    const search = new URLSearchParams(useLocation().search).get("searchText");
+    const [suggestions, setSuggestions] = useState([]);
     const { categoryId } = useParams();
     const [items, setItems] = useState([]);
     const [selectedCategories, setSelectedCategories] = useState([parseInt(categoryId)]);
@@ -22,6 +25,8 @@ function Shop(){
 
     useEffect(async () => {
         setCategoriesList(await fetchAllCategories());
+        const searchSuggestions = await getSearchSuggestions(search);
+        setSuggestions(searchSuggestions);
     }, []);
 
     const isSelected = (selectedCategory) => {
@@ -78,32 +83,34 @@ function Shop(){
     }
 
     return (
-        <div className={styles.shopPageElementsContainer}>
-            <CategoriesMenu 
-                isSelected={isSelected} 
-                isChecked={isChecked}
-                onCategoryClick={onCategoryClick} 
-                onSubcategoryClick={onSubcategoryClick}
-                categoriesList={categoriesList}
-            >
-            <PriceMenu
-                priceRange={priceRange}
-                setPriceRange={setPriceRange}
-            />
-            </CategoriesMenu>
-            <ShopPageItems 
-                items={items}
-                setItems={setItems}
-                selectedCategories={selectedCategories} 
-                selectedSubcategories={selectedSubcategories}
-                priceRange={priceRange}
-                categoriesList={categoriesList} 
-                onRemoveCategoryClick={onRemoveCategoryClick}
-                onRemoveSubcategoryClick={onRemoveSubcategoryClick}
-                onRemovePriceFilterClick={onRemovePriceFilterClick}
-                onClearAllClick={onClearAllClick}
-            />
-        </div>
+        <PageLayout didYouMean={suggestions}>
+            <div className={styles.shopPageElementsContainer}>
+                <CategoriesMenu 
+                    isSelected={isSelected} 
+                    isChecked={isChecked}
+                    onCategoryClick={onCategoryClick} 
+                    onSubcategoryClick={onSubcategoryClick}
+                    categoriesList={categoriesList}
+                >
+                <PriceMenu
+                    priceRange={priceRange}
+                    setPriceRange={setPriceRange}
+                />
+                </CategoriesMenu>
+                <ShopPageItems 
+                    items={items}
+                    setItems={setItems}
+                    selectedCategories={selectedCategories} 
+                    selectedSubcategories={selectedSubcategories}
+                    priceRange={priceRange}
+                    categoriesList={categoriesList} 
+                    onRemoveCategoryClick={onRemoveCategoryClick}
+                    onRemoveSubcategoryClick={onRemoveSubcategoryClick}
+                    onRemovePriceFilterClick={onRemovePriceFilterClick}
+                    onClearAllClick={onClearAllClick}
+                />
+            </div>
+        </PageLayout>
     );
 }
 
