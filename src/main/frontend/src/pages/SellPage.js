@@ -30,11 +30,11 @@ function SellPage(){
     const currentDate = formatCurrentDate(new Date());
     const [startDate, setStartDate] = useState(currentDate);
     const [endDate, setEndDate] = useState();
-    const [street, setStreet] = useState(user.street ? user.street : null);
-    const [city, setCity] = useState(user.city ? user.city : null);
-    const [zipCode, setZipCode] = useState(user.zipCode ? user.zipCode : null);
-    const [state, setState] = useState(user.state ? user.state : null);
-    const [country, setCountry] = useState(user.country ? user.country : null);
+    const [street, setStreet] = useState(user && user.address ? user.address.street : null);
+    const [city, setCity] = useState(user && user.address ? user.address.city : null);
+    const [zipCode, setZipCode] = useState(user && user.address ? user.address.zipCode : null);
+    const [state, setState] = useState(user && user.address ? user.address.state : null);
+    const [country, setCountry] = useState(user && user.address ? user.address.country : null);
 
     const [message, setMessage] = useState();
     const [messageStyle, setMessageStyle] = useState();
