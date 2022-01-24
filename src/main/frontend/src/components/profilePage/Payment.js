@@ -2,7 +2,7 @@ import { useParams } from "react-router";
 import styles from "./Payment.module.css";
 import formStyles from "../sellPage/SectionForms.module.css"
 import AuthService from "../../utils/AuthService";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { countries } from "../../constants";
 import { validateLocation } from "../../utils/AddItemValidations";
 import PageLayout from "../PageLayout";
@@ -20,16 +20,12 @@ const Payment = () => {
 
     const user = AuthService.getCurrentUser();
 
-    const [street, setStreet] = useState(user.street ? user.street : null);
-    const [city, setCity] = useState(user.city ? user.city : null);
-    const [zipCode, setZipCode] = useState(user.zipCode ? user.zipCode : null);
-    const [state, setState] = useState(user.state ? user.state : null);
-    const [country, setCountry] = useState(user.country ? user.country : null);
-
-    const [name, setName] = useState(user.name ? user.name : null);
-    const [number, setNumber] = useState();
-    const [expDate, setExpDate] = useState();
-    const [cvc, setCvc] = useState();
+    const [street, setStreet] = useState(user ? user.address.street : null);
+    const [city, setCity] = useState(user ? user.address.city : null);
+    const [zipCode, setZipCode] = useState(user ? user.address.zipCode : null);
+    const [state, setState] = useState(user ? user.address.state : null);
+    const [country, setCountry] = useState(user ? user.address.country : null);
+    const [name, setName] = useState(user ? user.name + " " + user.surname : null);
 
     const [message, setMessage] = useState();
     const [messageStyle, setMessageStyle] = useState();
@@ -107,7 +103,7 @@ const Payment = () => {
                         <p>Card number</p>
                     </span>
                     <span className={formStyles.twoInSameRowNoMargin}>
-                        <input className={formStyles.mediumInputField} placeholder="Name on card" onChange={(e) => setName(e.target.value)}/>
+                        <input className={formStyles.mediumInputField} placeholder="Name on card" value={name} onChange={(e) => setName(e.target.value)}/>
                         <CardNumberElement className={styles.cardComponent}/>
                     </span>
                 </div>
