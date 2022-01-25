@@ -30,6 +30,8 @@ const Payment = () => {
     const [message, setMessage] = useState();
     const [messageStyle, setMessageStyle] = useState();
 
+    const [buttonDisabled, setButtonDisabled] = useState(false);
+
     const onDoneClick = async () => {
         if(validateLocation(street, city, zipCode, state, country, setMessage, setMessageStyle) && name) {
 
@@ -57,6 +59,7 @@ const Payment = () => {
                     setMessage("Payment successful!");
                     setMessageStyle(messageStyles.headerMessageSuccess);
                     window.scrollTo(0, 0);
+                    setButtonDisabled(true);
                 } else {
                     setMessage(paymentResponse);
                     setMessageStyle(messageStyles.headerMessageError);
@@ -127,7 +130,7 @@ const Payment = () => {
                     </span>
                 </div>
                 <div className={formStyles.buttonsContainer}>
-                    <button className={formStyles.doneButton} onClick={() => onDoneClick()}>DONE</button>
+                    <button disabled={buttonDisabled} className={formStyles.doneButton} onClick={() => onDoneClick()}>DONE</button>
                 </div>
         </div>
     </PageLayout>
