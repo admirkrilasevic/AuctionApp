@@ -19,7 +19,8 @@ const Bids = () => {
         const userItems = await fetchItemsByBidUserId(user.id);
         const allItems = await fetchAllItems();
         const userBids = getBids(allItems);
-        setBids(userBids);
+        const sortedBids = userBids.sort((a,b) => a.id - b.id)
+        setBids(sortedBids);
         setItems(userItems);
     }, []);
 
