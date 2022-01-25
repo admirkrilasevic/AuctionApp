@@ -79,4 +79,12 @@ public class Item {
     public String getName() {
         return name;
     }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setSold(boolean sold) {
+        this.sold = sold;
+    }
 }
