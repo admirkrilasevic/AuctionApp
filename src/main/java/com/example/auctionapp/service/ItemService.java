@@ -114,7 +114,7 @@ public class ItemService {
         Item savedItem = itemRepository.save(item);
         return ResponseEntity.ok().body(savedItem.getName());
     }
-
+    
     public List<Item> getRecommendedProducts(Long categoryId, String name) {
         return itemRepository.getRecommendedProducts(categoryId, name);
     }
@@ -134,6 +134,12 @@ public class ItemService {
     private boolean isSimilarName(String name, String searchString) {
         int distance = Levenshtein.distance(name.toLowerCase(), searchString.toLowerCase());
         return distance > 0 && distance < 2;
+    }
+    
+    public void markItemAsSold(Long itemId) {
+        Item item = itemRepository.getById(itemId);
+        item.setSold(true);
+        itemRepository.save(item);
     }
 
 }

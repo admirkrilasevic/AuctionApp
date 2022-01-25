@@ -83,6 +83,7 @@
     justify-content: space-evenly;
     height: 100px;
     margin-top: 32px;
+    margin-bottom: 100px;
 }
 
 .optionalImage {
@@ -113,4 +114,13 @@
     justify-content: space-evenly;
     margin-bottom: 100px;
     margin-top: 32px;
+}
+
+.congratsMessage {
+    background-color: #f4ecfc;
+    margin-top: 50px;
+    padding: 20px;
+    font-size: 18px;
+    color: #8367D8;
+    font-weight: bold;
 }

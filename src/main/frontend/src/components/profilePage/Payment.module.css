@@ -1,0 +1,27 @@
+.cardComponent {
+    outline: none;
+    border: 1px solid #d8d8d8;
+    box-sizing: border-box;
+    padding: 22px 42px 18px 24px;
+    width: 262px;
+    height: 63px;
+    background-color: #FCFCFC;
+}
+
+.acceptedCards {
+    color: #9B9B9B;
+}
+
+.cardImagesContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 250px;
+    margin-top: 10px;
+    justify-content: space-between;
+}
+
+.cardImagesContainer img {
+    width: 50px;
+    height: 30px;
+}

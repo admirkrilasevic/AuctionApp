@@ -21,6 +21,15 @@
     justify-content: center;
 }
 
+.nameLink {
+    text-decoration: none;
+    color: inherit;
+}
+
+.nameLink:hover {
+    color: #8367D8;
+}
+
 .tableImages {
     width: 80px;
     height: 80px;
@@ -53,5 +62,23 @@
 }
 
 .viewItemLink:hover {
-    color: #8367D8;
+    background-color: #8367D8;
+    color: #FFF;
+    border: none;
+}
+
+.payLink {
+    text-decoration: none;
+    background-color: #8367D8;
+    padding: 10px 0px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #FFF;
+    text-align: center;
+}
+
+.payLink:hover {
+    color: #000;
+    background-color: #FFF;
+    border: 3px solid #D8D8D8;
 }

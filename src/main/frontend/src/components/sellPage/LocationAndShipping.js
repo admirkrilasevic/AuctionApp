@@ -1,6 +1,5 @@
-import { SELL_PAGE_SECTIONS } from "../../constants";
+import { countryCodes, SELL_PAGE_SECTIONS } from "../../constants";
 import formStyles from "./SectionForms.module.css";
-import { countries } from "../../constants";
 import { validateLocation } from "../../utils/AddItemValidations";
 
 const LocationAndShipping = ({setCurrentSection, 
@@ -27,7 +26,7 @@ const LocationAndShipping = ({setCurrentSection,
                 <p>Street</p>
                 <input className={formStyles.formInput} placeholder="Street" value={street} onChange={(e) => setStreet(e.target.value)}/>
             </div>
-            <div className={formStyles.cityContainer}>
+            <div className={formStyles.twoInSameRowDiv}>
                 <span className={formStyles.twoInSameRowNoMargin}>
                     <p>City</p>
                     <p>Zip Code</p>
@@ -45,7 +44,7 @@ const LocationAndShipping = ({setCurrentSection,
                 <p>Country</p>
                 <select className={formStyles.countrySelect} value={country} onChange={(e) => setCountry(e.target.value)}>
                     <option disabled selected hidden>Country</option>
-                    {countries.map((country) => <option>{country}</option>)}
+                    {countryCodes.map((country) => <option value={country.code}>{country.name}</option>)}
                 </select>
             </div>
             <div className={formStyles.buttonsContainer}>

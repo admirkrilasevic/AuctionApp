@@ -55,7 +55,7 @@ const Seller = () => {
                     {((activeTab === SELLER_TABS.ACTIVE) ? activeItems : soldItems).map((item) => 
                     <Row className={tableStyles.contentRow}>
                         <Col className={tableStyles.verticalCenter}><img src={item.photo} className={tableStyles.tableImages}/></Col>
-                        <Col className={tableStyles.verticalCenter}>{item.name}</Col>
+                        <Col className={tableStyles.verticalCenter}><Link to={`/items/${item.id}`} className={tableStyles.nameLink}>{item.name}</Link></Col>
                         <Col className={tableStyles.verticalCenter}>{calculateTimeLeft(item.endDate)}</Col>
                         <Col className={tableStyles.verticalCenter}>$ {item.startingPrice}</Col>
                         <Col className={tableStyles.verticalCenter}>{item.bids.length}</Col>

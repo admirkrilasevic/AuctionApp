@@ -19,7 +19,6 @@ const Bids = () => {
         const userItems = await fetchItemsByBidUserId(user.id);
         const allItems = await fetchAllItems();
         const userBids = getBids(allItems);
-        userBids.sort((a, b) => a.itemId - b.itemId);
         setBids(userBids);
         setItems(userItems);
     }, []);
@@ -46,6 +45,12 @@ const Bids = () => {
         return bids;
     }
 
+    const isReadyForPayment = (amount, bids, date, sold) => {
+        const endDate = new Date(date);
+        const now = new Date();
+        return (amount >= calculateHighestBid(bids)) && (endDate < now) && !sold;
+    }
+
     return (
         <div className={styles.bidsContainer}>
         {(items && items.length > 0) &&
@@ -62,12 +67,19 @@ const Bids = () => {
                 {items.map((item, index) => 
                 <Row className={tableStyles.contentRow}>
                     <Col className={tableStyles.verticalCenter}><img src={item.photo} className={tableStyles.tableImages}/></Col>
-                    <Col className={tableStyles.verticalCenter}>{item.name}</Col>
+                    <Col className={tableStyles.verticalCenter}><Link to={`/items/${item.id}`} className={tableStyles.nameLink}>{item.name}</Link></Col>
                     <Col className={tableStyles.verticalCenter}>{calculateTimeLeft(item.endDate)}</Col>
                     <Col className={tableStyles.verticalCenter}>$ {bids[index].amount}</Col>
                     <Col className={tableStyles.verticalCenter}>{item.bids.length}</Col>
                     <Col className={(bids[index].amount >= calculateHighestBid(item.bids)) ? tableStyles.highestBidCol : tableStyles.notHighestBidCol}>$ {calculateHighestBid(item.bids)}</Col>
-                    <Col className={tableStyles.verticalCenter}><Link to={`/items/${item.id}`} className={tableStyles.viewItemLink}>VIEW</Link></Col>
+                    <Col className={tableStyles.verticalCenter}>
+                        <Link 
+                            to={isReadyForPayment(bids[index].amount, item.bids, item.endDate, item.sold) ? `/payment/${item.id}/${calculateHighestBid(item.bids)}` : `/items/${item.id}`} 
+                            className={isReadyForPayment(bids[index].amount, item.bids, item.endDate, item.sold) ? tableStyles.payLink : tableStyles.viewItemLink}
+                        >
+                            {isReadyForPayment(bids[index].amount, item.bids, item.endDate, item.sold) ? "PAY" : "VIEW"}
+                        </Link>
+                    </Col>
                 </Row>
                 )}
             </Container>}
