@@ -158,9 +158,11 @@ function ItemOverview({...item}) {
                             </Col>
                         </Row>) :
                         <Row>
-                            {sold ? 
+                            {
+                            sold ? 
                             <div className={styles.congratsMessage}>{user.id === getIdOfHighestBidder() ? ITEM_MESSAGE.BOUGHT : ITEM_MESSAGE.SOLD}</div> :
-                            <div className={styles.congratsMessage}>{user.id === getIdOfHighestBidder() ? ITEM_MESSAGE.CONGRATS : ITEM_MESSAGE.ENDED}</div>}    
+                            <div className={styles.congratsMessage}>{user.id === getIdOfHighestBidder() ? ITEM_MESSAGE.CONGRATS : ITEM_MESSAGE.ENDED}</div>
+                            }    
                         </Row>}
                         <Row className={styles.tabSection}>
                             <Tabs description={description}/>
